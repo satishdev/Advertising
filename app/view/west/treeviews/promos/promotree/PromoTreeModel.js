@@ -1,47 +1,63 @@
 /**
  * Created by Lee on 3/22/2017.
  */
+
+Ext.define('Advertising.view.west.treeviews.promos.promotree.model.Node', {
+    extend: 'Ext.data.Model',
+    fields: [
+        {name: 'text', type: 'string', mapping: 'text'},
+        {name: 'leaf', type: 'boolean', mapping: 'leaf'},
+        {name: 'nodetype', type: 'string', mapping: 'nodetype'},
+        {name: 'loaded', type: 'boolean', mapping: 'Loaded', defaultValue: false},
+        {name: 'Properties'},
+        {name: 'expanded', defaultValue: true}
+    ]
+});
+
+
 Ext.define('Advertising.view.west.treeviews.promos.promotree.PromoTreeModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.promotree',
 
     requires: [
-        'Ext.data.TreeStore'
+        'Advertising.view.west.treeviews.promos.promotree.model.Node',
+        'Ext.data.TreeStore',
+        'Ext.data.proxy.Ajax',
+        'Ext.data.reader.Json'
     ],
 
     stores: {
+
         promos: {
+            listeners: {
+                load: function (store, operation) {
+                    console.log("STORE LOAD");
+                },
+
+                beforeload: function (store, operation) {
+                    var node = operation.node;
+                    console.log("Adding extra params...%o", node);
+                    store.getProxy().extraParams = {
+                        nodetype: node.get('nodetype')
+                    };
+
+                }
+            },
             type: 'tree',
-            root: {
-                expanded: true,
-                children: [{
-                    text: "JDA Ad #1",
-                    children: [
-
-                            {
-                                text: "Promo 1",
-                                leaf: true
-                            },
-                            {
-                                text: "Promo 2",
-                                leaf: true
-                            },
-                            {
-                                text: "Promo 3",
-                                leaf: true
-                            }, {
-                                text: "Promo 4",
-                                leaf: true
-                            },
-                            {
-                                text: "Promo 5",
-                                leaf: true
-                            }
-
-                        ]
-
-                }]
+            model: 'Advertising.view.west.treeviews.promos.promotree.model.Node',
+            autoLoad: true,
+            proxy: {
+                type: 'ajax',
+                useDefaultXhrHeader: false,
+                api: {
+                    read: 'http://localhost:8080/tree/promos'
+                },
+                reader: {
+                    type: 'json',
+                    rootProperty: 'promos'
+                }
             }
+
         }
     },
 

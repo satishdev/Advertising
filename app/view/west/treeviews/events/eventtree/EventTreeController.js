@@ -4,11 +4,7 @@
 Ext.define('Advertising.view.west.treeviews.events.eventtree.EventTreeController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.eventtree',
-
-    requires: [
-        'Ext.window.Toast'
-    ],
-
+    id: 'vceventtreecontroller',
     /**
      * Called when the view is created
      */
@@ -16,7 +12,7 @@ Ext.define('Advertising.view.west.treeviews.events.eventtree.EventTreeController
 
     },
     onTreeNodeSelect: function(tree,record,ndx,opts) {
-        console.log("Clicked!");
-        Ext.window.Toast('test');
+        Ext.toast("Node clicked " + record.data);
+        this.fireEvent('eventTreeSelection', record);
     }
 });

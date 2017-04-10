@@ -1,9 +1,9 @@
 /**
- * Created by Lee on 3/9/2017.
+ * Created by Lee on 4/5/2017.
  */
-Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsModel', {
+Ext.define('Advertising.view.main.common.test.TestModel', {
     extend: 'Ext.app.ViewModel',
-    alias: 'viewmodel.pagelayouts',
+    alias: 'viewmodel.test',
 
     stores: {
         /*
@@ -11,14 +11,13 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsModel', {
         store configuration. For example:
 
         users: {
-            model: 'PageLayouts',
+            model: 'Test',
             autoLoad: true
         }
         */
     },
 
     data: {
-        pagename: 'Page X'
         /* This object holds the arbitrary data that populates the ViewModel and is then available for binding. */
     }
 });

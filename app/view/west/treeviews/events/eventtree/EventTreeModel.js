@@ -1,11 +1,26 @@
 /**
  * Created by Lee on 3/9/2017.
  */
+
+Ext.define('Advertising.view.west.treeviews.events.eventtree.model.Node', {
+    extend: 'Ext.data.Model',
+    fields: [
+        {name: 'text', type: 'string', mapping: 'text'},
+        {name: 'leaf', type: 'boolean', mapping: 'leaf'},
+        {name: 'nodetype', type: 'string', mapping: 'nodetype'},
+        {name: 'loaded', type: 'boolean', mapping: 'Loaded', defaultValue: false},
+        {name: 'Properties'},
+        {name: 'expanded', defaultValue: true}
+    ]
+});
+
+
 Ext.define('Advertising.view.west.treeviews.events.eventtree.EventTreeModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.eventtree',
 
     requires: [
+        'Advertising.view.west.treeviews.events.eventtree.model.Node',
         'Ext.data.TreeStore',
         'Ext.data.proxy.Ajax',
         'Ext.data.reader.Json'
@@ -13,94 +28,45 @@ Ext.define('Advertising.view.west.treeviews.events.eventtree.EventTreeModel', {
 
     stores: {
         events: {
+            listeners: {
+                load: function (store, operation) {
+                    console.log("STORE LOAD");
+                },
+
+                beforeload: function (store, operation) {
+                    var node = operation.node;
+                    console.log("Adding extra params...%o", node);
+                    store.getProxy().extraParams = {
+                        nodetype: node.get('nodetype')
+                    };
+
+                }
+            },
             type: 'tree',
+            model: 'Advertising.view.west.treeviews.events.eventtree.model.Node',
             autoLoad: true,
             proxy: {
-                type : 'ajax',
+                type: 'ajax',
                 useDefaultXhrHeader: false,
                 api: {
-                    read:  'http://localhost:8080/event/types'
+                    read: 'http://localhost:8080/tree/events'
                 },
                 reader: {
                     type: 'json',
                     rootProperty: 'events'
                 }
             }
-        },
-        test: {
-            type: 'tree',
-            root: {
-                expanded: true,
-                children: [{
-                    text: "2018",
-                    children: [
-                        {
-                            text: "Jan 2018",
-                            expanded: true,
-                            children: [{
-                                text: "JDA Ad #1",
-                                children: [
-                                    {
-                                        text: "Page 1",
-                                        leaf: true
-                                    },
-                                    {
-                                        text: "Page 2",
-                                        leaf: true
-                                    },
-                                    {
-                                        text: "Page 3",
-                                        leaf: true
-                                    },  {
-                                        text: "Page 4",
-                                        leaf: true
-                                    },
-                                    {
-                                        text: "Page 5",
-                                        leaf: true
-                                    }
 
-                                ]
-                            }, {
-                                text: "JDA Ad #2",
-                                children: [
-                                    {
-                                        text: "Page 1",
-                                        leaf: true
-                                    },
-                                    {
-                                        text: "Page 2",
-                                        leaf: true
-                                    },
-                                    {
-                                        text: "Page 3",
-                                        leaf: true
-                                    },  {
-                                        text: "Page 4",
-                                        leaf: true
-                                    },
-                                    {
-                                        text: "Page 5",
-                                        leaf: true
-                                    }
-
-                                ]
-                            }]
-                        }
-                    ]
-                }
-                ]
-            }
         }
         /*
-        A declaration of Ext.data.Store configurations that are first processed as binds to produce an effective
-        store configuration. For example:
+         A declaration of Ext.data.Store configurations that are first processed as binds to produce an effective
+         store configuration. For example:
 
-        users: {
-            model: 'EventTree',
-            autoLoad: true
-        }
-        */
+         users: {
+         model: 'EventTree',
+         autoLoad: true
+         }
+         */
     },
 
     data: {

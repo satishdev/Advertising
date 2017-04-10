@@ -5,13 +5,16 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayouts', {
     extend: 'Ext.panel.Panel',
 
 
-
-
+    gridX: 10,
+    gridY: 10,
+    gridVisible: false,
     xtype: 'pagelayouts',
 
     requires: [
+        'Advertising.view.main.common.Promo',
         'Advertising.view.main.layouts.pagelayouts.PageLayoutsController',
         'Advertising.view.main.layouts.pagelayouts.PageLayoutsModel',
+        'Ext.button.Button',
         'Ext.button.Split',
         'Ext.layout.container.Absolute',
         'Ext.layout.container.Fit',
@@ -28,22 +31,59 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayouts', {
     defaults: {
         bodyPadding: 2
     },
+    cls: 'noSelect',
+    listeners: {
+        resize: 'onPageResize',
+
+        pageChange: 'onPageChange'
+
+    },
     items: [
         {
             xtype: 'panel',
-            title: 'Page 1',
+            bind: {
+                title: '{pagename}'
+            },
             padding: 10,
             border: true,
             layout: 'absolute',
             scrollable: true,
 
-            header:{
-              items: [
-                  {
-                      xtype: 'splitbutton',
-                      text: 'StoreGroup B'
-                  }
-              ]
+            header: {
+                defaults: {
+                    margin: '0 1 0 5'
+                },
+                items: [
+                    {
+                        xtype: 'button',
+                        iconCls: "fa fa-save",
+                        handler: 'onSaveChanges'
+                    },
+                    {
+                        xtype: 'button',
+                        enableToggle: true,
+
+                        text: 'Layout',
+                        handler: 'onToggleLayouts'
+                    },
+                    {
+                        xtype: 'button',
+                        enableToggle: true,
+
+                        text: 'Theme',
+                        handler: 'onToggleThemes'
+                    },
+                    {
+                        xtype: 'button',
+                        enableToggle: true,
+                        text: 'Grid',
+                        handler: 'onToggleGrid'
+                    },
+                    {
+                        xtype: 'splitbutton',
+                        text: 'StoreGroup B'
+                    }
+                ]
             },
             items: [
                 {
@@ -51,42 +91,46 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayouts', {
                     width: '100%',
                     padding: 10,
                     mode: 'background',
-                    zIndex:1,
-                    src: 'http://w2capl0037210.heb.com:8081/smartmedia/servlet/smartmediaservlet?&type=Page&res=prev&ref=CoreChckbskt.indd'
+                    zIndex: 1,
+                    cls: 'noSelect',
+                    src: 'http://laheadvsb01.ngco.com:8080/smartmedia/servlet/smartmediaservlet?ref=RCSS_F_10p5x10p5.indd&type=Page&res=prev'
                 },
                 {
-                    xtype: 'panel',
+                    xtype: 'promo',
                     width: 350,
                     height: 220,
-                    layout: 'absolute',
-                    resizable: true,
-                    zIndex: 99,
                     y: 150,
                     x: 130,
-                    frame: true,
-                    items: [
-                        {
-                            html: 'This is promo A<br/>Has items X,Y,Z'
-                        }
-                    ]
+                    name: 'promoY'
                 },
                 {
-                    xtype: 'panel',
+                    xtype: 'promo',
                     width: 350,
                     height: 220,
-                    zIndex: 99,
-                    layout: 'absolute',
-                    resizable: true,
                     y: 150,
                     x: 530,
-                    frame: true,
-                    items: [
-                        {
-                            html: 'This is promo B<br/>Has items A,B,C'
-                        }
-                    ]
-                }
+                    name: 'promoX'
 
+                },
+                {
+                    xtype: 'promo',
+                    width: 350,
+                    height: 220,
+                    y: 450,
+                    x: 530,
+                    name: 'promoX'
+
+                }
+                ,
+                {
+                    xtype: 'promo',
+                    width: 350,
+                    height: 220,
+                    y: 650,
+                    x: 430,
+                    name: 'promoX'
+
+                }
 
             ]
         }

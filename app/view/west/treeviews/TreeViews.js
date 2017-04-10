@@ -32,11 +32,14 @@ Ext.define('Advertising.view.west.treeviews.TreeViews', {
         },
         {
             title: 'Promos',
-            xtype: 'promotree'
+            xtype: 'promogrid'
 
         },
         {
             title: 'Products'
+        },
+        {
+            title: 'Layouts'
         }
     ]
 });

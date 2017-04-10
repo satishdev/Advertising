@@ -17,5 +17,11 @@ Ext.define('Advertising.view.main.MainController', {
         if (choice === 'yes') {
             //
         }
+    },
+    onActivateMain: function(panel) {
+        var me = this;
+
+        var username = Advertising.view.main.common.UserInfo.getName();
+        me.getViewModel().set("username", username);
     }
 });

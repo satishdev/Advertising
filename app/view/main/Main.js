@@ -5,6 +5,10 @@
  *
  * TODO - Replace this content of this view to suite the needs of your application.
  */
+
+
+
+
 Ext.define('Advertising.view.main.Main', {
     extend: 'Ext.panel.Panel',
     xtype: 'app-main',
@@ -23,7 +27,9 @@ Ext.define('Advertising.view.main.Main', {
 
     controller: 'main',
     viewModel: 'main',
-
+    listeners: {
+        render: 'onActivateMain'
+    },
     defaults: {
         collapsible: true,
         split: true,
@@ -32,15 +38,21 @@ Ext.define('Advertising.view.main.Main', {
     layout: 'border',
 
     header: {
-        height: 50,
-        layout: 'hBox',
+        defaults: {
+            margin: '0 1 0 5'
+        },
+
         items: [
             {
-                html: 'header'
+                text: 'header'
             },
             {
-                text: 'User X'
+                bind: {
+                    text: "Welcome {username}"
+                },
+                xtype: 'button'
             },
+
             {
                 xtype: 'button',
                 text: 'Logout'

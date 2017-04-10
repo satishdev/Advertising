@@ -10,5 +10,22 @@ Ext.define('Advertising.view.west.treeviews.promos.promotree.PromoTreeController
      */
     init: function() {
 
+    },
+    listen: {
+        controller: {
+            '#vceventtreecontroller': {
+                eventTreeSelection: 'onEventChange'
+            }
+        }
+    },
+    onEventChange: function(record) {
+        var me =this;
+
+        var nodetype = record.data.nodetype;
+        if ( nodetype == 'VEHICLE') {
+            Ext.toast("Getting promos for vehicle " + record.data.id);
+
+        }
     }
+
 });

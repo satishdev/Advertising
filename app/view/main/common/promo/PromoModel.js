@@ -1,9 +1,9 @@
 /**
- * Created by Lee on 3/9/2017.
+ * Created by Lee on 4/4/2017.
  */
-Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsModel', {
+Ext.define('Advertising.view.main.common.promo.PromoModel', {
     extend: 'Ext.app.ViewModel',
-    alias: 'viewmodel.pagelayouts',
+    alias: 'viewmodel.promo',
 
     stores: {
         /*
@@ -11,14 +11,21 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsModel', {
         store configuration. For example:
 
         users: {
-            model: 'PageLayouts',
+            model: 'Promo',
             autoLoad: true
         }
         */
     },
 
     data: {
-        pagename: 'Page X'
+        debug: true,
+        debugInfo: 'debug info',
+        undoDisabled: true,
+        showGrid: false,
+        width: 350,
+        height: 220,
+        origX: 0,
+        origY: 0
         /* This object holds the arbitrary data that populates the ViewModel and is then available for binding. */
     }
 });
