@@ -50,7 +50,7 @@ Ext.define('Advertising.view.west.treeviews.promos.promotree.PromoTreeModel', {
                 type: 'ajax',
                 useDefaultXhrHeader: false,
                 api: {
-                    read: 'http://localhost:8080/tree/promos'
+                    read: 'http://localhost:8881/tree/promos'
                 },
                 reader: {
                     type: 'json',

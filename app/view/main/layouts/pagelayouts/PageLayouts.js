@@ -93,7 +93,7 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayouts', {
                     mode: 'background',
                     zIndex: 1,
                     cls: 'noSelect',
-                    src: 'http://laheadvsb01.ngco.com:8080/smartmedia/servlet/smartmediaservlet?ref=RCSS_F_10p5x10p5.indd&type=Page&res=prev'
+                    src: 'http://laheadvsb01.ngco.com:8881/smartmedia/servlet/smartmediaservlet?ref=RCSS_F_10p5x10p5.indd&type=Page&res=prev'
                 },
                 {
                     xtype: 'promo',

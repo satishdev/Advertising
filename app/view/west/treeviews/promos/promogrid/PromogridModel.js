@@ -31,7 +31,7 @@ Ext.define('Advertising.view.west.treeviews.promos.promogrid.PromogridModel', {
                 type: 'ajax',
                 useDefaultXhrHeader: false,
                 api: {
-                    read: 'http://localhost:8080/event/getVehiclePromoOffers'
+                    read: 'http://localhost:8881/event/getVehiclePromoOffers'
                 },
                 reader: {
                     type: 'json',

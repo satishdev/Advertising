@@ -13,7 +13,7 @@ Ext.define('Advertising.view.west.treeviews.TreeViews', {
         'Advertising.view.west.treeviews.TreeViewsController',
         'Advertising.view.west.treeviews.TreeViewsModel',
         'Advertising.view.west.treeviews.events.eventtree.EventTree',
-        'Advertising.view.west.treeviews.promos.promotree.PromoTree',
+        'Advertising.view.west.treeviews.promos.promogrid.Promogrid',
         'Ext.layout.container.Accordion'
     ],
 
