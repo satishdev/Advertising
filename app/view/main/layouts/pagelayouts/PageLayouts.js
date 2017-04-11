@@ -2,7 +2,7 @@
  * Created by Lee on 3/9/2017.
  */
 Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayouts', {
-    extend: 'Ext.panel.Panel',
+    extend: 'Ext.tab.Panel',
 
 
     gridX: 10,
@@ -40,6 +40,7 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayouts', {
     },
     items: [
         {
+            closable: true,
             xtype: 'panel',
             bind: {
                 title: '{pagename}'

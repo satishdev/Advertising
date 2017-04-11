@@ -62,14 +62,15 @@ Ext.define('Advertising.view.main.Main', {
     items: [
         {
             region: 'west',
-            width: 200,
+            //width: 200,
+            flex: 1,
             xtype: 'treeviews'
         },
         {
             region: 'center',
             collapsible: false,
             layout: 'fit',
-            flex: 1,
+            flex: 3,
             items: [
                 {
                     xtype: 'tabpanel',

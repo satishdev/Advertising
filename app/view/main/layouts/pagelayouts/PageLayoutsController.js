@@ -4,12 +4,20 @@
 Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.pagelayouts',
+
+    requires: [
+        'Ext.tab.Panel'
+    ],
+
     id: 'vcpagelayoutscontroller',
 
     listen: {
         controller: {
             '#vceventtreecontroller': {
                 eventTreeSelection: 'onPageChange'
+            },
+            '#vclayouttreecontroller': {
+                layoutTreeSelection: 'onLayoutClick'
             }
         }
     },
@@ -28,6 +36,37 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
         var pageView = btn.up('pagelayouts');
         console.log("Layouts %o %s", pageView, btn.pressed);
         Ext.toast("Turn layouts " + (( btn.pressed) ? "on" : "off"));
+    },
+    /**
+     * Add the selected layout to the views unless the layout is already present then
+     * just make it the active tab
+     * @param record
+     */
+    onLayoutClick: function(record) {
+        var tabName = record.get('text'), tabIndex =0;
+        console.log("onLayoutClick %o", record);
+        Ext.toast("Show layout " + record.data.text);
+        var me = this, existing = false;
+        var pageView = Ext.ComponentQuery.query("pagelayouts")[0];
+        // see if we have this tab name already
+        pageView.items.each(function(e) {
+           if (e.title == tabName) {
+               pageView.setActiveTab(tabIndex);
+               existing=true;
+           }
+            tabIndex++;
+        });
+        if ( !existing ) {
+            console.log("View %o", pageView);
+            var panel = Ext.create('Ext.tab.Panel', {
+                title: record.get('text'),
+                closable: true,
+                flex: 1
+            });
+            var addIndex = pageView.items.length - 1;
+            pageView.insert(addIndex, panel);
+            pageView.setActiveTab(addIndex);
+        }
     },
     /* Turn on/off themes for page view */
     onToggleThemes: function (btn) {

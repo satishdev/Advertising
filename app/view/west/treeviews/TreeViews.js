@@ -13,6 +13,7 @@ Ext.define('Advertising.view.west.treeviews.TreeViews', {
         'Advertising.view.west.treeviews.TreeViewsController',
         'Advertising.view.west.treeviews.TreeViewsModel',
         'Advertising.view.west.treeviews.events.eventtree.EventTree',
+        'Advertising.view.west.treeviews.layouts.layouttree.LayoutTree',
         'Advertising.view.west.treeviews.promos.promogrid.Promogrid',
         'Ext.layout.container.Accordion'
     ],
@@ -39,7 +40,8 @@ Ext.define('Advertising.view.west.treeviews.TreeViews', {
             title: 'Products'
         },
         {
-            title: 'Layouts'
+            title: 'Layouts',
+            xtype: 'layouttree'
         }
     ]
 });

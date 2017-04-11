@@ -15,8 +15,13 @@ Ext.define('Advertising.view.west.treeviews.layouts.layouttree.LayoutTree', {
     viewModel: {
         type: 'layouttree'
     },
-
+    bind: {
+        store: '{layouts}'
+    },
     controller: 'layouttree',
+    listeners: {
+        itemclick: 'onTreeNodeSelect'
+    },
 
     items: [
         /* include child components here */

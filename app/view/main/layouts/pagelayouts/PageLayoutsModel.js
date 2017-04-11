@@ -18,7 +18,8 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsModel', {
     },
 
     data: {
-        pagename: 'Page X'
+        pagename: 'Page X',
+        layouts: []
         /* This object holds the arbitrary data that populates the ViewModel and is then available for binding. */
     }
 });

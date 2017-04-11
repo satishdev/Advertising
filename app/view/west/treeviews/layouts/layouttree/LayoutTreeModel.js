@@ -33,7 +33,7 @@ Ext.define('Advertising.view.west.treeviews.layouts.layouttree.LayoutTreeModel',
                 type : 'ajax',
                 useDefaultXhrHeader: false,
                 api: {
-                    read:  'http://localhost:8881/layouts/tree'
+                    read:  'http://localhost:8881/tree/layouts'
                 },
                 reader: {
                     type: 'json',
