@@ -29,6 +29,7 @@ Ext.define('Advertising.view.west.treeviews.layouts.layouttree.LayoutTreeModel',
             },
             type: 'tree',
             autoLoad: true,
+
             proxy: {
                 type : 'ajax',
                 useDefaultXhrHeader: false,

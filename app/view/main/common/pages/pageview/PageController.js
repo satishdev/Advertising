@@ -1,9 +1,11 @@
 /**
  * Created by Lee on 4/12/2017.
+ *
+ * Controller for pages and layouts
  */
-Ext.define('Advertising.view.main.common.pages.layout.LayoutController', {
+Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
     extend: 'Ext.app.ViewController',
-    alias: 'controller.layout',
+    alias: 'controller.page',
 
     requires: [
         'Advertising.view.main.common.pages.layout.LayoutObject',
@@ -14,8 +16,11 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutController', {
     /**
      * Called when the view is created
      */
-    init: function () {
+    init: function() {
 
+    },
+    onPageResize: function(page) {
+        Ext.toast("Page was resized");
     },
     onRenderLayoutPanel: function (p) {
         var parentPanel = p.up('panel');
@@ -26,7 +31,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutController', {
             console.log("Items %o", layoutObjects);
             Ext.toast("Adding " + layoutObjects.length + " items to layout");
             layoutObjects.forEach(function(lo) {
-               console.log("Adding item %o", lo);
+                console.log("Adding item %o", lo);
                 var panel = Ext.create('Advertising.view.main.common.pages.layout.LayoutObject',{
                     width: lo.width * 96 * scale,
                     height: lo.height * 96 * scale,

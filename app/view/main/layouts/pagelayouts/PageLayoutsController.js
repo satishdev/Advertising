@@ -28,16 +28,7 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
     init: function () {
 
     },
-    onSaveChanges: function (btn) {
-        Ext.toast("Saving changes...");
 
-    },
-    /* Turn on/off layouts for page view */
-    onToggleLayouts: function (btn) {
-        var pageView = btn.up('pagelayouts');
-        console.log("Layouts %o %s", pageView, btn.pressed);
-        Ext.toast("Turn layouts " + (( btn.pressed) ? "on" : "off"));
-    },
     /**
      * Add the selected layout to the views unless the layout is already present then
      * just make it the active tab
@@ -47,6 +38,7 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
         var tabName = record.get('text'), tabIndex =0;
         console.log("onLayoutClick %o", record);
         Ext.toast("Show layout " + record.data.text);
+        Ext.suspendLayouts();
         var me = this, existing = false;
         var pageView = Ext.ComponentQuery.query("pagelayouts")[0];
         // see if we have this tab name already
@@ -92,25 +84,11 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
 
                 }
             });
-
+            Ext.resumeLayouts(true);
 
         }
     },
-    /* Turn on/off themes for page view */
-    onToggleThemes: function (btn) {
-        var pageView = btn.up('pagelayouts');
-        console.log("Themes %o %s", pageView, btn.pressed);
-        Ext.toast("Turn themes " + (( btn.pressed) ? "on" : "off"));
-    },
-    /* Turn on/off grid for page view */
-    onToggleGrid: function (btn) {
-        var pageView = btn.up('pagelayouts');
-        console.log("Grid %o %s", pageView, btn.pressed);
-        Ext.toast("Turn grid " + (( btn.pressed) ? "on" : "off"));
-    },
-    /*
-        page change requested
-     */
+
     onPageChange: function (record) {
         var me = this;
         var nodetype = record.data.nodetype;

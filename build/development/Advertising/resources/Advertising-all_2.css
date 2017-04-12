@@ -10538,8 +10538,7 @@
 /* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:123 */
 .f-layout-object {
     opacity: 0.9;
-    background-color: #f8d400;
-    border: 3px;
-    border-color: #2e7d32;
+    background: #f8d400 !important;
+    border: 5px #2e7d32;
     border-radius: 3px;
 }

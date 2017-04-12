@@ -2,12 +2,9 @@
  * Created by Lee on 4/12/2017.
  */
 Ext.define('Advertising.view.main.common.pages.layout.Layout', {
-    extend: 'Ext.panel.Panel',
+    extend: 'Advertising.view.main.common.pages.pageview.Page',
     requires: [
-        'Advertising.view.main.common.pages.layout.LayoutController',
-        'Advertising.view.main.common.pages.layout.LayoutModel',
-        'Ext.layout.container.Fit',
-        'Ext.panel.Panel'
+        'Advertising.view.main.common.pages.layout.LayoutModel'
     ],
 
     //config: {
@@ -17,9 +14,7 @@ Ext.define('Advertising.view.main.common.pages.layout.Layout', {
     inchWidth: 0,
     inchHeight: 0,
     padding: 10,
-    border: true,
-    layout: 'fit',
-    scrollable: true,
+
     initComponent: function () {
         console.log("Layout %o", this);
         console.log("Width %f", this.inchWidth);
@@ -44,7 +39,7 @@ Ext.define('Advertising.view.main.common.pages.layout.Layout', {
         type: 'layout'
     },
 
-    controller: 'layout',
+    controller: 'page',
 
     items: [
 

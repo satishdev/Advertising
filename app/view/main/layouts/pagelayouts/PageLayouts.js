@@ -14,8 +14,6 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayouts', {
         'Advertising.view.main.common.Promo',
         'Advertising.view.main.layouts.pagelayouts.PageLayoutsController',
         'Advertising.view.main.layouts.pagelayouts.PageLayoutsModel',
-        'Ext.button.Button',
-        'Ext.button.Split',
         'Ext.layout.container.Absolute',
         'Ext.panel.Panel'
     ],
@@ -37,6 +35,7 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayouts', {
         pageChange: 'onPageChange'
 
     },
+
     items: [
         {
             closable: true,
@@ -49,42 +48,7 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayouts', {
             layout: 'absolute', // do not change!
             scrollable: true,
 
-            header: {
-                defaults: {
-                    margin: '0 1 0 5'
-                },
-                items: [
-                    {
-                        xtype: 'button',
-                        iconCls: "fa fa-save",
-                        handler: 'onSaveChanges'
-                    },
-                    {
-                        xtype: 'button',
-                        enableToggle: true,
 
-                        text: 'Layout',
-                        handler: 'onToggleLayouts'
-                    },
-                    {
-                        xtype: 'button',
-                        enableToggle: true,
-
-                        text: 'Theme',
-                        handler: 'onToggleThemes'
-                    },
-                    {
-                        xtype: 'button',
-                        enableToggle: true,
-                        text: 'Grid',
-                        handler: 'onToggleGrid'
-                    },
-                    {
-                        xtype: 'splitbutton',
-                        text: 'StoreGroup B'
-                    }
-                ]
-            },
             items: [
                 {
                     xtype: 'image',

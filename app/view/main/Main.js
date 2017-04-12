@@ -20,8 +20,10 @@ Ext.define('Advertising.view.main.Main', {
         'Advertising.view.main.layouts.pagelayouts.PageLayouts',
         'Advertising.view.west.treeviews.TreeViews',
         'Ext.button.Button',
+        'Ext.button.Split',
         'Ext.layout.container.Border',
         'Ext.layout.container.Fit',
+        'Ext.slider.Single',
         'Ext.tab.Panel'
     ],
 
@@ -43,6 +45,51 @@ Ext.define('Advertising.view.main.Main', {
         },
 
         items: [
+            {
+                xtype: 'button',
+                iconCls: "fa fa-save",
+                handler: 'onSaveChanges'
+            },
+            {
+                xtype: 'button',
+                enableToggle: true,
+
+                text: 'Layout',
+                handler: 'onToggleLayouts'
+            },
+            {
+                xtype: 'button',
+                enableToggle: true,
+
+                text: 'Theme',
+                handler: 'onToggleThemes'
+            },
+            {
+                xtype: 'button',
+                enableToggle: true,
+                text: 'Grid',
+                handler: 'onToggleGrid'
+            },
+            {
+                xtype: 'splitbutton',
+                text: 'StoreGroup B'
+            },
+            {
+                xtype: 'slider',
+                fieldLabel: 'Zoom',
+                width: 300,
+                increment: 10,
+                minValue: 10,
+                maxValue: 100,
+                labelAlign: 'right',
+                cls: 'x-btn-inner-default-small',
+                listeners : {
+                    change : 'onZoomLevelChange'
+                },
+                bind: {
+                    value: '{zoomValue}'
+                }
+            },
             {
                 text: 'header'
             },

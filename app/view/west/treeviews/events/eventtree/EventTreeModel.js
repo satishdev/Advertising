@@ -20,6 +20,7 @@ Ext.define('Advertising.view.west.treeviews.events.eventtree.EventTreeModel', {
     alias: 'viewmodel.eventtree',
 
     requires: [
+        'Advertising.view.west.treeviews.events.eventtree.model.Node',
         'Ext.data.TreeStore',
         'Ext.data.proxy.Ajax',
         'Ext.data.reader.Json'
@@ -35,7 +36,7 @@ Ext.define('Advertising.view.west.treeviews.events.eventtree.EventTreeModel', {
                 beforeload: function (store, operation) {
                     var node = operation.node;
                     console.log("Adding extra params...%o", node);
-                    if ( node.hasOwnProperty("nodetype")) {
+                    if ( node.data.hasOwnProperty("nodetype")) {
                         store.getProxy().extraParams = {
                             nodetype: node.get('nodetype')
                         };
@@ -44,7 +45,7 @@ Ext.define('Advertising.view.west.treeviews.events.eventtree.EventTreeModel', {
                 }
             },
             type: 'tree',
-         //   model: 'Advertising.view.west.treeviews.events.eventtree.model.Node',
+            model: 'Advertising.view.west.treeviews.events.eventtree.model.Node',
             autoLoad: true,
             proxy: {
                 type: 'ajax',
