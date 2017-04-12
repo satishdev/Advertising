@@ -17,7 +17,6 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayouts', {
         'Ext.button.Button',
         'Ext.button.Split',
         'Ext.layout.container.Absolute',
-        'Ext.layout.container.Fit',
         'Ext.panel.Panel'
     ],
 
@@ -26,7 +25,7 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayouts', {
         type: 'pagelayouts'
     },
     scrollable: true,
-    layout: 'fit',
+    layout: 'absolute',
     controller: 'pagelayouts',
     defaults: {
         bodyPadding: 2
@@ -47,7 +46,7 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayouts', {
             },
             padding: 10,
             border: true,
-            layout: 'absolute',
+            layout: 'absolute', // do not change!
             scrollable: true,
 
             header: {

@@ -6,7 +6,8 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
     alias: 'controller.pagelayouts',
 
     requires: [
-        'Ext.tab.Panel'
+        'Advertising.view.main.common.pages.layout.Layout',
+        'Ext.layout.container.Absolute'
     ],
 
     id: 'vcpagelayoutscontroller',
@@ -57,15 +58,42 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
             tabIndex++;
         });
         if ( !existing ) {
-            console.log("View %o", pageView);
-            var panel = Ext.create('Ext.tab.Panel', {
-                title: record.get('text'),
-                closable: true,
-                flex: 1
+            console.log("Adding layout view to %o", pageView);
+
+            Ext.Ajax.request({
+                url: "http://localhost:8881/layout/getLayout/" + record.get("id"),
+                method: 'GET',
+                cors: true,
+                useDefaultXhrHeader : false,
+                timeout: 1450000,
+                params: {
+                    layoutID:record.get('id')
+                },
+                success: function (transport) {
+                    var response = Ext.decode(transport.responseText);
+                    console.log("Got response %o", response);
+                    var panel = Ext.create('Advertising.view.main.common.pages.layout.Layout', {
+                        title: record.get('text'),
+                        closable: true,
+                        layout: 'absolute',
+                        layoutData: response,
+                        inchWidth: response.width,
+                        inchHeight: response.height
+                    });
+                    var addIndex = pageView.items.length - 1;
+                    pageView.insert(addIndex, panel);
+                    pageView.setActiveTab(addIndex);
+                },
+                failure: function (transport) {
+                    var response = Ext.decode(transport.responseText);
+
+                    Ext.Msg.alert('Error', response.Error);
+
+
+                }
             });
-            var addIndex = pageView.items.length - 1;
-            pageView.insert(addIndex, panel);
-            pageView.setActiveTab(addIndex);
+
+
         }
     },
     /* Turn on/off themes for page view */
