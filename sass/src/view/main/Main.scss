@@ -122,7 +122,14 @@
 
 .f-layout-object {
   opacity: 0.9;
-  background: #f8d400 !important;
   border: 5px #2e7d32;
   border-radius: 3px;
+}
+
+.f-layout-object-clean .x-panel-body{
+   background-color: #f8d400 !important;
+ }
+
+.f-layout-object-selected .x-panel-body{
+  background-color: #2e7d32 !important;
 }

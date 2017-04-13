@@ -5,10 +5,57 @@
  * TODO - Replace this content of this view to suite the needs of your application.
  */
 Ext.define('Advertising.view.main.MainController', {
-    extend: 'Ext.app.ViewController',
+    extend: 'Advertising.view.core.BaseViewController',
 
     alias: 'controller.main',
 
+    requires: [
+        'Advertising.util.GlobalValues',
+        'Ext.util.TaskManager'
+    ],
+
+    init: function () {
+        var serverPingCheck, me = this;
+        serverPingCheck = {
+            run: function () {
+                me.onOpenConnection();
+            },
+            interval: 15000
+        };
+
+        Ext.TaskManager.start(serverPingCheck);
+
+   //     me.setMask('Loading', 'Starting Application...');
+
+
+    },
+    onOpenConnection: function () {
+        if (Advertising.util.GlobalValues.serverConnectionLost == true) {
+            try {
+              console.log("Attempting to ping server...");
+                Ext.Ajax.request({
+                    url: "http://localhost:8881/test/ping",
+                    method: 'GET',
+                    cors: true,
+                    useDefaultXhrHeader : false,
+                    timeout: 300000,
+
+                    success: function (transport) {
+                        var response = Ext.decode(transport.responseText);
+                        Advertising.util.GlobalValues.serverConnectionLost = false;
+
+                    },
+                    failure: function (transport) {
+                        var response = Ext.decode(transport.responseText);
+                        Ext.Msg.alert('Error', response.Error);
+
+                    }
+                });
+            } catch (err) {
+                console.error("Failed to poll server");
+            }
+        }
+    },
     onItemSelected: function (sender, record) {
         Ext.Msg.confirm('Confirm', 'Are you sure?', 'onConfirm', this);
     },

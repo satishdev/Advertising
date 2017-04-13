@@ -18,12 +18,20 @@ Ext.define('Advertising.view.west.treeviews.promos.promogrid.Promogrid', {
     },
     layout:'fit',
     controller: 'promogrid',
-
+    emptyText: 'No offers on selected page/vehicle',
+    bind: {
+        store: '{offers}'
+    },
     columns: [
+        {
+            text:'ID',
+            flex:1,
+            dataIndex: 'ID'
+        },
         {
             text:'Name',
             flex:1,
-            dataIndex: 'name'
+            dataIndex: 'Name'
         }
     ]
 });

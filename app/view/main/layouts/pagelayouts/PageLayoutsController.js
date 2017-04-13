@@ -97,7 +97,7 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
         }
         console.log("Page view change request");
         Ext.toast("Page change requested " + record.data.nodetype + ":" + record.data.text);
-
+        Ext.ComponentQuery.query('promogrid')[0].setTitle('Promos for ' + record.data.text);
     },
     onPageResize: function (pageview, width, height, origWidth, origHeight) {
         var me = this;

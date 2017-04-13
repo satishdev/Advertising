@@ -34,7 +34,7 @@ Ext.define('Advertising.view.main.common.pages.layout.Layout', {
     },
     xtype: 'layout',
 
-
+    iconCls: 'fa fa-th',
     viewModel: {
         type: 'layout'
     },

@@ -19,7 +19,8 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsModel', {
 
     data: {
         pagename: 'Page X',
-        layouts: []
+        layouts: [],
+        layoutTip: 'Display page layouts (templates that show where promos are to be placed)'
         /* This object holds the arbitrary data that populates the ViewModel and is then available for binding. */
     }
 });

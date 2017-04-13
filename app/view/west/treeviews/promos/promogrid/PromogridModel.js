@@ -6,7 +6,7 @@ Ext.define('Advertising.view.west.treeviews.promos.promogrid.PromogridModel', {
     alias: 'viewmodel.promogrid',
 
     requires: [
-        'Ext.data.proxy.Ajax',
+        'Ext.data.proxy.Rest',
         'Ext.data.reader.Json'
     ],
 
@@ -28,8 +28,12 @@ Ext.define('Advertising.view.west.treeviews.promos.promogrid.PromogridModel', {
             },
             autoLoad: false,
             proxy: {
-                type: 'ajax',
+                type: 'rest',
                 useDefaultXhrHeader: false,
+                pageParam: false, //to remove param "page"
+                startParam: false, //to remove param "start"
+                limitParam: false, //to remove param "limit"
+                noCache: false, //to remove param "_dc"
                 api: {
                     read: 'http://localhost:8881/event/getVehiclePromoOffers'
                 },

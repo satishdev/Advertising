@@ -39,7 +39,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
                     y: lo.yPos * 96 * scale,
                     items: [
                         {
-                            html: '<font size="5vw">' + lo.metastyle.name + "</font>"
+                            html: '<p size="4vw">' + lo.metastyle.name + "</p>"
                         }
                     ]
 
@@ -55,7 +55,9 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
 
         console.log("Parent panel size: %o", p.up('panel').getSize());
         var parentWidth = p.up('panel').getSize().width;
-        var scale = parentWidth / ((p.inchWidth * 96) + 20);
+        var parentHeight = p.up('panel').getSize().height;
+      //  var scale = parentWidth / ((p.inchWidth * 96) + 20);
+        var scale = parentHeight / ((p.inchHeight * 96) + 100);
         console.log("Scale %f", scale);
         var me = this;
         me.getViewModel().set("scale", scale);
@@ -69,6 +71,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
             width: trueWidth,
             height: trueHeight,
             layout: 'absolute',
+
             zIndex: 98,
             listeners: {
                 render: 'onRenderLayoutPanel'
@@ -78,7 +81,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
 
                     // todo - get image from server
                     html: '<svg  width="' + trueWidth + '" height="' + trueHeight + '" xmlns="http://www.w3.org/2000/svg">                    <defs>                    <pattern id="smallGrid' + p.id + '" width="8" height="8" patternUnits="userSpaceOnUse">                    <path d="M 8 0 L 0 0 0 8" fill="none" stroke="gray" stroke-width="0.5"/> </pattern> <pattern id="grid' + p.id + '" width="80" height="80" patternUnits="userSpaceOnUse"> <rect width="80" height="80" fill="url(#smallGrid' + p.id + ')"/> <path d="M 80 0 L 0 0 0 80" fill="none" stroke="gray" stroke-width="1"/> </pattern> </defs> <rect width="100%" height="100%" fill="url(#grid' + p.id + ')" /> </svg>'
-                },
+                }
                 //{
                 //    xtype: 'draw',
                 //    width: (p.inchWidth * 96 * scale),

@@ -45,6 +45,7 @@ Ext.define('Advertising.view.main.Main', {
         },
 
         items: [
+
             {
                 xtype: 'button',
                 iconCls: "fa fa-save",
@@ -83,8 +84,8 @@ Ext.define('Advertising.view.main.Main', {
                 maxValue: 100,
                 labelAlign: 'right',
                 cls: 'x-btn-inner-default-small',
-                listeners : {
-                    change : 'onZoomLevelChange'
+                listeners: {
+                    change: 'onZoomLevelChange'
                 },
                 bind: {
                     value: '{zoomValue}'
@@ -103,7 +104,15 @@ Ext.define('Advertising.view.main.Main', {
             {
                 xtype: 'button',
                 text: 'Logout'
-            }
+            },
+            {
+                iconCls: 'x-fa fa-feed j-status-ok',
+                ui: 'header',
+                id: 'serviceStatusIcon',
+                itemId: 'serviceStatusIcon',
+                reference: 'serviceStatusIcon',
+                tooltip: 'Server service status'
+            },
         ]
     },
     items: [
@@ -124,11 +133,15 @@ Ext.define('Advertising.view.main.Main', {
                     items: [
                         {
                             title: 'Layouts',
-                            xtype: 'pagelayouts'
+                            xtype: 'pagelayouts',
+                            tooltip: 'Display page layouts (templates that<br/> show where promos are to be placed)'
+
                         },
                         {
                             title: 'Copy',
-                            xtype: 'copypanel'
+                            xtype: 'copypanel',
+                            tooltip: 'Display copy for the vehicle or page<br/> that is selected in the event navigator'
+
                         }
                     ]
                 }

@@ -32,7 +32,7 @@ Ext.define('Advertising.view.west.treeviews.TreeViews', {
             xtype: 'eventtree'
         },
         {
-            title: 'Promos',
+            title: 'Promos - no vehicle/page selected',
             xtype: 'promogrid'
 
         },

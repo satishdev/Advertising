@@ -10538,7 +10538,14 @@
 /* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:123 */
 .f-layout-object {
     opacity: 0.9;
-    background: #f8d400 !important;
     border: 5px #2e7d32;
     border-radius: 3px;
+}
+/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:129 */
+.f-layout-object-clean .x-panel-body {
+    background-color: #f8d400 !important;
+}
+/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:133 */
+.f-layout-object-selected .x-panel-body {
+    background-color: #2e7d32 !important;
 }

@@ -5,18 +5,18 @@
  */
 
 
-Ext.Error.handle = function(err) {
-    alert("Error!");
-    if (err.someProperty == 'NotReallyAnError') {
-        // maybe log something to the application here if applicable
-        return true;
-    }
-    // any non-true return value (including none) will cause the error to be thrown
-};
+//Ext.Error.handle = function(err) {
+//    alert("Error!");
+//    if (err.someProperty == 'NotReallyAnError') {
+//        // maybe log something to the application here if applicable
+//        return true;
+//    }
+//    // any non-true return value (including none) will cause the error to be thrown
+//};
 
 Ext.define('Advertising.Application', {
     extend: 'Ext.app.Application',
-
+    session: true,
     requires: [
         'Advertising.view.main.common.UserInfo'
     ],
@@ -47,7 +47,7 @@ Ext.define('Advertising.Application', {
 
         Ext.Ajax.on({
             requestexception: function(conn, response, options, eOpts) {
-
+                console.error("Ajax Error %o %o %o", conn, response, options);
                 // Show error msg
                 Ext.Msg.show({
                     title: 'Error',

@@ -38,7 +38,7 @@ Ext.define('Advertising.view.main.common.Promo', {
     tbar: {
         items: [
             {
-                iconCls: 'fa fa-truck',
+                iconCls: 'fa fa-image',
                 enableToggle: true,
                 listeners: {
                     click: 'onToggleGrid'
