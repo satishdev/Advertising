@@ -45,19 +45,19 @@ Ext.define('Advertising.Application', {
 
         Advertising.view.main.common.UserInfo.setUserInfo({test:"test"});
 
-        Ext.Ajax.on({
-            requestexception: function(conn, response, options, eOpts) {
-                console.error("Ajax Error %o %o %o", conn, response, options);
-                // Show error msg
-                Ext.Msg.show({
-                    title: 'Error',
-                    message: 'Request Exception ' + response.status,
-                    buttons: Ext.MessageBox.OK,
-                    icon: Ext.MessageBox.ERROR
-                });
-
-            }
-        });
+        //Ext.Ajax.on({
+        //    requestexception: function(conn, response, options, eOpts) {
+        //        console.error("Ajax Error %o %o %o", conn, response, options);
+        //        // Show error msg
+        //        Ext.Msg.show({
+        //            title: 'Error',
+        //            message: 'Request Exception ' + response.status,
+        //            buttons: Ext.MessageBox.OK,
+        //            icon: Ext.MessageBox.ERROR
+        //        });
+        //
+        //    }
+        //});
     },
 
     onAppUpdate: function () {

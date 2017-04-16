@@ -15,22 +15,21 @@ Ext.define('Advertising.view.main.MainController', {
     ],
 
     init: function () {
-        var serverPingCheck, me = this;
-        serverPingCheck = {
-            run: function () {
+        var  me = this;
+        Ext.TaskManager.start({
+            run: function() {
+                console.log("Ping...");
                 me.onOpenConnection();
             },
-            interval: 15000
-        };
+            interval: 10000
+        });
 
-        Ext.TaskManager.start(serverPingCheck);
 
    //     me.setMask('Loading', 'Starting Application...');
 
 
     },
     onOpenConnection: function () {
-        if (Advertising.util.GlobalValues.serverConnectionLost == true) {
             try {
               console.log("Attempting to ping server...");
                 Ext.Ajax.request({
@@ -38,23 +37,43 @@ Ext.define('Advertising.view.main.MainController', {
                     method: 'GET',
                     cors: true,
                     useDefaultXhrHeader : false,
-                    timeout: 300000,
+                    timeout: 5000,
 
                     success: function (transport) {
                         var response = Ext.decode(transport.responseText);
                         Advertising.util.GlobalValues.serverConnectionLost = false;
+                        var statusIcon = Ext.ComponentQuery.query('#serviceStatusIcon')[0];
 
+                        if ( Ext.isDefined(statusIcon)) {
+                            statusIcon.setIconCls('x-fa fa-feed f-status-ok');
+                        }
+                        var messageDialog = Ext.ComponentQuery.query('messagebox')[0];
+                        if ( Ext.isDefined(messageDialog) ) {
+                            messageDialog.destroy();
+                        }
+                        console.log("Response %o", response);
                     },
                     failure: function (transport) {
-                        var response = Ext.decode(transport.responseText);
-                        Ext.Msg.alert('Error', response.Error);
-
-                    }
+                        Advertising.util.GlobalValues.serverConnectionLost = true;
+                        Ext.MessageBox.show({
+                            title:'Connection error',
+                            id: 'serverConnectionErrorMsg',
+                            msg: 'That\'s odd.<p/>I seem to be unable to reach the server.<p/>Please refresh the browser. If the error continues contact your system administrator',
+                            icon: Ext.MessageBox.ERROR
+                        });
+                            var statusIcon = Ext.ComponentQuery.query('#serviceStatusIcon')[0];
+                        if ( Ext.isDefined(statusIcon)) {
+                            statusIcon.setIconCls('x-fa fa-feed f-status-error');
+                        }
+                                      }
                 });
             } catch (err) {
-                console.error("Failed to poll server");
+                var statusIcon = Ext.ComponentQuery.query('#serviceStatusIcon')[0];
+                if ( Ext.isDefined(statusIcon)) {
+                    statusIcon.setIconCls('x-fa fa-feed f-status-error');
+                }
             }
-        }
+
     },
     onItemSelected: function (sender, record) {
         Ext.Msg.confirm('Confirm', 'Are you sure?', 'onConfirm', this);

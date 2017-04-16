@@ -133,3 +133,11 @@
 .f-layout-object-selected .x-panel-body{
   background-color: #2e7d32 !important;
 }
+
+.f-status-ok {
+  color: $color-soft-green !important;
+}
+
+.f-status-error {
+  color: $color-soft-red !important;
+}

@@ -22,14 +22,17 @@ Ext.define('Advertising.view.west.treeviews.promos.promogrid.PromogridController
         var me = this;
         console.log("Event change " + record.data.nodetype);
         var nodetype = record.data.nodetype;
+        var store = me.getStore("offers");
+
         if (nodetype == 'VEHICLE') {
             Ext.toast("Getting promos for vehicle " + record.data.id);
-            var store = me.getStore("offers");
             console.log("Store %o", store);
             store.getProxy().extraParams = {
                 vehicleID: record.data.id
             };
             store.load();
+        } else {
+            store.loadData([],false);
         }
     }
 

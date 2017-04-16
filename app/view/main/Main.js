@@ -112,7 +112,7 @@ Ext.define('Advertising.view.main.Main', {
                 itemId: 'serviceStatusIcon',
                 reference: 'serviceStatusIcon',
                 tooltip: 'Server service status'
-            },
+            }
         ]
     },
     items: [

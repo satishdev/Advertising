@@ -97,7 +97,12 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
         }
         console.log("Page view change request");
         Ext.toast("Page change requested " + record.data.nodetype + ":" + record.data.text);
-        Ext.ComponentQuery.query('promogrid')[0].setTitle('Promos for ' + record.data.text);
+        if ( nodetype == 'VEHICLE' || nodetype == 'PAGE') {
+            Ext.ComponentQuery.query('promogrid')[0].setTitle('Promos for ' + record.data.text);
+        } else {
+            Ext.ComponentQuery.query('promogrid')[0].setTitle('Promos no vehicle/page selected');
+
+        }
     },
     onPageResize: function (pageview, width, height, origWidth, origHeight) {
         var me = this;

@@ -5,7 +5,28 @@ Ext.define('Advertising.view.main.MainModel', {
     extend: 'Ext.app.ViewModel',
 
     alias: 'viewmodel.main',
+    //stores: {
+    //    wsserver: {
+    //        proxy: {
+    //            type: 'websocket' ,
+    //            storeId: 'myStore',
+    //            url: 'ws://localhost:8881' ,
+    //            reader: {
+    //                type: 'json' ,
+    //                root: 'user'
+    //            }
+    //        }
+    //    }
+        /*
+         A declaration of Ext.data.Store configurations that are first processed as binds to produce an effective
+         store configuration. For example:
 
+         users: {
+         model: 'CopyPanel',
+         autoLoad: true
+         }
+         */
+    //},
     data: {
         name: 'Advertising',
         username: 'not set',
