@@ -4,7 +4,7 @@
 Ext.define('Advertising.view.main.common.Promo', {
     extend: 'Ext.panel.Panel',
     resizable: true,
-
+    //ui: 'promo',
     xtype: 'promo',
     controller: 'promo',
     viewModel: 'promo',
@@ -29,7 +29,7 @@ Ext.define('Advertising.view.main.common.Promo', {
     layout: 'fit',
     frame: true,
     zIndex: 99,
-    border: 1,
+    border: 2,
     padding: 0,
     shadow: true,
     draggable: true,
@@ -38,7 +38,7 @@ Ext.define('Advertising.view.main.common.Promo', {
     tbar: {
         items: [
             {
-                iconCls: 'fa fa-image',
+                iconCls: 'fa fa-info',
                 enableToggle: true,
                 listeners: {
                     click: 'onToggleGrid'

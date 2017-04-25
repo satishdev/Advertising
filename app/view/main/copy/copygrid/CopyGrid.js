@@ -22,40 +22,30 @@ Ext.define('Advertising.view.main.copy.copygrid.CopyGrid', {
         ptype: 'cellediting',
         clicksToEdit: 1
     },
-
+    listeners: {
+        edit: 'onRowChange'
+    },
     viewModel: {
         type: 'copygrid'
     },
     title: 'Page A',
     bind: {
-        store: '{sample}'
+        store: '{vehiclecopy}'
+
     },
-    //header: {
-    //    items: [
-    //        {
-    //            xtype: 'button',
-    //            text: 'Product'
-    //        },
-    //        {
-    //            xtype: 'button',
-    //            text: 'Promo'
-    //        }
-    //    ]
-    //},
+    reference: 'copygrid',
     controller: 'copygrid',
     columns: [
         {
             text: 'Upd Source',
             xtype: 'checkcolumn',
             dataIndex: 'updateSource',
-
             stopSelection: false
 
         },
         {
             text: 'UPC',
-            dataIndex: 'UPC',
-
+            dataIndex: 'parentName',
             flex: 1
         },
         {
@@ -67,12 +57,11 @@ Ext.define('Advertising.view.main.copy.copygrid.CopyGrid', {
         {
             text: 'Promo',
             dataIndex: 'promo',
-
             flex: 1
         },
         {
             text: 'Copy Tab',
-            dataIndex: 'copyTab',
+            dataIndex: 'tab',
             flex: 1
         },
         {
@@ -82,7 +71,7 @@ Ext.define('Advertising.view.main.copy.copygrid.CopyGrid', {
         },
         {
             text: 'Text',
-            dataIndex: 'text',
+            dataIndex: 'copytext',
             stopSelection: true,
             editor: {
                 allowBlank: false

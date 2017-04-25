@@ -10,5 +10,8 @@ Ext.define('Advertising.view.main.common.promo.promoeditwindow.PromoEditWindowCo
      */
     init: function() {
 
+    },
+    onStoreGroupClick: function(btn) {
+        btn.setStyle('background-color: red');
     }
 });

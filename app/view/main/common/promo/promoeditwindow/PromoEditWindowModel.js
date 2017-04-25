@@ -6,22 +6,60 @@ Ext.define('Advertising.view.main.common.promo.promoeditwindow.PromoEditWindowMo
     alias: 'viewmodel.promoeditwindow',
 
     stores: {
-        metastyles: {
+        storeGroups: {
+            data: [
+                {
+                    sg: 'Store Group 1',
+                    group: 1
+                },
+                {
+                    sg: 'Store Group 2',
+                    group: 1
+                },
+                {
+                    sg: 'Store Group 3',
+                    group: 1
+                },
+                {
+                    sg: 'Store Group 4',
+                    group: 1
+                },
+
+                {
+                    sg: 'Store Group 5',
+                    group: 1
+                },
+                {
+                    sg: 'Store Group 6',
+                    group: 1
+                },
+                {
+                    sg: 'Store Group 7',
+                    group: 1
+                }
+            ]
+        },
+        sizes: {
             data: [
                 {
                     msID: '1',
-                    msName: 'Sample 1'
+                    msName: '1 x 1'
                 },
                 {
                     msID: '2',
-                    msName: 'Sample 2'
+                    msName: '1 x 2'
 
                 }
-                ,{
+                , {
                     msID: '3',
-                    msName: 'Sample 3'
+                    msName: '2 x 1'
+                }
+                    ,{
+                    msID: '4',
+                    msName: '2 x 2'
 
                 }
+
             ]
         }
         /*

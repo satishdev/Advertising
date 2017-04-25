@@ -14,18 +14,19 @@ Ext.define('Advertising.view.main.Main', {
     xtype: 'app-main',
 
     requires: [
-        'Advertising.view.main.MainController',
-        'Advertising.view.main.MainModel',
-        'Advertising.view.main.copy.copypanel.CopyPanel',
-        'Advertising.view.main.layouts.pagelayouts.PageLayouts',
-        'Advertising.view.west.treeviews.TreeViews',
-        'Ext.button.Button',
-        'Ext.button.Split',
-        'Ext.layout.container.Border',
-        'Ext.layout.container.Fit',
-        'Ext.slider.Single',
-        'Ext.tab.Panel'
-    ],
+'Advertising.view.main.MainController',
+'Advertising.view.main.MainModel',
+'Advertising.view.main.copy.copypanel.CopyPanel',
+'Advertising.view.main.layouts.pagelayouts.PageLayouts',
+'Advertising.view.west.treeviews.TreeViews',
+'Ext.button.Button',
+'Ext.button.Split',
+'Ext.layout.container.Border',
+'Ext.layout.container.Fit',
+'Ext.menu.Menu',
+'Ext.slider.Single',
+'Ext.tab.Panel'
+],
 
     controller: 'main',
     viewModel: 'main',
@@ -50,14 +51,22 @@ Ext.define('Advertising.view.main.Main', {
                 xtype: 'button',
                 iconCls: "fa fa-save",
                 handler: 'onSaveChanges'
+
+            },
+            {
+                xtype: 'button',
+                iconCls: 'fa fa-wrench',
+                tooltip: 'Display context sensitive toolbar',
+                handler: 'onShowTools'
             },
             {
                 xtype: 'button',
                 enableToggle: true,
-
+                iconCls: 'fa fa-newspaper-o',
                 text: 'Layout',
                 handler: 'onToggleLayouts'
             },
+
             {
                 xtype: 'button',
                 enableToggle: true,
@@ -68,12 +77,21 @@ Ext.define('Advertising.view.main.Main', {
             {
                 xtype: 'button',
                 enableToggle: true,
+                iconCls: "fa fa-th",
                 text: 'Grid',
                 handler: 'onToggleGrid'
             },
             {
                 xtype: 'splitbutton',
-                text: 'StoreGroup B'
+                text: 'Store Group A',
+                menu: new Ext.menu.Menu({
+                    items: [
+                        // these will render as dropdown menu items when the arrow is clicked:
+                        {text: 'Store Group A', handler: function(){ alert("SG1 clicked"); }},
+                        {text: 'Store Group B', handler: function(){ alert("SG2 clicked"); }}
+                    ]
+                })
+
             },
             {
                 xtype: 'slider',
@@ -85,7 +103,7 @@ Ext.define('Advertising.view.main.Main', {
                 labelAlign: 'right',
                 cls: 'x-btn-inner-default-small',
                 listeners: {
-                    change: 'onZoomLevelChange'
+                    changecomplete: 'onZoomLevelChange'
                 },
                 bind: {
                     value: '{zoomValue}'
@@ -132,13 +150,13 @@ Ext.define('Advertising.view.main.Main', {
                     xtype: 'tabpanel',
                     items: [
                         {
-                            title: 'Layouts',
+                            title: 'Layouts and Pages',
                             xtype: 'pagelayouts',
                             tooltip: 'Display page layouts (templates that<br/> show where promos are to be placed)'
 
                         },
                         {
-                            title: 'Copy',
+                            title: 'Customer Facing Description',
                             xtype: 'copypanel',
                             tooltip: 'Display copy for the vehicle or page<br/> that is selected in the event navigator'
 

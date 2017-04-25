@@ -3647,7 +3647,12 @@ describe('Ext.grid.Panel', function(){
 
         Ext.define('TestRowExpanderGrid', {
             extend : 'Ext.grid.Panel',
-            title: 'Simpsons',
+
+    requires: [
+        'Ext.grid.plugin.RowExpander'
+    ],
+
+    title: 'Simpsons',
             height: 200,
             width: 400,
             initComponent: function() {

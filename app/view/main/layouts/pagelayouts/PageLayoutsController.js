@@ -7,6 +7,7 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
 
     requires: [
         'Advertising.view.main.common.pages.layout.Layout',
+        'Advertising.view.main.common.pages.pageview.Page',
         'Ext.layout.container.Absolute'
     ],
 
@@ -90,7 +91,7 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
     },
 
     onPageChange: function (record) {
-        var me = this;
+        var me = this, existing=false;
         var nodetype = record.data.nodetype;
         if ( nodetype == 'PAGE') {
             me.getViewModel().set("pagename", record.data.text);
@@ -101,8 +102,61 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
             Ext.ComponentQuery.query('promogrid')[0].setTitle('Promos for ' + record.data.text);
         } else {
             Ext.ComponentQuery.query('promogrid')[0].setTitle('Promos no vehicle/page selected');
+        }
+
+        var tabName = record.get('text'), tabIndex =0;
+        console.log("onPageClick %o", record);
+        Ext.toast("Show page " + record.data.text);
+        Ext.suspendLayouts();
+        var pageView = Ext.ComponentQuery.query("pagelayouts")[0];
+        // see if we have this tab name already
+        pageView.items.each(function(e) {
+            if (e.title == tabName) {
+                pageView.setActiveTab(tabIndex);
+                existing=true;
+            }
+            tabIndex++;
+        });
+        if ( !existing ) {
+            console.log("Adding page view to %o", pageView);
+
+            Ext.Ajax.request({
+                url: "http://localhost:8881/event/getPage",
+                method: 'GET',
+                cors: true,
+                useDefaultXhrHeader : false,
+                timeout: 1450000,
+                params: {
+                    pageID:record.get('id')
+                },
+                success: function (transport) {
+                    var response = Ext.decode(transport.responseText);
+                    console.log("Got response %o", response);
+                    var panel = Ext.create('Advertising.view.main.common.pages.pageview.Page', {
+                        title: record.get('text'),
+                        closable: true,
+                        layout: 'absolute',
+                        layoutData: response,
+                        inchWidth: response.width,
+                        inchHeight: response.height
+                    });
+                    var addIndex = pageView.items.length - 1;
+                    pageView.insert(addIndex, panel);
+                    pageView.setActiveTab(addIndex);
+                },
+                failure: function (transport) {
+                    var response = Ext.decode(transport.responseText);
+
+                    Ext.Msg.alert('Error', response.Error);
+
+
+                }
+            });
+            Ext.resumeLayouts(true);
 
         }
+
+
     },
     onPageResize: function (pageview, width, height, origWidth, origHeight) {
         var me = this;

@@ -5,39 +5,30 @@ Ext.define('Advertising.view.main.copy.copygrid.CopyGridModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.copygrid',
 
+    requires: [
+        'Ext.data.proxy.Ajax',
+        'Ext.data.reader.Json'
+    ],
+
     stores: {
-        sample: {
-            data: [
-                {
-                UPC: '12345',
-                language: 'Eng',
-                copyTab: 'Header',
-                    description: 'Sample product',
-                    updateSource: true,
-                    promo: 'Promo A',
-                text: 'Some sample header text'
-            },
-                {
-                    UPC: '12345',
-                    language: 'Eng',
-                    copyTab: 'Body',
-                    description: 'Sample product',
-                    promo: 'Promo A',
-                    updateSource: true,
-
-                    text: 'Some sample body text<br/>that spans more than one line'
-                },
-                {
-                    UPC: '12345',
-                    language: 'Eng',
-                    copyTab: 'Footer',
-                    description: 'Sample product',
-                    promo: 'Promo A',
-                    updateSource: true,
-
-                    text: 'Some sample footer text'
+        vehiclecopy: {
+            listeners: {
+                load: function(store, operation) {
+                    console.log("Vehicle copy store load");
                 }
-            ]
+            },
+            autoLoad: false,
+            proxy: {
+                type : 'ajax',
+                useDefaultXhrHeader: false,
+                api: {
+                    read:  'http://localhost:8881/event/getVehicleCopy'
+                },
+                reader: {
+                    type: 'json',
+                    rootProperty: 'data'
+                }
+            }
         }
     },
 

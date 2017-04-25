@@ -6,7 +6,7 @@ Ext.define('Advertising.view.main.common.promo.promoeditwindow.PromoEditWindow',
 
     modal:true,
     width: 500,
-    height: 300,
+    height: 400,
 
     xtype: 'promoeditwindow',
     config: {
@@ -22,7 +22,13 @@ Ext.define('Advertising.view.main.common.promo.promoeditwindow.PromoEditWindow',
         'Advertising.view.main.common.promo.promoeditwindow.PromoEditWindowModel',
         'Ext.form.field.ComboBox',
         'Ext.form.field.Text',
-        'Ext.layout.container.Form'
+        'Ext.grid.Panel',
+        'Ext.grid.column.Action',
+        'Ext.layout.container.Accordion',
+        'Ext.layout.container.Fit',
+        'Ext.layout.container.Form',
+        'Ext.panel.Panel',
+        'Ext.picker.Color'
     ],
 
     promo: 'none',
@@ -40,28 +46,70 @@ Ext.define('Advertising.view.main.common.promo.promoeditwindow.PromoEditWindow',
     viewModel: {
         type: 'promoeditwindow'
     },
-    tbar: [
 
-    ],
     controller: 'promoeditwindow',
-    layout: 'form',
+    layout: 'accordion',
     items: [
+
+
         {
-            fieldLabel: 'Name',
-            xtype: 'textfield',
+            xtype: 'grid',
+            layout: 'fit',
+            title: 'Offer Splitting',
+            flex:2,
             bind: {
-                value: '{name}'
-            }
+                store: '{storeGroups}'
+            },
+            columns: [
+                {
+                    text: 'Store group',
+                    dataIndex: 'sg',
+
+                    flex:1
+                },
+                {
+                    text: 'Offer group',
+                    dataIndex: 'group',
+                    xtype: 'actioncolumn',
+                    items: [
+                        {
+                            iconCls: 'fa fa-plus',
+                            xtype: 'colorpicker'
+                        }
+                    ]
+                },
+                {
+                    text: 'Color',
+                    dataIndex: 'group'
+
+                }
+            ]
         },
         {
-            fieldLabel: 'Metastyle',
-            xtype: 'combobox',
-            displayField: 'msName',
-            valueField: 'msID',
-            bind: {
-                store: '{metastyles}'
-            }
+            xtype: 'panel',
+            flex:1,
+            title: 'Offer Info',
+            layout: 'form',
+            items: [
+                {
+                    fieldLabel: 'Name',
+                    xtype: 'textfield',
+                    bind: {
+                        value: '{name}'
+                    }
+                },
+                {
+                    fieldLabel: 'Size',
+                    xtype: 'combobox',
+                    displayField: 'msName',
+                    valueField: 'msID',
+                    bind: {
+                        store: '{sizes}'
+                    }
 
+                }
+
+            ]
         }
     ]
 });

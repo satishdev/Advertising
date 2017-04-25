@@ -12,6 +12,7 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayouts', {
 
     requires: [
         'Advertising.view.main.common.Promo',
+        'Advertising.view.main.common.pages.layout.LayoutObject',
         'Advertising.view.main.layouts.pagelayouts.PageLayoutsController',
         'Advertising.view.main.layouts.pagelayouts.PageLayoutsModel',
         'Ext.layout.container.Absolute',
@@ -57,7 +58,7 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayouts', {
                     mode: 'background',
                     zIndex: 1,
                     cls: 'noSelect',
-                    src: 'http://laheadvsb01.ngco.com:8881/smartmedia/servlet/smartmediaservlet?ref=RCSS_F_10p5x10p5.indd&type=Page&res=prev'
+                    src: 'http://laheadvsb01.ngco.com:8080/smartmedia/servlet/smartmediaservlet?ref=RCSS_F_10p5x10p5.indd&type=Page&res=prev'
                 },
                 {
                     xtype: 'promo',
@@ -87,13 +88,16 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayouts', {
                 }
                 ,
                 {
-                    xtype: 'promo',
+                    xtype: 'layoutobject',
                     width: 350,
                     height: 220,
-                    y: 650,
-                    x: 430,
-                    name: 'promoX'
-
+                    y: 450,
+                    x: 130,
+                    items: [
+                        {
+                        html:'<p size="4vw">2 x 2 sample metastyle</p>'
+                        }
+                    ]
                 }
 
             ]

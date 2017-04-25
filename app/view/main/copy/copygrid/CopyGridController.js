@@ -10,5 +10,35 @@ Ext.define('Advertising.view.main.copy.copygrid.CopyGridController', {
      */
     init: function() {
 
+    },
+    listen: {
+        controller: {
+            '#vceventtreecontroller': {
+                eventTreeSelection: 'onEventChange'
+            }
+        }
+    },
+    onRowChange: function(r,cellEdit,evt) {
+        var me = this;
+        Ext.toast("Row changed");
+        console.log("Row edit: %o %o %o", r,cellEdit,evt);
+        console.log("Cell edit from %s to %s", cellEdit.originalValue,cellEdit.value);
+        var grid = me.getView();
+
+        console.log("grid %o",grid);
+
+    },
+    onEventChange: function(record) {
+        var me = this;
+        console.log("Event was changed - getting copy %o", record);
+        Ext.toast("Getting " + record.data.nodetype + " copy for " + record.data.id);
+        var grid = me.getView();
+        console.log("Grid %o", grid);
+        var store = me.getViewModel().getStore("vehiclecopy");
+        store.getProxy().extraParams = {
+            vehicleID: record.data.id
+        };
+        console.log("Loading copy grid store %o", store);
+        store.load();
     }
 });
