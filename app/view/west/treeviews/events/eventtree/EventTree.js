@@ -17,8 +17,10 @@ Ext.define('Advertising.view.west.treeviews.events.eventtree.EventTree', {
     viewModel: {
         type: 'eventtree'
     },
+
     listeners: {
-        itemclick: 'onTreeNodeSelect'
+        itemclick: 'onTreeNodeSelect',
+        itemcontextmenu: 'onShowEventTreeMenu'
     },
     rootVisible: false,
     controller: 'eventtree'

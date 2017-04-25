@@ -47,6 +47,7 @@ $include-advertising-view-west-treeviews-treeviewscontroller: dynamic(true);;
 $include-advertising-view-west-treeviews-treeviewsmodel: dynamic(true);;
 $include-advertising-view-west-treeviews-events-eventtree-eventtree: dynamic(true);;
 $include-advertising-view-west-treeviews-events-eventtree-eventtreecontroller: dynamic(true);;
+$include-advertising-view-west-treeviews-events-eventtree-eventtreemenu: dynamic(true);;
 $include-advertising-view-west-treeviews-events-eventtree-eventtreemodel: dynamic(true);;
 $include-advertising-view-west-treeviews-events-eventtree-model-node: dynamic(true);;
 $include-advertising-view-west-treeviews-layouts-layouttree-layouttree: dynamic(true);;

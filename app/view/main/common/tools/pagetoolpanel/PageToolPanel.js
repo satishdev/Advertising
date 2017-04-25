@@ -54,6 +54,11 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
             text: 'Add item',
             padding: 5
         },
+        {
+            iconCls: 'fa fa-users',
+            text: 'Space owners',
+            padding: 5
+        },
 
         {
            xtype:'panel',
