@@ -9,6 +9,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
 
     requires: [
         'Advertising.view.main.common.pages.layout.LayoutObject',
+        'Advertising.view.main.common.pages.pageobject.PageObject',
         'Ext.layout.container.Absolute',
         'Ext.panel.Panel'
     ],
@@ -16,10 +17,10 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
     /**
      * Called when the view is created
      */
-    init: function() {
+    init: function () {
 
     },
-    onPageResize: function(page) {
+    onPageResize: function (page) {
         Ext.toast("Page was resized");
     },
     onAddPagePanel: function (p) {
@@ -97,20 +98,42 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
         var parentPanel = p.up('panel');
         console.log("parent %o", parentPanel);
         var scale = parentPanel.getViewModel().get("scale");
-        if (parentPanel.layoutData.hasOwnProperty(('layoutObjectList'))) {
-            var layoutObjects = parentPanel.layoutData.layoutObjectList;
-            console.log("Items %o", layoutObjects);
-            Ext.toast("Adding " + layoutObjects.length + " items to layout");
-            layoutObjects.forEach(function(lo) {
-                console.log("Adding item %o", lo);
-                var panel = Ext.create('Advertising.view.main.common.pages.layout.LayoutObject',{
-                    width: lo.width * 96 * scale,
-                    height: lo.height * 96 * scale,
-                    x: lo.xPos * 96 * scale,
-                    y: lo.yPos * 96 * scale,
+        // add placeholders
+        if (parentPanel.objectData.hasOwnProperty(('placeholders'))) {
+            var placeholders = parentPanel.objectData.placeholders;
+            console.log("Adding placeholders..%o", placeholders);
+            placeholders.forEach(function (ph) {
+                console.log("Adding item %o", ph);
+                var panel = Ext.create('Advertising.view.main.common.pages.layout.LayoutObject', {
+                    width: ph.width * 96 * scale,
+                    height: ph.height * 96 * scale,
+                    x: ph.xPos * 96 * scale,
+                    y: ph.yPos * 96 * scale,
                     items: [
                         {
-                            html: '<p size="4vw">' + lo.metastyle.name + "</p>"
+                            html: '<p size="4vw">' + ph.description + "</p>"
+                        }
+                    ]
+
+                });
+                console.log("New panel %o", panel);
+                p.insert(panel);
+            });
+        }
+        if (parentPanel.objectData.hasOwnProperty(('pageObjects'))) {
+            var pageObjects = parentPanel.objectData.pageObjects;
+            console.log("Items %o", pageObjects);
+           // Ext.toast("Adding " + pageObjects.length + " items to layout");
+            pageObjects.forEach(function (po) {
+                console.log("Adding item %o", po);
+                var panel = Ext.create('Advertising.view.main.common.pages.pageobject.PageObject', {
+                    width: po.width * 96 * scale,
+                    height: po.height * 96 * scale,
+                    x: po.xPos * 96 * scale,
+                    y: po.yPos * 96 * scale,
+                    items: [
+                        {
+                            html: '<p size="4vw">' + po.name + "</p>"
                         }
                     ]
 
@@ -130,9 +153,9 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
             var layoutObjects = parentPanel.layoutData.layoutObjectList;
             console.log("Items %o", layoutObjects);
             Ext.toast("Adding " + layoutObjects.length + " items to layout");
-            layoutObjects.forEach(function(lo) {
+            layoutObjects.forEach(function (lo) {
                 console.log("Adding item %o", lo);
-                var panel = Ext.create('Advertising.view.main.common.pages.layout.LayoutObject',{
+                var panel = Ext.create('Advertising.view.main.common.pages.layout.LayoutObject', {
                     width: lo.width * 96 * scale,
                     height: lo.height * 96 * scale,
                     x: lo.xPos * 96 * scale,
@@ -156,7 +179,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
         console.log("Parent panel size: %o", p.up('panel').getSize());
         var parentWidth = p.up('panel').getSize().width;
         var parentHeight = p.up('panel').getSize().height;
-      //  var scale = parentWidth / ((p.inchWidth * 96) + 20);
+        //  var scale = parentWidth / ((p.inchWidth * 96) + 20);
         var scale = parentHeight / ((p.inchHeight * 96) + 100);
         console.log("Scale %f", scale);
         var me = this;

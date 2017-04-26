@@ -64,6 +64,9 @@ Ext.define('Advertising.view.main.Main', {
                 enableToggle: true,
                 iconCls: 'fa fa-newspaper-o',
                 text: 'Layout',
+                bind: {
+                    pressed: '{showLayouts}'
+                },
                 handler: 'onToggleLayouts'
             },
 

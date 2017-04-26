@@ -137,6 +137,15 @@ Ext.define('Advertising.view.main.MainController', {
         var pageView = btn.up('pagelayouts');
         console.log("Layouts %o %s", pageView, btn.pressed);
         Ext.toast("Turn layouts " + (( btn.pressed) ? "on" : "off"));
+        // loop through all layouts
+        Ext.ComponentQuery.query("layoutobject").forEach(function(lo) {
+            if ( btn.pressed) {
+                lo.show();
+            } else {
+                lo.hide();
+            }
+
+        });
     },
     onActivateMain: function (panel) {
         var me = this;

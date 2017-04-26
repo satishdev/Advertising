@@ -136,7 +136,7 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
                         title: record.get('text'),
                         closable: true,
                         layout: 'absolute',
-                        layoutData: response,
+                        objectData: response,
                         inchWidth: response.width,
                         inchHeight: response.height
                     });

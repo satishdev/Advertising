@@ -17,6 +17,7 @@ $include-advertising-view-main-common-model-nodetest: dynamic(true);;
 $include-advertising-view-main-common-pages-layout-layout: dynamic(true);;
 $include-advertising-view-main-common-pages-layout-layoutmodel: dynamic(true);;
 $include-advertising-view-main-common-pages-layout-layoutobject: dynamic(true);;
+$include-advertising-view-main-common-pages-pageobject-pageobject: dynamic(true);;
 $include-advertising-view-main-common-pages-pageview-page: dynamic(true);;
 $include-advertising-view-main-common-pages-pageview-pagecontroller: dynamic(true);;
 $include-advertising-view-main-common-pages-pageview-pagemodel: dynamic(true);;
