@@ -11,9 +11,7 @@ Ext.define('Advertising.view.main.common.pages.layout.Layout', {
     //    width: 100,
     //    height: 200,
     //},
-    inchWidth: 0,
-    inchHeight: 0,
-    padding: 10,
+
 
     initComponent: function () {
         console.log("Layout %o", this);

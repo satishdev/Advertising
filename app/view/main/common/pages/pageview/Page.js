@@ -11,14 +11,18 @@ Ext.define('Advertising.view.main.common.pages.pageview.Page', {
         'Advertising.view.main.common.pages.pageview.PageModel',
         'Ext.layout.container.Fit'
     ],
-
+    inchWidth: 0,
+    inchHeight: 0,
+    padding: 10,
     border: true,
     layout: 'fit',
     scrollable: true,
     xtype: 'page',
     zoom: 100,
     listeners: {
-        resize: 'onPageResize'
+        resize: 'onPageResize',
+        render: 'onAddPagePanel'
+
     },
 
     viewModel: {
