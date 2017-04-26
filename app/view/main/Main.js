@@ -14,19 +14,20 @@ Ext.define('Advertising.view.main.Main', {
     xtype: 'app-main',
 
     requires: [
-'Advertising.view.main.MainController',
-'Advertising.view.main.MainModel',
-'Advertising.view.main.copy.copypanel.CopyPanel',
-'Advertising.view.main.layouts.pagelayouts.PageLayouts',
-'Advertising.view.west.treeviews.TreeViews',
-'Ext.button.Button',
-'Ext.button.Split',
-'Ext.layout.container.Border',
-'Ext.layout.container.Fit',
-'Ext.menu.Menu',
-'Ext.slider.Single',
-'Ext.tab.Panel'
-],
+        'Advertising.view.main.MainController',
+        'Advertising.view.main.MainModel',
+        'Advertising.view.main.copy.copypanel.CopyPanel',
+        'Advertising.view.main.layouts.pagelayouts.PageLayouts',
+        'Advertising.view.main.metrics.metricspanel.MetricsPanel',
+        'Advertising.view.west.treeviews.TreeViews',
+        'Ext.button.Button',
+        'Ext.button.Split',
+        'Ext.layout.container.Border',
+        'Ext.layout.container.Fit',
+        'Ext.menu.Menu',
+        'Ext.slider.Single',
+        'Ext.tab.Panel'
+    ],
 
     controller: 'main',
     viewModel: 'main',
@@ -153,15 +154,24 @@ Ext.define('Advertising.view.main.Main', {
                     xtype: 'tabpanel',
                     items: [
                         {
-                            title: 'Layouts and Pages',
+                            title: 'Design',
                             xtype: 'pagelayouts',
+                            iconCls: 'fa fa-page',
                             tooltip: 'Display page layouts (templates that<br/> show where promos are to be placed)'
 
                         },
                         {
-                            title: 'Customer Facing Description',
+                            title: 'Content',
                             xtype: 'copypanel',
+                            iconCls: 'fa fa-edit',
                             tooltip: 'Display copy for the vehicle or page<br/> that is selected in the event navigator'
+
+                        },
+                        {
+                            title: 'Bottom Line',
+                            xtype: 'metricspanel',
+                            iconCls: 'fa fa-dollar',
+                            tooltip: 'Display the metrics for the selected vehicle or page'
 
                         }
                     ]

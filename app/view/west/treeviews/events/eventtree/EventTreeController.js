@@ -40,6 +40,13 @@ Ext.define('Advertising.view.west.treeviews.events.eventtree.EventTreeController
                                 vehicleID: record.data.id,
                                 iconCls: 'fa fa-th'
                             }
+                            //},
+                            //{
+                            //    text: 'Show financials',
+                            //    vehicleName: record.data.Name,
+                            //    vehicleID: record.data.id,
+                            //    iconCls: 'fa fa-dollar'
+                            //}
                         ],
                         data: record.data
                     });
