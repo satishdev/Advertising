@@ -34,9 +34,11 @@ Ext.define('Advertising.view.main.copy.copygrid.CopyGridController', {
         Ext.toast("Getting " + record.data.nodetype + " copy for " + record.data.id);
         var grid = me.getView();
         console.log("Grid %o", grid);
-        var store = me.getViewModel().getStore("vehiclecopy");
+
+        var store = me.getViewModel().getStore("eventcopy");
         store.getProxy().extraParams = {
-            vehicleID: record.data.id
+            objectID: record.data.id,
+            eventType: record.data.nodetype
         };
         console.log("Loading copy grid store %o", store);
         store.load();

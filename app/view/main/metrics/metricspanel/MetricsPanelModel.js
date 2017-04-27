@@ -8,8 +8,8 @@ Ext.define('Advertising.view.main.metrics.metricspanel.MetricsPanelModel', {
     stores: {
         sample: {
             data: [
-                { page: 'Page 1',     sales: 18821700, margin: 2995787},
-                { page: 'Page 2',   sales: 91813008, margin: 3611671},
+                { page: 'Page 1',     sales: 3882100, margin: 2995787},
+                { page: 'Page 2',   sales: 4181308, margin: 3611671},
                 { page: 'Page 3',   sales: 7156008,  margin: 1640091},
                 { page: 'Page 4',      sales: 1700084,  margin: 512506},
                 { page: 'Page 5',  sales: 7885600,  margin: 727906 }

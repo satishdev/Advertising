@@ -11,10 +11,10 @@ Ext.define('Advertising.view.main.copy.copygrid.CopyGridModel', {
     ],
 
     stores: {
-        vehiclecopy: {
+        eventcopy: {
             listeners: {
                 load: function(store, operation) {
-                    console.log("Vehicle copy store load");
+                    console.log("Event copy store load");
                 }
             },
             autoLoad: false,
@@ -22,7 +22,7 @@ Ext.define('Advertising.view.main.copy.copygrid.CopyGridModel', {
                 type : 'ajax',
                 useDefaultXhrHeader: false,
                 api: {
-                    read:  'http://localhost:8881/event/getVehicleCopy'
+                    read:  'http://localhost:8881/event/getEventCopy'
                 },
                 reader: {
                     type: 'json',

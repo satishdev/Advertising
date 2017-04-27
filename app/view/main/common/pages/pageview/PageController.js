@@ -8,8 +8,8 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
     alias: 'controller.page',
 
     requires: [
+        'Advertising.view.main.common.Promo',
         'Advertising.view.main.common.pages.layout.LayoutObject',
-        'Advertising.view.main.common.pages.pageobject.PageObject',
         'Ext.layout.container.Absolute',
         'Ext.panel.Panel'
     ],
@@ -126,7 +126,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
            // Ext.toast("Adding " + pageObjects.length + " items to layout");
             pageObjects.forEach(function (po) {
                 console.log("Adding item %o", po);
-                var panel = Ext.create('Advertising.view.main.common.pages.pageobject.PageObject', {
+                var panel = Ext.create('Advertising.view.main.common.Promo', {
                     width: po.width * 96 * scale,
                     height: po.height * 96 * scale,
                     x: po.xPos * 96 * scale,

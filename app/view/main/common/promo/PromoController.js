@@ -34,7 +34,7 @@ Ext.define('Advertising.view.main.common.promo.PromoController', {
         }).show();
     },
     onToggleGrid: function(btn) {
-        var promo = btn.up('promo');
+        var promo = btn.up('pageobject');
          ( btn.pressed) ? btn.setIconCls("fa fa-image") : btn.setIconCls("fa fa-info");
         if ( btn.pressed) {
             Ext.toast("Getting items for promo offer");

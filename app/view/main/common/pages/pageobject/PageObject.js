@@ -10,7 +10,8 @@ Ext.define('Advertising.view.main.common.pages.pageobject.PageObject', {
 
 
     xtype: 'pageobject',
-
+    controller: 'promo',
+    viewModel: 'promo',
 
     border: 2,
     draggable: true,
