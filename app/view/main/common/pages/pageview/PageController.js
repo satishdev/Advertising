@@ -99,50 +99,52 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
         console.log("parent %o", parentPanel);
         var scale = parentPanel.getViewModel().get("scale");
         // add placeholders
-        if (parentPanel.objectData.hasOwnProperty(('placeholders'))) {
-            var placeholders = parentPanel.objectData.placeholders;
-            console.log("Adding placeholders..%o", placeholders);
-            placeholders.forEach(function (ph) {
-                console.log("Adding item %o", ph);
-                var panel = Ext.create('Advertising.view.main.common.pages.layout.LayoutObject', {
-                    width: ph.width * 96 * scale,
-                    height: ph.height * 96 * scale,
-                    x: ph.xPos * 96 * scale,
-                    y: ph.yPos * 96 * scale,
-                    items: [
-                        {
-                            html: '<p size="4vw">' + ph.description + "</p>"
-                        }
-                    ]
+        if ( parentPanel.hasOwnProperty('objectData')) {
+            if (parentPanel.objectData.hasOwnProperty(('placeholders'))) {
+                var placeholders = parentPanel.objectData.placeholders;
+                console.log("Adding placeholders..%o", placeholders);
+                placeholders.forEach(function (ph) {
+                    console.log("Adding item %o", ph);
+                    var panel = Ext.create('Advertising.view.main.common.pages.layout.LayoutObject', {
+                        width: ph.width * 96 * scale,
+                        height: ph.height * 96 * scale,
+                        x: ph.xPos * 96 * scale,
+                        y: ph.yPos * 96 * scale,
+                        items: [
+                            {
+                                html: '<p size="4vw">' + ph.description + "</p>"
+                            }
+                        ]
 
+                    });
+                    console.log("New panel %o", panel);
+                    p.insert(panel);
                 });
-                console.log("New panel %o", panel);
-                p.insert(panel);
-            });
-        }
-        if (parentPanel.objectData.hasOwnProperty(('pageObjects'))) {
-            var pageObjects = parentPanel.objectData.pageObjects;
-            console.log("Items %o", pageObjects);
-           // Ext.toast("Adding " + pageObjects.length + " items to layout");
-            pageObjects.forEach(function (po) {
-                console.log("Adding item %o", po);
-                var panel = Ext.create('Advertising.view.main.common.Promo', {
-                    width: po.width * 96 * scale,
-                    height: po.height * 96 * scale,
-                    x: po.xPos * 96 * scale,
-                    y: po.yPos * 96 * scale,
-                    items: [
-                        {
-                            html: '<p size="4vw">' + po.name + "</p>"
-                        }
-                    ]
+            }
+            if (parentPanel.objectData.hasOwnProperty(('pageObjects'))) {
+                var pageObjects = parentPanel.objectData.pageObjects;
+                console.log("Items %o", pageObjects);
+                // Ext.toast("Adding " + pageObjects.length + " items to layout");
+                pageObjects.forEach(function (po) {
+                    console.log("Adding item %o", po);
+                    var panel = Ext.create('Advertising.view.main.common.Promo', {
+                        width: po.width * 96 * scale,
+                        height: po.height * 96 * scale,
+                        x: po.xPos * 96 * scale,
+                        y: po.yPos * 96 * scale,
+                        items: [
+                            {
+                                html: '<p size="4vw">' + po.name + "</p>"
+                            }
+                        ]
 
+                    });
+                    console.log("New panel %o", panel);
+                    p.insert(panel);
                 });
-                console.log("New panel %o", panel);
-                p.insert(panel);
-            });
-        } else {
-            Ext.toast("No page object on page");
+            } else {
+                Ext.toast("No page object on page");
+            }
         }
     },
     onRenderLayoutPanel: function (p) {
