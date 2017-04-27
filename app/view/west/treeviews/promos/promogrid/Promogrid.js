@@ -29,7 +29,10 @@ Ext.define('Advertising.view.west.treeviews.promos.promogrid.Promogrid', {
             sortable: false,
             menuDisabled: false,
             dataIndex: 'status',
+
             items: [{
+                handler: 'onPromoOfferItemClick',
+                tooltip: 'Info',
                 getClass: function(v, metadata, r, rowIndex, colIndex, store) {
                     if (false) {
                         return "x-hide-display";

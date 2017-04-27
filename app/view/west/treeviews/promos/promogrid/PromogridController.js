@@ -18,6 +18,10 @@ Ext.define('Advertising.view.west.treeviews.promos.promogrid.PromogridController
             }
         }
     },
+    onPromoOfferItemClick: function (grid, rowIndex, colIndex) {
+        var rec = grid.getStore().getAt(rowIndex);
+        Ext.toast("Click " + rec.id);
+    },
     onEventChange: function (record) {
         var me = this;
         console.log("Event change " + record.data.nodetype);
@@ -32,7 +36,7 @@ Ext.define('Advertising.view.west.treeviews.promos.promogrid.PromogridController
             };
             store.load();
         } else {
-            store.loadData([],false);
+            store.loadData([], false);
         }
     }
 

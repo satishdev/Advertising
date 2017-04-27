@@ -11,8 +11,6 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayouts', {
     xtype: 'pagelayouts',
 
     requires: [
-        'Advertising.view.main.common.Promo',
-        'Advertising.view.main.common.pages.layout.LayoutObject',
         'Advertising.view.main.layouts.pagelayouts.PageLayoutsController',
         'Advertising.view.main.layouts.pagelayouts.PageLayoutsModel',
         'Ext.layout.container.Absolute',
@@ -52,52 +50,10 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayouts', {
 
             items: [
                 {
-                    xtype: 'image',
-                    width: '100%',
-                    padding: 10,
-                    mode: 'background',
-                    zIndex: 1,
-                    cls: 'noSelect',
-                    src: 'http://laheadvsb01.ngco.com:8080/smartmedia/servlet/smartmediaservlet?ref=RCSS_F_10p5x10p5.indd&type=Page&res=prev'
-                },
-                {
-                    xtype: 'promo',
-                    width: 350,
-                    height: 220,
-                    y: 150,
-                    x: 130,
-                    name: 'promoY'
-                },
-                {
-                    xtype: 'promo',
-                    width: 350,
-                    height: 220,
-                    y: 150,
-                    x: 530,
-                    name: 'promoX'
-
-                },
-                {
-                    xtype: 'promo',
-                    width: 350,
-                    height: 220,
-                    y: 450,
-                    x: 530,
-                    name: 'promoX'
-
-                }
-                ,
-                {
-                    xtype: 'layoutobject',
-                    width: 350,
-                    height: 220,
-                    y: 450,
-                    x: 130,
-                    items: [
-                        {
-                        html:'<p size="4vw">2 x 2 sample metastyle</p>'
-                        }
-                    ]
+                    title:'Welcome to JDA Advertising',
+                    bind: {
+                        html: '{intro}'
+                    }
                 }
 
             ]
