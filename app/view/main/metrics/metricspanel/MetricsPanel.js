@@ -40,30 +40,32 @@ Ext.define('Advertising.view.main.metrics.metricspanel.MetricsPanel', {
             },
 
             legend: true,
-            sprites: [{
-                type: 'text',
-                text: 'Potential for vehicle <V>',
-                textAlign: 'center',
-                fontSize: 18,
-                fontWeight: 'bold',
-                width: 100,
-                height: 30,
-                x: 325, // the sprite x position
-                y: 30  // the sprite y position
-            }, {
-                type: 'text',
-                text: 'Page comparison',
-                textAlign: 'center',
-                fontSize: 16,
-                x: 325,
-                y: 50
-            }, {
-                type: 'text',
-                text: 'Source: http://www.w3schools.com/',
-                fontSize: 10,
-                x: 12,
-                y: 495
-            }],
+            //sprites: [{
+            //    type: 'text',
+            //    text: 'Potential for vehicle <V>',
+            //    textAlign: 'center',
+            //    fontSize: 18,
+            //    fontWeight: 'bold',
+            //    width: 100,
+            //    height: 30,
+            //    x: 325, // the sprite x position
+            //    y: 30  // the sprite y position
+            //}, {
+            //    type: 'text',
+            //    text: 'Page comparison',
+            //    textAlign: 'center',
+            //    fontSize: 16,
+            //    x: 325,
+            //    y: 50
+            //}
+            //    , {
+            //    type: 'text',
+            //    text: 'Source: http://www.w3schools.com/',
+            //    fontSize: 10,
+            //    x: 12,
+            //    y: 495
+            //}
+            //],
             axes: [{
                 type: 'numeric3d',
                 position: 'left',
@@ -94,7 +96,7 @@ Ext.define('Advertising.view.main.metrics.metricspanel.MetricsPanel', {
                 },
                 highlight: true,
                 style: {
-                    inGroupGapWidth: -7
+                    inGroupGapWidth: -3
                 }
             }
         }
