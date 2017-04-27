@@ -7,7 +7,10 @@ Ext.define('Advertising.view.main.common.Promo', {
     //ui: 'promo',
     xtype: 'promo',
     controller: 'promo',
-    viewModel: 'promo',
+    viewModel: {
+        type: 'promo'
+    },
+
     requires: [
         'Advertising.view.main.common.promo.PromoController',
         'Advertising.view.main.common.promo.PromoModel',
