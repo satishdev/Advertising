@@ -21,6 +21,7 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
         'Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelController',
         'Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelModel',
         'Ext.button.Button',
+        'Ext.layout.container.HBox',
         'Ext.layout.container.VBox',
         'Ext.panel.Panel'
     ],
@@ -45,13 +46,55 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
     collapsible: true,
     layout: {
         type: 'vbox',
-        //align: 'center',
-        pack: 'center'
+        align : 'stretch',
+        pack  : 'start'
     },
     items: [
         {
+            xtype: 'panel',
+            layout: {
+                type: 'hbox',
+                align : 'stretch',
+                pack  : 'start'
+            },
+            defaults: {
+                xtype: 'button',
+                padding: 3,
+                margin: 1,
+                enableToggle: true
+            },
+            items: [
+                {
+                    tooltip: 'Show/hide Grid',
+                    iconCls: 'fa fa-th',
+                    handler: 'onToggleGrid',
+                    bind: {
+                        pressed: '{showGrids}'
+                    }
+                },
+                {
+                    tooltip: 'Show/hide Layouts',
+                    iconCls: 'fa fa-newspaper-o',
+                    handler: 'onToggleLayouts',
+                    bind: {
+                        pressed: '{showLayouts}'
+                    }
+                },
+                {
+                    tooltip: 'Show/hide Images',
+                    iconCls: 'fa fa-camera'
+                }
+            ]
+
+        },
+        {
             iconCls: 'fa fa-plus',
             text: 'Add item',
+            padding: 5
+        },
+        {
+            iconCls: 'fa fa-new',
+            text: 'Create new layout',
             padding: 5
         },
         {
@@ -64,8 +107,8 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
            xtype:'panel',
             layout: {
                 type: 'vbox',
-                //align: 'center',
-                pack: 'center'
+                align : 'stretch',
+                pack  : 'start'
             },
             items: [
                 {

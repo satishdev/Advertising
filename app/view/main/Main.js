@@ -60,16 +60,6 @@ Ext.define('Advertising.view.main.Main', {
                 tooltip: 'Display context sensitive toolbar',
                 handler: 'onShowTools'
             },
-            {
-                xtype: 'button',
-                enableToggle: true,
-                iconCls: 'fa fa-newspaper-o',
-                text: 'Layout',
-                bind: {
-                    pressed: '{showLayouts}'
-                },
-                handler: 'onToggleLayouts'
-            },
 
             {
                 xtype: 'button',

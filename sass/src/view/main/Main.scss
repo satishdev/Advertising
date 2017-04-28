@@ -1,16 +1,19 @@
 /**
  * Generates a set of style rules for the "navigation" tab UI.
  */
-$base-color: #0076AD;
+//$base-color: #0076AD;
 
 $circle-border-radius:50%;
+
 $base-border-color: #ddd;
 $lightest-color:#fff;
+$darkest-color: #333;
 $font-weight: 400;
 $font-weight-bold: 500;
 
-$accordion-header-background-color: $lightest-color;
-$accordion-header-color: #333;
+//$accordion-header-background-color: $darkest-color;
+//$accordion-header-color: $lightest-color;
+//$accordion-header-color: #333;
 
 
 @include extjs-tab-panel-ui(
@@ -136,7 +139,7 @@ $accordion-header-color: #333;
 }
 
 .f-layout-object-clean .x-panel-body{
-   background-color: #f8d400 !important;
+   background-color: #FFE8BE !important;
  }
 
 .f-layout-object-selected .x-panel-body{

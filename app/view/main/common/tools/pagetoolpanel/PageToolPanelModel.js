@@ -18,6 +18,8 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelModel'
     },
 
     data: {
+        showLayouts: true,
+        showGrids: true
         /* This object holds the arbitrary data that populates the ViewModel and is then available for binding. */
     }
 });

@@ -16,6 +16,26 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelContro
         var me = this;
         // var model = me.getViewModel();
         //model.tools = undefined;
+    },
+    /* Turn on/off grids for page view */
+    onToggleGrids: function (btn) {
+        Ext.toast("Turn grids " + (( btn.pressed) ? "on" : "off"));
+        // get current page displayed
+
+    },
+    /* Turn on/off layouts for page view */
+    onToggleLayouts: function (btn) {
+        Ext.toast("Turn layouts " + (( btn.pressed) ? "on" : "off"));
+        // loop through all layouts
+        // @todo just do for displayed page
+        Ext.ComponentQuery.query("layoutobject").forEach(function(lo) {
+            if ( btn.pressed) {
+                lo.show();
+            } else {
+                lo.hide();
+            }
+
+        });
     }
 
 });
