@@ -96,23 +96,34 @@ Ext.define('Advertising.view.main.common.Promo', {
         {
             xtype: 'grid',
             bind: {
-                visible: '{showGrid}'
+                visible: '{showGrid}',
+                store: '{offerItems}'
             },
             columns: [
                 {
-                    text: 'ID'
+                    text: 'Product',
+                    dataIndex: 'productID'
                 },
                 {
-                    text: 'Desc'
+                    text: 'Qty',
+                    dataIndex: 'quantity'
+
                 },
                 {
-                    text: 'Tmt'
+                    text: 'Desc',
+                    dataIndex: 'description'
+
+                },
+                {
+                    text: 'Tmt',
+                    dataIndex: 'treatment'
                 }
             ]
         },
         {
-            html: '<div class="noSelect" style="font-size: 1vw">I am a promo <br/>Some image here</br><p/><div style="font-size: 4vw"> $99<sup style="font-size:.6em">99</sup></div></div>',
+           // html: '<div class="noSelect" style="font-size: 1vw">' + '{name}' + '<br/>Some image here</br><p/><div style="font-size: 4vw"> $99<sup style="font-size:.6em">99</sup></div></div>',
             bind: {
+                html: '<div class="noSelect" style="font-size: 1vw">{name}<br/>Some image here</br><p/>Adzone [{adzoneID}]<div style="font-size: 3vw"> $99<sup style="font-size:.6em">99</sup></div></div>',
                 visible: '{!showGrid}'
             }
         }

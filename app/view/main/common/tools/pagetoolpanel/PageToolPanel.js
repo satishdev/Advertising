@@ -126,7 +126,17 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
                     enableToggle: true,
                     text: 'Store Group 3'
                 }
-
+                ,
+                {
+                    xtype: 'button',
+                    enableToggle: true,
+                    text: 'Store Group 4'
+                },
+                {
+                    xtype: 'button',
+                    enableToggle: true,
+                    text: 'Store Group 5'
+                }
             ]
         }
 

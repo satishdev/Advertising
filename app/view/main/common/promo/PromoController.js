@@ -34,14 +34,17 @@ Ext.define('Advertising.view.main.common.promo.PromoController', {
         }).show();
     },
     onToggleGrid: function(btn) {
-        var promo = btn.up('pageobject');
+        var me = this;
+        var promo = btn.up('promo');
          ( btn.pressed) ? btn.setIconCls("fa fa-image") : btn.setIconCls("fa fa-info");
         if ( btn.pressed) {
             Ext.toast("Getting items for promo offer");
+            me.populatePromoItems(promo);
         } else {
             Ext.toast("Getting images for promo offer");
 
         }
+        console.log("Updating promo %o", promo);
         promo.getViewModel().set("showGrid", btn.pressed);
     },
     onPromoCheckChange: function(checkfield) {
@@ -52,8 +55,19 @@ Ext.define('Advertising.view.main.common.promo.PromoController', {
             promo.addCls("f-promo-checked");
         } else {
             promo.removeCls("f-promo-checked");
-
         }
+    },
+    /**
+     * Load promo items from server
+     * @param promo
+     */
+    populatePromoItems: function(promo) {
+        console.log("Getting items from promo %o", promo);
+        var store = promo.down('grid').getStore();
+        store.getProxy().setExtraParam('promoID', promo.getViewModel().get('promoID'));
+
+        console.log("Loading promo grid store %o", store);
+        store.load();
     },
     onUndoPromoMove: function (btn) {
 

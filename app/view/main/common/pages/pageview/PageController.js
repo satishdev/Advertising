@@ -29,7 +29,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
         var parentWidth = p.up('panel').getSize().width;
         var parentHeight = p.up('panel').getSize().height;
         //  var scale = parentWidth / ((p.inchWidth * 96) + 20);
-        var scale = parentHeight / ((p.inchHeight * 96) + 100);
+        var scale = parentWidth / ((p.inchWidth * 96) + 100);
         console.log("Scale %f", scale);
         var me = this;
         me.getViewModel().set("scale", scale);
@@ -131,14 +131,15 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
                         width: po.width * 96 * scale,
                         height: po.height * 96 * scale,
                         x: po.xPos * 96 * scale,
-                        y: po.yPos * 96 * scale,
-                        items: [
-                            {
-                                html: '<p size="4vw">' + po.name + "</p>"
-                            }
-                        ]
+                        y: po.yPos * 96 * scale
 
                     });
+                    // set all object properties in model
+                    var model = panel.getViewModel();
+                    for(var prop in po){
+                        model.set(prop, po[prop]);
+                    }
+
                     console.log("New panel %o", panel);
                     p.insert(panel);
                 });
