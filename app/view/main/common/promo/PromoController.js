@@ -6,7 +6,8 @@ Ext.define('Advertising.view.main.common.promo.PromoController', {
     alias: 'controller.promo',
 
     requires: [
-        'Advertising.view.main.common.promo.promoeditwindow.PromoEditWindow'
+        'Advertising.view.main.common.promo.promoeditwindow.PromoEditWindow',
+        'Advertising.view.main.common.promo.promoproductwindow.PromoProductWindow'
     ],
 
     /**
@@ -46,6 +47,16 @@ Ext.define('Advertising.view.main.common.promo.PromoController', {
         }
         console.log("Updating promo %o", promo);
         promo.getViewModel().set("showGrid", btn.pressed);
+    },
+    onExpandGrid: function(btn) {
+
+        var promo = btn.up('promo');
+        console.log("Source promo %o", promo);
+        var win = Ext.create('Advertising.view.main.common.promo.promoproductwindow.PromoProductWindow',{
+            promo: promo
+        });
+        win.show()
+
     },
     onPromoCheckChange: function(checkfield) {
         var me = this;

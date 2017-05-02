@@ -2,7 +2,7 @@
  * Created by Lee on 4/13/2017.
  */
 Ext.define('Advertising.util.GlobalValues', {
-
+    serviceURL: 'http://laheadvsb01.ngco.com:8881',
     singleton: true,
     serverConnectionLost: true,
     userId: null,

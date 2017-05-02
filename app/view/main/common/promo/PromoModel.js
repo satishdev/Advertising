@@ -6,6 +6,7 @@ Ext.define('Advertising.view.main.common.promo.PromoModel', {
     alias: 'viewmodel.promo',
 
     requires: [
+        'Advertising.util.GlobalValues',
         'Ext.data.proxy.Ajax',
         'Ext.data.reader.Json'
     ],
@@ -22,7 +23,7 @@ Ext.define('Advertising.view.main.common.promo.PromoModel', {
                 type : 'ajax',
                 useDefaultXhrHeader: false,
                 api: {
-                    read:  'http://localhost:8881/layout/getOfferItems'
+                    read:  Advertising.util.GlobalValues.serviceURL + '/layout/getOfferItems'
                 },
                 reader: {
                     type: 'json',

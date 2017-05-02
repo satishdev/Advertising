@@ -6,6 +6,7 @@ Ext.define('Advertising.view.west.treeviews.promos.promogrid.PromogridModel', {
     alias: 'viewmodel.promogrid',
 
     requires: [
+        'Advertising.util.GlobalValues',
         'Ext.data.proxy.Rest',
         'Ext.data.reader.Json'
     ],
@@ -35,7 +36,7 @@ Ext.define('Advertising.view.west.treeviews.promos.promogrid.PromogridModel', {
                 limitParam: false, //to remove param "limit"
                 noCache: false, //to remove param "_dc"
                 api: {
-                    read: 'http://localhost:8881/event/getVehiclePromoOffers'
+                    read: Advertising.util.GlobalValues.serviceURL + '/event/getVehiclePromoOffers'
                 },
                 reader: {
                     type: 'json',

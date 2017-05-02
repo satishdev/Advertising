@@ -20,6 +20,7 @@ Ext.define('Advertising.view.west.treeviews.promos.promotree.PromoTreeModel', {
     alias: 'viewmodel.promotree',
 
     requires: [
+        'Advertising.util.GlobalValues',
         'Advertising.view.west.treeviews.promos.promotree.model.Node',
         'Ext.data.TreeStore',
         'Ext.data.proxy.Ajax',
@@ -50,7 +51,7 @@ Ext.define('Advertising.view.west.treeviews.promos.promotree.PromoTreeModel', {
                 type: 'ajax',
                 useDefaultXhrHeader: false,
                 api: {
-                    read: 'http://localhost:8881/tree/promos'
+                    read: Advertising.util.GlobalValues.serviceURL + '/tree/promos'
                 },
                 reader: {
                     type: 'json',

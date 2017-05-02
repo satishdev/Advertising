@@ -34,7 +34,7 @@ Ext.define('Advertising.view.main.MainController', {
         try {
             console.log("Attempting to ping server...");
             Ext.Ajax.request({
-                url: "http://localhost:8881/test/ping",
+                url: Advertising.util.GlobalValues.serviceURL + "/test/ping",
                 method: 'GET',
                 cors: true,
                 useDefaultXhrHeader: false,

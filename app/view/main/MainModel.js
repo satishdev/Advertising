@@ -10,7 +10,7 @@ Ext.define('Advertising.view.main.MainModel', {
     //        proxy: {
     //            type: 'websocket' ,
     //            storeId: 'myStore',
-    //            url: 'ws://localhost:8881' ,
+    //            url: 'ws://laheadvsb01.ngco.com:8881' ,
     //            reader: {
     //                type: 'json' ,
     //                root: 'user'

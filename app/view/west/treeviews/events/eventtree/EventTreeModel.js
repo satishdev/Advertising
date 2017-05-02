@@ -51,7 +51,7 @@ Ext.define('Advertising.view.west.treeviews.events.eventtree.EventTreeModel', {
                 type: 'ajax',
                 useDefaultXhrHeader: false,
                 api: {
-                    read: 'http://localhost:8881/tree/events'
+                    read: Advertising.util.GlobalValues.serviceURL + '/tree/events'
                 },
                 reader: {
                     type: 'json',

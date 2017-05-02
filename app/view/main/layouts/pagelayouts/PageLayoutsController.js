@@ -6,6 +6,7 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
     alias: 'controller.pagelayouts',
 
     requires: [
+        'Advertising.util.GlobalValues',
         'Advertising.view.main.common.pages.layout.Layout',
         'Advertising.view.main.common.pages.pageview.Page',
         'Ext.layout.container.Absolute'
@@ -54,7 +55,7 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
             console.log("Adding layout view to %o", pageView);
 
             Ext.Ajax.request({
-                url: "http://localhost:8881/layout/getLayout/" + record.get("id"),
+                url: Advertising.util.GlobalValues.serviceURL + "/layout/getLayout/" + record.get("id"),
                 method: 'GET',
                 cors: true,
                 useDefaultXhrHeader : false,
@@ -121,7 +122,7 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
             console.log("Adding page view to %o", pageView);
 
             Ext.Ajax.request({
-                url: "http://localhost:8881/event/getPage",
+                url: Advertising.util.GlobalValues.serviceURL + "/event/getPage",
                 method: 'GET',
                 cors: true,
                 useDefaultXhrHeader : false,

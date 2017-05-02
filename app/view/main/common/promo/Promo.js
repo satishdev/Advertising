@@ -14,6 +14,7 @@ Ext.define('Advertising.view.main.common.Promo', {
     requires: [
         'Advertising.view.main.common.promo.PromoController',
         'Advertising.view.main.common.promo.PromoModel',
+        'Ext.button.Button',
         'Ext.container.Container',
         'Ext.form.field.Checkbox',
         'Ext.grid.Panel',
@@ -44,7 +45,8 @@ Ext.define('Advertising.view.main.common.Promo', {
                 iconCls: 'fa fa-info',
                 enableToggle: true,
                 listeners: {
-                    click: 'onToggleGrid'
+                    click: 'onToggleGrid',
+
                 }
             },
             {
@@ -93,8 +95,17 @@ Ext.define('Advertising.view.main.common.Promo', {
         flex: 1
     },
     items: [
+
         {
             xtype: 'grid',
+            width: 250,
+            dockedItems: [
+                { xtype: 'toolbar',
+                    dock: 'top',
+                    items: [
+                        { xtype: 'button', text: 'Expand', handler: 'onExpandGrid' }
+                    ]   }
+            ],
             bind: {
                 visible: '{showGrid}',
                 store: '{offerItems}'
@@ -102,21 +113,27 @@ Ext.define('Advertising.view.main.common.Promo', {
             columns: [
                 {
                     text: 'Product',
-                    dataIndex: 'productID'
+                    dataIndex: 'productID',
+                    flex: 2
                 },
                 {
                     text: 'Qty',
-                    dataIndex: 'quantity'
+                    dataIndex: 'quantity',
+                    flex:1
 
                 },
                 {
                     text: 'Desc',
-                    dataIndex: 'description'
+                    dataIndex: 'description',
+                    hidden: true,
+                    flex:3
 
                 },
                 {
                     text: 'Tmt',
-                    dataIndex: 'treatment'
+                    dataIndex: 'treatment',
+                    hidden: true,
+                    flex:1
                 }
             ]
         },

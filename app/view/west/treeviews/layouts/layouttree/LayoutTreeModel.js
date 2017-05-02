@@ -6,6 +6,7 @@ Ext.define('Advertising.view.west.treeviews.layouts.layouttree.LayoutTreeModel',
     alias: 'viewmodel.layouttree',
 
     requires: [
+        'Advertising.util.GlobalValues',
         'Ext.data.TreeStore',
         'Ext.data.proxy.Ajax',
         'Ext.data.reader.Json'
@@ -34,7 +35,7 @@ Ext.define('Advertising.view.west.treeviews.layouts.layouttree.LayoutTreeModel',
                 type : 'ajax',
                 useDefaultXhrHeader: false,
                 api: {
-                    read:  'http://localhost:8881/tree/layouts'
+                    read:  Advertising.util.GlobalValues.serviceURL + '/tree/layouts'
                 },
                 reader: {
                     type: 'json',

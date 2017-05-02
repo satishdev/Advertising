@@ -45,7 +45,7 @@ Ext.define('Advertising.view.main.copy.copygrid.CopyGrid', {
         },
         {
             text: 'UPC',
-            dataIndex: 'parentName',
+            dataIndex: 'UPC',
             flex: 1
         },
         {

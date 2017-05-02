@@ -1,9 +1,9 @@
 /**
- * Created by Lee on 3/22/2017.
+ * Created by Lee on 5/1/2017.
  */
-Ext.define('Advertising.view.main.copy.copygrid.CopyGridModel', {
+Ext.define('Advertising.view.main.common.promo.promoproductwindow.PromoProductWindowModel', {
     extend: 'Ext.app.ViewModel',
-    alias: 'viewmodel.copygrid',
+    alias: 'viewmodel.promoproductwindow',
 
     requires: [
         'Advertising.util.GlobalValues',
@@ -12,18 +12,18 @@ Ext.define('Advertising.view.main.copy.copygrid.CopyGridModel', {
     ],
 
     stores: {
-        eventcopy: {
+        offerItemsWin: {
             listeners: {
-                load: function(store, operation) {
-                    console.log("Event copy store load");
+                load: function (store, operation) {
+                    console.log("Offer items store load");
                 }
             },
             autoLoad: false,
             proxy: {
-                type : 'ajax',
+                type: 'ajax',
                 useDefaultXhrHeader: false,
                 api: {
-                    read:  Advertising.util.GlobalValues.serviceURL + '/event/getEventCopy'
+                    read: Advertising.util.GlobalValues.serviceURL + '/layout/getOfferItems'
                 },
                 reader: {
                     type: 'json',
@@ -34,6 +34,7 @@ Ext.define('Advertising.view.main.copy.copygrid.CopyGridModel', {
     },
 
     data: {
-        /* This object holds the arbitrary data that populates the ViewModel and is then available for binding. */
+        name: 'Not set',
+        promoID: -1
     }
 });

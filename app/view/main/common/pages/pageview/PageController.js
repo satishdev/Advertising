@@ -112,7 +112,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
                         y: ph.yPos * 96 * scale,
                         items: [
                             {
-                                html: '<p size="4vw">' + ph.description + "</p>"
+                                html: '<p size="4vw">' + ph.description + "</p>" + ph.layoutid
                             }
                         ]
 
