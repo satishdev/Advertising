@@ -14,7 +14,7 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
     },
     width: 150,
     shadowOffset: 6,
-
+    zIndex: 10,
     xtype: 'pagetoolpanel',
 
     requires: [

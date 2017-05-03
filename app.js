@@ -9,7 +9,12 @@ Ext.application({
     extend: 'Advertising.Application',
 
     requires: [
-        'Advertising.view.main.Main'
+        'Advertising.view.main.Main',
+        'Ext.plugin.Viewport',
+        'grid.horizontal3d',
+        'grid.vertical3d',
+        'Ext.chart.axis.*',
+        'Ext.window.Toast'
     ],
 
     // The name of the initial view to create. With the classic toolkit this class

@@ -22,7 +22,6 @@ Ext.define('Advertising.view.main.common.promo.promoproductwindow.PromoProductWi
             type: 'fadeOut'
         }
     },
-    animateTarget: Ext.getDoc(),
     requires: [
         'Advertising.view.main.common.promo.promoproductwindow.PromoProductWindowController',
         'Advertising.view.main.common.promo.promoproductwindow.PromoProductWindowModel',

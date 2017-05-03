@@ -32,7 +32,9 @@ Ext.define('Advertising.view.main.common.promo.PromoController', {
         console.log("Promo %o", promo);
         var editWin = Ext.create("Advertising.view.main.common.promo.promoeditwindow.PromoEditWindow",{
             promo: promo
-        }).show();
+        });
+        editWin.animateTarget = btn.id;
+        editWin.show();
     },
     onToggleGrid: function(btn) {
         var me = this;
@@ -54,7 +56,9 @@ Ext.define('Advertising.view.main.common.promo.PromoController', {
         console.log("Source promo %o", promo);
         var win = Ext.create('Advertising.view.main.common.promo.promoproductwindow.PromoProductWindow',{
             promo: promo
+
         });
+        win.animateTarget = btn.id;
         win.show()
 
     },

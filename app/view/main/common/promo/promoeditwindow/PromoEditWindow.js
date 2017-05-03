@@ -35,7 +35,7 @@ Ext.define('Advertising.view.main.common.promo.promoeditwindow.PromoEditWindow',
     bind: {
         title: '{name}'
     },
-    animateTarget: Ext.getDoc(),
+
     initComponent: function() {
         var me = this;
         me.callParent(arguments);

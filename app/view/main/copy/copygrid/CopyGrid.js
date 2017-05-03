@@ -43,20 +43,25 @@ Ext.define('Advertising.view.main.copy.copygrid.CopyGrid', {
             stopSelection: false
 
         },
-        {
-            text: 'UPC',
-            dataIndex: 'UPC',
-            flex: 1
-        },
-        {
-            text: 'Desc',
-            dataIndex: 'description',
 
-            flex: 1
-        },
         {
             text: 'Promo',
             dataIndex: 'promo',
+            flex: 1
+        },
+        {
+            text: 'Role',
+            dataIndex: 'role',
+            flex: 1
+        },
+        {
+            text: 'Target',
+            dataIndex: 'mediaTarget',
+            flex: 1
+        },
+        {
+            text: 'Location',
+            dataIndex: 'location',
             flex: 1
         },
         {

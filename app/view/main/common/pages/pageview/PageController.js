@@ -49,6 +49,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
                 render: 'onRenderPagePanel'
             },
             items: [
+
                 {
 
                     // todo - get image from server
