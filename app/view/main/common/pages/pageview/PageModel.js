@@ -6,15 +6,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageModel', {
     alias: 'viewmodel.page',
 
     stores: {
-        /*
-        A declaration of Ext.data.Store configurations that are first processed as binds to produce an effective
-        store configuration. For example:
 
-        users: {
-            model: 'Page',
-            autoLoad: true
-        }
-        */
     },
 
     data: {

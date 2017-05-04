@@ -37,7 +37,7 @@ Ext.define('Advertising.view.main.common.Promo', {
     padding: 0,
     shadow: true,
     draggable: true,
-    name: 'promoname',
+
     cls: 'f-promo-base',
     tbar: {
         items: [

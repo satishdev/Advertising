@@ -6,19 +6,44 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutModel', {
     alias: 'viewmodel.layout',
 
     stores: {
-        /*
-        A declaration of Ext.data.Store configurations that are first processed as binds to produce an effective
-        store configuration. For example:
+        sections: {
+            data: [{
+                name: 'Unico'
+            },{
+                name: 'Meat'
+            },{
+                name: 'T&T'
+            }
 
-        users: {
-            model: 'Layout',
-            autoLoad: true
+            ]
+        },
+        owners: {
+            data: [
+                {
+                    name: 'Grocery',
+                    category: 'g'
+                },
+                {
+                    name: 'Dairy',
+                    category: 'd'
+                },
+                {
+                    name: 'Meat',
+                    category: 'm'
+                },
+                {
+                    name: 'Frozen',
+                    category: 'f'
+                }
+            ]
         }
-        */
+
     },
 
     data: {
-        scale: 1
+        scale: 1,
+        section: undefined,
+        ownerSelection: undefined
         /* This object holds the arbitrary data that populates the ViewModel and is then available for binding. */
     }
 });

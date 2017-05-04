@@ -6,9 +6,14 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
 
 
     xtype: 'layoutobject',
-
+    viewModel: {
+        type: 'layout'
+    },
     requires: [
-        'Ext.layout.container.Absolute'
+        'Advertising.view.main.common.pages.layout.LayoutModel',
+        'Ext.form.field.ComboBox',
+        'Ext.form.field.Tag',
+        'Ext.layout.container.Form'
     ],
 
     cls: 'f-layout-object f-layout-object-clean',
@@ -33,10 +38,36 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
     border: 2,
     draggable: true,
     resizable: true,
-    layout: 'absolute',
+    layout: 'form',
     zIndex: 99,
     constrain: true,
     items: [
-        /* include child components here */
+
+        {
+            xtype: 'tagfield',
+            fieldLabel: 'Owners',
+            value: ['g'],
+            bind: {
+                store: '{owners}'
+            },
+            displayField: 'name',
+            valueField: 'category',
+            filterPickList: true
+        },
+        {
+            xtype: 'combobox',
+            fieldLabel: 'Section',
+            value: '',
+            bind: {
+                store: '{sections}'
+            },
+            createNewOnEnter: true,
+            createNewOnBlur: true,
+            filterPickList: true,
+            listeners: {
+                change: 'onSectionChange'
+            },
+            displayField: 'name',
+            valueField: 'name'}
     ]
 });

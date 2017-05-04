@@ -13,7 +13,6 @@ Ext.define('Advertising.view.main.MainController', {
     requires: [
         'Advertising.util.GlobalValues',
         'Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel',
-        'Ext.dom.Query',
         'Ext.util.TaskManager'
     ],
     listen: {
@@ -50,11 +49,14 @@ Ext.define('Advertising.view.main.MainController', {
         var activeTab = layouts.getActiveTab();
         Ext.toast("Active " + activeTab.title);
         console.log("Active %o", activeTab);
-        var svg = Ext.dom.Query.select('rect');
+        var svg = activeTab.getEl().query('rect');
+        //var svg = Ext.dom.Query.select('rect');
         console.log("SVG %o", svg);
         if ( svg[0]) {
             console.log("Found svg item...updating it");
-            svg[0].setAttribute("fill", me.getRandomColor());
+         //   svg[0].setAttribute("stroke", me.getRandomColor());
+            svg[0].setAttribute("stroke", "#FFF");
+
         }
     },
      getRandomColor: function() {

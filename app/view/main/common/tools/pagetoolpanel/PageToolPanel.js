@@ -73,6 +73,14 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
                     }
                 },
                 {
+                    tooltip: 'Show/hide Offers',
+                    iconCls: 'fa fa-tag',
+                    handler: 'onToggleOffers',
+                    bind: {
+                        pressed: '{showOffers}'
+                    }
+                },
+                {
                     tooltip: 'Show/hide Layouts',
                     iconCls: 'fa fa-newspaper-o',
                     handler: 'onToggleLayouts',

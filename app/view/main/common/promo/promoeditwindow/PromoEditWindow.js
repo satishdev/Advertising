@@ -42,7 +42,7 @@ Ext.define('Advertising.view.main.common.promo.promoeditwindow.PromoEditWindow',
         me.callParent(arguments);
         console.log('window %o', me);
         var model = me.getViewModel();
-        model.set("name",me.promo.name);
+        model.set("name",me.promo.getViewModel().get('name'));
     },
     viewModel: {
         type: 'promoeditwindow'

@@ -39,6 +39,19 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelContro
             }
 
         });
+    },
+    onToggleOffers: function (btn) {
+        Ext.toast("Turn offers " + (( btn.pressed) ? "on" : "off"));
+        // loop through all layouts
+        // @todo just do for displayed page
+        Ext.ComponentQuery.query("promo").forEach(function(lo) {
+            if ( btn.pressed) {
+                lo.show();
+            } else {
+                lo.hide();
+            }
+
+        });
     }
 
 });

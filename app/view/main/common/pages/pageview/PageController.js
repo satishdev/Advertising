@@ -3,6 +3,7 @@
  *
  * Controller for pages and layouts
  */
+
 Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.page',
@@ -13,12 +14,37 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
         'Ext.layout.container.Absolute',
         'Ext.panel.Panel'
     ],
-
+    colorMap: {},
     /**
      * Called when the view is created
      */
     init: function () {
 
+    },
+    onSectionChange: function(combo, record, eOpts) {
+        var me = this;
+        console.log("Combo value changed %o", combo);
+        var color = me.getRandomColor();
+        var panel = combo.up('panel');
+        console.log("Layout object %o", panel);
+        panel.removeCls('.f-layout-object-clean');
+
+        var comboSection = combo.value;
+        console.log("Colour map %o", me.colorMap);
+        if (! me.colorMap.hasOwnProperty(comboSection)) {
+            me.colorMap[comboSection] = me.getRandomColor();
+        }
+        panel.setBodyStyle('background-color',me.colorMap[comboSection] );
+
+
+    },
+    getRandomColor: function() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++ ) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color ;
     },
     onPageResize: function (page) {
         Ext.toast("Page was resized");
@@ -115,11 +141,11 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
                         height: ph.height * 96 * scale,
                         x: ph.xPos * 96 * scale,
                         y: ph.yPos * 96 * scale,
-                        items: [
-                            {
-                                html: '<p size="4vw">' + ph.description + "</p>" + ph.layoutid
-                            }
-                        ]
+                        //items: [
+                        //    {
+                        //        html: '<p size="4vw">' + ph.description + "</p>" + ph.layoutid
+                        //    }
+                        //]
 
                     });
                     console.log("New panel %o", panel);
@@ -167,14 +193,9 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
                     width: lo.width * 96 * scale,
                     height: lo.height * 96 * scale,
                     x: lo.xPos * 96 * scale,
-                    y: lo.yPos * 96 * scale,
-                    items: [
-                        {
-                            html: '<p size="4vw">' + lo.metastyle.name + "</p>"
-                        }
-                    ]
-
+                    y: lo.yPos * 96 * scale
                 });
+                p.add()
                 console.log("New panel %o", panel);
                 p.insert(panel);
             });
@@ -188,7 +209,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
         var parentWidth = p.up('panel').getSize().width;
         var parentHeight = p.up('panel').getSize().height;
         //  var scale = parentWidth / ((p.inchWidth * 96) + 20);
-        var scale = parentHeight / ((p.inchHeight * 96) + 100);
+        var scale = parentWidth / ((p.inchWidth * 96) + 100);
         console.log("Scale %f", scale);
         var me = this;
         me.getViewModel().set("scale", scale);
