@@ -61,6 +61,26 @@ Ext.define('Advertising.view.main.common.promo.promoeditwindow.PromoEditWindowMo
                 }
 
             ]
+        },
+        themes: {
+            data: [
+                {
+                    msID: '1',
+                    msName: 'Theme A'
+                },
+                {
+                    msID: '2',
+                    msName: 'Theme B'
+                }
+                , {
+                    msID: '3',
+                    msName: 'Theme C'                }
+                ,{
+                    msID: '4',
+                    msName: 'Theme D'
+                }
+
+            ]
         }
         /*
         A declaration of Ext.data.Store configurations that are first processed as binds to produce an effective

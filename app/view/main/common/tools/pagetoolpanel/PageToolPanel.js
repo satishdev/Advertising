@@ -2,7 +2,7 @@
  * Created by Lee on 4/20/2017.
  */
 Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
-    extend: 'Ext.window.Window',
+    extend: 'Ext.panel.Panel',
 
     config: {
         showAnimation: {
@@ -95,11 +95,13 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
         {
             iconCls: 'fa fa-new',
             text: 'Create new layout',
+            //handler: 'onClickCreateLayout',
             padding: 5
         },
         {
             iconCls: 'fa fa-users',
             text: 'Space owners',
+            //handler: 'onClickShowSpaceOwners',
             padding: 5
         },
 

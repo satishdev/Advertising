@@ -30,6 +30,8 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayouts', {
     cls: 'noSelect',
     listeners: {
         resize: 'onPageResize',
+        tabchange: 'onPageTabChange',
+        added: 'onPageTabAdded',
 
         pageChange: 'onPageChange'
 
@@ -40,13 +42,11 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayouts', {
             closable: true,
             xtype: 'panel',
             bind: {
-                title: '{pagename}'
+                title: '{welcomeTitle}'
             },
             padding: 10,
             border: true,
             layout: 'absolute', // do not change!
-            scrollable: true,
-
 
             items: [
                 {

@@ -25,7 +25,7 @@ Ext.define('Advertising.view.main.common.Promo', {
         console.log("Promo object added");
         var me = this;
         this.setupDebug();
-        this.callParent();
+        this.callParent(arguments);
 
     },
     //ui: 'promo',
@@ -140,7 +140,7 @@ Ext.define('Advertising.view.main.common.Promo', {
         {
            // html: '<div class="noSelect" style="font-size: 1vw">' + '{name}' + '<br/>Some image here</br><p/><div style="font-size: 4vw"> $99<sup style="font-size:.6em">99</sup></div></div>',
             bind: {
-                html: '<div class="noSelect" style="font-size: 1vw">{name}<br/>Some image here</br><p/>Adzone [{adzoneID}]<div style="font-size: 3vw"> $99<sup style="font-size:.6em">99</sup></div></div>',
+                html: '<div class="noSelect" style="font-size: 1vw">{name}<br/><div class="f-prod-image"><img src="http://laheadvsb01.ngco.com:8080/smartmedia/servlet/smartmediaservlet?ref=4122006805.eps&type=Image&res=thumb"/></div></br><p/>Adzone [{adzoneID} {location}]<div style="font-size: 3vw"> $99<sup style="font-size:.6em">99</sup></div></div>',
                 visible: '{!showGrid}'
             }
         }

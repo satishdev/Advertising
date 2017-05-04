@@ -6,15 +6,29 @@
  */
 Ext.define('Advertising.view.main.MainController', {
     extend: 'Advertising.view.core.BaseViewController',
+    id: 'vcmaincontroller',
 
     alias: 'controller.main',
     tools: undefined,
     requires: [
         'Advertising.util.GlobalValues',
         'Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel',
+        'Ext.dom.Query',
         'Ext.util.TaskManager'
     ],
+    listen: {
+        controller: {
+            '#vcpagelayoutscontroller': {
+                mainPageTabAdded: 'onMainPageTabAdded',
+                mainPageTabChanged: 'onMainPageTabChanged'
 
+            },
+            '#vctoolpanelcontroller': {
+                turnGridsOff: 'onTurnGridsOff'
+            }
+
+        }
+    },
     init: function () {
         var me = this;
         Ext.TaskManager.start({
@@ -30,6 +44,27 @@ Ext.define('Advertising.view.main.MainController', {
 
 
     },
+    onTurnGridsOff: function() {
+        var me = this;
+        var layouts = me.lookupReference('pagelayouts');
+        var activeTab = layouts.getActiveTab();
+        Ext.toast("Active " + activeTab.title);
+        console.log("Active %o", activeTab);
+        var svg = Ext.dom.Query.select('rect');
+        console.log("SVG %o", svg);
+        if ( svg[0]) {
+            console.log("Found svg item...updating it");
+            svg[0].setAttribute("fill", me.getRandomColor());
+        }
+    },
+     getRandomColor: function() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+},
     onOpenConnection: function () {
         try {
             console.log("Attempting to ping server...");
@@ -79,46 +114,68 @@ Ext.define('Advertising.view.main.MainController', {
     onItemSelected: function (sender, record) {
         Ext.Msg.confirm('Confirm', 'Are you sure?', 'onConfirm', this);
     },
+
     onZoomLevelChange: function (slider, newVal, oldVal, eOpts) {
         Ext.suspendLayouts();
         // get the displayed page/layout (if any)
         var pageLayouts = Ext.ComponentQuery.query('pagelayouts')[0];
         Ext.toast("Zoom changed to " + newVal);
         Ext.resumeLayouts(true);
+    }    ,
+    /* Turn on/off layouts for page view */
+    onToggleLayouts: function (btn) {
+        Ext.toast("Turn layouts " + (( btn.pressed) ? "on" : "off"));
+        // loop through all layouts
+        // @todo just do for displayed page
+        Ext.ComponentQuery.query("layoutobject").forEach(function(lo) {
+            if ( btn.pressed) {
+                lo.show();
+            } else {
+                lo.hide();
+            }
+
+        });
     },
     onConfirm: function (choice) {
         if (choice === 'yes') {
             //
         }
-    },
+    }
+    ,
     /* Turn on/off themes for page view */
     onToggleThemes: function (btn) {
         var pageView = btn.up('pagelayouts');
         console.log("Themes %o %s", pageView, btn.pressed);
         Ext.toast("Turn themes " + (( btn.pressed) ? "on" : "off"));
-    },
+
+    }
+    ,
     /* Turn on/off grid for page view */
     onToggleGrid: function (btn) {
         var pageView = btn.up('pagelayouts');
         console.log("Grid %o %s", pageView, btn.pressed);
-        Ext.toast("Turn grid " + (( btn.pressed) ? "on" : "off"));
-    },
+        Ext.toast("Turn grid " + (( btn.pressed) ? "on" : "off") );
+        var activeTab = pageView.down('tabpanel').getActiveTab();
+        console.log("Active tab %o", activeTab);
+    }
+    ,
     /*
      page change requested
      */
     onSaveChanges: function (btn) {
         Ext.toast("Saving changes...");
 
-    },
+    }
+    ,
     /**
      * Find the page that needs an artifact added
      * @param btn
      */
-    onShowTools: function(btn) {
+    onShowTools: function (btn) {
         var me = this;
 
         var existing = Ext.ComponentQuery.query('pagetoolpanel')[0];
-        if (! Ext.isDefined(existing)) {
+        if (!Ext.isDefined(existing)) {
             var tools = Ext.create("Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel", {
                 animateTarget: btn
             });
@@ -126,11 +183,27 @@ Ext.define('Advertising.view.main.MainController', {
             console.log("Window size is %d x %d", windowSize.width, windowSize.height);
             tools.showAt(windowSize.width - 200, 200);
         } else {
-            if ( existing.collapsed ) {
+            if (existing.collapsed) {
                 existing.expand(true);
             }
         }
 
+    },
+    onMainPageTabAdded: function() {
+        var me = this;
+        Ext.toast("*******************");
+        console.log("Showing tool panel");
+        me.getViewModel().set("showTools", true);
+    //    me.lookupReference('mainToolPanel').setCollapsed(false);
+
+    }
+    ,
+    onMainPageTabChanged: function(panel, newCard, oldCard, eOpts) {
+      var me = this;
+
+        Ext.toast("Tab panel changed " + panel.title);
+
+        // update the available markets etc in the toolbar
     },
 
     onActivateMain: function (panel) {
@@ -139,4 +212,5 @@ Ext.define('Advertising.view.main.MainController', {
         var username = Advertising.view.main.common.UserInfo.getName();
         me.getViewModel().set("username", username);
     }
-});
+})
+;

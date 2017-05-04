@@ -22,6 +22,7 @@ Ext.define('Advertising.view.main.common.promo.promoeditwindow.PromoEditWindow',
         'Advertising.view.main.common.promo.promoeditwindow.PromoEditWindowModel',
         'Ext.form.field.ComboBox',
         'Ext.form.field.Text',
+        'Ext.form.field.TextArea',
         'Ext.grid.Panel',
         'Ext.grid.column.Action',
         'Ext.layout.container.Accordion',
@@ -51,7 +52,48 @@ Ext.define('Advertising.view.main.common.promo.promoeditwindow.PromoEditWindow',
     layout: 'accordion',
     items: [
 
+        {
+            xtype: 'panel',
+            flex:1,
+            title: 'Offer Info',
+            layout: 'form',
+            items: [
+                {
+                    fieldLabel: 'Name',
+                    xtype: 'textfield',
+                    bind: {
+                        value: '{name}'
+                    }
+                },
+                {
+                    fieldLabel: 'Size',
+                    xtype: 'combobox',
+                    displayField: 'msName',
+                    valueField: 'msID',
+                    bind: {
+                        store: '{sizes}'
+                    }
 
+                },
+                {
+                    fieldLabel: 'Theme',
+                    xtype: 'combobox',
+                    displayField: 'msName',
+                    valueField: 'msID',
+                    bind: {
+                        store: '{themes}'
+                    }
+
+                },
+                {
+                    fieldLabel: 'Instructions',
+                    xtype: 'textarea',
+                    maxRows: 10
+
+                }
+
+            ]
+        },
         {
             xtype: 'grid',
             layout: 'fit',
@@ -84,32 +126,7 @@ Ext.define('Advertising.view.main.common.promo.promoeditwindow.PromoEditWindow',
 
                 }
             ]
-        },
-        {
-            xtype: 'panel',
-            flex:1,
-            title: 'Offer Info',
-            layout: 'form',
-            items: [
-                {
-                    fieldLabel: 'Name',
-                    xtype: 'textfield',
-                    bind: {
-                        value: '{name}'
-                    }
-                },
-                {
-                    fieldLabel: 'Size',
-                    xtype: 'combobox',
-                    displayField: 'msName',
-                    valueField: 'msID',
-                    bind: {
-                        store: '{sizes}'
-                    }
-
-                }
-
-            ]
         }
+
     ]
 });

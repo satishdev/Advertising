@@ -16,15 +16,14 @@ Ext.define('Advertising.view.main.Main', {
     requires: [
         'Advertising.view.main.MainController',
         'Advertising.view.main.MainModel',
+        'Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel',
         'Advertising.view.main.copy.copypanel.CopyPanel',
         'Advertising.view.main.layouts.pagelayouts.PageLayouts',
         'Advertising.view.main.metrics.metricspanel.MetricsPanel',
         'Advertising.view.west.treeviews.TreeViews',
         'Ext.button.Button',
-        'Ext.button.Split',
         'Ext.layout.container.Border',
         'Ext.layout.container.Fit',
-        'Ext.menu.Menu',
         'Ext.slider.Single',
         'Ext.tab.Panel'
     ],
@@ -47,7 +46,12 @@ Ext.define('Advertising.view.main.Main', {
         },
 
         items: [
-
+            {
+              xtype: 'image',
+                src: 'resources/images/jda/company_logo.png',
+                imgCls: 'f-company-logo',
+                height: 40
+            },
             {
                 xtype: 'button',
                 iconCls: "fa fa-save",
@@ -58,35 +62,10 @@ Ext.define('Advertising.view.main.Main', {
                 xtype: 'button',
                 iconCls: 'fa fa-wrench',
                 tooltip: 'Display context sensitive toolbar',
-                handler: 'onShowTools'
+                handler: 'onShowTools',
+                reference: 'toolControlBtn'
             },
 
-            {
-                xtype: 'button',
-                enableToggle: true,
-
-                text: 'Theme',
-                handler: 'onToggleThemes'
-            },
-            {
-                xtype: 'button',
-                enableToggle: true,
-                iconCls: "fa fa-th",
-                text: 'Grid',
-                handler: 'onToggleGrid'
-            },
-            {
-                xtype: 'splitbutton',
-                text: 'Store Group A',
-                menu: new Ext.menu.Menu({
-                    items: [
-                        // these will render as dropdown menu items when the arrow is clicked:
-                        {text: 'Store Group A', handler: function(){ alert("SG1 clicked"); }},
-                        {text: 'Store Group B', handler: function(){ alert("SG2 clicked"); }}
-                    ]
-                })
-
-            },
             {
                 xtype: 'slider',
                 fieldLabel: 'Zoom',
@@ -135,17 +114,35 @@ Ext.define('Advertising.view.main.Main', {
             xtype: 'treeviews'
         },
         {
+            title: 'Tools',
+            region:'east',
+            xtype: 'pagetoolpanel',
+            reference: 'mainToolPanel',
+            floatable: false,
+            bind: {
+                collapsed: '{!showTools}'
+            },
+            margin: '5 0 0 0',
+            width: 125,
+            minWidth: 100,
+            maxWidth: 250
+
+
+        },
+        {
             region: 'center',
             collapsible: false,
             layout: 'fit',
-            flex: 3,
+            flex: 5,
             items: [
                 {
                     xtype: 'tabpanel',
+
                     items: [
                         {
                             title: 'Design',
                             xtype: 'pagelayouts',
+                            reference: 'pagelayouts',
                             iconCls: 'fa fa-page',
                             tooltip: 'Display page layouts (templates that<br/> show where promos are to be placed)'
 

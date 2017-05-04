@@ -98,7 +98,7 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
             me.getViewModel().set("pagename", record.data.text);
         }
         console.log("Page view change request");
-        Ext.toast("Page change requested " + record.data.nodetype + ":" + record.data.text);
+       // Ext.toast("Page change requested " + record.data.nodetype + ":" + record.data.text);
         if ( nodetype == 'VEHICLE' || nodetype == 'PAGE') {
             Ext.ComponentQuery.query('promogrid')[0].setTitle('Offers for ' + record.data.text);
         } else {
@@ -107,7 +107,7 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
 
         var tabName = record.get('text'), tabIndex =0;
         console.log("onPageClick %o", record);
-        Ext.toast("Show page " + record.data.text);
+       // Ext.toast("Show page " + record.data.text);
         Ext.suspendLayouts();
         var pageView = Ext.ComponentQuery.query("pagelayouts")[0];
         // see if we have this tab name already
@@ -141,7 +141,7 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
                         inchWidth: response.width,
                         inchHeight: response.height
                     });
-                    var addIndex = pageView.items.length - 1;
+                    var addIndex = pageView.items.length;
                     pageView.insert(addIndex, panel);
                     pageView.setActiveTab(addIndex);
                 },
@@ -173,5 +173,17 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
             promo.setWidth(promo.width * widthScale);
             promo.setHeight(promo.height * heightScale);
         });
+    },
+    onPageTabChange: function (tabPanel, newCard, oldCard, eOpts) {
+        Ext.toast('Tab panel changed...');
+        var me =this;
+        this.fireEvent('mainPageTabChanged', tabPanel, newCard, oldCard, eOpts);
+
+    },
+
+    onPageTabAdded: function (panel, container, pos, eOpts) {
+        Ext.toast('Tab panel added...' + panel.title);
+        var me =this;
+        this.fireEvent('mainPageTabAdded', panel, container, pos, eOpts);
     }
 });
