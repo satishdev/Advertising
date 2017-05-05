@@ -12,20 +12,177 @@ Ext.define('Advertising.view.main.metrics.metricspanel.MetricsPanel', {
         'Ext.chart.axis.Numeric3D',
         'Ext.chart.interactions.ItemHighlight',
         'Ext.chart.series.Bar3D',
-        'Ext.layout.container.Fit'
+        'Ext.layout.container.Table'
     ],
 
     xtype: 'metricspanel',
-    layout: 'fit',
     title: 'Metrics',
     viewModel: {
         type: 'metricspanel'
     },
-
+    layout: {
+        type: 'table',
+        columns: 2,
+        tableAttrs: {
+            style: {
+                width: '100%'
+            }
+        }
+    },
     controller: 'metricspanel',
 
     items: [
         {
+
+            xtype: 'cartesian',
+            width: '100%',
+            height:400,
+            //theme: 'Muted',
+            insetPadding: '70 40 0 40',
+            interactions: ['itemhighlight'],
+            animation: {
+                duration: 200
+            },
+            bind: {
+                store: '{sample}'
+            },
+
+            legend: true,
+
+            axes: [{
+                type: 'numeric3d',
+                position: 'left',
+                fields: ['sales', 'margin'],
+                grid: true,
+                title: 'Sales in USD',
+                renderer: 'onAxisLabelRender'
+            }, {
+                type: 'category3d',
+                position: 'bottom',
+                fields: 'page',
+                title: {
+                    text: 'Page',
+                    translationX: -30
+                },
+                grid: true
+            }],
+            series: {
+                type: 'bar3d',
+                stacked: false,
+                title: ['Total Sales', 'Margin'],
+                xField: 'page',
+                yField: ['sales', 'margin'],
+                label: {
+                    field: ['sales', 'margin'],
+                    display: 'insideEnd',
+                    renderer: 'onSeriesLabelRender'
+                },
+                highlight: true,
+                style: {
+                    inGroupGapWidth: -3
+                }
+            }
+        },
+        {
+            xtype: 'cartesian',
+            width: '100%',
+            height:400,
+            //theme: 'Muted',
+            insetPadding: '70 40 0 40',
+            interactions: ['itemhighlight'],
+            animation: {
+                duration: 200
+            },
+            bind: {
+                store: '{sample}'
+            },
+
+            legend: true,
+
+            axes: [{
+                type: 'numeric3d',
+                position: 'left',
+                fields: ['sales', 'margin'],
+                grid: true,
+                title: 'Sales in USD',
+                renderer: 'onAxisLabelRender'
+            }, {
+                type: 'category3d',
+                position: 'bottom',
+                fields: 'page',
+                title: {
+                    text: 'Page',
+                    translationX: -30
+                },
+                grid: true
+            }],
+            series: {
+                type: 'bar3d',
+                stacked: false,
+                title: ['Total Sales', 'Margin'],
+                xField: 'page',
+                yField: ['sales', 'margin'],
+                label: {
+                    field: ['sales', 'margin'],
+                    display: 'insideEnd',
+                    renderer: 'onSeriesLabelRender'
+                },
+                highlight: true,
+                style: {
+                    inGroupGapWidth: -3
+                }
+            }
+        },
+        {
+            xtype: 'cartesian',
+            width: '100%',
+            height:400,
+            //theme: 'Muted',
+            insetPadding: '70 40 0 40',
+            interactions: ['itemhighlight'],
+            animation: {
+                duration: 200
+            },
+            bind: {
+                store: '{sample}'
+            },
+
+            legend: true,
+
+            axes: [{
+                type: 'numeric3d',
+                position: 'left',
+                fields: ['sales', 'margin'],
+                grid: true,
+                title: 'Sales in USD',
+                renderer: 'onAxisLabelRender'
+            }, {
+                type: 'category3d',
+                position: 'bottom',
+                fields: 'page',
+                title: {
+                    text: 'Page',
+                    translationX: -30
+                },
+                grid: true
+            }],
+            series: {
+                type: 'bar3d',
+                stacked: false,
+                title: ['Total Sales', 'Margin'],
+                xField: 'page',
+                yField: ['sales', 'margin'],
+                label: {
+                    field: ['sales', 'margin'],
+                    display: 'insideEnd',
+                    renderer: 'onSeriesLabelRender'
+                },
+                highlight: true,
+                style: {
+                    inGroupGapWidth: -3
+                }
+            }
+        },     {
             xtype: 'cartesian',
             width: '100%',
             height: 400,
@@ -40,32 +197,7 @@ Ext.define('Advertising.view.main.metrics.metricspanel.MetricsPanel', {
             },
 
             legend: true,
-            //sprites: [{
-            //    type: 'text',
-            //    text: 'Potential for vehicle <V>',
-            //    textAlign: 'center',
-            //    fontSize: 18,
-            //    fontWeight: 'bold',
-            //    width: 100,
-            //    height: 30,
-            //    x: 325, // the sprite x position
-            //    y: 30  // the sprite y position
-            //}, {
-            //    type: 'text',
-            //    text: 'Page comparison',
-            //    textAlign: 'center',
-            //    fontSize: 16,
-            //    x: 325,
-            //    y: 50
-            //}
-            //    , {
-            //    type: 'text',
-            //    text: 'Source: http://www.w3schools.com/',
-            //    fontSize: 10,
-            //    x: 12,
-            //    y: 495
-            //}
-            //],
+
             axes: [{
                 type: 'numeric3d',
                 position: 'left',

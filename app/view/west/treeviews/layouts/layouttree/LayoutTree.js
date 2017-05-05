@@ -20,7 +20,9 @@ Ext.define('Advertising.view.west.treeviews.layouts.layouttree.LayoutTree', {
     },
     controller: 'layouttree',
     listeners: {
-        itemclick: 'onTreeNodeSelect'
+        itemclick: 'onTreeNodeSelect',
+        itemcontextmenu: 'onShowLayoutTreeMenu'
+
     },
 
     items: [

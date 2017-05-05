@@ -50,7 +50,7 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayouts', {
 
             items: [
                 {
-                    title:'Welcome to JDA Advertising',
+                    title:'Welcome to JDA Advertising NG',
                     bind: {
                         html: '{intro}'
                     }

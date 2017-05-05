@@ -17,6 +17,17 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutModel', {
 
             ]
         },
+        themeCodes: {
+            data: [{
+                name: 'Theme 1'
+            },{
+                name: 'Theme 2'
+            },{
+                name: 'Theme 3'
+            }
+
+            ]
+        },
         owners: {
             data: [
                 {

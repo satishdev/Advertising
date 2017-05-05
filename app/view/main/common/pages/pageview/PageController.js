@@ -21,31 +21,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
     init: function () {
 
     },
-    onSectionChange: function(combo, record, eOpts) {
-        var me = this;
-        console.log("Combo value changed %o", combo);
-        var color = me.getRandomColor();
-        var panel = combo.up('panel');
-        console.log("Layout object %o", panel);
-        panel.removeCls('.f-layout-object-clean');
 
-        var comboSection = combo.value;
-        console.log("Colour map %o", me.colorMap);
-        if (! me.colorMap.hasOwnProperty(comboSection)) {
-            me.colorMap[comboSection] = me.getRandomColor();
-        }
-        panel.setBodyStyle('background-color',me.colorMap[comboSection] );
-
-
-    },
-    getRandomColor: function() {
-        var letters = '0123456789ABCDEF';
-        var color = '#';
-        for (var i = 0; i < 6; i++ ) {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color ;
-    },
     onPageResize: function (page) {
         Ext.toast("Page was resized");
     },

@@ -168,10 +168,20 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
         var widthScale = width / origWidth;
         var heightScale = height / origHeight;
         console.log("New scale %f x %f", widthScale, heightScale);
+        Ext.ComponentQuery.query('page').forEach(function (page) {
+            console.log("Resize page %o", page);
+            page.setWidth(page.width * widthScale);
+            page.setHeight(page.height * heightScale);
+        });
         Ext.ComponentQuery.query('promo').forEach(function (promo) {
             console.log("Resize promo %o", promo);
             promo.setWidth(promo.width * widthScale);
             promo.setHeight(promo.height * heightScale);
+        });
+        Ext.ComponentQuery.query('layoutobject').forEach(function (layout) {
+            console.log("Resize layout %o", layout);
+            layout.setWidth(layout.width * widthScale);
+            layout.setHeight(layout.height * heightScale);
         });
     },
     onPageTabChange: function (tabPanel, newCard, oldCard, eOpts) {

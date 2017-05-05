@@ -35,7 +35,8 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
     defaults: {
         xtype: 'button',
         padding: 2,
-        margin: 5
+        margin: 5,
+
     },
     closeAction: 'destroy',
     title: 'Tools',
@@ -44,14 +45,31 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
     },
     alwaysOnTop: true,
     collapsible: true,
+    collapsed: true,
     layout: {
         type: 'vbox',
         align : 'stretch',
         pack  : 'start'
     },
+
     items: [
         {
             xtype: 'panel',
+            bind: {
+                hidden: '{!showToolSplash}',
+                html: '{splash}'
+            },
+            layout: {
+                type: 'hbox',
+                align : 'stretch',
+                pack  : 'start'
+            }
+        },
+        {
+            xtype: 'panel',
+            bind: {
+                hidden: '{!showPageTools}'
+            },
             layout: {
                 type: 'hbox',
                 align : 'stretch',

@@ -7,11 +7,6 @@ Ext.define('Advertising.view.west.treeviews.events.eventtree.EventTreeMenu', {
     xtype: 'eventtreemenu',
 
 
-    requires: [
-        'Advertising.view.west.treeviews.events.eventtree.EventTreeModel'
-    ],
-
-
     items: [{
         text: 'item 1'
     }

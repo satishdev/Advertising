@@ -24,7 +24,6 @@ Ext.define('Advertising.view.main.Main', {
         'Ext.button.Button',
         'Ext.layout.container.Border',
         'Ext.layout.container.Fit',
-        'Ext.slider.Single',
         'Ext.tab.Panel'
     ],
 
@@ -58,30 +57,24 @@ Ext.define('Advertising.view.main.Main', {
                 handler: 'onSaveChanges'
 
             },
-            {
-                xtype: 'button',
-                iconCls: 'fa fa-wrench',
-                tooltip: 'Display context sensitive toolbar',
-                handler: 'onShowTools',
-                reference: 'toolControlBtn'
-            },
 
-            {
-                xtype: 'slider',
-                fieldLabel: 'Zoom',
-                width: 300,
-                increment: 10,
-                minValue: 10,
-                maxValue: 100,
-                labelAlign: 'right',
-                cls: 'x-btn-inner-default-small',
-                listeners: {
-                    changecomplete: 'onZoomLevelChange'
-                },
-                bind: {
-                    value: '{zoomValue}'
-                }
-            },
+
+            //{
+            //    xtype: 'slider',
+            //    fieldLabel: 'Zoom',
+            //    width: 300,
+            //    increment: 10,
+            //    minValue: 10,
+            //    maxValue: 100,
+            //    labelAlign: 'right',
+            //    cls: 'x-btn-inner-default-small',
+            //    listeners: {
+            //        changecomplete: 'onZoomLevelChange'
+            //    },
+            //    bind: {
+            //        value: '{zoomValue}'
+            //    }
+            //},
             {
                 text: 'header'
             },
@@ -89,7 +82,23 @@ Ext.define('Advertising.view.main.Main', {
                 bind: {
                     text: "Welcome {username}"
                 },
-                xtype: 'button'
+                xtype: 'button',
+                handler: function() {
+                    Ext.Msg.prompt(
+                        'Welcome!',
+                        'What\'s your name going to be today?',
+                        function (buttonId, value) {
+                            console.log(value);
+                        },
+                        null,
+                        false,
+                        null,
+                        {
+                            autoCapitalize: true,
+                            placeHolder: 'First-name please...'
+                        }
+                    );
+                }
             },
 
             {

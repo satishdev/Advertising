@@ -12,7 +12,6 @@ Ext.define('Advertising.view.main.MainController', {
     tools: undefined,
     requires: [
         'Advertising.util.GlobalValues',
-        'Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel',
         'Ext.util.TaskManager'
     ],
     listen: {
@@ -166,29 +165,6 @@ Ext.define('Advertising.view.main.MainController', {
      */
     onSaveChanges: function (btn) {
         Ext.toast("Saving changes...");
-
-    }
-    ,
-    /**
-     * Find the page that needs an artifact added
-     * @param btn
-     */
-    onShowTools: function (btn) {
-        var me = this;
-
-        var existing = Ext.ComponentQuery.query('pagetoolpanel')[0];
-        if (!Ext.isDefined(existing)) {
-            var tools = Ext.create("Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel", {
-                animateTarget: btn
-            });
-            var windowSize = Ext.getBody().getViewSize();
-            console.log("Window size is %d x %d", windowSize.width, windowSize.height);
-            tools.showAt(windowSize.width - 200, 200);
-        } else {
-            if (existing.collapsed) {
-                existing.expand(true);
-            }
-        }
 
     },
     onMainPageTabAdded: function() {

@@ -20,7 +20,11 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelModel'
     data: {
         showLayouts: true,
         showGrids: true,
-        showOffers: true
+        showTools: false,
+        showOffers: true,
+        showPageTools: true,
+        showToolSplash: true,
+        splash: '<b>Context tools here</b>'
         /* This object holds the arbitrary data that populates the ViewModel and is then available for binding. */
     }
 });
