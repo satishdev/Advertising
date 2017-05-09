@@ -23,11 +23,11 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
      * @param record
      * @param eOpts
      */
-    onSectionChange: function(combo, record, eOpts) {
+    onSectionChange: function(combo , event , eOpts) {
         var me = this;
-        if ( record ) {
-            console.log("Combo value changed %o", record);
-            var color = me.getRandomColor();
+        console.log("Combo value %s for object %o", combo.value, combo.up('layoutobject'));
+        if ( Ext.isString(combo.value)) {
+
             var panel = combo.up('panel');
             console.log("Layout object %o", panel);
             panel.removeCls('.f-layout-object-clean');
@@ -36,10 +36,17 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
             console.log("Colour map %o", me.colorMap);
             if (!me.colorMap.hasOwnProperty(comboSection)) {
                 me.colorMap[comboSection] = me.getRandomColor();
+                // make sure all other layouts have this record
+
+                combo.store.add({
+                    name: comboSection
+                });
+                combo.store.sync();
+                console.log("Combo store updated %o", combo.store);
             }
             panel.setBodyStyle('background-color', me.colorMap[comboSection]);
-
         }
+
     },
     onExpandLayoutObject: function(btn) {
         var layoutobject = btn.up('layoutobject');

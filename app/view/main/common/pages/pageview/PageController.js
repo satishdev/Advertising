@@ -7,7 +7,17 @@
 Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.page',
+    id: 'vcpagecontroller',
+    listen: {
+        controller: {
+            '#vctoolpanelcontroller': {
 
+                showPageMarket: 'onShowPageMarket',
+                hidePageMarket: 'onHidePageMarket'
+            }
+
+        }
+    },
     requires: [
         'Advertising.view.main.common.Promo',
         'Advertising.view.main.common.pages.layout.LayoutObject',
@@ -21,9 +31,47 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
     init: function () {
 
     },
+    showHideMarket: function (marketID, doShow) {
+        var pagePanel = Ext.ComponentQuery.query('pagelayouts')[0].getActiveTab().down('panel');
+        console.log("Page panel %o", pagePanel);
+        pagePanel.items.each(function (pageObject) {
+            console.log("Checking page object %o %s", pageObject, pageObject.xtype);
+            if (pageObject.xtype == 'promo' || pageObject.xtype == 'layoutobject') {
+                console.log("Checking market ID %d", pageObject.getViewModel().get('adzoneID'));
 
+                if (pageObject.getViewModel().get('adzoneID') == marketID) {
+                    if (doShow) {
+                        pageObject.show();
+                    } else {
+                        pageObject.hide();
+
+                    }
+                }
+
+            }
+        });
+    },
+    onShowPageMarket: function (marketID) {
+        var me = this;
+        Ext.toast("Show market " + marketID);
+        me.showHideMarket(marketID, true);
+
+    }
+    ,
+    onHidePageMarket: function (marketID) {
+        var me = this;
+        Ext.toast("Hide market " + marketID);
+        me.showHideMarket(marketID, false);
+    },
     onPageResize: function (page) {
         Ext.toast("Page was resized");
+        var parentWidth = page.up('panel').getSize().width;
+        var parentHeight = page.up('panel').getSize().height;
+        //  var scale = parentWidth / ((p.inchWidth * 96) + 20);
+        var scale = parentWidth / ((page.inchWidth * 96) + 100);
+        console.log("Resizing page %d %o %f", parentWidth, page, scale);
+        page.setWidth(Math.round(page.width * scale));
+        page.setHeight(Math.round(page.height * scale));
     },
     onAddPagePanel: function (p) {
 
@@ -37,7 +85,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
         me.getViewModel().set("scale", scale);
         var trueWidth = Math.round(p.inchWidth * 96 * scale);
         var trueHeight = Math.round(p.inchHeight * 96 * scale);
-
+        Ext.toast(trueWidth + " X " + trueHeight);
         var inner = Ext.create('Ext.panel.Panel', {
             border: true,
             flex: 1,
@@ -94,17 +142,30 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
 
             ]
         });
-       p.insert(inner);
+        p.insert(inner);
+    },
+    setToolMarkets: function (parent, marketInfo) {
+        var me = this;
+
     },
     onRenderPagePanel: function (p) {
+        var me = this;
         var parentPanel = p.up('panel');
         console.log("parent %o", parentPanel);
         var scale = parentPanel.getViewModel().get("scale");
-        // get the markets
+        if (parentPanel.hasOwnProperty('objectData')) {
+            // get the markets
+            console.log("Panel data is %o", parentPanel.objectData);
+            if (parentPanel.objectData.hasOwnProperty(('markets'))) {
 
-        // add placeholders
-        if ( parentPanel.hasOwnProperty('objectData')) {
-            if ( parentPanel.objectData.hasOwnProperty('markets')) {
+                me.setToolMarkets(parentPanel, parentPanel.objectData.markets);
+
+            } else {
+                Ext.toast("Error", "Failed to get markets for page");
+            }
+            // add placeholders
+
+            if (parentPanel.objectData.hasOwnProperty('markets')) {
                 console.log("Page markets need to adjust toolbars..%o", parentPanel);
             }
             if (parentPanel.objectData.hasOwnProperty(('placeholders'))) {
@@ -113,17 +174,19 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
                 placeholders.forEach(function (ph) {
                     console.log("Adding item %o", ph);
                     var panel = Ext.create('Advertising.view.main.common.pages.layout.LayoutObject', {
+                        editMode: false,
                         width: ph.width * 96 * scale,
                         height: ph.height * 96 * scale,
                         x: ph.xPos * 96 * scale,
-                        y: ph.yPos * 96 * scale,
-                        //items: [
-                        //    {
-                        //        html: '<p size="4vw">' + ph.description + "</p>" + ph.layoutid
-                        //    }
-                        //]
+                        y: ph.yPos * 96 * scale
+
 
                     });
+                    // set all object properties in model
+                    var model = panel.getViewModel();
+                    for (var prop in ph) {
+                        model.set(prop, ph[prop]);
+                    }
                     console.log("New panel %o", panel);
                     p.insert(panel);
                 });
@@ -143,7 +206,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
                     });
                     // set all object properties in model
                     var model = panel.getViewModel();
-                    for(var prop in po){
+                    for (var prop in po) {
                         model.set(prop, po[prop]);
                     }
 
@@ -166,12 +229,11 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
             layoutObjects.forEach(function (lo) {
                 console.log("Adding item %o", lo);
                 var panel = Ext.create('Advertising.view.main.common.pages.layout.LayoutObject', {
-                    width: lo.width * 96 * scale,
-                    height: lo.height * 96 * scale,
-                    x: lo.xPos * 96 * scale,
-                    y: lo.yPos * 96 * scale
+                    width: Math.round(lo.width * 96 * scale),
+                    height: Math.round(lo.height * 96 * scale),
+                    x: Math.round(lo.xPos * 96 * scale),
+                    y: Math.round(lo.yPos * 96 * scale)
                 });
-                p.add()
                 console.log("New panel %o", panel);
                 p.insert(panel);
             });

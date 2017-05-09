@@ -21,7 +21,7 @@ Ext.define('Advertising.view.main.common.promo.PromoController', {
     },
     onPromoMove: function (promo, xPos, yPos, a, b, c) {
         console.debug("Promo was moved %o %d x %d %o %o %o", promo, xPos, yPos);
-        promo.setDebugInfo(xPos + ":" + yPos);
+        promo.setDebugInfo(Math.round(xPos) + ":" + Math.round(yPos));
         promo.flagMoved();
         Ext.toast("Promo " + promo.id + " was moved");
 
@@ -97,7 +97,7 @@ Ext.define('Advertising.view.main.common.promo.PromoController', {
     },
     onPromoResize: function (promo, width, height) {
         console.debug("Promo was resized %o %d x %d", promo, width, height);
-        promo.setDebugInfo(width + ":" + height);
+        promo.setDebugInfo(Math.round(width) + ":" + Math.round(height));
     },
     onRenderPromo: function (promo, eOpts) {
         console.log("Promo rendered");

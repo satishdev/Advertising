@@ -5,13 +5,21 @@ Ext.define('Advertising.view.west.treeviews.layouts.layouttree.LayoutTree', {
     extend: 'Advertising.view.west.treeviews.AdvTree',
 
     requires: [
+        'Advertising.view.west.treeviews.layouts.layouttree.LayoutTreeController',
         'Advertising.view.west.treeviews.layouts.layouttree.LayoutTreeModel',
-		'Advertising.view.west.treeviews.layouts.layouttree.LayoutTreeController'
+        'Ext.form.field.TextArea',
+        'Ext.grid.plugin.DragDrop',
+        'Ext.window.MessageBox'
     ],
 
     xtype: 'layouttree',
 
-
+    viewConfig: {
+        plugins: {
+            ptype: 'gridviewdragdrop',
+            dragText: 'Drag layouts to pages'
+        }
+    },
     viewModel: {
         type: 'layouttree'
     },
@@ -21,11 +29,17 @@ Ext.define('Advertising.view.west.treeviews.layouts.layouttree.LayoutTree', {
     controller: 'layouttree',
     listeners: {
         itemclick: 'onTreeNodeSelect',
-        itemcontextmenu: 'onShowLayoutTreeMenu'
-
+        itemcontextmenu: 'onShowLayoutTreeMenu',
+        drop: 'onNodeTreeDrop'
     },
 
     items: [
+        {
+            prompt: {
+                xtype: 'textareafield',
+                value: 'test'
+            }
+        }
         /* include child components here */
     ]
 });

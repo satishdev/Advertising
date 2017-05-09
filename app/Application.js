@@ -16,11 +16,13 @@
 
 Ext.define('Advertising.Application', {
     extend: 'Ext.app.Application',
-    session: true,
+
     requires: [
-        'Advertising.view.main.common.UserInfo'
+        'Advertising.view.main.common.UserInfo',
+        'Ext.data.proxy.Ajax'
     ],
 
+    session: true,
     name: 'Advertising',
 
     stores: [
@@ -29,6 +31,7 @@ Ext.define('Advertising.Application', {
 
     launch: function () {
         // TODO - Launch the application
+        Ext.override(Ext.data.proxy.Ajax, { timeout:60000 });
         Ext.toast("Setting user info..");
         //var cp = Ext.create('Ext.state.CookieProvider', {
         //    path: "/",
@@ -43,7 +46,7 @@ Ext.define('Advertising.Application', {
         //    last_name: 'Doe'
         //});
 
-        Advertising.view.main.common.UserInfo.setUserInfo({test:"test"});
+        Advertising.view.main.common.UserInfo.setUserInfo({test: "test"});
 
         //Ext.Ajax.on({
         //    requestexception: function(conn, response, options, eOpts) {

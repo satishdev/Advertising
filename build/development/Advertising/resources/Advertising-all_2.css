@@ -10615,46 +10615,51 @@
     line-height: 24px;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:81 */
+.x-form-item-label-default.x-form-item-label-top {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:86 */
 .x-tab-icon-el-navigation {
     font-family: FontAwesome;
     color: #acacac;
 }
-/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:85 */
+/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:90 */
 .x-tab-over .x-tab-icon-el-navigation {
     color: #c4c4c4;
 }
-/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:89 */
+/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:94 */
 .x-tab-active .x-tab-icon-el-navigation {
     color: #fff;
 }
-/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:94 */
+/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:99 */
 .x-panel-header-title-navigation > .x-title-text-navigation:after {
     top: 30px;
     right: -24px;
 }
-/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:99 */
+/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:104 */
 .f-debug-panel {
     color: #0aa9dc;
     margin-left: auto;
     right: 2px;
 }
-/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:105 */
+/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:110 */
 .f-eventtype {
     color: #00bcd4;
 }
-/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:109 */
+/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:114 */
 .f-eventinstance {
     color: #1b5e20;
 }
-/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:113 */
+/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:118 */
 .f-eventmaster {
     color: #0f76c2;
 }
-/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:117 */
+/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:122 */
 .f-vehicle {
     color: #2e7d32;
 }
-/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:121 */
+/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:126 */
 .noSelect {
     -webkit-touch-callout: none;
     /* iOS Safari */
@@ -10672,29 +10677,36 @@
     /* Internet Explorer/Edge */
     user-select: none;
 }
-/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:131 */
+/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:136 */
 .f-promo-checked {
     border-color: #f8d400 !important;
 }
-/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:135 */
+/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:140 */
 .f-layout-object {
     opacity: 0.9;
     border: 5px #2e7d32;
     border-radius: 3px;
 }
-/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:141 */
+/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:146 */
 .f-layout-object-clean .x-panel-body {
     background-color: #ffe8be;
 }
-/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:145 */
+/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:150 */
 .f-layout-object-selected .x-panel-body {
     background-color: #2e7d32 !important;
 }
-/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:149 */
+/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:154 */
 .f-status-ok {
     color: #9cc96b !important;
 }
-/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:153 */
+/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:158 */
 .f-status-error {
     color: #e44959 !important;
+}
+/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:162 */
+.f-new-layout-ind {
+    position: relative;
+    top: 2px;
+    right: 2px;
+    content: "\f00c" !important;
 }

@@ -30,17 +30,19 @@ Ext.define('Advertising.view.main.copy.copygrid.CopyGridController', {
     },
     onEventChange: function(record) {
         var me = this;
-        console.log("Event was changed - getting copy %o", record);
-        Ext.toast("Getting " + record.data.nodetype + " copy for " + record.data.id);
-        var grid = me.getView();
-        console.log("Grid %o", grid);
+        if ( record.data.nodeType == 'VEHICLE' || record.data.nodeType == 'PAGE') {
+            console.log("Event was changed - getting copy %o", record);
+            Ext.toast("Getting " + record.data.nodetype + " copy for " + record.data.id);
+            var grid = me.getView();
+            console.log("Grid %o", grid);
 
-        var store = me.getViewModel().getStore("eventcopy");
-        store.getProxy().extraParams = {
-            objectID: record.data.id,
-            eventType: record.data.nodetype
-        };
-        console.log("Loading copy grid store %o", store);
-        store.load();
+            var store = me.getViewModel().getStore("eventcopy");
+            store.getProxy().extraParams = {
+                objectID: record.data.id,
+                eventType: record.data.nodetype
+            };
+            console.log("Loading copy grid store %o", store);
+            store.load();
+        }
     }
 });

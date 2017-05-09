@@ -78,6 +78,11 @@ $font-weight-bold: 500;
   line-height: 24px;
 }
 
+.x-form-item-label-default.x-form-item-label-top {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
 .x-tab-icon-el-navigation {
   font-family: FontAwesome;
   color: #acacac;
@@ -152,4 +157,11 @@ $font-weight-bold: 500;
 
 .f-status-error {
   color: $color-soft-red !important;
+}
+
+.f-new-layout-ind {
+    position: relative;
+  top: 2px;
+  right: 2px;
+  content: $fa-var-check !important;
 }

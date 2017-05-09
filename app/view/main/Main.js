@@ -131,7 +131,7 @@ Ext.define('Advertising.view.main.Main', {
             bind: {
                 collapsed: '{!showTools}'
             },
-            margin: '5 0 0 0',
+            margin: '0 0 0 0',
             width: 125,
             minWidth: 100,
             maxWidth: 250
@@ -141,6 +141,7 @@ Ext.define('Advertising.view.main.Main', {
         {
             region: 'center',
             collapsible: false,
+            margin: '0 0 0 0',
             layout: 'fit',
             flex: 5,
             items: [
@@ -149,15 +150,15 @@ Ext.define('Advertising.view.main.Main', {
 
                     items: [
                         {
-                            title: 'Design',
+                            title: 'Layout Design',
                             xtype: 'pagelayouts',
                             reference: 'pagelayouts',
-                            iconCls: 'fa fa-page',
+                            iconCls: 'fa fa-tag',
                             tooltip: 'Display page layouts (templates that<br/> show where promos are to be placed)'
 
                         },
                         {
-                            title: 'Content',
+                            title: 'Marketing Content',
                             xtype: 'copypanel',
                             iconCls: 'fa fa-edit',
                             tooltip: 'Display copy for the vehicle or page<br/> that is selected in the event navigator'

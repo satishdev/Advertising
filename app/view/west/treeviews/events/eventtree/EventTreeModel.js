@@ -20,6 +20,7 @@ Ext.define('Advertising.view.west.treeviews.events.eventtree.EventTreeModel', {
     alias: 'viewmodel.eventtree',
 
     requires: [
+        'Advertising.util.GlobalValues',
         'Advertising.view.west.treeviews.events.eventtree.model.Node',
         'Ext.data.TreeStore',
         'Ext.data.proxy.Ajax',
@@ -45,6 +46,7 @@ Ext.define('Advertising.view.west.treeviews.events.eventtree.EventTreeModel', {
                 }
             },
             type: 'tree',
+            loadMask: 'Loading events..',
             model: 'Advertising.view.west.treeviews.events.eventtree.model.Node',
             autoLoad: true,
             proxy: {

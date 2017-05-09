@@ -12,13 +12,26 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
     requires: [
         'Advertising.view.main.common.pages.layout.LayoutModel',
         'Advertising.view.main.common.pages.layout.LayoutObjectController',
-        'Ext.button.Button',
         'Ext.form.field.ComboBox',
         'Ext.form.field.Tag',
         'Ext.form.field.TextArea',
         'Ext.layout.container.VBox'
     ],
+    initComponent: function () {
 
+        this.callParent(arguments);
+        console.log("Edit Mode %o", this.editMode);
+       // Ext.toast("Edit mode " + this.editMode);
+        if ( !this.editMode) {
+            this.getViewModel().set("editMode", this.editMode);
+        }
+        if ( this.isNew ) {
+            this.getViewModel().set("isNew", this.isNew);
+        }
+    },
+    isNew: false,
+    workFlowStatus: undefined,
+    editMode: true,
     cls: 'f-layout-object f-layout-object-clean',
     listeners: {
         dblclick: {
@@ -50,23 +63,30 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
     constrain: true,
     defaults: {
         labelPad: 1,
+        margin: '0 4 0 4',
         labelAlign: 'top'
     },
     items: [
+        //{
+        //    xtype: 'button',
+        //    width: 30,
+        //    iconCls: 'fa fa-edit',
+        //    handler: 'onExpandLayoutObject'
+        //},
         {
-            xtype: 'button',
-            width: 30,
-            iconCls: 'fa fa-edit',
-            handler: 'onExpandLayoutObject'
+            html: '<div class="f-new-layout-ind"></div>',
+            bind: {
+                hidden: '{!isNew}'
+            }
         },
-
         {
 
             xtype: 'tagfield',
             fieldLabel: 'Owners',
             value: [''],
             bind: {
-                store: '{owners}'
+                store: '{owners}',
+                readOnly: '{!editMode}'
             },
             displayField: 'name',
             valueField: 'category',
@@ -78,23 +98,28 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
             name: 'section',
             value:'',
             bind: {
-                store: '{sections}'
+                store: '{sections}',
+                readOnly: '{!editMode}'
 
             },
             createNewOnEnter: true,
             createNewOnBlur: true,
             listeners: {
-                change: 'onSectionChange'
+                blur: 'onSectionChange'
             },
+            queryMode: 'local',
             displayField: 'name',
             valueField: 'name'
+
+
         },
         {
             xtype: 'combobox',
             fieldLabel: 'Theme',
             value: '',
             bind: {
-                store: '{themeCodes}'
+                store: '{themeCodes}',
+                readOnly: '{!editMode}'
             },
 
 
@@ -104,7 +129,11 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
         {
             xtype: 'textarea',
             fieldLabel: 'Item Details',
-            value: ''
+            value: 'Some test details',
+            bind: {
+                readOnly: '{!editMode}'
+
+            }
 
         }
     ]

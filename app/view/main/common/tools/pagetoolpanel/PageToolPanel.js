@@ -18,9 +18,11 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
     xtype: 'pagetoolpanel',
 
     requires: [
+        'Advertising.view.main.common.tools.pagetoolpanel.MarketButton',
         'Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelController',
         'Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelModel',
         'Ext.button.Button',
+        'Ext.layout.container.Column',
         'Ext.layout.container.HBox',
         'Ext.layout.container.VBox',
         'Ext.panel.Panel'
@@ -35,7 +37,7 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
     defaults: {
         xtype: 'button',
         padding: 2,
-        margin: 5,
+        margin: 5
 
     },
     closeAction: 'destroy',
@@ -70,11 +72,7 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
             bind: {
                 hidden: '{!showPageTools}'
             },
-            layout: {
-                type: 'hbox',
-                align : 'stretch',
-                pack  : 'start'
-            },
+            layout:'column',
             defaults: {
                 xtype: 'button',
                 padding: 3,
@@ -109,6 +107,10 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
                 {
                     tooltip: 'Show/hide Images',
                     iconCls: 'fa fa-camera'
+                },
+                {
+                    tooltip: 'Lock/Unlock page movement',
+                    iconCls: 'fa fa-lock'
                 }
             ]
 
@@ -116,6 +118,7 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
         {
             iconCls: 'fa fa-plus',
             text: 'Add item',
+            handler: 'onClickAddItem',
             padding: 5
         },
         {
@@ -133,38 +136,19 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
 
         {
            xtype:'panel',
+            reference: 'marketControls',
+            defaults: {
+                xtype: 'marketbutton',
+                enableToggle: true,
+                margin: '1 1 1 1'
+            },
             layout: {
                 type: 'vbox',
                 align : 'stretch',
                 pack  : 'start'
             },
             items: [
-                {
-                    xtype: 'button',
-                    enableToggle: true,
-                    text: 'Store Group 1'
-                },
-                {
-                    xtype: 'button',
-                    enableToggle: true,
-                    text: 'Store Group 2'
-                },
-                {
-                    xtype: 'button',
-                    enableToggle: true,
-                    text: 'Store Group 3'
-                }
-                ,
-                {
-                    xtype: 'button',
-                    enableToggle: true,
-                    text: 'Store Group 4'
-                },
-                {
-                    xtype: 'button',
-                    enableToggle: true,
-                    text: 'Store Group 5'
-                }
+
             ]
         }
 

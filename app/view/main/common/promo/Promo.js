@@ -32,7 +32,6 @@ Ext.define('Advertising.view.main.common.Promo', {
     constrain: true,
     layout: 'fit',
     frame: true,
-    zIndex: 99,
     border: 2,
     padding: 0,
     shadow: true,

@@ -18,8 +18,11 @@ Ext.define('Advertising.view.west.treeviews.layouts.layouttree.LayoutTreeControl
     init: function () {
 
     },
-
+    onNodeTreeDrop: function ( node , data , overModel , dropPosition , eOpts ) {
+        Ext.toast("Moving node - notify back-end");
+    },
     onShowLayoutTreeMenu: function (tree, record, item, index, e, eOpts) {
+
         e.stopEvent();
         console.log("Showing menu for item %o", record);
         // only show context menu for vehicles and pages
@@ -33,18 +36,14 @@ Ext.define('Advertising.view.west.treeviews.layouts.layouttree.LayoutTreeControl
                                 vehicleName: record.data.Name,
                                 vehicleID: record.data.id,
                                 iconCls: 'fa fa-folder',
-                                handler: function() {
-                                    Ext.Msg.show({
-                                                 title: 'Address',
-                                            message: 'Please enter your address:',
-                                             width: 300,
-                                             buttons: Ext.Msg.OKCANCEL,
-                                             multiline: true,
-                                           //  fn: saveAddress,
-                                         //    animateTarget: 'addAddressBtn',
-                                             icon: Ext.window.MessageBox.INFO
-                                         });
-                }
+                                handler: function () {
+                                    Ext.Msg.prompt('Name', 'New folder name:', function (btn, text) {
+                                        if (btn == 'ok') {
+                                            console.log("Adding new folder " + text);
+                                        }
+
+                                    });
+                                }
                             },
                             {
                                 text: 'Add Layout',

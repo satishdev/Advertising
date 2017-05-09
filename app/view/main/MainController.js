@@ -22,7 +22,8 @@ Ext.define('Advertising.view.main.MainController', {
 
             },
             '#vctoolpanelcontroller': {
-                turnGridsOff: 'onTurnGridsOff'
+                turnGridsOff: 'onTurnGridsOff',
+                addNewPageObject: 'addNewPageObject'
             }
 
         }
@@ -42,6 +43,7 @@ Ext.define('Advertising.view.main.MainController', {
 
 
     },
+
     onTurnGridsOff: function() {
         var me = this;
         var layouts = me.lookupReference('pagelayouts');
@@ -53,8 +55,8 @@ Ext.define('Advertising.view.main.MainController', {
         console.log("SVG %o", svg);
         if ( svg[0]) {
             console.log("Found svg item...updating it");
-         //   svg[0].setAttribute("stroke", me.getRandomColor());
-            svg[0].setAttribute("stroke", "#FFF");
+            svg[0].setAttribute("stroke", me.getRandomColor());
+         //   svg[0].setAttribute("stroke", "#FFF");
 
         }
     },
@@ -115,7 +117,18 @@ Ext.define('Advertising.view.main.MainController', {
     onItemSelected: function (sender, record) {
         Ext.Msg.confirm('Confirm', 'Are you sure?', 'onConfirm', this);
     },
-
+    getActiveDesignPage: function() {
+        var me = this;
+        var designArea = me.lookupReference('pagelayouts');
+        Ext.toast("Active tab " + designArea.getActiveTab());
+        return designArea.getActiveTab();
+    },
+    addNewPageObject: function(btn) {
+        var me = this;
+        // get the currently active page - see if its a design page or layout template
+        var page = me.getActiveDesignPage();
+        page.addNewLayoutObject();
+    },
     onZoomLevelChange: function (slider, newVal, oldVal, eOpts) {
         Ext.suspendLayouts();
         // get the displayed page/layout (if any)
@@ -169,7 +182,6 @@ Ext.define('Advertising.view.main.MainController', {
     },
     onMainPageTabAdded: function() {
         var me = this;
-        Ext.toast("*******************");
         console.log("Showing tool panel");
         me.getViewModel().set("showTools", true);
     //    me.lookupReference('mainToolPanel').setCollapsed(false);

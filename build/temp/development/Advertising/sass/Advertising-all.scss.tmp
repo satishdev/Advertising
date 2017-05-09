@@ -2,7 +2,6 @@ $app-name:  dynamic( 'Advertising' );
 $image-search-path: 'C:/Users/Lee/Documents/FSG/Advertising/build/development/Advertising/resources';
 $theme-name:  dynamic( 'theme-triton' );
 $include-advertising-application: dynamic(true);;
-$include-advertising-overrides-window-window: dynamic(true);;
 $include-advertising-store-personnel: dynamic(true);;
 $include-advertising-util-globalvalues: dynamic(true);;
 $include-advertising-ux-checkcolumn: dynamic(true);;
@@ -35,6 +34,7 @@ $include-advertising-view-main-common-promo-promoproductwindow-promoproductwindo
 $include-advertising-view-main-common-test-test: dynamic(true);;
 $include-advertising-view-main-common-test-testcontroller: dynamic(true);;
 $include-advertising-view-main-common-test-testmodel: dynamic(true);;
+$include-advertising-view-main-common-tools-pagetoolpanel-marketbutton: dynamic(true);;
 $include-advertising-view-main-common-tools-pagetoolpanel-pagetoolpanel: dynamic(true);;
 $include-advertising-view-main-common-tools-pagetoolpanel-pagetoolpanelcontroller: dynamic(true);;
 $include-advertising-view-main-common-tools-pagetoolpanel-pagetoolpanelmodel: dynamic(true);;
