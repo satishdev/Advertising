@@ -141,10 +141,18 @@ $font-weight-bold: 500;
   opacity: 0.9;
   border: 5px #2e7d32;
   border-radius: 3px;
+  background-color: #FFE8BE;
 }
 
-.f-layout-object-clean .x-panel-body{
+.f-layout-object .x-panel-header{
+  border: 5px #2e7d32;
+  border-radius: 3px;
+}
+
+.f-layout-object-clean {
    background-color: #FFE8BE;
+  border: 5px #2e7d32;
+  border-radius: 3px;
  }
 
 .f-layout-object-selected .x-panel-body{

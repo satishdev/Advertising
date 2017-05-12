@@ -2,7 +2,7 @@
  * Created by Lee on 4/4/2017.
  */
 Ext.define('Advertising.view.main.common.Promo', {
-    extend: 'Ext.panel.Panel',
+    extend: 'Advertising.view.main.common.pages.pageobject.PageObject',
     resizable: true,
     //ui: 'promo',
     xtype: 'promo',
@@ -26,8 +26,8 @@ Ext.define('Advertising.view.main.common.Promo', {
         var me = this;
         this.setupDebug();
         this.callParent(arguments);
-
     },
+    excluded: false,
     //ui: 'promo',
     constrain: true,
     layout: 'fit',
@@ -35,6 +35,7 @@ Ext.define('Advertising.view.main.common.Promo', {
     border: 2,
     padding: 0,
     shadow: true,
+
     draggable: true,
 
     cls: 'f-promo-base',
@@ -139,7 +140,7 @@ Ext.define('Advertising.view.main.common.Promo', {
         {
            // html: '<div class="noSelect" style="font-size: 1vw">' + '{name}' + '<br/>Some image here</br><p/><div style="font-size: 4vw"> $99<sup style="font-size:.6em">99</sup></div></div>',
             bind: {
-                html: '<div class="noSelect" style="font-size: 1vw">{name}<br/><div class="f-prod-image"><img src="http://laheadvsb01.ngco.com:8080/smartmedia/servlet/smartmediaservlet?ref=4122006805.eps&type=Image&res=thumb"/></div></br><p/>Adzone [{adzoneID} {location}]</div>',
+                html: '<div class="noSelect" style="font-size: 1vw">{name}<br/><div class="f-prod-image"><img class="noSelect" src="http://laheadvsb01.ngco.com:8080/smartmedia/servlet/smartmediaservlet?ref=4122006805.eps&type=Image&res=thumb"/></div></br><p/>Adzone [{adzoneID} {location}]</div>',
                 visible: '{!showGrid}'
             }
         }

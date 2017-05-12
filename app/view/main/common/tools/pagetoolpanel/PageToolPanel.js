@@ -25,7 +25,8 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
         'Ext.layout.container.Column',
         'Ext.layout.container.HBox',
         'Ext.layout.container.VBox',
-        'Ext.panel.Panel'
+        'Ext.panel.Panel',
+        'Ext.slider.Single'
     ],
 
 
@@ -116,20 +117,40 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
 
         },
         {
+            xtype: 'slider',
+            fieldLabel: 'Zoom',
+            labelAlign: 'top',
+            //vertical: true,
+            width: 100,
+            value: 100,
+            increment: 10,
+            minValue: 0,
+            maxValue: 100,
+            listeners: {
+                changecomplete: 'onZoomChangeComplete'
+            }
+        },
+        {
+            iconCls: "fa fa-save",
+            handler: 'onSaveChanges',
+            text: 'Save',
+            padding: 8
+        },
+        {
             iconCls: 'fa fa-plus',
             text: 'Add item',
             handler: 'onClickAddItem',
             padding: 5
         },
         {
-            iconCls: 'fa fa-new',
-            text: 'Create new layout',
+            iconCls: 'fa fa-th',
+            text: 'Save layout',
             //handler: 'onClickCreateLayout',
             padding: 5
         },
         {
             iconCls: 'fa fa-users',
-            text: 'Space owners',
+            text: 'Owners',
             //handler: 'onClickShowSpaceOwners',
             padding: 5
         },

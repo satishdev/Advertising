@@ -2,7 +2,7 @@
  * Created by Lee on 4/12/2017.
  */
 Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
-    extend: 'Ext.panel.Panel',
+    extend: 'Advertising.view.main.common.pages.pageobject.PageObject',
 
     controller: 'layoutobject',
     xtype: 'layoutobject',
@@ -12,6 +12,8 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
     requires: [
         'Advertising.view.main.common.pages.layout.LayoutModel',
         'Advertising.view.main.common.pages.layout.LayoutObjectController',
+        'Ext.container.Container',
+        'Ext.form.field.Checkbox',
         'Ext.form.field.ComboBox',
         'Ext.form.field.Tag',
         'Ext.form.field.TextArea',
@@ -32,6 +34,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
     isNew: false,
     workFlowStatus: undefined,
     editMode: true,
+    excluded: false,
     cls: 'f-layout-object f-layout-object-clean',
     listeners: {
         dblclick: {
@@ -60,11 +63,46 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
         align: 'stretch'
     },
     zIndex: 99,
-    constrain: true,
+    constrain: false,
     defaults: {
         labelPad: 1,
+        padding: '0 0 0 0 ',
         margin: '0 4 0 4',
         labelAlign: 'top'
+    },
+    tbar: {
+        items: [
+            {
+                iconCls: 'fa fa-info',
+                text: 'versions',
+                listeners: {
+                    //click: 'onToggleGrid',
+
+                }
+            },
+            {
+                iconCls: 'fa fa-edit',
+                text: 'edit',
+                listeners: {
+                    //click: 'onShowEdit'
+                }
+            },
+
+            {
+                style: 'float: right',
+                xtype: 'container',
+                name: 'debugInfo',
+                cls: 'noSelect',
+                bind: {
+                    html: '{debugInfo}',
+                    visible: '{debug}'
+                }
+            },
+            {
+                xtype: 'checkboxfield',
+                //handler: 'onPromoCheckChange'
+            }
+        ]
     },
     items: [
         //{
@@ -129,7 +167,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
         {
             xtype: 'textarea',
             fieldLabel: 'Item Details',
-            value: 'Some test details',
+            value: 'Tools need to move here.Layouts need to be duplicated if any object is split. E.g. SG1 becomes SG1 and SG2 - all items on SG1 must be duplicated',
             bind: {
                 readOnly: '{!editMode}'
 

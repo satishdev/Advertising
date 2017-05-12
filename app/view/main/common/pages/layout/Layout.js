@@ -17,13 +17,6 @@ Ext.define('Advertising.view.main.common.pages.layout.Layout', {
         console.log("Layout %o", this);
         console.log("Width %f", this.inchWidth);
         console.log("Height %f", this.inchHeight);
-        // set the width
-        //this.width = this.inchWidth * 96;
-        //this.height = this.inchHeight * 96;
-        //console.log("Width css %d", this.width);
-        //console.log("Height css %d", this.height);
-
-
         this.callParent(arguments);
 
     },

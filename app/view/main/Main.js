@@ -51,33 +51,8 @@ Ext.define('Advertising.view.main.Main', {
                 imgCls: 'f-company-logo',
                 height: 40
             },
-            {
-                xtype: 'button',
-                iconCls: "fa fa-save",
-                handler: 'onSaveChanges'
-
-            },
 
 
-            //{
-            //    xtype: 'slider',
-            //    fieldLabel: 'Zoom',
-            //    width: 300,
-            //    increment: 10,
-            //    minValue: 10,
-            //    maxValue: 100,
-            //    labelAlign: 'right',
-            //    cls: 'x-btn-inner-default-small',
-            //    listeners: {
-            //        changecomplete: 'onZoomLevelChange'
-            //    },
-            //    bind: {
-            //        value: '{zoomValue}'
-            //    }
-            //},
-            {
-                text: 'header'
-            },
             {
                 bind: {
                     text: "Welcome {username}"
@@ -85,8 +60,8 @@ Ext.define('Advertising.view.main.Main', {
                 xtype: 'button',
                 handler: function() {
                     Ext.Msg.prompt(
-                        'Welcome!',
-                        'What\'s your name going to be today?',
+                        'test',
+                        'Enter some value',
                         function (buttonId, value) {
                             console.log(value);
                         },
@@ -95,7 +70,7 @@ Ext.define('Advertising.view.main.Main', {
                         null,
                         {
                             autoCapitalize: true,
-                            placeHolder: 'First-name please...'
+                            placeHolder: 'Value please...'
                         }
                     );
                 }
@@ -120,7 +95,8 @@ Ext.define('Advertising.view.main.Main', {
             region: 'west',
             //width: 200,
             flex: 1,
-            xtype: 'treeviews'
+            xtype: 'treeviews',
+            collapsible: true
         },
         {
             title: 'Tools',

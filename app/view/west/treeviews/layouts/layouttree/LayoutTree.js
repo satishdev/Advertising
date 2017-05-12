@@ -7,9 +7,7 @@ Ext.define('Advertising.view.west.treeviews.layouts.layouttree.LayoutTree', {
     requires: [
         'Advertising.view.west.treeviews.layouts.layouttree.LayoutTreeController',
         'Advertising.view.west.treeviews.layouts.layouttree.LayoutTreeModel',
-        'Ext.form.field.TextArea',
         'Ext.grid.plugin.DragDrop',
-        'Ext.window.MessageBox'
     ],
 
     xtype: 'layouttree',
@@ -35,11 +33,7 @@ Ext.define('Advertising.view.west.treeviews.layouts.layouttree.LayoutTree', {
 
     items: [
         {
-            prompt: {
-                xtype: 'textareafield',
-                value: 'test'
-            }
+
         }
-        /* include child components here */
     ]
 });

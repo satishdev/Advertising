@@ -39,10 +39,13 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelContro
      */
     onClickMarketButton: function(btn) {
         var me = this;
+        var showOffers = me.getViewModel().get("showOffers");
+        var showLayouts = me.getViewModel().get("showLayouts");
+
         if ( btn.pressed ) {
-            me.fireEvent("showPageMarket", btn.marketID);
+            me.fireEvent("showPageMarket", btn.marketID, showOffers, showLayouts);
         } else {
-            me.fireEvent("hidePageMarket", btn.marketID);
+            me.fireEvent("hidePageMarket", btn.marketID, showOffers, showLayouts);
 
         }
 
@@ -105,23 +108,38 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelContro
         // loop through all layouts
         // @todo just do for displayed page
         Ext.ComponentQuery.query("layoutobject").forEach(function(lo) {
-            if ( btn.pressed) {
-                lo.show();
-            } else {
-                lo.hide();
+            if (! lo.excluded) {
+                if (btn.pressed) {
+                    lo.show();
+                } else {
+                    lo.hide();
+                }
             }
 
         });
+    },
+    onZoomChangeComplete: function( slider , newValue , thumb , eOpts ) {
+        this.fireEvent('updatePageZoomLevel', newValue);
+
+    },
+    /*
+     page change requested
+     */
+    onSaveChanges: function (btn) {
+        Ext.toast("Saving changes...");
+
     },
     onToggleOffers: function (btn) {
         Ext.toast("Turn offers " + (( btn.pressed) ? "on" : "off"));
         // loop through all layouts
         // @todo just do for displayed page
-        Ext.ComponentQuery.query("promo").forEach(function(lo) {
-            if ( btn.pressed) {
-                lo.show();
-            } else {
-                lo.hide();
+        Ext.ComponentQuery.query("promo").forEach(function(po) {
+            if ( ! po.excluded) {
+                if (btn.pressed) {
+                    po.show();
+                } else {
+                    po.hide();
+                }
             }
 
         });

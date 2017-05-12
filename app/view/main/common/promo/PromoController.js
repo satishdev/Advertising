@@ -105,6 +105,8 @@ Ext.define('Advertising.view.main.common.promo.PromoController', {
         console.log("Debug info %o", debugInfo);
         promo.getViewModel().set("origX", promo.x);
         promo.getViewModel().set("origY", promo.y);
+        // set the Zindex
+        promo.setZIndex(100 + promo.getViewModel().get("adzoneID"));
     }
 
 

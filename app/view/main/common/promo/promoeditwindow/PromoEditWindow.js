@@ -20,6 +20,8 @@ Ext.define('Advertising.view.main.common.promo.promoeditwindow.PromoEditWindow',
     requires: [
         'Advertising.view.main.common.promo.promoeditwindow.PromoEditWindowController',
         'Advertising.view.main.common.promo.promoeditwindow.PromoEditWindowModel',
+        'Ext.data.Store',
+        'Ext.data.reader.Json',
         'Ext.form.field.ComboBox',
         'Ext.form.field.Text',
         'Ext.form.field.TextArea',
@@ -43,11 +45,15 @@ Ext.define('Advertising.view.main.common.promo.promoeditwindow.PromoEditWindow',
         console.log('window %o', me);
         var model = me.getViewModel();
         model.set("name",me.promo.getViewModel().get('name'));
+
+
     },
     viewModel: {
         type: 'promoeditwindow'
     },
-
+    listeners: {
+        render: 'onRenderPromoEditWindow'
+    },
     controller: 'promoeditwindow',
     layout: 'accordion',
     items: [
@@ -99,9 +105,7 @@ Ext.define('Advertising.view.main.common.promo.promoeditwindow.PromoEditWindow',
             layout: 'fit',
             title: 'Offer Splitting',
             flex:2,
-            bind: {
-                store: '{storeGroups}'
-            },
+
             columns: [
                 {
                     text: 'Store group',

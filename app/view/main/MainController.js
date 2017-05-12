@@ -173,13 +173,7 @@ Ext.define('Advertising.view.main.MainController', {
         console.log("Active tab %o", activeTab);
     }
     ,
-    /*
-     page change requested
-     */
-    onSaveChanges: function (btn) {
-        Ext.toast("Saving changes...");
 
-    },
     onMainPageTabAdded: function() {
         var me = this;
         console.log("Showing tool panel");

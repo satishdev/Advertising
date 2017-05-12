@@ -59,13 +59,13 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
                 method: 'GET',
                 cors: true,
                 useDefaultXhrHeader : false,
-                timeout: 1450000,
                 params: {
                     layoutID:record.get('id')
                 },
                 success: function (transport) {
                     var response = Ext.decode(transport.responseText);
                     console.log("Got response %o", response);
+                    Ext.toast("Adding new layout from server...");
                     var panel = Ext.create('Advertising.view.main.common.pages.layout.Layout', {
                         title: record.get('text'),
                         closable: true,
@@ -138,6 +138,7 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
                         closable: true,
                         layout: 'absolute',
                         objectData: response,
+
                         inchWidth: response.width,
                         inchHeight: response.height
                     });

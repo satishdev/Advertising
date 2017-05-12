@@ -13,7 +13,8 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
             '#vctoolpanelcontroller': {
 
                 showPageMarket: 'onShowPageMarket',
-                hidePageMarket: 'onHidePageMarket'
+                hidePageMarket: 'onHidePageMarket',
+                updatePageZoomLevel: 'onUpdatePageZoomLevel'
             }
 
         }
@@ -21,6 +22,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
     requires: [
         'Advertising.view.main.common.Promo',
         'Advertising.view.main.common.pages.layout.LayoutObject',
+        'Ext.container.Container',
         'Ext.layout.container.Absolute',
         'Ext.panel.Panel'
     ],
@@ -31,7 +33,14 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
     init: function () {
 
     },
-    showHideMarket: function (marketID, doShow) {
+    /**
+     * Show or hide items based on the selected market (adzone, storegroup etc..)
+     * @param marketID
+     * @param showOffers
+     * @param showLayouts
+     * @param doShow
+     */
+    showHideMarket: function (marketID,showOffers, showLayouts, doShow) {
         var pagePanel = Ext.ComponentQuery.query('pagelayouts')[0].getActiveTab().down('panel');
         console.log("Page panel %o", pagePanel);
         pagePanel.items.each(function (pageObject) {
@@ -41,8 +50,14 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
 
                 if (pageObject.getViewModel().get('adzoneID') == marketID) {
                     if (doShow) {
-                        pageObject.show();
+                        // only show given type if the item is supposed to be visible at a higher level
+                        if (( showOffers && pageObject.xtype == 'promo' || showLayouts &&  pageObject.xtype == 'layoutobject')) {
+
+                            pageObject.show();
+                        }
+                        pageObject.excluded = false;
                     } else {
+                        pageObject.excluded = true;
                         pageObject.hide();
 
                     }
@@ -51,46 +66,68 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
             }
         });
     },
-    onShowPageMarket: function (marketID) {
+    onShowPageMarket: function (marketID, showOffers, showLayouts) {
         var me = this;
         Ext.toast("Show market " + marketID);
-        me.showHideMarket(marketID, true);
+        me.showHideMarket(marketID, showOffers, showLayouts, true);
 
     }
     ,
-    onHidePageMarket: function (marketID) {
+    onHidePageMarket: function (marketID, showOffers, showLayouts) {
         var me = this;
         Ext.toast("Hide market " + marketID);
-        me.showHideMarket(marketID, false);
+        me.showHideMarket(marketID, showOffers, showLayouts, false);
+    },
+    onUpdatePageZoomLevel: function(zoom) {
+        var pagePanel = Ext.ComponentQuery.query('pagelayouts')[0].getActiveTab();
+        console.log("Page panel %o", pagePanel);
+        pagePanel.setZoom(zoom);
     },
     onPageResize: function (page) {
-        Ext.toast("Page was resized");
+        Ext.toast("Page was resized " + page.xtype);
         var parentWidth = page.up('panel').getSize().width;
         var parentHeight = page.up('panel').getSize().height;
+
+        var pageWidth = parentWidth ;
+        Ext.toast("Width " + parentWidth);
         //  var scale = parentWidth / ((p.inchWidth * 96) + 20);
-        var scale = parentWidth / ((page.inchWidth * 96) + 100);
+        var scale = pageWidth / ((page.inchWidth * 96) );
         console.log("Resizing page %d %o %f", parentWidth, page, scale);
-        page.setWidth(Math.round(page.width * scale));
-        page.setHeight(Math.round(page.height * scale));
+        page.setWidth(Math.round(pageWidth));
+        page.setHeight(Math.round(page.inchHeight * 96 * scale));
+        var svg = page.getEl().query('svg');
+        svg[0].setAttribute("width", '' + pageWidth);
+        svg[0].setAttribute("height",'' +  Math.round(page.inchHeight * 96 * scale));
+
+
+        console.log("New Page size %d x %d",page.width, page.height);
     },
     onAddPagePanel: function (p) {
 
-        console.log("Parent panel size: %o", p.up('panel').getSize());
+
+        if (p.xtype == 'layout') {
+            return;
+        }
+        console.log("Parent panel size: %o %s", p.up('panel').getSize(), p.up('panel').xtype);
         var parentWidth = p.up('panel').getSize().width;
         var parentHeight = p.up('panel').getSize().height;
-        //  var scale = parentWidth / ((p.inchWidth * 96) + 20);
-        var scale = parentWidth / ((p.inchWidth * 96) + 100);
+        var pageWidth = parentWidth - 50;
+        p.setWidth( pageWidth);
+          //  var scale = parentWidth / ((p.inchWidth * 96) + 20);
+        var scale = parentWidth / ((p.inchWidth * 96) + 50);
         console.log("Scale %f", scale);
         var me = this;
         me.getViewModel().set("scale", scale);
         var trueWidth = Math.round(p.inchWidth * 96 * scale);
         var trueHeight = Math.round(p.inchHeight * 96 * scale);
+
         Ext.toast(trueWidth + " X " + trueHeight);
+        // This is the panel then then contains all children - layout objects and offers
         var inner = Ext.create('Ext.panel.Panel', {
             border: true,
             flex: 1,
-            padding: 10,
-            width: trueWidth,
+            padding: 0,
+            width: pageWidth,
             height: trueHeight,
             layout: 'absolute',
 
@@ -102,43 +139,9 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
 
                 {
 
-                    html: '<svg class="svggrid" width="' + trueWidth + '" height="' + trueHeight + '" xmlns="http://www.w3.org/2000/svg">                    <defs>                    <pattern id="smallGrid' + p.id + '" width="8" height="8" patternUnits="userSpaceOnUse">                    <path d="M 8 0 L 0 0 0 8" fill="none" stroke="gray" stroke-width="0.5"/> </pattern> <pattern id="grid' + p.id + '" width="80" height="80" patternUnits="userSpaceOnUse"> <rect width="80" height="80" fill="url(#smallGrid' + p.id + ')"/> <path d="M 80 0 L 0 0 0 80" fill="none" stroke="gray" stroke-width="1"/> </pattern> </defs> <rect width="100%" height="100%" fill="url(#grid' + p.id + ')" /> </svg>'
+                    html: '<svg class="svggrid" width="' + pageWidth + '" height="' + trueHeight + '" xmlns="http://www.w3.org/2000/svg">                    <defs>                    <pattern id="grid' + p.id + '" width="80" height="80" patternUnits="userSpaceOnUse"> <rect width="80" height="80" fill="url(#smallGrid' + p.id + ')"/> <path d="M 80 0 L 0 0 0 80" fill="none" stroke="gray" stroke-width="1"/> </pattern> </defs> <rect width="100%" height="100%" fill="url(#grid' + p.id + ')" /> </svg>'
                 }
-                //{
-                //    xtype: 'draw',
-                //    width: (p.inchWidth * 96 * scale),
-                //    height: (p.inchHeight * 96 * scale),
-                //    zIndex:99,
-                //    plugins: ['spriteevents'],
-                //
-                //    sprites: [
-                //        {
-                //            type: 'circle',
-                //            fillStyle: '#7BB20C',
-                //            r: 75,
-                //            x: 200,
-                //            y: 200,
-                //            fx: {
-                //                duration: 300
-                //            }
-                //        },
-                //
-                //        {
-                //            type: 'path',
-                //            strokeStyle: 'rgb(222,127,209)',
-                //            lineWidth: 12,
-                //            lineCap: 'round',
-                //            path: 'M 80 0 L 0 0 0 80',
-                //            fx: {
-                //                duration: 300
-                //            }
-                //        }
-                //    ]
-                //
-                //listeners: {
-                //    spriteclick: 'onSpriteClick'
-                //}
-                //}
+
 
             ]
         });
@@ -177,6 +180,8 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
                         editMode: false,
                         width: ph.width * 96 * scale,
                         height: ph.height * 96 * scale,
+                        origX: ph.xPos,
+                        origY: ph.yPos,
                         x: ph.xPos * 96 * scale,
                         y: ph.yPos * 96 * scale
 
@@ -188,7 +193,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
                         model.set(prop, ph[prop]);
                     }
                     console.log("New panel %o", panel);
-                    p.insert(panel);
+                    p.add(panel);
                 });
             }
             if (parentPanel.objectData.hasOwnProperty(('pageObjects'))) {
@@ -200,6 +205,8 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
                     var panel = Ext.create('Advertising.view.main.common.Promo', {
                         width: po.width * 96 * scale,
                         height: po.height * 96 * scale,
+                        origX: po.xPos,
+                        origY: po.yPos,
                         x: po.xPos * 96 * scale,
                         y: po.yPos * 96 * scale
 
@@ -211,7 +218,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
                     }
 
                     console.log("New panel %o", panel);
-                    p.insert(panel);
+                    p.add(panel);
                 });
             } else {
                 Ext.toast("No page object on page");
@@ -241,24 +248,36 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
             Ext.toast("No layout object on page");
         }
     },
+    /**
+     * When a layout is requested we'll call this renderer to then populate the data for the layout
+     * This renders the inner panel and then the renderer for that paenl in-turn gets the items for the layout
+     * @param p
+     */
     onAddLayoutPanel: function (p) {
 
         console.log("Parent panel size: %o", p.up('panel').getSize());
-        var parentWidth = p.up('panel').getSize().width;
+        console.log("Resize page %o %s", p, p.xtype);
+          var parentWidth = p.up('panel').getSize().width;
         var parentHeight = p.up('panel').getSize().height;
-        //  var scale = parentWidth / ((p.inchWidth * 96) + 20);
-        var scale = parentWidth / ((p.inchWidth * 96) + 100);
+
+        var pageWidth = parentWidth ;
+        var scale = parentWidth / ((p.inchWidth * 96));
         console.log("Scale %f", scale);
         var me = this;
         me.getViewModel().set("scale", scale);
         var trueWidth = Math.round(p.inchWidth * 96 * scale);
         var trueHeight = Math.round(p.inchHeight * 96 * scale);
+        console.log("Real size %f x %f", p.inchWidth, p.inchHeight);
+        console.log("-->> New size %f x %f", trueWidth, trueHeight);
 
+        p.setWidth( parentWidth);
+        p.setHeight(trueHeight);
+        // add SVG grid panel
         var inner = Ext.create('Ext.panel.Panel', {
             border: true,
-            flex: 1,
-            padding: 10,
-            width: trueWidth,
+            //flex: 1,
+            padding: 0,
+            width: parentWidth,
             height: trueHeight,
             layout: 'absolute',
 
@@ -270,43 +289,10 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
                 {
 
                     // todo - get image from server
-                    html: '<svg  width="' + trueWidth + '" height="' + trueHeight + '" xmlns="http://www.w3.org/2000/svg">                    <defs>                    <pattern id="smallGrid' + p.id + '" width="8" height="8" patternUnits="userSpaceOnUse">                    <path d="M 8 0 L 0 0 0 8" fill="none" stroke="gray" stroke-width="0.5"/> </pattern> <pattern id="grid' + p.id + '" width="80" height="80" patternUnits="userSpaceOnUse"> <rect width="80" height="80" fill="url(#smallGrid' + p.id + ')"/> <path d="M 80 0 L 0 0 0 80" fill="none" stroke="gray" stroke-width="1"/> </pattern> </defs> <rect width="100%" height="100%" fill="url(#grid' + p.id + ')" /> </svg>'
+                    //                     html: '<svg  width="' + parentWidth + '" height="' + trueHeight + '" xmlns="http://www.w3.org/2000/svg">                    <defs>                    <pattern id="smallGrid' + p.id + '" width="8" height="8" patternUnits="userSpaceOnUse">                    <path d="M 8 0 L 0 0 0 8" fill="none" stroke="gray" stroke-width="0.5"/> </pattern> <pattern id="grid' + p.id + '" width="80" height="80" patternUnits="userSpaceOnUse"> <rect width="80" height="80" fill="url(#smallGrid' + p.id + ')"/> <path d="M 80 0 L 0 0 0 80" fill="none" stroke="gray" stroke-width="1"/> </pattern> </defs> <rect width="100%" height="100%" fill="url(#grid' + p.id + ')" /> </svg>'
+                                         html: '<div z-index="999">' + scale + ' Size ' + parentWidth + 'x' + trueHeight + '</div><svg  width="' + parentWidth + '" height="' + trueHeight + '" xmlns="http://www.w3.org/2000/svg">                    <defs>                     <pattern id="grid' + p.id + '" width="80" height="80" patternUnits="userSpaceOnUse"> <rect width="80" height="80" fill="url(#smallGrid' + p.id + ')"/> <path d="M 80 0 L 0 0 0 80" fill="none" stroke="gray" stroke-width="1"/> </pattern> </defs> <rect width="100%" height="100%" fill="url(#grid' + p.id + ')" /> </svg>'
                 }
-                //{
-                //    xtype: 'draw',
-                //    width: (p.inchWidth * 96 * scale),
-                //    height: (p.inchHeight * 96 * scale),
-                //    zIndex:99,
-                //    plugins: ['spriteevents'],
-                //
-                //    sprites: [
-                //        {
-                //            type: 'circle',
-                //            fillStyle: '#7BB20C',
-                //            r: 75,
-                //            x: 200,
-                //            y: 200,
-                //            fx: {
-                //                duration: 300
-                //            }
-                //        },
-                //
-                //        {
-                //            type: 'path',
-                //            strokeStyle: 'rgb(222,127,209)',
-                //            lineWidth: 12,
-                //            lineCap: 'round',
-                //            path: 'M 80 0 L 0 0 0 80',
-                //            fx: {
-                //                duration: 300
-                //            }
-                //        }
-                //    ]
-                //
-                //listeners: {
-                //    spriteclick: 'onSpriteClick'
-                //}
-                //}
+
 
             ]
         });

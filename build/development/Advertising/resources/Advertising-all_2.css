@@ -10686,24 +10686,32 @@
     opacity: 0.9;
     border: 5px #2e7d32;
     border-radius: 3px;
-}
-/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:146 */
-.f-layout-object-clean .x-panel-body {
     background-color: #ffe8be;
 }
-/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:150 */
+/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:147 */
+.f-layout-object .x-panel-header {
+    border: 5px #2e7d32;
+    border-radius: 3px;
+}
+/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:152 */
+.f-layout-object-clean {
+    background-color: #ffe8be;
+    border: 5px #2e7d32;
+    border-radius: 3px;
+}
+/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:158 */
 .f-layout-object-selected .x-panel-body {
     background-color: #2e7d32 !important;
 }
-/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:154 */
+/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:162 */
 .f-status-ok {
     color: #9cc96b !important;
 }
-/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:158 */
+/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:166 */
 .f-status-error {
     color: #e44959 !important;
 }
-/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:162 */
+/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:170 */
 .f-new-layout-ind {
     position: relative;
     top: 2px;

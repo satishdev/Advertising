@@ -56,7 +56,9 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutModel', {
         editMode: true,
         section: undefined,
         isNew: false,
-        ownerSelection: undefined
+        ownerSelection: undefined,
+        debugInfo: '',
+        debug: true
         /* This object holds the arbitrary data that populates the ViewModel and is then available for binding. */
     }
 });

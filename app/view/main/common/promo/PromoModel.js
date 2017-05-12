@@ -7,7 +7,7 @@ Ext.define('Advertising.view.main.common.promo.PromoModel', {
 
     requires: [
         'Advertising.util.GlobalValues',
-        'Ext.data.proxy.Ajax',
+        "Ext.data.proxy.Ajax",
         'Ext.data.reader.Json'
     ],
 
@@ -38,9 +38,11 @@ Ext.define('Advertising.view.main.common.promo.PromoModel', {
         offerName: 'not set',
         owners: [],
         status: 'not set',
+        pageObjectID: -1,
         debug: true,
         debugInfo: 'debug info',
         undoDisabled: true,
+        draggable: false,
         showGrid: false,
         width: 350,
         height: 220,
