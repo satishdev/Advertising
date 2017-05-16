@@ -186,8 +186,10 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
         });
     },
     onPageTabChange: function (tabPanel, newCard, oldCard, eOpts) {
-        Ext.toast('Tab panel changed...');
+        Ext.toast('Tab panel changed...' + newCard.xtype);
         var me =this;
+        me.getViewModel().set('mode',newCard.xtype);
+        Ext.ComponentQuery.query("pagetoolpanel")[0].setMode(newCard.xtype);
         this.fireEvent('mainPageTabChanged', tabPanel, newCard, oldCard, eOpts);
 
     },

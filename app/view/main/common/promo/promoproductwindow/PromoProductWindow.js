@@ -5,7 +5,7 @@ Ext.define('Advertising.view.main.common.promo.promoproductwindow.PromoProductWi
     extend: 'Ext.window.Window',
 
     modal: true,
-    width: 600,
+    width: 900,
     height: 400,
     listeners: {
         'render': 'onActivateWindow'

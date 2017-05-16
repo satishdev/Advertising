@@ -3,7 +3,7 @@
  */
 Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
     extend: 'Advertising.view.main.common.pages.pageobject.PageObject',
-
+    ui: 'layoutobject',
     controller: 'layoutobject',
     xtype: 'layoutobject',
     viewModel: {
@@ -30,6 +30,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
         if ( this.isNew ) {
             this.getViewModel().set("isNew", this.isNew);
         }
+        this.getViewModel().set('cellNumber',this.cellNumber );
     },
     isNew: false,
     workFlowStatus: undefined,
@@ -73,8 +74,16 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
     tbar: {
         items: [
             {
-                iconCls: 'fa fa-info',
-                text: 'versions',
+                bind: {
+                    text: '{cellNumber}'
+                }
+            },
+            {
+                iconCls: 'fa fa-bullseye',
+                text: 'Targeting',
+                bind: {
+                    hidden: '{editMode}'
+                },
                 listeners: {
                     //click: 'onToggleGrid',
 
@@ -99,7 +108,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
                 }
             },
             {
-                xtype: 'checkboxfield',
+                xtype: 'checkboxfield'
                 //handler: 'onPromoCheckChange'
             }
         ]

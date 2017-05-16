@@ -21,7 +21,7 @@ Ext.define('Advertising.view.main.common.Promo', {
         'Ext.layout.container.Fit',
         'Ext.panel.Panel'
     ],
-    initComponent: function() {
+    initComponent: function () {
         console.log("Promo object added");
         var me = this;
         this.setupDebug();
@@ -45,7 +45,7 @@ Ext.define('Advertising.view.main.common.Promo', {
                 iconCls: 'fa fa-info',
                 enableToggle: true,
                 listeners: {
-                    click: 'onToggleGrid',
+                    click: 'onToggleGrid'
 
                 }
             },
@@ -100,11 +100,15 @@ Ext.define('Advertising.view.main.common.Promo', {
             xtype: 'grid',
             width: 250,
             dockedItems: [
-                { xtype: 'toolbar',
+                {
+                    xtype: 'toolbar',
                     dock: 'top',
                     items: [
-                        { xtype: 'button', text: 'Expand', handler: 'onExpandGrid' }
-                    ]   }
+                        {
+                            xtype: 'button', iconCls: 'fa fa-expand', handler: 'onExpandGrid'
+                        }
+                    ]
+                }
             ],
             bind: {
                 visible: '{showGrid}',
@@ -119,26 +123,26 @@ Ext.define('Advertising.view.main.common.Promo', {
                 {
                     text: 'Qty',
                     dataIndex: 'quantity',
-                    flex:1
+                    flex: 1
 
                 },
                 {
                     text: 'Desc',
                     dataIndex: 'description',
                     hidden: true,
-                    flex:3
+                    flex: 3
 
                 },
                 {
                     text: 'Tmt',
                     dataIndex: 'treatment',
                     hidden: true,
-                    flex:1
+                    flex: 1
                 }
             ]
         },
         {
-           // html: '<div class="noSelect" style="font-size: 1vw">' + '{name}' + '<br/>Some image here</br><p/><div style="font-size: 4vw"> $99<sup style="font-size:.6em">99</sup></div></div>',
+            // html: '<div class="noSelect" style="font-size: 1vw">' + '{name}' + '<br/>Some image here</br><p/><div style="font-size: 4vw"> $99<sup style="font-size:.6em">99</sup></div></div>',
             bind: {
                 html: '<div class="noSelect" style="font-size: 1vw">{name}<br/><div class="f-prod-image"><img class="noSelect" src="http://laheadvsb01.ngco.com:8080/smartmedia/servlet/smartmediaservlet?ref=4122006805.eps&type=Image&res=thumb"/></div></br><p/>Adzone [{adzoneID} {location}]</div>',
                 visible: '{!showGrid}'
@@ -146,19 +150,19 @@ Ext.define('Advertising.view.main.common.Promo', {
         }
         /* include child components here */
     ],
-    setDebugInfo: function(info) {
+    setDebugInfo: function (info) {
 
         var me = this;
-        me.getViewModel().set("debugInfo",info);
+        me.getViewModel().set("debugInfo", info);
         console.log("Model %o", me.getViewModel());
 
     },
-    setupDebug: function() {
+    setupDebug: function () {
         var me = this;
     },
-    flagMoved: function() {
+    flagMoved: function () {
         console.debug("Moved promo");
         var me = this;
-        me.setStyle("border-color","green");
+        me.setStyle("border-color", "green");
     }
 });

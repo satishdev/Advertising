@@ -182,6 +182,8 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
                         height: ph.height * 96 * scale,
                         origX: ph.xPos,
                         origY: ph.yPos,
+                        origWidth: ph.width,
+                        origHeight: ph.height,
                         x: ph.xPos * 96 * scale,
                         y: ph.yPos * 96 * scale
 
@@ -207,6 +209,8 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
                         height: po.height * 96 * scale,
                         origX: po.xPos,
                         origY: po.yPos,
+                        origWidth: po.width,
+                        origHeight: po.height,
                         x: po.xPos * 96 * scale,
                         y: po.yPos * 96 * scale
 
@@ -238,6 +242,11 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
                 var panel = Ext.create('Advertising.view.main.common.pages.layout.LayoutObject', {
                     width: Math.round(lo.width * 96 * scale),
                     height: Math.round(lo.height * 96 * scale),
+                    origXPos: lo.xPos,
+                    origYPos: lo.yPos,
+                    origWidth: lo.width,
+                    origHeight: lo.height,
+                    cellNumber: lo.cellNumber,
                     x: Math.round(lo.xPos * 96 * scale),
                     y: Math.round(lo.yPos * 96 * scale)
                 });

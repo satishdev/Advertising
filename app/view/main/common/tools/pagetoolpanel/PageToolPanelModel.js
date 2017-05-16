@@ -24,7 +24,8 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelModel'
         showOffers: true,
         showPageTools: true,
         showToolSplash: true,
-        splash: '<b>Context tools here</b>'
+        mode: 'none',
+        splash: '<b>The tools will magically appear depending on the selections made in the application.</b>'
         /* This object holds the arbitrary data that populates the ViewModel and is then available for binding. */
     }
 });

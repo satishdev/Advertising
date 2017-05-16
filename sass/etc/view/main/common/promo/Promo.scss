@@ -1,0 +1,15 @@
+@include extjs-panel-ui (
+        $ui: 'promo',
+        $text-color: #157fcc
+);
+
+.f-promo-base {
+  border-color: green;
+  border-width: 2px;
+}
+
+.x-panel {
+  border-width: 2px;
+  border-color: green;
+}
+

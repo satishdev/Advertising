@@ -141,7 +141,7 @@ Ext.define('Advertising.view.main.Main', {
 
                         },
                         {
-                            title: 'Bottom Line',
+                            title: 'Scoring',
                             xtype: 'metricspanel',
                             iconCls: 'fa fa-dollar',
                             tooltip: 'Display the metrics for the selected vehicle or page'

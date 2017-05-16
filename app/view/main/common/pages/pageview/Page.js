@@ -30,12 +30,11 @@ Ext.define('Advertising.view.main.common.pages.pageview.Page', {
         Ext.toast("Updating zoom " + zoom);
         me.zoom = zoom;
         var curZoom = me.zoom;
-        var realZoom = 100 - curZoom + zoom;
         var curWidth = me.getWidth();
         var curHeight = me.getHeight();
         var childPanel = me.down('panel');
-        childPanel.setWidth(curWidth * (realZoom/ 100));
-        childPanel.setHeight(curHeight * ( realZoom/100));
+        childPanel.setWidth(curWidth * (zoom/ 100));
+        childPanel.setHeight(curHeight * ( zoom/100));
         // set the zoom and position of the child items
         childPanel.items.each(function(item) {
             if ( item.xtype == 'layoutobject' || item.xtype == 'promo') {
@@ -51,6 +50,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.Page', {
             {
                 width: 300,
                 height: 400,
+                zIndex:999,
                 xPos: 10,
                 yPos: 10,
                 isNew: true

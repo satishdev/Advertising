@@ -7,7 +7,7 @@ Ext.define('Advertising.view.west.treeviews.layouts.layouttree.LayoutTree', {
     requires: [
         'Advertising.view.west.treeviews.layouts.layouttree.LayoutTreeController',
         'Advertising.view.west.treeviews.layouts.layouttree.LayoutTreeModel',
-        'Ext.grid.plugin.DragDrop',
+        'Ext.grid.plugin.DragDrop'
     ],
 
     xtype: 'layouttree',

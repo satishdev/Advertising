@@ -4,14 +4,7 @@
 Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
     extend: 'Ext.panel.Panel',
 
-    config: {
-        showAnimation: {
-            type: 'fadeIn'
-        },
-        hideAnimation: {
-            type: 'fadeOut'
-        }
-    },
+
     width: 150,
     shadowOffset: 6,
     zIndex: 10,
@@ -31,9 +24,38 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
 
 
     viewModel: {
-        type: 'pagetoolpanel'
+        type: 'pagetoolpanel',
+        formulas: {
+            hideSplash: function (get) {
+                var param = get('mode');
+                if (param == 'none' || param =='panel') {
+                    return false;
+                }
+                return true;
+            },
+            hidePageTools: function (get) {
+                var param = get('mode');
+                if (param == 'page' || param == 'layout') {
+                    return false;
+                }
+                return true;
+            },
+            layoutmode: function (get) {
+                var param = get('mode');
+                if (param == 'layout') {
+                    return true;
+                }
+                return false;
+            },
+            pagemode: function (get) {
+                var param = get('mode');
+                if (param == 'page') {
+                    return true;
+                }
+                return false;
+            }
+        }
     },
-
     controller: 'pagetoolpanel',
     defaults: {
         xtype: 'button',
@@ -54,24 +76,31 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
         align : 'stretch',
         pack  : 'start'
     },
+    setMode: function(mode){
 
+        Ext.toast("Tool mode "+ mode);
+        var me = this;
+        me.getViewModel().set('mode',mode);
+    },
     items: [
         {
             xtype: 'panel',
             bind: {
-                hidden: '{!showToolSplash}',
-                html: '{splash}'
+                hidden: '{hideSplash}'
+
             },
-            layout: {
-                type: 'hbox',
-                align : 'stretch',
-                pack  : 'start'
-            }
+            items: [
+                {
+                    bind: {
+                        html: '{splash}'
+                    }
+                }
+            ]
         },
         {
             xtype: 'panel',
             bind: {
-                hidden: '{!showPageTools}'
+                hidden: '{hidePageTools}'
             },
             layout:'column',
             defaults: {
@@ -94,7 +123,8 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
                     iconCls: 'fa fa-tag',
                     handler: 'onToggleOffers',
                     bind: {
-                        pressed: '{showOffers}'
+                        pressed: '{showOffers}',
+                        hidden: '{!pagemode}'
                     }
                 },
                 {
@@ -102,7 +132,8 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
                     iconCls: 'fa fa-newspaper-o',
                     handler: 'onToggleLayouts',
                     bind: {
-                        pressed: '{showLayouts}'
+                        pressed: '{showLayouts}',
+                        hidden: '{!pagemode}'
                     }
                 },
                 {
@@ -117,6 +148,9 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
 
         },
         {
+            bind: {
+                hidden: '{hidePageTools}'
+            },
             xtype: 'slider',
             fieldLabel: 'Zoom',
             labelAlign: 'top',
@@ -124,8 +158,8 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
             width: 100,
             value: 100,
             increment: 10,
-            minValue: 0,
-            maxValue: 100,
+            minValue: 10,
+            maxValue: 200,
             listeners: {
                 changecomplete: 'onZoomChangeComplete'
             }
@@ -134,29 +168,52 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
             iconCls: "fa fa-save",
             handler: 'onSaveChanges',
             text: 'Save',
+            bind: {
+                hidden: '{hidePageTools}'
+            },
             padding: 8
         },
         {
             iconCls: 'fa fa-plus',
             text: 'Add item',
             handler: 'onClickAddItem',
+            bind: {
+                hidden: '{hidePageTools}'
+            },
             padding: 5
         },
         {
             iconCls: 'fa fa-th',
             text: 'Save layout',
+            bind: {
+                hidden: '{!pagemode}'
+            },
             //handler: 'onClickCreateLayout',
             padding: 5
         },
         {
             iconCls: 'fa fa-users',
             text: 'Owners',
+            bind: {
+                hidden: '{hidePageTools}'
+            },
             //handler: 'onClickShowSpaceOwners',
             padding: 5
         },
-
+        {
+            iconCls: 'fa fa-th',
+            text: 'Owner grid',
+            bind: {
+                hidden: '{!layoutmode}'
+            },
+            //handler: 'onClickShowSpaceOwners',
+            padding: 5
+        },
         {
            xtype:'panel',
+            bind: {
+                hidden: '{!pagemode}'
+            },
             reference: 'marketControls',
             defaults: {
                 xtype: 'marketbutton',

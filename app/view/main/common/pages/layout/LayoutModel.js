@@ -56,6 +56,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutModel', {
         editMode: true,
         section: undefined,
         isNew: false,
+        cellNumber: 1,
         ownerSelection: undefined,
         debugInfo: '',
         debug: true
