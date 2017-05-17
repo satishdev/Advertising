@@ -14,7 +14,8 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
 
                 showPageMarket: 'onShowPageMarket',
                 hidePageMarket: 'onHidePageMarket',
-                updatePageZoomLevel: 'onUpdatePageZoomLevel'
+                updatePageZoomLevel: 'onUpdatePageZoomLevel',
+                savePageChanges: 'onSavePageChanges'
             }
 
         }
@@ -82,6 +83,40 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
         var pagePanel = Ext.ComponentQuery.query('pagelayouts')[0].getActiveTab();
         console.log("Page panel %o", pagePanel);
         pagePanel.setZoom(zoom);
+    },
+    /**
+     * This is the heavy lifter on actually saving the page changes back to the server
+     * We send the server a block of JSON representing the page and let the spring layer take
+     * care of most of it
+     * @param page
+     */
+    onSavePageChanges: function(page){
+        var me = this;
+        Ext.toast("Saving pages to page type " + page.xtype);
+        // get all components on the page
+        if ( page.xtype == 'layout') {
+            me.saveLayout(page.down('panel'));
+        }
+        if ( page.xtype == 'page') {
+            me.savePage(page.down('page'));
+
+        }
+    },
+    saveLayout: function(layout) {
+        var json = [];
+        layout.items.each(function(lo) {
+            // skip no layout object - e.g. grid or any other furniture on page
+            if ( lo.xtype == 'layoutobject') {
+                if ( lo.dirty == true) {
+                    console.log("Layout object was changed %o", lo);
+                    json.push(lo);
+                }
+            }
+        });
+        console.log("Sending json %o", json);
+    },
+    savePage: function(page) {
+
     },
     onPageResize: function (page) {
         Ext.toast("Page was resized " + page.xtype);

@@ -5,17 +5,24 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.layout',
 
+    requires: [
+        'Advertising.util.GlobalValues',
+        'Ext.data.reader.Json'
+    ],
+
     stores: {
         sections: {
-            data: [{
-                name: 'Unico'
-            },{
-                name: 'Meat'
-            },{
-                name: 'T&T'
+            storeId: 'layoutSectionStore',
+            proxy: {
+                type : 'ajax',
+                autoLoad: false,
+                useDefaultXhrHeader: false,
+                url:  Advertising.util.GlobalValues.serviceURL + '/attributes/getAllSections',
+                reader: {
+                    type: 'json',
+                    rootProperty: 'data'
+                }
             }
-
-            ]
         },
         themeCodes: {
             data: [{
@@ -29,24 +36,17 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutModel', {
             ]
         },
         owners: {
-            data: [
-                {
-                    name: 'Grocery',
-                    category: 'g'
-                },
-                {
-                    name: 'Dairy',
-                    category: 'd'
-                },
-                {
-                    name: 'Meat',
-                    category: 'm'
-                },
-                {
-                    name: 'Frozen',
-                    category: 'f'
+            storeId: 'layoutOwnersStore',
+            proxy: {
+                type : 'ajax',
+                autoLoad: false,
+                useDefaultXhrHeader: false,
+                url:  Advertising.util.GlobalValues.serviceURL + '/attributes/getAllOwners',
+                reader: {
+                    type: 'json',
+                    rootProperty: 'data'
                 }
-            ]
+            }
         }
 
     },

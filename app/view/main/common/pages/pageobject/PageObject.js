@@ -21,14 +21,30 @@ Ext.define('Advertising.view.main.common.pages.pageobject.PageObject', {
     cellNumber: 0,
     zoom: 100,
     border: 2,
+    dirty:false,
     draggable: true,
     resizable: true,
     layout: 'absolute',
-    zIndex: 100,
     constrain: true,
     items: [
         /* include child components here */
     ],
+    listeners: {
+        move: 'onObjectMove',
+        resize: 'onObjectResize',
+        render: 'onRenderObject',
+        beforeMove: 'onBeforeObjectMove',
+        focusenter: 'onObjectFocus'
+    },
+    setDebugInfo: function () {
+
+        var me = this;
+        var info = "X:" + Math.round(me.x) + " Y:" + Math.round(me.y) + " -- " + (me.width).toFixed(1) +  "x" + (me.height).toFixed(1);
+
+        me.getViewModel().set("debugInfo", info);
+        console.log("Model %o", me.getViewModel());
+
+    },
     setZoom: function(zoom) {
         var me = this;
         var parentPanel = me.up('panel');
@@ -52,5 +68,10 @@ Ext.define('Advertising.view.main.common.pages.pageobject.PageObject', {
         me.setHeight(Math.round((me.origHeight * 96) *  (zoom/100)));
 
 
+    },
+    flagDirty: function () {
+        var me = this;
+        me.dirty = true;
+        me.addCls("f-panel-dirty");
     }
 });

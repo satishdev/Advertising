@@ -192,9 +192,9 @@ Ext.define('Advertising.view.main.MainController', {
 
     onActivateMain: function (panel) {
         var me = this;
-
         var username = Advertising.view.main.common.UserInfo.getName();
         me.getViewModel().set("username", username);
+
     }
 })
 ;

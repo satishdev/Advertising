@@ -4,7 +4,8 @@
 Ext.define('Advertising.view.main.common.pages.layout.Layout', {
     extend: 'Advertising.view.main.common.pages.pageview.Page',
     requires: [
-        'Advertising.view.main.common.pages.layout.LayoutModel'
+        'Advertising.view.main.common.pages.layout.LayoutModel',
+        'Ext.layout.container.Card'
     ],
 
     //config: {
@@ -24,7 +25,6 @@ Ext.define('Advertising.view.main.common.pages.layout.Layout', {
         render: 'onAddLayoutPanel'
     },
     xtype: 'layout',
-
     iconCls: 'fa fa-th',
     viewModel: {
         type: 'layout'
@@ -33,6 +33,7 @@ Ext.define('Advertising.view.main.common.pages.layout.Layout', {
     controller: 'page',
 
     items: [
+
 
     ]
 });

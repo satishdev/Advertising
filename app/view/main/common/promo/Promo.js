@@ -83,12 +83,7 @@ Ext.define('Advertising.view.main.common.Promo', {
     }
 
     ,
-    listeners: {
-        move: 'onPromoMove',
-        resize: 'onPromoResize',
-        render: 'onRenderPromo',
-        beforeMove: 'onBeforePromoMove'
-    },
+
     defaults: {
         margin: 2,
         layout: 'fit',
@@ -150,19 +145,9 @@ Ext.define('Advertising.view.main.common.Promo', {
         }
         /* include child components here */
     ],
-    setDebugInfo: function (info) {
 
-        var me = this;
-        me.getViewModel().set("debugInfo", info);
-        console.log("Model %o", me.getViewModel());
-
-    },
     setupDebug: function () {
         var me = this;
     },
-    flagMoved: function () {
-        console.debug("Moved promo");
-        var me = this;
-        me.setStyle("border-color", "green");
-    }
+
 });

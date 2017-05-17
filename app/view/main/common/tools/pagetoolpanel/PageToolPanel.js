@@ -202,11 +202,11 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
         },
         {
             iconCls: 'fa fa-th',
-            text: 'Owner grid',
+            text: 'Grid view',
             bind: {
                 hidden: '{!layoutmode}'
             },
-            //handler: 'onClickShowSpaceOwners',
+            handler: 'onShowGridWindow',
             padding: 5
         },
         {

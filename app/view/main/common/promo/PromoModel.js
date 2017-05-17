@@ -23,7 +23,7 @@ Ext.define('Advertising.view.main.common.promo.PromoModel', {
                 type : 'ajax',
                 useDefaultXhrHeader: false,
                 api: {
-                    read:  Advertising.util.GlobalValues.serviceURL + '/layout/getOfferItems'
+                    read:  Advertising.util.GlobalValues.serviceURL + '/page/getOfferItems'
                 },
                 reader: {
                     type: 'json',

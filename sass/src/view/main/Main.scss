@@ -3,10 +3,10 @@
  */
 //$base-color: #0076AD;
 
-$circle-border-radius:50%;
+$circle-border-radius: 50%;
 
 $base-border-color: #ddd;
-$lightest-color:#fff;
+$lightest-color: #fff;
 $darkest-color: #333;
 $font-weight: 400;
 $font-weight-bold: 500;
@@ -14,7 +14,6 @@ $font-weight-bold: 500;
 //$accordion-header-background-color: $darkest-color;
 //$accordion-header-color: $lightest-color;
 //$accordion-header-color: #333;
-
 
 @include extjs-tab-panel-ui(
         $ui-tab-background-color: transparent,
@@ -108,19 +107,19 @@ $font-weight-bold: 500;
 }
 
 .f-eventtype {
-  color: #00bcd4 ;
+  color: #00bcd4;
 }
 
 .f-eventinstance {
-  color: #1b5e20 ;
+  color: #1b5e20;
 }
 
 .f-eventmaster {
-  color: #0f76c2 ;
+  color: #0f76c2;
 }
 
 .f-vehicle {
-  color: #2e7d32 ;
+  color: #2e7d32;
 }
 
 .noSelect {
@@ -135,26 +134,25 @@ $font-weight-bold: 500;
 
 .f-promo-checked {
   border-color: #f8d400 !important;
- }
+}
 
-.f-layout-object{
-  opacity: 0.9;
-  border: 5px #2e7d32;
+.f-layout-object {
+  //opacity: 0.9;
+  border: solid 5px #2e7d32;
+
   border-radius: 3px;
 }
 
-.f-layout-object .x-panel-header{
-  border: 5px #2e7d32;
-  border-radius: 3px;
+.f-layout-object .x-panel-header {
 }
 
 .f-layout-object-clean {
-   background-color: #FFE8BE;
-  border: 5px #2e7d32;
-  border-radius: 3px;
- }
+  background-color: #FFE8BE;
+  border: solid 2px $color-jda-blue;
+  border-radius: 6px;
+}
 
-.f-layout-object-selected .x-panel-body{
+.f-layout-object-selected .x-panel-body {
   background-color: #2e7d32 !important;
 }
 
@@ -166,8 +164,12 @@ $font-weight-bold: 500;
   color: $color-soft-red !important;
 }
 
+.f-panel-dirty {
+  border: 3px groove $color-soft-red;
+}
+
 .f-new-layout-ind {
-    position: relative;
+  position: relative;
   top: 2px;
   right: 2px;
   content: $fa-var-check !important;

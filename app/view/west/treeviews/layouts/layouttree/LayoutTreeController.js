@@ -6,7 +6,11 @@ Ext.define('Advertising.view.west.treeviews.layouts.layouttree.LayoutTreeControl
     alias: 'controller.layouttree',
 
     requires: [
+        'Advertising.util.GlobalValues',
+        'Advertising.view.main.common.pages.pageview.Page',
+        'Advertising.view.main.layouts.layoutcreator.LayoutCreator',
         'Advertising.view.west.treeviews.layouts.layouttree.LayoutTreeMenu',
+        'Ext.layout.container.Absolute',
         'Ext.window.MessageBox'
     ],
 
@@ -18,11 +22,11 @@ Ext.define('Advertising.view.west.treeviews.layouts.layouttree.LayoutTreeControl
     init: function () {
 
     },
-    onNodeTreeDrop: function ( node , data , overModel , dropPosition , eOpts ) {
+    onNodeTreeDrop: function (node, data, overModel, dropPosition, eOpts) {
         Ext.toast("Moving node - notify back-end");
     },
     onShowLayoutTreeMenu: function (tree, record, item, index, e, eOpts) {
-
+        var me = this;
         e.stopEvent();
         console.log("Showing menu for item %o", record);
         // only show context menu for vehicles and pages
@@ -37,11 +41,52 @@ Ext.define('Advertising.view.west.treeviews.layouts.layouttree.LayoutTreeControl
                                 vehicleID: record.data.id,
                                 iconCls: 'fa fa-folder',
                                 handler: function () {
-                                    Ext.Msg.prompt('Name', 'New folder name:', function (btn, text) {
+                                    var box = Ext.create('Ext.window.MessageBox');
+                                    box.prompt('Add Folder', 'Folder name:', function (btn, text) {
                                         if (btn == 'ok') {
-                                            console.log("Adding new folder " + text);
-                                        }
+                                            if (!Ext.isEmpty(text)) {
+                                                console.log("Adding folder to %o", record);
 
+                                                Ext.Ajax.request({
+                                                    url: Advertising.util.GlobalValues.serviceURL + "/tree/addLayoutFolder",
+                                                    method: 'GET',
+                                                    cors: true,
+                                                    useDefaultXhrHeader: false,
+                                                    timeout: 1450000,
+                                                    params: {
+                                                        folderName: text,
+                                                        parentNode: record.data.id
+                                                    },
+                                                    success: function (transport) {
+                                                        var response = Ext.decode(transport.responseText);
+                                                        console.log("Got response %o", response);
+
+                                                        var parentNode = tree.getStore().getNodeById(record.data.id);
+
+                                                        //  parentNode.setLeaf(false);
+                                                        parentNode.appendChild({
+                                                            id: response.id,
+                                                            text: response.text,
+                                                            leaf: false
+
+                                                        });
+
+                                                    },
+                                                    failure: function (transport) {
+                                                        try {
+                                                            var response = Ext.decode(transport.responseText);
+
+                                                            Ext.Msg.alert('Error', response.Error);
+                                                        } catch (err) {
+                                                            Ext.Msg.alert('Error', err);
+
+                                                        }
+
+                                                    }
+                                                });
+                                            }
+
+                                        }
                                     });
                                 }
                             },
@@ -49,7 +94,12 @@ Ext.define('Advertising.view.west.treeviews.layouts.layouttree.LayoutTreeControl
                                 text: 'Add Layout',
                                 vehicleName: record.data.Name,
                                 vehicleID: record.data.id,
-                                iconCls: 'fa fa-th'
+                                iconCls: 'fa fa-th',
+                                handler: function () {
+                                    var layoutWin = Ext.create('Advertising.view.main.layouts.layoutcreator.LayoutCreator',{
+                                       sourceData: record.data
+                                    }).show();
+                                }
                             }
 
                         ],

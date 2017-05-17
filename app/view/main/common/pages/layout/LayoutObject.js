@@ -23,15 +23,25 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
 
         this.callParent(arguments);
         console.log("Edit Mode %o", this.editMode);
-       // Ext.toast("Edit mode " + this.editMode);
-        if ( !this.editMode) {
+        // Ext.toast("Edit mode " + this.editMode);
+        if (!this.editMode) {
             this.getViewModel().set("editMode", this.editMode);
         }
-        if ( this.isNew ) {
+        if (this.isNew) {
             this.getViewModel().set("isNew", this.isNew);
         }
-        this.getViewModel().set('cellNumber',this.cellNumber );
+        this.getViewModel().set('cellNumber', this.cellNumber);
+        // load store one time
+        if (! this.getViewModel().getStore("sections").isLoaded()) {
+            console.log("Loading sections store...");
+            this.getViewModel().getStore("sections").load();
+            this.getViewModel().getStore("owners").load();
+
+        }
+
+
     },
+
     isNew: false,
     workFlowStatus: undefined,
     editMode: true,
@@ -43,8 +53,8 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
                 console.log("double click %o", this);
                 var me = this;
                 var panel = Ext.ComponentQuery.query('#' + me.id)[0];
-               // panel.removeCls('f-layout-object-clean');
-             //   panel.addCls('f-layout-object-selected');
+                // panel.removeCls('f-layout-object-clean');
+                //   panel.addCls('f-layout-object-selected');
                 var field = panel.down('checkboxfield');
                 //var selected = field.selected;
                 //field.selected = !selected;
@@ -56,15 +66,16 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
     }
     ,
     border: 2,
-    draggable: true,
+    itemSelector: 'div.f-layout-object',
+
     resizable: true,
     layout: {
         type: 'vbox',
         pack: 'start',
         align: 'stretch'
     },
-    zIndex: 99,
-    constrain: false,
+
+    constrain: true,
     defaults: {
         labelPad: 1,
         padding: '0 0 0 0 ',
@@ -106,10 +117,6 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
                     html: '{debugInfo}',
                     visible: '{debug}'
                 }
-            },
-            {
-                xtype: 'checkboxfield'
-                //handler: 'onPromoCheckChange'
             }
         ]
     },
@@ -135,34 +142,41 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
                 store: '{owners}',
                 readOnly: '{!editMode}'
             },
+            listeners: {
+                change: 'onOwnerChange'
+            },
+            autoShow: true,
+            autoSelect: true,
             displayField: 'name',
-            valueField: 'category',
+            valueField: 'id',
+            queryMode: 'local',
             filterPickList: true
         },
         {
             xtype: 'combobox',
             fieldLabel: 'Section',
             name: 'section',
-            value:'',
+            queryMode: 'local',
             bind: {
                 store: '{sections}',
                 readOnly: '{!editMode}'
 
             },
-            createNewOnEnter: true,
-            createNewOnBlur: true,
             listeners: {
-                blur: 'onSectionChange'
+                change: 'onSectionChange',
+                blur: 'onBlurSection'
             },
-            queryMode: 'local',
             displayField: 'name',
-            valueField: 'name'
+            valueField: 'id'
 
 
         },
         {
             xtype: 'combobox',
             fieldLabel: 'Theme',
+            listeners: {
+                change: 'onThemeChange'
+            },
             value: '',
             bind: {
                 store: '{themeCodes}',
@@ -174,12 +188,16 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
             valueField: 'name'
         },
         {
+            padding: 3,
+            margin: '3 0 0 0',
             xtype: 'textarea',
-            fieldLabel: 'Item Details',
             value: 'Tools need to move here.Layouts need to be duplicated if any object is split. E.g. SG1 becomes SG1 and SG2 - all items on SG1 must be duplicated',
             bind: {
                 readOnly: '{!editMode}'
 
+            },
+            listeners: {
+                change: 'onInstructionChange'
             }
 
         }

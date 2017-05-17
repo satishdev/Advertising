@@ -7,7 +7,8 @@ Ext.define('Advertising.view.main.common.promo.PromoController', {
 
     requires: [
         'Advertising.view.main.common.promo.promoeditwindow.PromoEditWindow',
-        'Advertising.view.main.common.promo.promoproductwindow.PromoProductWindow'
+        'Advertising.view.main.common.promo.promoproductwindow.PromoProductWindow',
+        'Ext.dd.DragZone'
     ],
 
     /**
@@ -16,13 +17,16 @@ Ext.define('Advertising.view.main.common.promo.PromoController', {
     init: function () {
 
     },
-    onBeforePromoMove: function (promo, xPos, yPos) {
+    onBeforeObjectMove: function (promo, xPos, yPos) {
         console.debug("Before move %o %d %d", promo, xPos, yPos);
     },
-    onPromoMove: function (promo, xPos, yPos, a, b, c) {
+    onObjectFocus:function(promo) {
+      console.log("Focus!!");
+    },
+    onObjectMove: function (promo, xPos, yPos, a, b, c) {
         console.debug("Promo was moved %o %d x %d %o %o %o", promo, xPos, yPos);
-        promo.setDebugInfo(Math.round(xPos) + ":" + Math.round(yPos));
-        promo.flagMoved();
+        promo.setDebugInfo();
+        promo.flagDirty();
         Ext.toast("Promo " + promo.id + " was moved");
 
         promo.getViewModel().set("undoDisabled", false);
@@ -95,18 +99,23 @@ Ext.define('Advertising.view.main.common.promo.PromoController', {
         promo.getViewModel().set("origY", promo.y);
 
     },
-    onPromoResize: function (promo, width, height) {
-        console.debug("Promo was resized %o %d x %d", promo, width, height);
-        promo.setDebugInfo(Math.round(width) + ":" + Math.round(height));
+    onObjectResize: function (promo, width, height) {
+        console.debug("Object was resized %o %d x %d", promo, width, height);
+        promo.setDebugInfo();
+        //promo.flagDirty();
+
     },
-    onRenderPromo: function (promo, eOpts) {
-        console.log("Promo rendered");
+    onRenderObject: function (promo, eOpts) {
+        console.log("Object rendered");
         var debugInfo = promo.down('[name="debugInfo"]');
         console.log("Debug info %o", debugInfo);
         promo.getViewModel().set("origX", promo.x);
         promo.getViewModel().set("origY", promo.y);
         // set the Zindex
-        promo.setZIndex(100 + promo.getViewModel().get("adzoneID"));
+       // promo.setZIndex(100 + promo.getViewModel().get("adzoneID"));
+
+
+
     }
 
 

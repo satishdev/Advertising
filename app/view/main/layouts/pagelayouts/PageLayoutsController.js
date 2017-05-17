@@ -55,7 +55,7 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
             console.log("Adding layout view to %o", pageView);
 
             Ext.Ajax.request({
-                url: Advertising.util.GlobalValues.serviceURL + "/layout/getLayout/" + record.get("id"),
+                url: Advertising.util.GlobalValues.serviceURL + "/page/getLayout/" + record.get("id"),
                 method: 'GET',
                 cors: true,
                 useDefaultXhrHeader : false,
@@ -165,6 +165,7 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
         if (isNaN(origWidth)) {
             return;
         }
+
         console.log("Page %o resized %dX%d...moving promos %d-%d", pageview, width, height, origWidth, origHeight);
         var widthScale = width / origWidth;
         var heightScale = height / origHeight;

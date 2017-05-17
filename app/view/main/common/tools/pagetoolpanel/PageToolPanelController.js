@@ -7,7 +7,11 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelContro
 
     requires: [
         'Advertising.view.main.common.tools.pagetoolpanel.MarketButton',
-        'Ext.button.Button'
+        'Ext.button.Button',
+        'Ext.data.ArrayStore',
+        'Ext.grid.Panel',
+        'Ext.layout.container.Fit',
+        'Ext.window.Window'
     ],
 
     id: 'vctoolpanelcontroller',
@@ -122,11 +126,87 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelContro
         this.fireEvent('updatePageZoomLevel', newValue);
 
     },
+    onShowGridWindow: function(btn) {
+        var pagePanel = Ext.ComponentQuery.query('pagelayouts')[0].getActiveTab();
+        var gridWin = Ext.create("Ext.window.Window",{
+            width: 900,
+            height: 400,
+            config: {
+                showAnimation: {
+                    type: 'fadeIn'
+                },
+                hideAnimation: {
+                    type: 'fadeOut'
+                }
+            },
+            layout: 'fit',
+            modal: true,
+            animateTarget: btn.id,
+            listeners: {
+                render: function(win) {
+                    console.log("Show grid");
+                    if (pagePanel.layoutData.hasOwnProperty(('layoutObjectList'))) {
+                        var layoutObjects = pagePanel.layoutData.layoutObjectList;
+                        console.log("Found layouts %o", layoutObjects);
+                        var store = win.down('grid').store;
+                        layoutObjects.forEach(function(lo) {
+                            console.log("Adding store item for %o", lo);
+                            store.add(lo);
+                        });
+
+                    }
+                }
+            },
+            items: [
+                {
+                    layout: 'fit',
+                    xtype: 'grid',
+                    store: new Ext.data.ArrayStore({
+                        fields: ['cellNumber', 'section'],
+                        idIndex: 0,
+                        autoLoad: false
+                    }),
+                    columns: [
+                        {
+                            text: 'Cell #',
+                            dataIndex: 'cellNumber',
+                            flex: 1
+                        },
+                        {
+                            text: 'Description',
+                            dataIndex: 'description',
+                            flex: 1
+                        },
+                        {
+                            text: 'Owners',
+                            flex: 2
+                        },
+                        {
+                            text: 'Theme',
+                            flex: 1
+                        },
+                        {
+                            text: 'Section',
+                            dataIndex: 'section',
+                            flex: 2
+                        },
+                        {
+                            text: 'Instructions',
+                            dataIndex: 'instructions',
+                            flex: 1
+                        }
+                    ]
+                }
+            ]
+        }).show();
+    },
     /*
      page change requested
      */
     onSaveChanges: function (btn) {
         Ext.toast("Saving changes...");
+        var pagePanel = Ext.ComponentQuery.query('pagelayouts')[0].getActiveTab();
+        this.fireEvent('savePageChanges', pagePanel);
 
     },
     onToggleOffers: function (btn) {

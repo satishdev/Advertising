@@ -20,7 +20,7 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelModel'
     data: {
         showLayouts: true,
         showGrids: true,
-        showTools: false,
+        showTools: true,
         showOffers: true,
         showPageTools: true,
         showToolSplash: true,
