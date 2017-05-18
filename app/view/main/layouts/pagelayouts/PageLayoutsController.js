@@ -36,99 +36,125 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
      * just make it the active tab
      * @param record
      */
-    onLayoutClick: function(record) {
-        var tabName = record.get('text'), tabIndex =0;
+    onLayoutClick: function (record) {
+        var tabName = record.get('text'), tabIndex = 0;
         console.log("onLayoutClick %o", record);
         Ext.toast("Show layout " + record.data.text);
         Ext.suspendLayouts();
         var me = this, existing = false;
         var pageView = Ext.ComponentQuery.query("pagelayouts")[0];
         // see if we have this tab name already
-        pageView.items.each(function(e) {
-           if (e.title == tabName) {
-               pageView.setActiveTab(tabIndex);
-               existing=true;
-           }
+        pageView.items.each(function (e) {
+            if (e.title == tabName) {
+                pageView.setActiveTab(tabIndex);
+                existing = true;
+            }
             tabIndex++;
         });
-        if ( !existing ) {
+        if (!existing) {
             console.log("Adding layout view to %o", pageView);
+            alert("Store load");
+            var panel = Ext.create('Advertising.view.main.common.pages.layout.Layout', {
+                title: record.get('text'),
+                closable: true,
+                layout: 'absolute'
 
-            Ext.Ajax.request({
-                url: Advertising.util.GlobalValues.serviceURL + "/page/getLayout/" + record.get("id"),
-                method: 'GET',
-                cors: true,
-                useDefaultXhrHeader : false,
-                params: {
-                    layoutID:record.get('id')
-                },
-                success: function (transport) {
-                    var response = Ext.decode(transport.responseText);
-                    console.log("Got response %o", response);
-                    Ext.toast("Adding new layout from server...");
-                    var panel = Ext.create('Advertising.view.main.common.pages.layout.Layout', {
-                        title: record.get('text'),
-                        closable: true,
-                        layout: 'absolute',
-                        layoutData: response,
-                        inchWidth: response.width,
-                        inchHeight: response.height
-                    });
-                    var addIndex = pageView.items.length - 1;
-                    pageView.insert(addIndex, panel);
-                    pageView.setActiveTab(addIndex);
-                },
-                failure: function (transport) {
-                    var response = Ext.decode(transport.responseText);
-
-                    Ext.Msg.alert('Error', response.Error);
-
-
-                }
+                //layoutData: response,
+                //inchWidth: response.width,
+                //inchHeight: response.height
             });
+
+            console.log("Added panel %o", panel);
+            panel.getViewModel().getStore('layout').getProxy().url = Advertising.util.GlobalValues.serviceURL + '/page/getLayout/' + record.get('id');
+            panel.getViewModel().getStore('layout').load({
+
+                    scope: this,
+                    callback: function (records, operation, success) {
+                        if (success) {
+                            console.log("Layout data loaded..%o", records);
+                            var addIndex = pageView.items.length - 1;
+                            panel.getViewModel().set('width',records[0].data.width);
+                            for (var prop in records[0].data) {
+                                panel.getViewModel().set(prop, records[0].data[prop]);
+                            }
+                            //panel.inchWidth = records[0].data.width;
+                            //panel.inchHeight = records[0].data.height;
+                            //panel.layoutID = records[0].data.height;
+                            pageView.insert(addIndex, panel);
+
+                            pageView.setActiveTab(addIndex);
+                        } else {
+                            console.log('error');
+                        }
+                    }
+                }
+            );
+            //Ext.Ajax.request({
+            //    url: Advertising.util.GlobalValues.serviceURL + "/page/getLayout/" + record.get("id"),
+            //    method: 'GET',
+            //    cors: true,
+            //    useDefaultXhrHeader : false,
+            //    params: {
+            //        layoutID:record.get('id')
+            //    },
+            //    success: function (transport) {
+            //        var response = Ext.decode(transport.responseText);
+            //        console.log("Got response %o", response);
+            //        Ext.toast("Adding new layout from server...");
+            //
+            //
+            //    },
+            //    failure: function (transport) {
+            //        var response = Ext.decode(transport.responseText);
+            //
+            //        Ext.Msg.alert('Error', response.Error);
+            //
+            //
+            //    }
+            //});
             Ext.resumeLayouts(true);
 
         }
     },
 
     onPageChange: function (record) {
-        var me = this, existing=false;
+        var me = this, existing = false;
         var nodetype = record.data.nodetype;
-        if ( nodetype == 'PAGE') {
+        if (nodetype == 'PAGE') {
             me.getViewModel().set("pagename", record.data.text);
         }
         console.log("Page view change request");
-       // Ext.toast("Page change requested " + record.data.nodetype + ":" + record.data.text);
-        if ( nodetype == 'VEHICLE' || nodetype == 'PAGE') {
+        // Ext.toast("Page change requested " + record.data.nodetype + ":" + record.data.text);
+        if (nodetype == 'VEHICLE' || nodetype == 'PAGE') {
             Ext.ComponentQuery.query('promogrid')[0].setTitle('Offers for ' + record.data.text);
         } else {
             Ext.ComponentQuery.query('promogrid')[0].setTitle('No vehicle/page selected');
         }
 
-        var tabName = record.get('text'), tabIndex =0;
+        var tabName = record.get('text'), tabIndex = 0;
         console.log("onPageClick %o", record);
-       // Ext.toast("Show page " + record.data.text);
+        // Ext.toast("Show page " + record.data.text);
         Ext.suspendLayouts();
         var pageView = Ext.ComponentQuery.query("pagelayouts")[0];
         // see if we have this tab name already
-        pageView.items.each(function(e) {
+        pageView.items.each(function (e) {
             if (e.title == tabName) {
                 pageView.setActiveTab(tabIndex);
-                existing=true;
+                existing = true;
             }
             tabIndex++;
         });
-        if ( !existing ) {
+        if (!existing) {
             console.log("Adding page view to %o", pageView);
 
             Ext.Ajax.request({
                 url: Advertising.util.GlobalValues.serviceURL + "/event/getPage",
                 method: 'GET',
                 cors: true,
-                useDefaultXhrHeader : false,
+                useDefaultXhrHeader: false,
                 timeout: 1450000,
                 params: {
-                    pageID:record.get('id')
+                    pageID: record.get('id')
                 },
                 success: function (transport) {
                     var response = Ext.decode(transport.responseText);
@@ -188,8 +214,8 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
     },
     onPageTabChange: function (tabPanel, newCard, oldCard, eOpts) {
         Ext.toast('Tab panel changed...' + newCard.xtype);
-        var me =this;
-        me.getViewModel().set('mode',newCard.xtype);
+        var me = this;
+        me.getViewModel().set('mode', newCard.xtype);
         Ext.ComponentQuery.query("pagetoolpanel")[0].setMode(newCard.xtype);
         this.fireEvent('mainPageTabChanged', tabPanel, newCard, oldCard, eOpts);
 
@@ -197,7 +223,7 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
 
     onPageTabAdded: function (panel, container, pos, eOpts) {
         Ext.toast('Tab panel added...' + panel.title);
-        var me =this;
+        var me = this;
         this.fireEvent('mainPageTabAdded', panel, container, pos, eOpts);
     }
 });

@@ -11,6 +11,33 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutModel', {
     ],
 
     stores: {
+        layout: {
+            storeId: 'layoutStore',
+            proxy: {
+                type : 'ajax',
+                autoLoad: false,
+                cors: true,
+                useDefaultXhrHeader: false,
+                url:  Advertising.util.GlobalValues.serviceURL + '/page/getLayout/',
+                reader: {
+                    type: 'json'
+                }
+            }
+        },
+        layoutObjects: {
+            storeId: 'layoutObjectStore',
+            proxy: {
+                type : 'ajax',
+                autoLoad: false,
+                cors: true,
+                useDefaultXhrHeader: false,
+                url:  Advertising.util.GlobalValues.serviceURL + '/page/getLayoutObjects/',
+                reader: {
+                    type: 'json',
+                    rootProperty: 'objects'
+                }
+            }
+        },
         sections: {
             storeId: 'layoutSectionStore',
             proxy: {

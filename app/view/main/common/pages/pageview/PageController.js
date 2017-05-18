@@ -21,6 +21,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
         }
     },
     requires: [
+        'Advertising.util.GlobalValues',
         'Advertising.view.main.common.Promo',
         'Advertising.view.main.common.pages.layout.LayoutObject',
         'Ext.container.Container',
@@ -122,20 +123,20 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
         Ext.toast("Page was resized " + page.xtype);
         var parentWidth = page.up('panel').getSize().width;
         var parentHeight = page.up('panel').getSize().height;
-
+        var model = page.getViewModel();
         var pageWidth = parentWidth ;
         Ext.toast("Width " + parentWidth);
         //  var scale = parentWidth / ((p.inchWidth * 96) + 20);
-        var scale = pageWidth / ((page.inchWidth * 96) );
+        var scale = pageWidth / ((model.get("width") * 96) );
         console.log("Resizing page %d %o %f", parentWidth, page, scale);
         page.setWidth(Math.round(pageWidth));
-        page.setHeight(Math.round(page.inchHeight * 96 * scale));
+        page.setHeight(Math.round(model.get("height") * 96 * scale));
         var svg = page.getEl().query('svg');
         svg[0].setAttribute("width", '' + pageWidth);
-        svg[0].setAttribute("height",'' +  Math.round(page.inchHeight * 96 * scale));
+        svg[0].setAttribute("height",'' +  Math.round(model.get("height") * 96 * scale));
 
 
-        console.log("New Page size %d x %d",page.width, page.height);
+        console.log("New Page size %d x %d",model.get("width"), model.get("height"));
     },
     onAddPagePanel: function (p) {
 
@@ -268,29 +269,60 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
         var parentPanel = p.up('panel');
         console.log("parent %o", parentPanel);
         var scale = parentPanel.getViewModel().get("scale");
-        if (parentPanel.layoutData.hasOwnProperty(('layoutObjectList'))) {
-            var layoutObjects = parentPanel.layoutData.layoutObjectList;
-            console.log("Items %o", layoutObjects);
-            Ext.toast("Adding " + layoutObjects.length + " items to layout");
-            layoutObjects.forEach(function (lo) {
-                console.log("Adding item %o", lo);
-                var panel = Ext.create('Advertising.view.main.common.pages.layout.LayoutObject', {
-                    width: Math.round(lo.width * 96 * scale),
-                    height: Math.round(lo.height * 96 * scale),
-                    origXPos: lo.xPos,
-                    origYPos: lo.yPos,
-                    origWidth: lo.width,
-                    origHeight: lo.height,
-                    cellNumber: lo.cellNumber,
-                    x: Math.round(lo.xPos * 96 * scale),
-                    y: Math.round(lo.yPos * 96 * scale)
-                });
-                console.log("New panel %o", panel);
-                p.insert(panel);
-            });
-        } else {
-            Ext.toast("No layout object on page");
-        }
+        var store = parentPanel.getViewModel().getStore('layoutObjects');
+        store.getProxy().url = Advertising.util.GlobalValues.serviceURL + '/page/getLayoutObjects/' + parentPanel.getViewModel().get('objid');
+
+        store.load({
+
+                scope: this,
+                callback: function (records, operation, success) {
+                    if (success) {
+                        console.log("Layout object data loaded..%o", records);
+                        store.each(function(rec) {
+                            var data = rec.data;
+                            console.log("Adding object %o %f", rec, scale);
+                            var panel = Ext.create('Advertising.view.main.common.pages.layout.LayoutObject', {
+                                            width: Math.round(data.width * 96 * scale),
+                                            height: Math.round(data.height * 96 * scale),
+                                            origXPos: data.xPos,
+                                            origYPos: data.yPos,
+                                            origWidth: data.width,
+                                            origHeight: data.height,
+                                            cellNumber: data.cellNumber,
+                                            x: Math.round(data.xPos * 96 * scale),
+                                            y: Math.round(data.yPos * 96 * scale)
+                                        });
+                            p.insert(panel);
+                        });
+                    } else {
+                        console.log('error');
+                    }
+                }
+            }
+        );
+        //if (parentPanel.layoutData.hasOwnProperty(('layoutObjectList'))) {
+        //    var layoutObjects = parentPanel.layoutData.layoutObjectList;
+        //    console.log("Items %o", layoutObjects);
+        //    Ext.toast("Adding " + layoutObjects.length + " items to layout");
+        //    layoutObjects.forEach(function (lo) {
+        //        console.log("Adding item %o", lo);
+        //        var panel = Ext.create('Advertising.view.main.common.pages.layout.LayoutObject', {
+        //            width: Math.round(lo.width * 96 * scale),
+        //            height: Math.round(lo.height * 96 * scale),
+        //            origXPos: lo.xPos,
+        //            origYPos: lo.yPos,
+        //            origWidth: lo.width,
+        //            origHeight: lo.height,
+        //            cellNumber: lo.cellNumber,
+        //            x: Math.round(lo.xPos * 96 * scale),
+        //            y: Math.round(lo.yPos * 96 * scale)
+        //        });
+        //        console.log("New panel %o", panel);
+        //        p.insert(panel);
+        //    });
+        //} else {
+        //    Ext.toast("No layout object on page");
+        //}
     },
     /**
      * When a layout is requested we'll call this renderer to then populate the data for the layout
@@ -300,22 +332,23 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
     onAddLayoutPanel: function (p) {
 
         console.log("Parent panel size: %o", p.up('panel').getSize());
-        console.log("Resize page %o %s", p, p.xtype);
+        console.log("Resize page %o %s %o", p, p.xtype, p.getViewModel());
           var parentWidth = p.up('panel').getSize().width;
         var parentHeight = p.up('panel').getSize().height;
 
         var pageWidth = parentWidth ;
-        var scale = parentWidth / ((p.inchWidth * 96));
+        var scale = parentWidth / ((p.getViewModel().get("width") * 96));
+        var model = p.getViewModel();
         console.log("Scale %f", scale);
         var me = this;
         me.getViewModel().set("scale", scale);
-        var trueWidth = Math.round(p.inchWidth * 96 * scale);
-        var trueHeight = Math.round(p.inchHeight * 96 * scale);
-        console.log("Real size %f x %f", p.inchWidth, p.inchHeight);
+        var trueWidth = Math.round(model.get("width") * 96 * scale);
+        var trueHeight = Math.round(model.get("height") * 96 * scale);
+        console.log("Real size %f x %f",model.get("width"),model.get("height") );
         console.log("-->> New size %f x %f", trueWidth, trueHeight);
 
-        p.setWidth( parentWidth);
-        p.setHeight(trueHeight);
+        //p.setWidth( parentWidth);
+        //p.setHeight(trueHeight);
         // add SVG grid panel
         var inner = Ext.create('Ext.panel.Panel', {
             border: true,

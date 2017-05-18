@@ -145,27 +145,25 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelContro
             listeners: {
                 render: function(win) {
                     console.log("Show grid");
-                    if (pagePanel.layoutData.hasOwnProperty(('layoutObjectList'))) {
-                        var layoutObjects = pagePanel.layoutData.layoutObjectList;
-                        console.log("Found layouts %o", layoutObjects);
-                        var store = win.down('grid').store;
-                        layoutObjects.forEach(function(lo) {
-                            console.log("Adding store item for %o", lo);
-                            store.add(lo);
-                        });
-
-                    }
+                    console.log("Grid Data: %o", pagePanel.getViewModel().getStore('layoutObjects'));
+                    win.down('grid').store =  pagePanel.getViewModel().getStore('layoutObjects');
+                    //if (pagePanel.layoutData.hasOwnProperty(('layoutObjectList'))) {
+                    //    var layoutObjects = pagePanel.layoutData.layoutObjectList;
+                    //    console.log("Found layouts %o", layoutObjects);
+                    //    var store = win.down('grid').store;
+                    //    layoutObjects.forEach(function(lo) {
+                    //        console.log("Adding store item for %o", lo);
+                    //        store.add(lo);
+                    //    });
+                    //
+                    //}
                 }
             },
             items: [
                 {
                     layout: 'fit',
                     xtype: 'grid',
-                    store: new Ext.data.ArrayStore({
-                        fields: ['cellNumber', 'section'],
-                        idIndex: 0,
-                        autoLoad: false
-                    }),
+                    store : pagePanel.getViewModel().getStore('layoutObjects'),
                     columns: [
                         {
                             text: 'Cell #',

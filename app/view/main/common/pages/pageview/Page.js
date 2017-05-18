@@ -49,6 +49,19 @@ Ext.define('Advertising.view.main.common.pages.pageview.Page', {
         var pagePanel = Ext.ComponentQuery.query('pagelayouts')[0].getActiveTab();
         var scale = pagePanel.getViewModel().get("scale");
         console.log("Scale %o", scale);
+        // add the item to the store
+        pagePanel.getViewModel().getStore('layoutObjects').add({
+            width: Math.round(2 * 96 * scale),
+            height: Math.round(4 * 96 * scale),
+            origXPos: 50,
+            origYPos: 50,
+            origWidth: 300,
+            origHeight: 300,
+            cellNumber: 0,
+            x: 50,
+            y: 50,
+            isNew: true
+        });
         var layoutObject = Ext.create('Advertising.view.main.common.pages.layout.LayoutObject',
             {
                 width: Math.round(2 * 96 * scale),
