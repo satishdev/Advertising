@@ -14,6 +14,7 @@ Ext.define('Advertising.view.main.common.pages.pageobject.PageObject', {
     xtype: 'pageobject',
     controller: 'promo',
     viewModel: 'promo',
+    objid: -1,
     origWidth: 0,
     origHeight: 0,
     origXPos:0,

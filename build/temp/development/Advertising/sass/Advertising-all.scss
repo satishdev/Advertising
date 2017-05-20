@@ -1,6 +1,6 @@
 $app-name:  dynamic( 'Advertising' );
 $image-search-path: 'C:/Users/Lee/Documents/FSG/Advertising/build/development/Advertising/resources';
-$theme-name:  dynamic( 'theme-triton' );
+$theme-name:  dynamic( 'fsg-theme' );
 $include-advertising-application: dynamic(true);;
 $include-advertising-store-personnel: dynamic(true);;
 $include-advertising-util-globalvalues: dynamic(true);;
@@ -18,6 +18,9 @@ $include-advertising-view-main-common-pages-layout-layoutmodel: dynamic(true);;
 $include-advertising-view-main-common-pages-layout-layoutobject: dynamic(true);;
 $include-advertising-view-main-common-pages-layout-layoutobjectcontroller: dynamic(true);;
 $include-advertising-view-main-common-pages-layout-layoutobjecteditwindow: dynamic(true);;
+$include-advertising-view-main-common-pages-layoutgridwindow-layoutgridwindow: dynamic(true);;
+$include-advertising-view-main-common-pages-layoutgridwindow-layoutgridwindowcontroller: dynamic(true);;
+$include-advertising-view-main-common-pages-layoutgridwindow-layoutgridwindowmodel: dynamic(true);;
 $include-advertising-view-main-common-pages-pageobject-pageobject: dynamic(true);;
 $include-advertising-view-main-common-pages-pageview-page: dynamic(true);;
 $include-advertising-view-main-common-pages-pageview-pagecontroller: dynamic(true);;
@@ -1245,6 +1248,22 @@ $current-resource-root: $theme-triton-resource-root;
 $relative-image-path-for-uis: $theme-triton-resource-path;
 @import '../../../../../ext/classic/theme-triton/sass/etc/all';
 
+/* including package fsg-theme */
+$fsg-theme-resource-root: '' !default;
+$fsg-theme-resource-path: 'images' !default;
+$current-package: 'fsg-theme';
+$current-resource-root: $fsg-theme-resource-root;
+$relative-image-path-for-uis: $fsg-theme-resource-path;
+@import '../../../../../packages/local/fsg-theme/sass/etc/all';
+
+/* including package fsg-theme */
+$fsg-theme-resource-root: '' !default;
+$fsg-theme-resource-path: 'images' !default;
+$current-package: 'fsg-theme';
+$current-resource-root: $fsg-theme-resource-root;
+$relative-image-path-for-uis: $fsg-theme-resource-path;
+@import '../../../../../packages/local/fsg-theme/classic/sass/etc/sencha-themer-defaults';
+
 /* including package charts */
 $charts-resource-root: 'charts' !default;
 $charts-resource-path: 'charts/images' !default;
@@ -1437,6 +1456,30 @@ $relative-image-path-for-uis: $theme-triton-resource-path;
 @import '../../../../../ext/classic/theme-triton/sass/var/tab/Tab';
 @import '../../../../../ext/classic/theme-triton/sass/var/tab/Bar';
 @import '../../../../../ext/classic/theme-triton/sass/var/tree/View';
+
+/* including package fsg-theme */
+$fsg-theme-resource-root: '' !default;
+$fsg-theme-resource-path: 'images' !default;
+$current-package: 'fsg-theme';
+$current-resource-root: $fsg-theme-resource-root;
+$relative-image-path-for-uis: $fsg-theme-resource-path;
+@import '../../../../../packages/local/fsg-theme/classic/sass/var/sencha-themer-defaults';
+
+/* including package fsg-theme */
+$fsg-theme-resource-root: '' !default;
+$fsg-theme-resource-path: 'images' !default;
+$current-package: 'fsg-theme';
+$current-resource-root: $fsg-theme-resource-root;
+$relative-image-path-for-uis: $fsg-theme-resource-path;
+@import '../../../../../packages/local/fsg-theme/classic/sass/var/themer-ui-variables';
+
+/* including package fsg-theme */
+$fsg-theme-resource-root: '' !default;
+$fsg-theme-resource-path: 'images' !default;
+$current-package: 'fsg-theme';
+$current-resource-root: $fsg-theme-resource-root;
+$relative-image-path-for-uis: $fsg-theme-resource-path;
+@import '../../../../../packages/local/fsg-theme/classic/sass/save';
 
 /* including package charts */
 $charts-resource-root: 'charts' !default;
@@ -1669,6 +1712,22 @@ $relative-image-path-for-uis: $theme-triton-resource-path;
 @import '../../../../../ext/classic/theme-triton/sass/src/menu/Menu';
 @import '../../../../../ext/classic/theme-triton/sass/src/tab/Tab';
 @import '../../../../../ext/classic/theme-triton/sass/src/window/Toast';
+
+/* including package fsg-theme */
+$fsg-theme-resource-root: '' !default;
+$fsg-theme-resource-path: 'images' !default;
+$current-package: 'fsg-theme';
+$current-resource-root: $fsg-theme-resource-root;
+$relative-image-path-for-uis: $fsg-theme-resource-path;
+@import '../../../../../packages/local/fsg-theme/classic/sass/save/Ext/panel/Panel';
+
+/* including package fsg-theme */
+$fsg-theme-resource-root: '' !default;
+$fsg-theme-resource-path: 'images' !default;
+$current-package: 'fsg-theme';
+$current-resource-root: $fsg-theme-resource-root;
+$relative-image-path-for-uis: $fsg-theme-resource-path;
+@import '../../../../../packages/local/fsg-theme/classic/sass/src/sencha-themer-defaults';
 
 /* including package charts */
 $charts-resource-root: 'charts' !default;

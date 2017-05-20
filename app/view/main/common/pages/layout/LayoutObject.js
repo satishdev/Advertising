@@ -177,7 +177,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
             listeners: {
                 change: 'onThemeChange'
             },
-            value: '',
+
             bind: {
                 store: '{themeCodes}',
                 readOnly: '{!editMode}'

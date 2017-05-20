@@ -6,6 +6,7 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelContro
     alias: 'controller.pagetoolpanel',
 
     requires: [
+        'Advertising.view.main.common.pages.layoutgridwindow.LayoutGridWindow',
         'Advertising.view.main.common.tools.pagetoolpanel.MarketButton',
         'Ext.button.Button',
         'Ext.data.ArrayStore',
@@ -78,7 +79,9 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelContro
             }
 
             marketControls.items.each(function(btn){
-                btn.getEl().highlight();
+                if ( btn.getEl()) {
+                    btn.getEl().highlight();
+                }
             });
 
         }
@@ -126,76 +129,15 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelContro
         this.fireEvent('updatePageZoomLevel', newValue);
 
     },
+    /**
+     * Show the grid edit window of all layout components
+     * @param btn
+     */
     onShowGridWindow: function(btn) {
         var pagePanel = Ext.ComponentQuery.query('pagelayouts')[0].getActiveTab();
-        var gridWin = Ext.create("Ext.window.Window",{
-            width: 900,
-            height: 400,
-            config: {
-                showAnimation: {
-                    type: 'fadeIn'
-                },
-                hideAnimation: {
-                    type: 'fadeOut'
-                }
-            },
-            layout: 'fit',
-            modal: true,
-            animateTarget: btn.id,
-            listeners: {
-                render: function(win) {
-                    console.log("Show grid");
-                    console.log("Grid Data: %o", pagePanel.getViewModel().getStore('layoutObjects'));
-                    win.down('grid').store =  pagePanel.getViewModel().getStore('layoutObjects');
-                    //if (pagePanel.layoutData.hasOwnProperty(('layoutObjectList'))) {
-                    //    var layoutObjects = pagePanel.layoutData.layoutObjectList;
-                    //    console.log("Found layouts %o", layoutObjects);
-                    //    var store = win.down('grid').store;
-                    //    layoutObjects.forEach(function(lo) {
-                    //        console.log("Adding store item for %o", lo);
-                    //        store.add(lo);
-                    //    });
-                    //
-                    //}
-                }
-            },
-            items: [
-                {
-                    layout: 'fit',
-                    xtype: 'grid',
-                    store : pagePanel.getViewModel().getStore('layoutObjects'),
-                    columns: [
-                        {
-                            text: 'Cell #',
-                            dataIndex: 'cellNumber',
-                            flex: 1
-                        },
-                        {
-                            text: 'Description',
-                            dataIndex: 'description',
-                            flex: 1
-                        },
-                        {
-                            text: 'Owners',
-                            flex: 2
-                        },
-                        {
-                            text: 'Theme',
-                            flex: 1
-                        },
-                        {
-                            text: 'Section',
-                            dataIndex: 'section',
-                            flex: 2
-                        },
-                        {
-                            text: 'Instructions',
-                            dataIndex: 'instructions',
-                            flex: 1
-                        }
-                    ]
-                }
-            ]
+        var gridWin = Ext.create('Advertising.view.main.common.pages.layoutgridwindow.LayoutGridWindow',{
+            animateTarget: btn.id
+
         }).show();
     },
     /*

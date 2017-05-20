@@ -177,7 +177,7 @@ Ext.define('Advertising.view.main.MainController', {
     onMainPageTabAdded: function() {
         var me = this;
         console.log("Showing tool panel");
-        me.getViewModel().set("showTools", true);
+        //me.getViewModel().set("showTools", true);
     //    me.lookupReference('mainToolPanel').setCollapsed(false);
 
     }

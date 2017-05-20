@@ -62,10 +62,10 @@ Ext.define('Advertising.view.west.treeviews.events.eventtree.EventTreeController
                     {
                         items: [
                             {
-                                text: 'Show space allocation',
+                                text: 'Approve page for worklist',
                                 pageName: record.data.Name,
                                 pageID: record.data.id,
-                                iconCls: 'fa fa-th'
+                                iconCls: 'fa fa-tick'
                             }
                         ],
                         data: record.data

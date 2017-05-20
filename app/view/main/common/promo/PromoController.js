@@ -100,8 +100,12 @@ Ext.define('Advertising.view.main.common.promo.PromoController', {
 
     },
     onObjectResize: function (promo, width, height) {
+
         console.debug("Object was resized %o %d x %d", promo, width, height);
         promo.setDebugInfo();
+        promo.getViewModel().set('width', width);
+        promo.getViewModel().set('height', height);
+
         //promo.flagDirty();
 
     },
@@ -112,7 +116,7 @@ Ext.define('Advertising.view.main.common.promo.PromoController', {
         promo.getViewModel().set("origX", promo.x);
         promo.getViewModel().set("origY", promo.y);
         // set the Zindex
-       // promo.setZIndex(100 + promo.getViewModel().get("adzoneID"));
+        promo.setZIndex(100 + promo.getViewModel().get("adzoneID"));
 
 
 

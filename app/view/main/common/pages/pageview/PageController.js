@@ -289,10 +289,17 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
                                             origWidth: data.width,
                                             origHeight: data.height,
                                             cellNumber: data.cellNumber,
+                                layoutObjectID: data.objid,
                                             x: Math.round(data.xPos * 96 * scale),
                                             y: Math.round(data.yPos * 96 * scale)
                                         });
+
+                            for (var prop in rec.data) {
+                                panel.getViewModel().set(prop, rec.data[prop]);
+                            }
+                            panel.getViewModel().set('layoutObjectID',data.objid);
                             p.insert(panel);
+
                         });
                     } else {
                         console.log('error');
@@ -300,29 +307,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
                 }
             }
         );
-        //if (parentPanel.layoutData.hasOwnProperty(('layoutObjectList'))) {
-        //    var layoutObjects = parentPanel.layoutData.layoutObjectList;
-        //    console.log("Items %o", layoutObjects);
-        //    Ext.toast("Adding " + layoutObjects.length + " items to layout");
-        //    layoutObjects.forEach(function (lo) {
-        //        console.log("Adding item %o", lo);
-        //        var panel = Ext.create('Advertising.view.main.common.pages.layout.LayoutObject', {
-        //            width: Math.round(lo.width * 96 * scale),
-        //            height: Math.round(lo.height * 96 * scale),
-        //            origXPos: lo.xPos,
-        //            origYPos: lo.yPos,
-        //            origWidth: lo.width,
-        //            origHeight: lo.height,
-        //            cellNumber: lo.cellNumber,
-        //            x: Math.round(lo.xPos * 96 * scale),
-        //            y: Math.round(lo.yPos * 96 * scale)
-        //        });
-        //        console.log("New panel %o", panel);
-        //        p.insert(panel);
-        //    });
-        //} else {
-        //    Ext.toast("No layout object on page");
-        //}
+
     },
     /**
      * When a layout is requested we'll call this renderer to then populate the data for the layout

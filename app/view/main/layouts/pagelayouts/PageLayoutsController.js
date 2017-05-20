@@ -53,15 +53,11 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
         });
         if (!existing) {
             console.log("Adding layout view to %o", pageView);
-            alert("Store load");
             var panel = Ext.create('Advertising.view.main.common.pages.layout.Layout', {
                 title: record.get('text'),
                 closable: true,
                 layout: 'absolute'
 
-                //layoutData: response,
-                //inchWidth: response.width,
-                //inchHeight: response.height
             });
 
             console.log("Added panel %o", panel);
@@ -77,9 +73,7 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
                             for (var prop in records[0].data) {
                                 panel.getViewModel().set(prop, records[0].data[prop]);
                             }
-                            //panel.inchWidth = records[0].data.width;
-                            //panel.inchHeight = records[0].data.height;
-                            //panel.layoutID = records[0].data.height;
+
                             pageView.insert(addIndex, panel);
 
                             pageView.setActiveTab(addIndex);
@@ -89,29 +83,7 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
                     }
                 }
             );
-            //Ext.Ajax.request({
-            //    url: Advertising.util.GlobalValues.serviceURL + "/page/getLayout/" + record.get("id"),
-            //    method: 'GET',
-            //    cors: true,
-            //    useDefaultXhrHeader : false,
-            //    params: {
-            //        layoutID:record.get('id')
-            //    },
-            //    success: function (transport) {
-            //        var response = Ext.decode(transport.responseText);
-            //        console.log("Got response %o", response);
-            //        Ext.toast("Adding new layout from server...");
-            //
-            //
-            //    },
-            //    failure: function (transport) {
-            //        var response = Ext.decode(transport.responseText);
-            //
-            //        Ext.Msg.alert('Error', response.Error);
-            //
-            //
-            //    }
-            //});
+
             Ext.resumeLayouts(true);
 
         }
@@ -217,6 +189,7 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
         var me = this;
         me.getViewModel().set('mode', newCard.xtype);
         Ext.ComponentQuery.query("pagetoolpanel")[0].setMode(newCard.xtype);
+
         this.fireEvent('mainPageTabChanged', tabPanel, newCard, oldCard, eOpts);
 
     },

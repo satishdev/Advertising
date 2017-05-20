@@ -64,23 +64,41 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
 
 
         }
+        me.setRecordValue(combo,'section',combo.value );
+
         combo.up('layoutobject').flagDirty();
 
+    },
+    setRecordValue: function(component,  field, value) {
+        var store = component.up('layout').getViewModel().getStore('layoutObjects');
+        var layout = component.up('layoutobject');
+        console.log("Layout Object %o", layout);
+        console.log("Store %o %d", store, layout.layoutObjectID);
+        var rec = store.findRecord('layoutObjectID', layout.layoutObjectID);
+        console.log("Record %o", rec);
+        if ( rec ) {
+            rec.set(field,value);
+        }
     },
     onThemeChange: function(combo , event , eOpts) {
         var me = this;
         console.log("Combo value %s for object %o", combo.value, combo.up('layoutobject'));
        // combo.up('layoutobject').flagDirty();
+        // update the store
+        me.setRecordValue(combo,'theme',combo.value );
     },
     onOwnerChange: function(combo , event , eOpts) {
         var me = this;
         console.log("Combo value %s for object %o", combo.value, combo.up('layoutobject'));
         //combo.up('layoutobject').flagDirty();
+        me.setRecordValue(combo,'owners',combo.value );
     },
     onInstructionChange: function(combo , event , eOpts) {
         var me = this;
         console.log("Combo value %s for object %o", combo.value, combo.up('layoutobject'));
         combo.up('layoutobject').flagDirty();
+        me.setRecordValue(combo,'owners',combo.value );
+
     },
     onBeforeObjectMove: function (promo, xPos, yPos) {
         console.debug("Before move %o %d %d", promo, xPos, yPos);
@@ -91,12 +109,29 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
         pageObj.setDebugInfo();
         pageObj.flagDirty();
         Ext.toast("Object " + pageObj.id + " was moved");
+        pageObj.getViewModel().set("xPos", xPos);
+        pageObj.getViewModel().set("yPos", yPos);
 
         pageObj.getViewModel().set("undoDisabled", false);
     },
     onObjectResize: function (pageObj, width, height) {
         console.debug("Promo was resized %o %d x %d", pageObj, width, height);
         pageObj.setDebugInfo();
+        var parentModel = pageObj.up('layout').getViewModel();
+        console.log("Update parent view model %o", parentModel);
+        parentModel.data.layoutObjects.each(function(lo) {
+            console.log("Layout update %d", pageObj.layoutID);
+
+            if ( lo.layoutID = pageObj.layoutID) {
+                console.log("Updating width %d for layout object %d",width, pageObj.layoutID);
+               // pageObj.getViewModel().set("width", width);
+                // update store record
+                lo.width = width;
+                parentModel.getStore('layoutObjects').sync();
+            }
+        });
+
+        pageObj.getViewModel().set('height', height);
 
     },
     onRenderObject: function (lo, eOpts) {
