@@ -173,6 +173,7 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
             },
             padding: 8
         },
+
         {
             iconCls: 'fa fa-plus',
             text: 'Add item',
@@ -191,15 +192,15 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
             //handler: 'onClickCreateLayout',
             padding: 5
         },
-        {
-            iconCls: 'fa fa-users',
-            text: 'Owners',
-            bind: {
-                hidden: '{hidePageTools}'
-            },
-            //handler: 'onClickShowSpaceOwners',
-            padding: 5
-        },
+        //{
+        //    iconCls: 'fa fa-users',
+        //    text: 'Owners',
+        //    bind: {
+        //        hidden: '{hidePageTools}'
+        //    },
+        //    //handler: 'onClickShowSpaceOwners',
+        //    padding: 5
+        //},
         {
             iconCls: 'fa fa-th',
             text: 'Grid view',

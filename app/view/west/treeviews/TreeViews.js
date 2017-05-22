@@ -28,7 +28,7 @@ Ext.define('Advertising.view.west.treeviews.TreeViews', {
     items: [
         /* include child components here */
         {
-            title: 'Events',
+            title: 'Vehicles & Pages',
             xtype: 'eventtree'
         },
         {
@@ -40,7 +40,7 @@ Ext.define('Advertising.view.west.treeviews.TreeViews', {
         //    title: 'Products'
         //},
         {
-            title: 'Layouts',
+            title: 'Layout Templates',
             xtype: 'layouttree'
         }
     ]

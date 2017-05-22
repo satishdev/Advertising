@@ -6,22 +6,35 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectEditWindow', {
 
     requires: [
         'Advertising.view.main.common.pages.layout.LayoutModel',
+        'Advertising.view.main.common.pages.layout.LayoutObjectEditController',
+        'Ext.button.Button',
         'Ext.form.field.ComboBox',
         'Ext.form.field.Tag',
         'Ext.form.field.TextArea',
-        'Ext.layout.container.Form'
+        'Ext.layout.container.Form',
+        'Ext.layout.container.HBox',
+        'Ext.window.MessageBox'
     ],
-    initComponent: function() {
+    controller: 'layoutobjectedit',
+    initComponent: function () {
         var me = this;
         me.callParent(arguments);
         console.log("New window %o", me);
-        me.getViewModel().set('section', me.section);
+        console.log('Source object was %o', me.sourceObject);
+        // add all items from source object - we have to return them afterwards
+        me.sourceObject.addCls('f-layout-edit');
+        me.setTitle('Editing layout object');
+        me.sourceObject.items.each(function (item) {
+            me.add(item);
+        });
+
     },
+
     viewModel: {
         type: 'layout'
     },
-    width: 500,
-    height: 400,
+    width: 400,
+    height: 700,
     modal: true,
     config: {
         showAnimation: {
@@ -31,56 +44,58 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectEditWindow', {
             type: 'fadeOut'
         }
     },
-    /*
-    Uncomment to give this component an xtype
-    xtype: 'layoutobjecteditwindow',
-    */
+    listeners: {
+        close: function (win) {
+            if ( !win.sourceObject.destroyed ) {
+                win.items.each(function (item) {
+                    //    if (items.xtype != 'button') {
+                    //    }
+                    if (item.hasOwnProperty('xtype') && item.xtype == 'button') {
 
-    layout:'form',
+                    } else {
+                        win.sourceObject.add(item);
+                    }
+                });
+                win.sourceObject.removeCls('f-layout-edit');
+            } else {
+                console.log("Source object has been deleted..");
+            }
+        }
+
+    },
+    /*
+     Uncomment to give this component an xtype
+     xtype: 'layoutobjecteditwindow',
+     */
+
+    layout: 'form',
     items: [
         {
+            xtype: 'button',
+            text: 'Delete',
+            handler: function (btn) {
+                var box = Ext.create('Ext.window.MessageBox');
+                var me = this;
+                box.confirm('Delete', 'Are you sure you want to delete this item?', function (answer) {
+                    if (answer == 'yes') {
+                        var source = btn.up('window').sourceObject;
+                        console.log("Deleting %o",source);
+                        source.destroy();
+                    }
+                    btn.up('window').close();
+                });
+            }
+        }
+    ],
+    buttons: [
 
-            xtype: 'tagfield',
-            fieldLabel: 'Owners',
-            value: [''],
-            bind: {
-                store: '{owners}'
-            },
-            displayField: 'name',
-            valueField: 'category',
-            filterPickList: true
-        },
         {
-            xtype: 'combobox',
-            fieldLabel: 'Section',
-            name: 'section',
+            text: 'OK',
+            handler: function () {
+                this.up('window').close();
 
-            bind: {
-                store: '{sections}',
-                value: '{section}'
-            },
-            createNewOnEnter: true,
-            createNewOnBlur: true,
-            displayField: 'name',
-            valueField: 'name'
-        },
-        {
-            xtype: 'combobox',
-            fieldLabel: 'Theme',
-            value: '',
-            bind: {
-                store: '{themeCodes}'
-            },
-
-
-            displayField: 'name',
-            valueField: 'name'
-        },
-        {
-            xtype: 'textarea',
-            fieldLabel: 'Item Details',
-            value: ''
-
+            }
         }
     ]
-});
+})
+;

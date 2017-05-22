@@ -5,19 +5,27 @@ Ext.define('Advertising.view.main.common.pages.layoutgridwindow.LayoutGridWindow
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.layoutgridwindow',
 
-    stores: {
-        /*
-        A declaration of Ext.data.Store configurations that are first processed as binds to produce an effective
-        store configuration. For example:
+    requires: [
+        'Advertising.util.GlobalValues',
+        'Ext.data.reader.Json'
+    ],
 
-        users: {
-            model: 'LayoutGridWindow',
-            autoLoad: true
+    stores: {
+        owners: {
+            proxy: {
+                type : 'ajax',
+                autoLoad: true,
+                useDefaultXhrHeader: false,
+                url:  Advertising.util.GlobalValues.serviceURL + '/attributes/getAllOwners',
+                reader: {
+                    type: 'json',
+                    rootProperty: 'data'
+                }
+            }
         }
-        */
     },
 
     data: {
-        /* This object holds the arbitrary data that populates the ViewModel and is then available for binding. */
+        windowTitle: 'Layout grid view'
     }
 });

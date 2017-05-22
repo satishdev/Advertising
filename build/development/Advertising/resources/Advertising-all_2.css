@@ -12162,3 +12162,15 @@ a.x-btn:active {
     right: 2px;
     content: "\f00c" !important;
 }
+/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:178 */
+.f-layout-edit:after {
+    color: #0aa9dc;
+    content: "\f040";
+    font-size: 7vw;
+    font-family: FontAwesome;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    margin: 0 auto;
+}

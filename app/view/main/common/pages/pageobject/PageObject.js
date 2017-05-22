@@ -24,9 +24,11 @@ Ext.define('Advertising.view.main.common.pages.pageobject.PageObject', {
     border: 2,
     dirty:false,
     draggable: true,
+    deleted: false,
     resizable: true,
     layout: 'absolute',
     constrain: true,
+    selected: false,
     items: [
         /* include child components here */
     ],

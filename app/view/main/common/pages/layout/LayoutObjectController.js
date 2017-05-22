@@ -4,18 +4,28 @@
 Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.layoutobject',
+    id: 'vclayoutobject',
 
     requires: [
         'Advertising.view.main.common.pages.layout.LayoutObjectEditWindow',
         'Ext.dd.DragZone'
     ],
+    listen: {
+        controller: {
+            '#vclayoutobjectedit': {
 
+                deleteLayoutObject: 'onDeleteLayoutObject'
+            }
+
+        }
+    },
     /**
      * Called when the view is created
      */
     init: function() {
 
     },
+
     colorMap: {},
     onBlurSection: function(combo, blur,eOpts) {
         // see if this should be a new addition
@@ -69,6 +79,15 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
         combo.up('layoutobject').flagDirty();
 
     },
+    getRecord: function(component) {
+        var store = component.up('layout').getViewModel().getStore('layoutObjects');
+        var layout = component.up('layoutobject');
+        var rec = store.findRecord('layoutObjectID', layout.layoutObjectID);
+        console.log("getRecord %o", rec);
+        if ( rec ) {
+           return rec;
+        }
+    },
     setRecordValue: function(component,  field, value) {
         var store = component.up('layout').getViewModel().getStore('layoutObjects');
         var layout = component.up('layoutobject');
@@ -79,6 +98,15 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
         if ( rec ) {
             rec.set(field,value);
         }
+    },
+    onShowEdit: function(combo , event , eOpts) {
+        var me = this;
+        console.log("Combo value %s for object %o", combo.value, combo.up('layoutobject'));
+        var win = Ext.create('Advertising.view.main.common.pages.layout.LayoutObjectEditWindow',
+            {
+                animateTarget: combo.id,
+                sourceObject: combo.up('layoutobject')
+            }).show();
     },
     onThemeChange: function(combo , event , eOpts) {
         var me = this;
@@ -117,19 +145,19 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
     onObjectResize: function (pageObj, width, height) {
         console.debug("Promo was resized %o %d x %d", pageObj, width, height);
         pageObj.setDebugInfo();
-        var parentModel = pageObj.up('layout').getViewModel();
-        console.log("Update parent view model %o", parentModel);
-        parentModel.data.layoutObjects.each(function(lo) {
-            console.log("Layout update %d", pageObj.layoutID);
-
-            if ( lo.layoutID = pageObj.layoutID) {
-                console.log("Updating width %d for layout object %d",width, pageObj.layoutID);
-               // pageObj.getViewModel().set("width", width);
-                // update store record
-                lo.width = width;
-                parentModel.getStore('layoutObjects').sync();
-            }
-        });
+        //var parentModel = pageObj.up('layout').getViewModel();
+        //console.log("Update parent view model %o", parentModel);
+        //parentModel.data.layoutObjects.each(function(lo) {
+        //    console.log("Layout update %d", pageObj.layoutID);
+        //
+        //    if ( lo.layoutID = pageObj.layoutID) {
+        //        console.log("Updating width %d for layout object %d",width, pageObj.layoutID);
+        //       // pageObj.getViewModel().set("width", width);
+        //        // update store record
+        //        lo.width = width;
+        //        parentModel.getStore('layoutObjects').sync();
+        //    }
+        //});
 
         pageObj.getViewModel().set('height', height);
 
@@ -172,6 +200,9 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
 //                return this.dragData.repairXY;
 //            }
 //        });
+    },
+    onDeleteLayoutObject: function(layoutObject) {
+        alert("Object deleted");
     },
     onExpandLayoutObject: function(btn) {
         var layoutobject = btn.up('layoutobject');

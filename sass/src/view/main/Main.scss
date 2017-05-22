@@ -174,3 +174,15 @@ $font-weight-bold: 500;
   right: 2px;
   content: $fa-var-check !important;
 }
+
+.f-layout-edit:after {
+  color: #0aa9dc;
+  content: "\f040";
+  font-size: 7vw;
+  font-family: FontAwesome;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 30%;
+  margin:0 auto;
+}

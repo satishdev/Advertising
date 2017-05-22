@@ -102,9 +102,8 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
             },
             {
                 iconCls: 'fa fa-edit',
-                text: 'edit',
                 listeners: {
-                    //click: 'onShowEdit'
+                    click: 'onShowEdit'
                 }
             },
 
@@ -139,8 +138,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
             fieldLabel: 'Owners',
             value: [''],
             bind: {
-                store: '{owners}',
-                readOnly: '{!editMode}'
+                store: '{owners}'
             },
             listeners: {
                 change: 'onOwnerChange'
@@ -148,7 +146,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
             autoShow: true,
             autoSelect: true,
             displayField: 'name',
-            valueField: 'id',
+            valueField: 'name',
             queryMode: 'local',
             filterPickList: true
         },
@@ -158,8 +156,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
             name: 'section',
             queryMode: 'local',
             bind: {
-                store: '{sections}',
-                readOnly: '{!editMode}'
+                store: '{sections}'
 
             },
             listeners: {
@@ -167,7 +164,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
                 blur: 'onBlurSection'
             },
             displayField: 'name',
-            valueField: 'id'
+            valueField: 'name'
 
 
         },
@@ -179,8 +176,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
             },
 
             bind: {
-                store: '{themeCodes}',
-                readOnly: '{!editMode}'
+                store: '{themeCodes}'
             },
 
 
@@ -189,13 +185,9 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
         },
         {
             padding: 3,
-            margin: '3 0 0 0',
+            margin: '3 3 0 3',
             xtype: 'textarea',
-            value: 'Tools need to move here.Layouts need to be duplicated if any object is split. E.g. SG1 becomes SG1 and SG2 - all items on SG1 must be duplicated',
-            bind: {
-                readOnly: '{!editMode}'
-
-            },
+            maxLength: 255,
             listeners: {
                 change: 'onInstructionChange'
             }
