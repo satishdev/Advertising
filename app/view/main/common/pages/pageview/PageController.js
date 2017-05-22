@@ -110,7 +110,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
             if ( lo.xtype == 'layoutobject') {
                 if ( lo.dirty == true) {
                     console.log("Layout object was changed %o", lo);
-                    json.push(lo);
+                    json.push(lo.getViewModel().data);
                 }
             }
         });

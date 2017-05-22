@@ -13,8 +13,10 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
     listen: {
         controller: {
             '#vclayoutobjectedit': {
-
                 deleteLayoutObject: 'onDeleteLayoutObject'
+            },
+            '#vclayoutgridwindow': {
+                updateLayoutsFromGridEvent: 'onUpdateLayoutsFromGrid'
             }
 
         }
@@ -41,6 +43,35 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
             }
         }
     },
+    updateLayoutObjectFromRecord: function(record) {
+        // get the active page
+        var layout = Ext.ComponentQuery.query('pagelayouts')[0].getActiveTab().down('panel');
+        layout.items.each(function(lo) {
+           if ( lo.xtype == 'layoutobject' && lo.layoutObjectID == record.get('layoutObjectID')) {
+               lo.setComponentValue('instructions', record.get('instructions'));
+               lo.setComponentValue('theme', record.get('theme'));
+               lo.setComponentValue('owners', record.get('owners'));
+               lo.setComponentValue('section', record.get('section'));
+
+
+           }
+        });
+    },
+    onUpdateLayoutsFromGrid: function(records) {
+        var me = this;
+        console.log("Updating layout for record %o", records);
+        Ext.toast("record " + records.data);
+
+        records.each(function(rec) {
+            if ( rec.isDirty() ) {
+                console.log("**** Update required on %o *****", rec);
+                me.updateLayoutObjectFromRecord(rec);
+            }
+        });
+        // we return false so this event is only fired one - otherwise its
+        // called once per record
+        return false;
+    },
     /**
      * When a section value changes then update the layout background color
      * These need to be saved against the layout
@@ -51,7 +82,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
     onSectionChange: function(combo , event , eOpts) {
         var me = this;
         console.log("Combo value %s for object %o", combo.value, combo.up('layoutobject'));
-        if ( Ext.isNumber(combo.value)) {
+        if ( Ext.isString(combo.value)) {
 
             var panel = combo.up('panel');
             console.log("Layout object %o", panel);
@@ -74,9 +105,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
 
 
         }
-        me.setRecordValue(combo,'section',combo.value );
-
-        combo.up('layoutobject').flagDirty();
+        me.setRecordValue(combo );
 
     },
     getRecord: function(component) {
@@ -88,15 +117,20 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
            return rec;
         }
     },
-    setRecordValue: function(component,  field, value) {
+    setRecordValue: function(component) {
         var store = component.up('layout').getViewModel().getStore('layoutObjects');
         var layout = component.up('layoutobject');
         console.log("Layout Object %o", layout);
+        // set layout viewModel Value
+        var model =layout.getViewModel();
+        model.set(component.name + "_val", component.value);
         console.log("Store %o %d", store, layout.layoutObjectID);
         var rec = store.findRecord('layoutObjectID', layout.layoutObjectID);
         console.log("Record %o", rec);
         if ( rec ) {
-            rec.set(field,value);
+            rec.set(component.name,component.value);
+            layout.flagDirty();
+
         }
     },
     onShowEdit: function(combo , event , eOpts) {
@@ -111,21 +145,19 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
     onThemeChange: function(combo , event , eOpts) {
         var me = this;
         console.log("Combo value %s for object %o", combo.value, combo.up('layoutobject'));
-       // combo.up('layoutobject').flagDirty();
         // update the store
-        me.setRecordValue(combo,'theme',combo.value );
+        me.setRecordValue(combo );
     },
     onOwnerChange: function(combo , event , eOpts) {
         var me = this;
-        console.log("Combo value %s for object %o", combo.value, combo.up('layoutobject'));
-        //combo.up('layoutobject').flagDirty();
-        me.setRecordValue(combo,'owners',combo.value );
+        console.log("Owner change value %s for object %o", combo.value, combo.up('layoutobject'));
+        if ( combo.value.length != 0 ) {
+            me.setRecordValue(combo);
+        }
     },
-    onInstructionChange: function(combo , event , eOpts) {
+    onInstructionChange: function(textarea , event , eOpts) {
         var me = this;
-        console.log("Combo value %s for object %o", combo.value, combo.up('layoutobject'));
-        combo.up('layoutobject').flagDirty();
-        me.setRecordValue(combo,'owners',combo.value );
+        me.setRecordValue(textarea );
 
     },
     onBeforeObjectMove: function (promo, xPos, yPos) {

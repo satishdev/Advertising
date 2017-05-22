@@ -136,6 +136,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
 
             xtype: 'tagfield',
             fieldLabel: 'Owners',
+            name: 'owners',
             value: [''],
             bind: {
                 store: '{owners}'
@@ -171,6 +172,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
         {
             xtype: 'combobox',
             fieldLabel: 'Theme',
+            name: 'theme',
             listeners: {
                 change: 'onThemeChange'
             },
@@ -186,6 +188,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
         {
             padding: 3,
             margin: '3 3 0 3',
+            name: 'instructions',
             xtype: 'textarea',
             maxLength: 255,
             listeners: {
@@ -193,5 +196,14 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
             }
 
         }
-    ]
+    ],
+    setComponentValue: function(name, value) {
+        var me =this;
+        console.log("Setting value to %o for %s", value,name);
+        me.items.each(function(e) {
+           if (e.name == name) {
+               e.setValue(value);
+           }
+        });
+    }
 });

@@ -38,6 +38,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.Page', {
         // set the zoom and position of the child items
         childPanel.items.each(function(item) {
             if ( item.xtype == 'layoutobject' || item.xtype == 'promo') {
+                console.log("Updating item size and location %o", item);
                 item.setZoom(zoom);
             }
         });
@@ -47,35 +48,55 @@ Ext.define('Advertising.view.main.common.pages.pageview.Page', {
         var me = this;
         Ext.toast("Adding new page object...");
         var pagePanel = Ext.ComponentQuery.query('pagelayouts')[0].getActiveTab();
+        var targetPanel = pagePanel.down('panel');
+        // add item to the store
+        console.log("Adding record to pagePanel %o", pagePanel);
+        var store = pagePanel.getViewModel().getStore('layoutObjects');
         var scale = pagePanel.getViewModel().get("scale");
         console.log("Scale %o", scale);
+        // see if we have an item in this exact position
+        var nextX = 1, nextY = 1;
+        targetPanel.items.each(function(curItem) {
+            console.log("Cur %f %f", curItem.xPos, curItem.yPos);
+            if ( curItem.xPos == nextX || curItem.yPos == nextY) {
+                nextX += 0.1;
+                nextY += 0.1;
+            }
+        });
         // add the item to the store
-        pagePanel.getViewModel().getStore('layoutObjects').add({
+        store.add({
             width: Math.round(2 * 96 * scale),
-            height: Math.round(4 * 96 * scale),
-            origXPos: 50,
-            origYPos: 50,
-            origWidth: 280,
-            origHeight: 315,
+            height: Math.round(3 * 96 * scale),
+            origXPos:  nextX,
+            origYPos:  nextY,
+            xPos:  nextX,
+            yPos:  nextY,
+            origWidth: 2,
+            scale: scale,
+            origHeight: 3,
             cellNumber: 0,
-            x: 50,
-            y: 50,
+            x:  Math.round(nextX * 96 * scale),
+            y:  Math.round(nextY * 96 * scale),
             isNew: true
         });
         var layoutObject = Ext.create('Advertising.view.main.common.pages.layout.LayoutObject',
             {
+                xtype: 'layoutobject',
                 width: Math.round(2 * 96 * scale),
-                height: Math.round(4 * 96 * scale),
-                origXPos: 50,
-                origYPos: 50,
-                origWidth: 300,
-                origHeight: 300,
+                height: Math.round(3 * 96 * scale),
+                origXPos:  nextX,
+                origYPos:  nextY,
+                xPos:  nextX,
+                yPos:  nextY,
+                origWidth: 2,
+                origHeight: 3,
+                scale: scale,
                 cellNumber: 0,
-                x: 50,
-                y: 50,
+                x:  Math.round(nextX * 96 * scale),
+                y:  Math.round(nextY * 96 * scale),
                 isNew: true
             });
-        pagePanel.down('panel').insert(layoutObject);
+        targetPanel.insert(layoutObject);
         layoutObject.flagDirty();
 
     },

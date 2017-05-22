@@ -14,7 +14,8 @@ Ext.define('Advertising.view.main.common.pages.layoutgridwindow.LayoutGridToolba
         },
         {
             iconCls: 'fa fa-remove',
-            text: 'Delete'
+            text: 'Delete',
+            handler: 'onDeleteItemsClick'
         }
     ]
 });

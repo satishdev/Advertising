@@ -8,7 +8,9 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectEditWindow', {
         'Advertising.view.main.common.pages.layout.LayoutModel',
         'Advertising.view.main.common.pages.layout.LayoutObjectEditController',
         'Ext.button.Button',
+        'Ext.form.FieldContainer',
         'Ext.form.field.ComboBox',
+        'Ext.form.field.Number',
         'Ext.form.field.Tag',
         'Ext.form.field.TextArea',
         'Ext.layout.container.Form',
@@ -46,7 +48,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectEditWindow', {
     },
     listeners: {
         close: function (win) {
-            if ( !win.sourceObject.destroyed ) {
+            if (!win.sourceObject.destroyed) {
                 win.items.each(function (item) {
                     //    if (items.xtype != 'button') {
                     //    }
@@ -79,13 +81,27 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectEditWindow', {
                 box.confirm('Delete', 'Are you sure you want to delete this item?', function (answer) {
                     if (answer == 'yes') {
                         var source = btn.up('window').sourceObject;
-                        console.log("Deleting %o",source);
+                        console.log("Deleting %o", source);
                         source.destroy();
                     }
                     btn.up('window').close();
                 });
             }
         }
+
+        //{
+        //    xtype: 'numberfield',
+        //    labelAlign: 'top',
+        //    name: 'width',
+        //    fieldLabel: 'Width'
+        //},
+        //{
+        //    xtype: 'numberfield',
+        //    labelAlign: 'top',
+        //    name: 'height',
+        //    fieldLabel: 'Height'
+        //}
+
     ],
     buttons: [
 

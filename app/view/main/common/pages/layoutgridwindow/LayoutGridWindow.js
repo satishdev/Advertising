@@ -9,10 +9,13 @@ Ext.define('Advertising.view.main.common.pages.layoutgridwindow.LayoutGridWindow
         'Advertising.view.main.common.pages.layoutgridwindow.LayoutGridToolbar',
         'Advertising.view.main.common.pages.layoutgridwindow.LayoutGridWindowController',
         'Advertising.view.main.common.pages.layoutgridwindow.LayoutGridWindowModel',
+        'Ext.form.field.Checkbox',
         'Ext.form.field.ComboBox',
         'Ext.form.field.Number',
         'Ext.form.field.Tag',
+        'Ext.form.field.Text',
         'Ext.grid.Panel',
+        'Ext.grid.column.Action',
         'Ext.grid.column.Check',
         'Ext.grid.column.Column',
         'Ext.grid.plugin.CellEditing',
@@ -60,7 +63,6 @@ Ext.define('Advertising.view.main.common.pages.layoutgridwindow.LayoutGridWindow
         {
             layout: 'fit',
             xtype: 'grid',
-            store: undefined,
             selModel: {
                 type: 'cellmodel'
             },
@@ -72,12 +74,20 @@ Ext.define('Advertising.view.main.common.pages.layoutgridwindow.LayoutGridWindow
             //store: pagePanel.getViewModel().getStore('layoutObjects'),
             columns: [
                 {
-                    xtype: 'checkcolumn'
+
+                    xtype: 'checkcolumn',
+                    header: 'Select',
+                    dataIndex: 'selected',
+                    width: 60,
+                    editor: {
+                        xtype: 'checkbox',
+                        cls: 'x-grid-checkheader-editor'
+                    }
                 },
                 {
                     text: 'Cell #',
                     dataIndex: 'cellNumber',
-                    flex: 1
+                    width: 60
                 },
                 {
                     text: 'Description',
@@ -112,7 +122,12 @@ Ext.define('Advertising.view.main.common.pages.layoutgridwindow.LayoutGridWindow
                     editor: {
                         xtype: 'combo',
                         typeAhead: true,
-                        triggerAction: 'all'
+                        triggerAction: 'all',
+                        displayField: 'name',
+                        valueField: 'name',
+                        bind: {
+                            store: '{themeCodes}'
+                        }
                     },
                     text: 'Theme',
                     dataIndex: 'theme',
@@ -186,18 +201,24 @@ Ext.define('Advertising.view.main.common.pages.layoutgridwindow.LayoutGridWindow
                 {
                     text: 'Instructions',
                     dataIndex: 'instructions',
-                    flex: 1
+                    flex: 3,
+                    editor: {
+                        xtype: 'textfield'
+                    }
                 }
             ]
         }],
     buttons: [
-
         {
-            text: 'OK',
+            text: 'Cancel',
             handler: function () {
                 this.up('window').close();
 
             }
+        },
+        {
+            text: 'OK',
+            handler: 'onUpdateLayoutFromGrid'
         }
     ]
 });

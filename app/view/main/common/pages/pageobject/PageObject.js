@@ -51,7 +51,6 @@ Ext.define('Advertising.view.main.common.pages.pageobject.PageObject', {
     setZoom: function(zoom) {
         var me = this;
         var parentPanel = me.up('panel');
-        console.log("Parent XPos: {}", parentPanel.getX());
 
         var curZoom = me.zoom;
         me.zoom = zoom;
@@ -59,7 +58,6 @@ Ext.define('Advertising.view.main.common.pages.pageobject.PageObject', {
         var curHeight = me.getHeight();
         var curX = me.getX();
         var curY = me.getY();
-
         console.log("Orig size %f x %f" , me.origWidth, me.origHeight);
         console.log("Orig pos %f x %f" , me.origXPos, me.origYPos);
         var newXPos = Math.round((me.origXPos * 96)* (zoom /100)) + parentPanel.getX() ;

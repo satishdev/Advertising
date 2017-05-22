@@ -21,7 +21,7 @@ Ext.define('Advertising.view.main.layouts.layoutcreator.LayoutCreatorModel', {
         width: 10,
         height: 10,
         name: '',
-        description: ''
+        description: 'Ideally we would let the user pick from a set of templates..e,g [2,3,2],[4,4,4,4]'
         /* This object holds the arbitrary data that populates the ViewModel and is then available for binding. */
     }
 });

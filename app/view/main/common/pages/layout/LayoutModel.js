@@ -89,7 +89,6 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutModel', {
         debugInfo: '',
         themeCode: '',
         debug: true,
-        windowTitle: 'Layout grid view'
 
         /* This object holds the arbitrary data that populates the ViewModel and is then available for binding. */
     }
