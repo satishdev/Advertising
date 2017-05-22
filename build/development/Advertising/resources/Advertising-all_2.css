@@ -12174,3 +12174,13 @@ a.x-btn:active {
     left: 30%;
     margin: 0 auto;
 }
+/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:190 */
+.f-disabled-row {
+    background-color: #f8d400 !important;
+}
+/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:194 */
+.cell-editing-delete-row:before {
+    font: 18px/1 FontAwesome;
+    color: #dd6550;
+    content: "\f056";
+}

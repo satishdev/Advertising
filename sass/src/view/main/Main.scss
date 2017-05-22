@@ -186,3 +186,13 @@ $font-weight-bold: 500;
   left: 30%;
   margin:0 auto;
 }
+
+.f-disabled-row {
+  background-color: #f8d400 !important;
+}
+
+.cell-editing-delete-row:before {
+  font: 18px/1 FontAwesome;
+  color: #dd6550;
+  content: "\f056";
+}

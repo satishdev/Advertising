@@ -48,6 +48,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
         var layout = Ext.ComponentQuery.query('pagelayouts')[0].getActiveTab().down('panel');
         layout.items.each(function(lo) {
            if ( lo.xtype == 'layoutobject' && lo.layoutObjectID == record.get('layoutObjectID')) {
+               // todo - handle cleaner
                lo.setComponentValue('instructions', record.get('instructions'));
                lo.setComponentValue('theme', record.get('theme'));
                lo.setComponentValue('owners', record.get('owners'));

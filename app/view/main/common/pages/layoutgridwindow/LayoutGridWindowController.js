@@ -12,8 +12,23 @@ Ext.define('Advertising.view.main.common.pages.layoutgridwindow.LayoutGridWindow
     init: function() {
 
     },
-    onDeleteItemsClick: function(btn) {
-        Ext.toast("Delete selected items?");
+    onSelectedRowChange: function(checkbox, rowIndex, checked){
+        console.log("Checkbox change %o", checked);
+        var store = checkbox.up('window').down('grid').getStore();
+
+        if ( checked) {
+            store.getAt(rowIndex).set('excluded', true);
+        } else {
+            store.getAt(rowIndex).set('excluded', false);
+        }
+    },
+    onRemoveClick: function(btn, rowIndex) {
+        // look for items selected
+        alert("Really delete " + rowIndex);
+        var selectedCount = 0;
+
+
+
     },
     onUpdateLayoutFromGrid: function(btn){
         var me = this;

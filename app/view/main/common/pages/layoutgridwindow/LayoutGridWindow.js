@@ -66,23 +66,38 @@ Ext.define('Advertising.view.main.common.pages.layoutgridwindow.LayoutGridWindow
             selModel: {
                 type: 'cellmodel'
             },
+            viewConfig: {
+                forceFit: true,
+                getRowClass: function (record, index) {
+                    // disabled-row - custom css class for disabled (you must declare it)
+                    console.log("Row class %s", record.get('excluded'));
+                    return (record.hasOwnProperty('excluded') && record.get('excluded') == true) ?  'f-disabled-row' : '';
+                }
+            },
             plugins: [{
                 ptype: 'cellediting',
                 clicksToEdit: 1
             }],
 
+            listeners: {
+                beforeselect: function (sm, record) {
+                    if (record.get('excluded') == true) return false;
+                }
+            },
+
             //store: pagePanel.getViewModel().getStore('layoutObjects'),
             columns: [
                 {
+                    xtype: 'actioncolumn',
 
-                    xtype: 'checkcolumn',
-                    header: 'Select',
-                    dataIndex: 'selected',
-                    width: 60,
-                    editor: {
-                        xtype: 'checkbox',
-                        cls: 'x-grid-checkheader-editor'
-                    }
+                    width: 30,
+                    sortable: false,
+                    menuDisabled: true,
+                    items: [{
+                        iconCls: 'cell-editing-delete-row',
+                        tooltip: 'Delete object',
+                        handler: 'onRemoveClick'
+                    }]
                 },
                 {
                     text: 'Cell #',
