@@ -13,7 +13,6 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
         'Advertising.view.main.common.pages.layout.LayoutModel',
         'Advertising.view.main.common.pages.layout.LayoutObjectController',
         'Ext.container.Container',
-        'Ext.form.field.Checkbox',
         'Ext.form.field.ComboBox',
         'Ext.form.field.Tag',
         'Ext.form.field.TextArea',

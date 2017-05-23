@@ -7,8 +7,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
     id: 'vclayoutobject',
 
     requires: [
-        'Advertising.view.main.common.pages.layout.LayoutObjectEditWindow',
-        'Ext.dd.DragZone'
+        'Advertising.view.main.common.pages.layout.LayoutObjectEditWindow'
     ],
     listen: {
         controller: {

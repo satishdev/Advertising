@@ -7,12 +7,7 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelContro
 
     requires: [
         'Advertising.view.main.common.pages.layoutgridwindow.LayoutGridWindow',
-        'Advertising.view.main.common.tools.pagetoolpanel.MarketButton',
-        'Ext.button.Button',
-        'Ext.data.ArrayStore',
-        'Ext.grid.Panel',
-        'Ext.layout.container.Fit',
-        'Ext.window.Window'
+        'Advertising.view.main.common.tools.pagetoolpanel.MarketButton'
     ],
 
     id: 'vctoolpanelcontroller',

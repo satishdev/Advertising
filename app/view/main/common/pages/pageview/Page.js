@@ -7,7 +7,6 @@ Ext.define('Advertising.view.main.common.pages.pageview.Page', {
     extend: 'Ext.panel.Panel',
     requires: [
         'Advertising.view.main.common.pages.layout.LayoutObject',
-        'Advertising.view.main.common.pages.pageobject.PageObject',
         'Advertising.view.main.common.pages.pageview.PageController',
         'Advertising.view.main.common.pages.pageview.PageModel',
         'Ext.layout.container.Fit'

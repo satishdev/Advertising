@@ -8,13 +8,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectEditWindow', {
         'Advertising.view.main.common.pages.layout.LayoutModel',
         'Advertising.view.main.common.pages.layout.LayoutObjectEditController',
         'Ext.button.Button',
-        'Ext.form.FieldContainer',
-        'Ext.form.field.ComboBox',
-        'Ext.form.field.Number',
-        'Ext.form.field.Tag',
-        'Ext.form.field.TextArea',
         'Ext.layout.container.Form',
-        'Ext.layout.container.HBox',
         'Ext.window.MessageBox'
     ],
     controller: 'layoutobjectedit',

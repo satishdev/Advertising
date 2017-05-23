@@ -26,6 +26,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutModel', {
         },
         layoutObjects: {
             storeId: 'layoutObjectStore',
+          //  model: 'Advertising.view.main.common.model.LayoutObjectModel',
             proxy: {
                 type : 'ajax',
                 autoLoad: false,

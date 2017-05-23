@@ -10,6 +10,10 @@ Ext.define('Advertising.view.main.common.model.LayoutObjectModel', {
         { name: 'xPos',     type: 'number' },
         { name: 'yPos',      type: 'number' },
         { name: 'layoutObjectID',      type: 'int' },
+        { name: 'origXPos',     type: 'number' },
+        { name: 'origYPos',     type: 'number' },
+        { name: 'origWidth',     type: 'number' },
+        { name: 'origHeight',     type: 'number' },
 
         { name: 'description',    type: 'string' },
         { name: 'width',   type: 'number' },

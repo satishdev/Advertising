@@ -7,8 +7,7 @@ Ext.define('Advertising.view.main.common.promo.PromoController', {
 
     requires: [
         'Advertising.view.main.common.promo.promoeditwindow.PromoEditWindow',
-        'Advertising.view.main.common.promo.promoproductwindow.PromoProductWindow',
-        'Ext.dd.DragZone'
+        'Advertising.view.main.common.promo.promoproductwindow.PromoProductWindow'
     ],
 
     /**

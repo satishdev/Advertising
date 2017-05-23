@@ -74,5 +74,10 @@ Ext.define('Advertising.view.main.common.pages.pageobject.PageObject', {
         var me = this;
         me.dirty = true;
         me.addCls("f-panel-dirty");
+    },
+    flagClean: function () {
+        var me = this;
+        me.dirty = false;
+        me.removeCls("f-panel-dirty");
     }
 });
