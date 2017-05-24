@@ -16,7 +16,6 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
         'Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelModel',
         'Ext.button.Button',
         'Ext.layout.container.Column',
-        'Ext.layout.container.HBox',
         'Ext.layout.container.VBox',
         'Ext.panel.Panel',
         'Ext.slider.Single'
@@ -173,7 +172,15 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
             },
             padding: 8
         },
-
+        {
+            iconCls: "fa fa-asterisk",
+            handler: 'onSaveNew',
+            text: 'Save New',
+            bind: {
+                hidden: '{hidePageTools}'
+            },
+            padding: 8
+        },
         {
             iconCls: 'fa fa-plus',
             text: 'Add item',
@@ -204,8 +211,11 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
         {
             iconCls: 'fa fa-th',
             text: 'Grid view',
+            //bind: {
+            //    hidden: '{!layoutmode}'
+            //},
             bind: {
-                hidden: '{!layoutmode}'
+                hidden: '{hidePageTools}'
             },
             handler: 'onShowGridWindow',
             padding: 5

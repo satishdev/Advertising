@@ -6,7 +6,6 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutModel', {
     alias: 'viewmodel.layout',
 
     requires: [
-        'Advertising.util.GlobalValues',
         'Ext.data.reader.Json'
     ],
 
@@ -52,11 +51,22 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutModel', {
                 }
             }
         },
+        positions: {
+            data: [{
+                name: 'Pos 1'
+            },{
+                name: 'Pos 2'
+            },{
+                name: 'Pos 3'
+            }
+
+            ]
+        },
         themeCodes: {
             data: [{
-                name: 'Theme 1'
+                name: 'Canada Day 97'
             },{
-                name: 'Theme 2'
+                name: 'Ethnic'
             },{
                 name: 'Theme 3'
             }
@@ -90,7 +100,9 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutModel', {
         debugInfo: '',
         themeCode: '',
         debug: true,
-
+        themeName: 'Theme Code',
+        sectionName: 'Header',
+        adPosition: 'Position'
         /* This object holds the arbitrary data that populates the ViewModel and is then available for binding. */
     }
 });

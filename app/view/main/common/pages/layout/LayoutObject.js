@@ -126,7 +126,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
         //    handler: 'onExpandLayoutObject'
         //},
         {
-            html: '<div class="f-new-layout-ind"></div>',
+            html: '<div class="f-new-layout-ind">*</div>',
             bind: {
                 hidden: '{!isNew}'
             }
@@ -148,21 +148,24 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
             displayField: 'name',
             valueField: 'name',
             queryMode: 'local',
+            forceSelection: true,
             filterPickList: true
         },
         {
             xtype: 'combobox',
-            fieldLabel: 'Section',
+
             name: 'section',
             queryMode: 'local',
             bind: {
-                store: '{sections}'
-
+                store: '{sections}',
+                fieldLabel: '{sectionName}'
             },
             listeners: {
                 change: 'onSectionChange',
                 blur: 'onBlurSection'
             },
+            typeAhead: true,
+            forceSelection: true,
             displayField: 'name',
             valueField: 'name'
 
@@ -170,14 +173,32 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
         },
         {
             xtype: 'combobox',
-            fieldLabel: 'Theme',
+
             name: 'theme',
             listeners: {
                 change: 'onThemeChange'
             },
 
             bind: {
-                store: '{themeCodes}'
+                store: '{themeCodes}',
+                fieldLabel: '{themeName}'
+            },
+
+
+            displayField: 'name',
+            valueField: 'name'
+        },
+        {
+            xtype: 'combobox',
+
+            name: 'adPosition',
+            //listeners: {
+            //    change: 'onThemeChange'
+            //},
+
+            bind: {
+                store: '{positions}',
+                fieldLabel: '{adPosition}'
             },
 
 

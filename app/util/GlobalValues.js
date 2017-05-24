@@ -6,7 +6,7 @@ Ext.define('Advertising.util.GlobalValues', {
     serviceURL: 'http://localhost:8881',
     singleton: true,
     serverConnectionLost: true,
-    userId: null,
+    userId: 'leew',
     serverMessageDisplayed: false,
     baseURL: 'BASE_URL',
     configLoaded: false,

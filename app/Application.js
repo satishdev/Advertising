@@ -18,6 +18,7 @@ Ext.define('Advertising.Application', {
     extend: 'Ext.app.Application',
 
     requires: [
+        'Advertising.util.GlobalValues',
         'Advertising.view.main.common.UserInfo',
         'Ext.data.proxy.Ajax'
     ],
@@ -30,7 +31,43 @@ Ext.define('Advertising.Application', {
 
     launch: function () {
         // TODO - Launch the application
-        Ext.override(Ext.data.proxy.Ajax, { timeout:60000 });
+        Ext.override(Ext.data.proxy.Ajax, {timeout: 60000});
+
+        // It's important to note that this type of application could use
+        // any type of storage, i.e., Cookies, LocalStorage, etc.
+        var loggedIn;
+
+        // Check to see the current value of the localStorage key
+        loggedIn = localStorage.getItem("AdvNGLoggedIn");
+
+
+        // get bootstrap data
+        Ext.Ajax.request({
+
+            url: Advertising.util.GlobalValues.serviceURL + "/config/bootstrap",
+            method: 'POST',
+            cors: true,
+            useDefaultXhrHeader: false,
+            timeout: 1450000,
+
+            success: function (transport) {
+                var response = Ext.decode(transport.responseText);
+                Advertising.util.GlobalValues.bootstrap = response;
+                console.log("Global bootstrap data %o", Advertising.util.GlobalValues.bootstrap);
+
+            },
+            failure: function (transport) {
+                try {
+                    var response = Ext.decode(transport.responseText);
+
+                    Ext.Msg.alert('Error', response.Error);
+                } catch (err) {
+                    Ext.Msg.alert('Error', err);
+
+                }
+
+            }
+        });
 
         //var cp = Ext.create('Ext.state.CookieProvider', {
         //    path: "/",
@@ -45,8 +82,15 @@ Ext.define('Advertising.Application', {
         //    last_name: 'Doe'
         //});
 
-        Advertising.view.main.common.UserInfo.setUserInfo({test: "test"});
+        // This ternary operator determines the value of the TutorialLoggedIn key.
+        // If TutorialLoggedIn isn't true, we display the login window,
+        // otherwise, we display the main view
+        Ext.create({
+            xtype: loggedIn ? 'app-main' : 'login'
+        });
 
+
+        Advertising.view.main.common.UserInfo.setUserInfo({test: "test"});
 
 
     },

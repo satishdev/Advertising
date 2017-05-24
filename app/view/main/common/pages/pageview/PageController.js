@@ -15,13 +15,11 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
                 showPageMarket: 'onShowPageMarket',
                 hidePageMarket: 'onHidePageMarket',
                 updatePageZoomLevel: 'onUpdatePageZoomLevel',
-                savePageChanges: 'onSavePageChanges'
             }
 
         }
     },
     requires: [
-        'Advertising.util.GlobalValues',
         'Advertising.view.main.common.Promo',
         'Advertising.view.main.common.pages.layout.LayoutObject',
         'Ext.layout.container.Absolute',
@@ -84,74 +82,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
         console.log("Page panel %o", pagePanel);
         pagePanel.setZoom(zoom);
     },
-    /**
-     * This is the heavy lifter on actually saving the page changes back to the server
-     * We send the server a block of JSON representing the page and let the spring layer take
-     * care of most of it
-     * @param page
-     */
-    onSavePageChanges: function(page){
-        var me = this;
-        Ext.toast("Saving pages to page type " + page.xtype);
-        // get all components on the page
-        if ( page.xtype == 'layout') {
-            me.saveLayout(page.down('panel'));
-        }
-        if ( page.xtype == 'page') {
-            me.savePage(page.down('page'));
 
-        }
-    },
-    saveLayout: function(layout) {
-        var json = [];
-        layout.items.each(function(lo) {
-            // skip no layout object - e.g. grid or any other furniture on page
-            if ( lo.xtype == 'layoutobject') {
-                // loop through each dirty object
-                if ( lo.dirty == true) {
-                    console.log("Layout object was changed %o", lo.getViewModel().getData());
-                    var jsonData = {};
-                    var data = lo.getViewModel().getData();
-                    for(var prop in data){
-                        //dont pass in any object joins - e.g stores or anything else odd added to the viewmodel
-                        if ( typeof data[prop] != 'object') {
-                            jsonData[prop] = data[prop];
-                        }
-                    }
-                    // add to the array to send to the server
-                    json.push(jsonData);
-                }
-            }
-        });
-        console.log("Sending json %o", json);
-        Ext.Ajax.request({
-            url: Advertising.util.GlobalValues.serviceURL + "/layout/saveLayout",
-            method: 'POST',
-            cors: true,
-            useDefaultXhrHeader: false,
-            timeout: 1450000,
-            params: {
-                json_req: Ext.encode(json)
-            },
-            success: function (transport) {
-                var response = Ext.decode(transport.responseText);
-                console.log("Got response %o", response);
-                layout.items.each(function(lo) {
-                    if ( lo.dirty == true) {
-                        console.log("Checking dirty layout %o", lo);
-                        lo.flagClean();
-                    }
-                });
-            },
-            failure: function (transport) {
-                var response = Ext.decode(transport.responseText);
-
-                Ext.Msg.alert('Error', response.Error);
-
-
-            }
-        });
-    },
     savePage: function(page) {
 
     },

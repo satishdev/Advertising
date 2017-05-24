@@ -11,7 +11,7 @@ Ext.define('Advertising.view.main.MainController', {
     alias: 'controller.main',
     tools: undefined,
     requires: [
-        'Advertising.util.GlobalValues',
+        'Advertising.view.login.Login',
         'Ext.util.TaskManager'
     ],
     listen: {
@@ -23,7 +23,11 @@ Ext.define('Advertising.view.main.MainController', {
             },
             '#vctoolpanelcontroller': {
                 turnGridsOff: 'onTurnGridsOff',
-                addNewPageObject: 'addNewPageObject'
+                addNewPageObject: 'addNewPageObject',
+                // things where we want a single view controller we should use in a view such as main
+                // e.g. if we do this in a page controller it will fire of every open page
+                savePageChanges: 'onSavePageChanges'
+
             }
 
         }
@@ -43,8 +47,79 @@ Ext.define('Advertising.view.main.MainController', {
 
 
     },
+    /**
+     * This is the heavy lifter on actually saving the page changes back to the server
+     * We send the server a block of JSON representing the page and let the spring layer take
+     * care of most of it
+     * @param page
+     */
+    onSavePageChanges: function(page, isNew){
+        var me = this;
+        Ext.toast("Saving pages to page type " + page.xtype);
+        // get all components on the page
+        if ( page.xtype == 'layout') {
+            me.saveLayout(page.down('panel'), isNew);
+        }
+        if ( page.xtype == 'page') {
+            me.savePage(page.down('page'));
 
-    onTurnGridsOff: function() {
+        }
+    },
+
+    saveLayout: function(layout, isNew) {
+        var json = [];
+        if ( isNew ) {
+            Ext.toast("Prompt for new layout name");
+        }
+        layout.items.each(function(lo) {
+            // skip no layout object - e.g. grid or any other furniture on page
+            if ( lo.xtype == 'layoutobject') {
+                // loop through each dirty object
+                if ( lo.dirty == true) {
+                    console.log("Layout object was changed %o", lo.getViewModel().getData());
+                    var jsonData = {};
+                    var data = lo.getViewModel().getData();
+                    for(var prop in data){
+                        //dont pass in any object joins - e.g stores or anything else odd added to the viewmodel
+                        if ( typeof data[prop] != 'object') {
+                            jsonData[prop] = data[prop];
+                        }
+                    }
+                    // add to the array to send to the server
+                    json.push(jsonData);
+                }
+            }
+        });
+        console.log("Sending json %o", json);
+        Ext.Ajax.request({
+            url: Advertising.util.GlobalValues.serviceURL + "/layout/saveLayout",
+            method: 'POST',
+            cors: true,
+            useDefaultXhrHeader: false,
+            timeout: 1450000,
+            params: {
+                json_req: Ext.encode(json)
+            },
+            success: function (transport) {
+                var response = Ext.decode(transport.responseText);
+                console.log("Got response %o", response);
+                layout.items.each(function(lo) {
+                    if ( lo.dirty == true) {
+                        console.log("Checking dirty layout %o", lo);
+                        lo.flagClean();
+                    }
+                });
+            },
+            failure: function (transport) {
+                var response = Ext.decode(transport.responseText);
+
+                Ext.Msg.alert('Error', response.Error);
+
+
+            }
+        });
+    },
+    onTurnGridsOff: function () {
         var me = this;
         var layouts = me.lookupReference('pagelayouts');
         var activeTab = layouts.getActiveTab();
@@ -53,21 +128,21 @@ Ext.define('Advertising.view.main.MainController', {
         var svg = activeTab.getEl().query('rect');
         //var svg = Ext.dom.Query.select('rect');
         console.log("SVG %o", svg);
-        if ( svg[0]) {
+        if (svg[0]) {
             console.log("Found svg item...updating it");
             svg[0].setAttribute("stroke", me.getRandomColor());
-         //   svg[0].setAttribute("stroke", "#FFF");
+            //   svg[0].setAttribute("stroke", "#FFF");
 
         }
     },
-     getRandomColor: function() {
-    var letters = '0123456789ABCDEF';
-    var color = '#';
-    for (var i = 0; i < 6; i++ ) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-},
+    getRandomColor: function () {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    },
     onOpenConnection: function () {
         try {
             console.log("Attempting to ping server...");
@@ -117,13 +192,13 @@ Ext.define('Advertising.view.main.MainController', {
     onItemSelected: function (sender, record) {
         Ext.Msg.confirm('Confirm', 'Are you sure?', 'onConfirm', this);
     },
-    getActiveDesignPage: function() {
+    getActiveDesignPage: function () {
         var me = this;
         var designArea = me.lookupReference('pagelayouts');
         Ext.toast("Active tab " + designArea.getActiveTab());
         return designArea.getActiveTab();
     },
-    addNewPageObject: function(btn) {
+    addNewPageObject: function (btn) {
         var me = this;
         // get the currently active page - see if its a design page or layout template
         var page = me.getActiveDesignPage();
@@ -135,14 +210,14 @@ Ext.define('Advertising.view.main.MainController', {
         var pageLayouts = Ext.ComponentQuery.query('pagelayouts')[0];
         Ext.toast("Zoom changed to " + newVal);
         Ext.resumeLayouts(true);
-    }    ,
+    },
     /* Turn on/off layouts for page view */
     onToggleLayouts: function (btn) {
         Ext.toast("Turn layouts " + (( btn.pressed) ? "on" : "off"));
         // loop through all layouts
         // @todo just do for displayed page
-        Ext.ComponentQuery.query("layoutobject").forEach(function(lo) {
-            if ( btn.pressed) {
+        Ext.ComponentQuery.query("layoutobject").forEach(function (lo) {
+            if (btn.pressed) {
                 lo.show();
             } else {
                 lo.hide();
@@ -150,12 +225,19 @@ Ext.define('Advertising.view.main.MainController', {
 
         });
     },
-    onConfirm: function (choice) {
-        if (choice === 'yes') {
-            //
-        }
-    }
-    ,
+    onClickLogout: function () {
+        // Remove the localStorage key/value
+        localStorage.removeItem('AdvNGLoggedIn');
+        //
+        //// Remove Main View
+        this.getView().destroy();
+        //
+        //// Add the Login Window
+        Ext.create('Advertising.view.login.Login',{
+            //xtype: 'login'
+        });
+    },
+    //,
     /* Turn on/off themes for page view */
     onToggleThemes: function (btn) {
         var pageView = btn.up('pagelayouts');
@@ -168,22 +250,22 @@ Ext.define('Advertising.view.main.MainController', {
     onToggleGrid: function (btn) {
         var pageView = btn.up('pagelayouts');
         console.log("Grid %o %s", pageView, btn.pressed);
-        Ext.toast("Turn grid " + (( btn.pressed) ? "on" : "off") );
+        Ext.toast("Turn grid " + (( btn.pressed) ? "on" : "off"));
         var activeTab = pageView.down('tabpanel').getActiveTab();
         console.log("Active tab %o", activeTab);
     }
     ,
 
-    onMainPageTabAdded: function() {
+    onMainPageTabAdded: function () {
         var me = this;
         console.log("Showing tool panel");
         //me.getViewModel().set("showTools", true);
-    //    me.lookupReference('mainToolPanel').setCollapsed(false);
+        //    me.lookupReference('mainToolPanel').setCollapsed(false);
 
     }
     ,
-    onMainPageTabChanged: function(panel, newCard, oldCard, eOpts) {
-      var me = this;
+    onMainPageTabChanged: function (panel, newCard, oldCard, eOpts) {
+        var me = this;
 
         Ext.toast("Tab panel changed " + panel.title);
 

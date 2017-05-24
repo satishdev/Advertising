@@ -6,11 +6,8 @@ Ext.define('Advertising.view.west.treeviews.layouts.layouttree.LayoutTreeControl
     alias: 'controller.layouttree',
 
     requires: [
-        'Advertising.util.GlobalValues',
-        'Advertising.view.main.common.pages.pageview.Page',
         'Advertising.view.main.layouts.layoutcreator.LayoutCreator',
         'Advertising.view.west.treeviews.layouts.layouttree.LayoutTreeMenu',
-        'Ext.layout.container.Absolute',
         'Ext.window.MessageBox'
     ],
 
@@ -96,8 +93,8 @@ Ext.define('Advertising.view.west.treeviews.layouts.layouttree.LayoutTreeControl
                                 vehicleID: record.data.id,
                                 iconCls: 'fa fa-th',
                                 handler: function () {
-                                    var layoutWin = Ext.create('Advertising.view.main.layouts.layoutcreator.LayoutCreator',{
-                                       sourceData: record.data
+                                    var layoutWin = Ext.create('Advertising.view.main.layouts.layoutcreator.LayoutCreator', {
+                                        sourceData: record.data
                                     }).show();
                                 }
                             }
@@ -110,6 +107,30 @@ Ext.define('Advertising.view.west.treeviews.layouts.layouttree.LayoutTreeControl
                 this.lmenu.items.items[0].vehicleID = record.data.id
             }
             this.lmenu.showAt(e.getXY());
+        }
+        if (record.data.nodetype == 'LAYOUT') {
+            if (!this.lomenu) {
+                this.lomenu = Ext.create('Advertising.view.west.treeviews.layouts.layouttree.LayoutTreeMenu',
+                    {
+                        items: [
+                            {
+                                text: 'Rename Layout',
+                                layoutName: record.data.Name,
+                                layoutID: record.data.id,
+                                iconCls: 'fa fa-edit'
+                            },
+                            {
+                                text: 'Delete Layout',
+                                layoutName: record.data.Name,
+                                layoutID: record.data.id,
+                                iconCls: 'fa fa-trash'
+                            }
+
+                        ]
+                    });
+            }
+            this.lomenu.showAt(e.getXY());
+
         }
     },
     onTreeNodeSelect: function (tree, record, ndx, opts) {

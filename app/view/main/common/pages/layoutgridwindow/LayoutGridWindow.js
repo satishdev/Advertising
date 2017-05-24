@@ -112,6 +112,10 @@ Ext.define('Advertising.view.main.common.pages.layoutgridwindow.LayoutGridWindow
                     dataIndex: 'layoutObjectID'
                 },
                 {
+                    text: 'Page Type **',
+                    flex: 1
+                },
+                {
                     xtype: 'gridcolumn',
 
                     editor: {
@@ -137,11 +141,12 @@ Ext.define('Advertising.view.main.common.pages.layoutgridwindow.LayoutGridWindow
                         triggerAction: 'all',
                         displayField: 'name',
                         valueField: 'name',
+                        forceSelection: true,
                         bind: {
                             store: '{themeCodes}'
                         }
                     },
-                    text: 'Theme',
+                    header: 'Theme',
                     dataIndex: 'theme',
                     flex: 1
                 },
@@ -194,7 +199,7 @@ Ext.define('Advertising.view.main.common.pages.layoutgridwindow.LayoutGridWindow
                 },
                 {
                     xtype: 'gridcolumn',
-                    text: 'Section',
+                    text: 'Header',
                     dataIndex: 'section',
                     flex: 2,
                     editor: {

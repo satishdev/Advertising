@@ -24,6 +24,7 @@ Ext.define('Advertising.view.main.Main', {
         'Ext.button.Button',
         'Ext.layout.container.Border',
         'Ext.layout.container.Fit',
+        'Ext.plugin.Viewport',
         'Ext.tab.Panel'
     ],
 
@@ -38,7 +39,7 @@ Ext.define('Advertising.view.main.Main', {
         bodyPadding: 2
     },
     layout: 'border',
-
+    plugins: 'viewport',
     header: {
         defaults: {
             margin: '0 1 0 5'
@@ -78,7 +79,8 @@ Ext.define('Advertising.view.main.Main', {
 
             {
                 xtype: 'button',
-                text: 'Logout'
+                text: 'Logout',
+                handler: 'onClickLogout'
             },
             {
                 iconCls: 'x-fa fa-feed j-status-ok',

@@ -29,7 +29,7 @@ Ext.define('Advertising.view.west.treeviews.promos.promogrid.Promogrid', {
             sortable: false,
             menuDisabled: false,
             dataIndex: 'status',
-
+            text: 'Status',
             items: [{
                 handler: 'onPromoOfferItemClick',
                 tooltip: 'Info',

@@ -135,13 +135,19 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelContro
 
         }).show();
     },
+    onSaveNew: function (btn) {
+        Ext.toast("Saving new copy...");
+        var pagePanel = Ext.ComponentQuery.query('pagelayouts')[0].getActiveTab();
+        this.fireEvent('savePageChanges', pagePanel, true);
+
+    },
     /*
      page change requested
      */
     onSaveChanges: function (btn) {
         Ext.toast("Saving changes...");
         var pagePanel = Ext.ComponentQuery.query('pagelayouts')[0].getActiveTab();
-        this.fireEvent('savePageChanges', pagePanel);
+        this.fireEvent('savePageChanges', pagePanel, false);
 
     },
     onToggleOffers: function (btn) {

@@ -5,10 +5,6 @@ Ext.define('Advertising.view.main.layouts.layoutcreator.LayoutCreatorController'
     extend: 'Ext.app.ViewController',
     alias: 'controller.layoutcreator',
 
-    requires: [
-        'Advertising.util.GlobalValues'
-    ],
-
     /**
      * Called when the view is created
      */

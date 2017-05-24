@@ -3,8 +3,8 @@
  */
 Ext.define('Advertising.view.core.BaseViewController', {
     extend: 'Ext.app.ViewController',
-    alias: 'controller.baseview',
-    id: 'baseViewController',
+    //alias: 'controller.baseview',
+    //id: 'baseViewController',
     /**
      * Called when the view is created
      */
