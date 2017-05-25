@@ -55,17 +55,13 @@ Ext.define('Advertising.view.main.layouts.layoutcreator.LayoutCreatorController'
 
                 var parentNode = tree.getStore().getNodeById(record.data.id);
 
-                //  parentNode.setLeaf(false);
-                parentNode.appendChild({
-                    id: response.id,
-                    text: response.text,
-                    leaf: false
 
-                });
-
-                if (parentNode){
-                    tree.getStore().load({node:parentNode});
-                }
+                parentNode.appendChild(response);
+                //parentNode.setLeaf(false);
+                //if (parentNode){
+                //    tree.getStore().load({node:parentNode});
+                //}
+                btn.up('window').close();
             },
             failure: function (transport) {
                 try {

@@ -6,7 +6,10 @@ Ext.define('Advertising.view.login.Login', {
     xtype: 'login',
 
     requires: [
-
+        'Advertising.view.login.LoginController',
+        'Ext.form.Panel',
+        'Ext.form.field.Display',
+        'Ext.form.field.Text'
     ],
 
     controller: 'login',
@@ -32,7 +35,7 @@ Ext.define('Advertising.view.login.Login', {
         }, {
             xtype: 'displayfield',
             hideEmptyLabel: false,
-            value: 'Enter any non-blank password'
+            value: '** DEV ** Enter any non-blank password <br/>should use SSO and validate permissions'
         }],
         buttons: [{
             text: 'Login',

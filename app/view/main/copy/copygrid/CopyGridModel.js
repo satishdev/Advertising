@@ -6,8 +6,6 @@ Ext.define('Advertising.view.main.copy.copygrid.CopyGridModel', {
     alias: 'viewmodel.copygrid',
 
     requires: [
-        'Advertising.util.GlobalValues',
-        'Ext.data.proxy.Ajax',
         'Ext.data.reader.Json'
     ],
 

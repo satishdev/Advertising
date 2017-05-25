@@ -6,7 +6,6 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
     alias: 'controller.pagelayouts',
 
     requires: [
-        'Advertising.util.GlobalValues',
         'Advertising.view.main.common.pages.layout.Layout',
         'Advertising.view.main.common.pages.pageview.Page',
         'Ext.layout.container.Absolute'

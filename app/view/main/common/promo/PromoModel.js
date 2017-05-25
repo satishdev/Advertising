@@ -6,8 +6,6 @@ Ext.define('Advertising.view.main.common.promo.PromoModel', {
     alias: 'viewmodel.promo',
 
     requires: [
-        'Advertising.util.GlobalValues',
-        "Ext.data.proxy.Ajax",
         'Ext.data.reader.Json'
     ],
 

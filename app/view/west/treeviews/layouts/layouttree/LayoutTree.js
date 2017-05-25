@@ -11,7 +11,7 @@ Ext.define('Advertising.view.west.treeviews.layouts.layouttree.LayoutTree', {
     ],
 
     xtype: 'layouttree',
-
+    rootVisible: false,
     viewConfig: {
         plugins: {
             ptype: 'gridviewdragdrop',

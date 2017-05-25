@@ -11,7 +11,6 @@ Ext.define('Advertising.view.main.MainController', {
     alias: 'controller.main',
     tools: undefined,
     requires: [
-        'Advertising.view.login.Login',
         'Ext.util.TaskManager'
     ],
     listen: {
@@ -226,16 +225,16 @@ Ext.define('Advertising.view.main.MainController', {
         });
     },
     onClickLogout: function () {
-        // Remove the localStorage key/value
-        localStorage.removeItem('AdvNGLoggedIn');
-        //
-        //// Remove Main View
-        this.getView().destroy();
-        //
-        //// Add the Login Window
-        Ext.create('Advertising.view.login.Login',{
-            //xtype: 'login'
-        });
+        //// Remove the localStorage key/value
+        //localStorage.removeItem('AdvNGLoggedIn');
+        ////
+        ////// Remove Main View
+        //this.getView().destroy();
+        ////
+        ////// Add the Login Window
+        //Ext.create('Advertising.view.login.Login',{
+        //    //xtype: 'login'
+        //});
     },
     //,
     /* Turn on/off themes for page view */

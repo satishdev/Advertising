@@ -16,6 +16,7 @@ Ext.define('Advertising.view.main.Main', {
     requires: [
         'Advertising.view.main.MainController',
         'Advertising.view.main.MainModel',
+        'Advertising.view.main.changecontrol.ChangeControl',
         'Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel',
         'Advertising.view.main.copy.copypanel.CopyPanel',
         'Advertising.view.main.layouts.pagelayouts.PageLayouts',
@@ -127,12 +128,21 @@ Ext.define('Advertising.view.main.Main', {
                     xtype: 'tabpanel',
 
                     items: [
+
                         {
                             title: 'Layout Design',
                             xtype: 'pagelayouts',
                             reference: 'pagelayouts',
                             iconCls: 'fa fa-tag',
                             tooltip: 'Display page layouts (templates that<br/> show where promos are to be placed)'
+
+                        },
+                        {
+                            title: 'Change Control',
+                            xtype: 'changecontrol',
+                            reference: 'changecontrol',
+                            iconCls: 'fa fa-check',
+                            tooltip: 'Examine changes made to pages and promotions'
 
                         },
                         {

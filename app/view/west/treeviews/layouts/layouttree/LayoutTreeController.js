@@ -34,8 +34,8 @@ Ext.define('Advertising.view.west.treeviews.layouts.layouttree.LayoutTreeControl
                         items: [
                             {
                                 text: 'Add Folder',
-                                vehicleName: record.data.Name,
-                                vehicleID: record.data.id,
+                                parentName: record.data.Name,
+                                parentID: record.data.id,
                                 iconCls: 'fa fa-folder',
                                 handler: function () {
                                     var box = Ext.create('Ext.window.MessageBox');
@@ -61,12 +61,14 @@ Ext.define('Advertising.view.west.treeviews.layouts.layouttree.LayoutTreeControl
                                                         var parentNode = tree.getStore().getNodeById(record.data.id);
 
                                                         //  parentNode.setLeaf(false);
-                                                        parentNode.appendChild({
+                                                        parentNode.insertChild(record.data.id,{
                                                             id: response.id,
                                                             text: response.text,
+                                                            data: record.data,
                                                             leaf: false
 
                                                         });
+                                                        console.log("Added node to tree %o", parentNode);
 
                                                     },
                                                     failure: function (transport) {
@@ -117,7 +119,12 @@ Ext.define('Advertising.view.west.treeviews.layouts.layouttree.LayoutTreeControl
                                 text: 'Rename Layout',
                                 layoutName: record.data.Name,
                                 layoutID: record.data.id,
-                                iconCls: 'fa fa-edit'
+                                iconCls: 'fa fa-edit',
+                                handler:function() {
+                                    Ext.MessageBox.prompt('Name', 'Please enter your name:', this.updateLayoutName, this);
+
+
+                                }
                             },
                             {
                                 text: 'Delete Layout',
@@ -132,6 +139,9 @@ Ext.define('Advertising.view.west.treeviews.layouts.layouttree.LayoutTreeControl
             this.lomenu.showAt(e.getXY());
 
         }
+    },
+    updateLayoutName: function(newName) {
+
     },
     onTreeNodeSelect: function (tree, record, ndx, opts) {
         // see if this is a layout or just a folder

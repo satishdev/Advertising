@@ -12,14 +12,11 @@ Ext.define('Advertising.view.main.common.Promo', {
     },
 
     requires: [
-        'Advertising.view.main.common.promo.PromoController',
-        'Advertising.view.main.common.promo.PromoModel',
         'Ext.button.Button',
         'Ext.container.Container',
         'Ext.form.field.Checkbox',
         'Ext.grid.Panel',
-        'Ext.layout.container.Fit',
-        'Ext.panel.Panel'
+        'Ext.layout.container.Fit'
     ],
     initComponent: function () {
         console.log("Promo object added");
@@ -139,7 +136,7 @@ Ext.define('Advertising.view.main.common.Promo', {
         {
             // html: '<div class="noSelect" style="font-size: 1vw">' + '{name}' + '<br/>Some image here</br><p/><div style="font-size: 4vw"> $99<sup style="font-size:.6em">99</sup></div></div>',
             bind: {
-                html: '<div class="noSelect" style="font-size: 1vw">{name}<br/><div class="f-prod-image"><img class="noSelect" src="http://laheadvsb01.ngco.com:8080/smartmedia/servlet/smartmediaservlet?ref=4122006805.eps&type=Image&res=thumb"/></div></br><p/>Adzone [{adzoneID} {location}]</div>',
+                html: '<div class="noSelect" style="font-size: 1vw">{offerName}<br/><div class="f-prod-image"><img class="noSelect" src="http://laheadvsb01.ngco.com:8080/smartmedia/servlet/smartmediaservlet?ref=4122006805.eps&type=Image&res=thumb"/></div></br><p/>Adzone [{adzoneID} {location}]</div>',
                 visible: '{!showGrid}'
             }
         }
