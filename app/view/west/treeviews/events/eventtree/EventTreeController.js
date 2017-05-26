@@ -21,9 +21,13 @@ Ext.define('Advertising.view.west.treeviews.events.eventtree.EventTreeController
     init: function () {
 
     },
-    onTreeNodeSelect: function (tree, record, ndx, opts) {
-        Ext.toast("Node clicked " + record.data);
-        this.fireEvent('eventTreeSelection', record);
+    onTreeNodeSelect: function (tree, node, ndx, opts) {
+        Ext.toast("Node clicked " + node.data);
+        if (node.data.nodetype == 'VEHICLE' || node.data.nodetype == 'PAGE' ) {
+            var parentNode = node.parentNode;
+            console.log("Tree parent is %o", parentNode);
+            this.fireEvent('eventTreeSelection', node,parentNode);
+        }
     },
     onShowEventTreeMenu: function (tree, record, item, index, e, eOpts) {
         e.stopEvent();

@@ -88,7 +88,7 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
         }
     },
 
-    onPageChange: function (record) {
+    onPageChange: function (record, parentNode) {
         var me = this, existing = false;
         var nodetype = record.data.nodetype;
         if (nodetype == 'PAGE') {
@@ -96,6 +96,8 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
         }
         console.log("Page view change request");
         // Ext.toast("Page change requested " + record.data.nodetype + ":" + record.data.text);
+        // flash changes to the promo offer area title
+        Ext.ComponentQuery.query('promogrid')[0].getHeader().getEl().highlight();
         if (nodetype == 'VEHICLE' || nodetype == 'PAGE') {
             Ext.ComponentQuery.query('promogrid')[0].setTitle('Offers for ' + record.data.text);
         } else {

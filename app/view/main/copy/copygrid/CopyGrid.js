@@ -28,9 +28,10 @@ Ext.define('Advertising.view.main.copy.copygrid.CopyGrid', {
     viewModel: {
         type: 'copygrid'
     },
-    title: 'Page A',
+
     bind: {
-        store: '{eventcopy}'
+        store: '{eventcopy}',
+        title: '{title}'
 
     },
     reference: 'copygrid',

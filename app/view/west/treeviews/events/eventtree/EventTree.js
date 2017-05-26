@@ -17,6 +17,16 @@ Ext.define('Advertising.view.west.treeviews.events.eventtree.EventTree', {
     viewModel: {
         type: 'eventtree'
     },
+    // todo add ability to search and expand tree
+    //tools: [
+    //    {
+    //        type: 'search',
+    //        callback: function (panel) {
+    //            // do search
+    //
+    //        }
+    //    }
+    //],
 
     listeners: {
         itemclick: 'onTreeNodeSelect',

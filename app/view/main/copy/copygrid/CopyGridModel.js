@@ -32,6 +32,7 @@ Ext.define('Advertising.view.main.copy.copygrid.CopyGridModel', {
     },
 
     data: {
+         title: 'Select a vehicle or page'
         /* This object holds the arbitrary data that populates the ViewModel and is then available for binding. */
     }
 });

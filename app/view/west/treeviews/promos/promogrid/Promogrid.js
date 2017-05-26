@@ -50,7 +50,7 @@ Ext.define('Advertising.view.west.treeviews.promos.promogrid.Promogrid', {
         {
             text:'Name',
             flex:1,
-            dataIndex: 'Name'
+            dataIndex: 'name'
         }
     ]
 });

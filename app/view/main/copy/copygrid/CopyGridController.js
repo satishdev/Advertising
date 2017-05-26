@@ -32,6 +32,7 @@ Ext.define('Advertising.view.main.copy.copygrid.CopyGridController', {
         var me = this;
         if ( record.data.nodetype == 'VEHICLE' || record.data.nodetype == 'PAGE') {
             console.log("Event was changed - getting copy %o", record);
+            me.getViewModel().set('title', record.data.text);
             Ext.toast("Getting " + record.data.nodetype + " copy for " + record.data.id);
             var grid = me.getView();
             console.log("Grid %o", grid);
