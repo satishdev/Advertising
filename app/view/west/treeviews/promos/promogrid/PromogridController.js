@@ -32,7 +32,16 @@ Ext.define('Advertising.view.west.treeviews.promos.promogrid.PromogridController
             Ext.toast("Getting promos for vehicle " + record.data.id);
             console.log("Store %o", store);
             store.getProxy().extraParams = {
-                vehicleID: record.data.id
+                containerID: record.data.id,
+                vehicle: true
+            };
+            store.load();
+        } else if ( nodetype == 'PAGE') {
+            Ext.toast("Getting promos for page " + record.data.id);
+            console.log("Store %o", store);
+            store.getProxy().extraParams = {
+                containerID: record.data.id,
+                vehicle: false
             };
             store.load();
         } else {

@@ -6,14 +6,12 @@ Ext.define('Advertising.view.main.common.pages.pageobject.PageObject', {
 
     requires: [
         'Advertising.view.main.common.promo.PromoController',
-        'Advertising.view.main.common.promo.PromoModel',
         'Ext.layout.container.Absolute'
     ],
 
 
     xtype: 'pageobject',
     controller: 'promo',
-    viewModel: 'promo',
     objid: -1,
     origWidth: 0,
     origHeight: 0,

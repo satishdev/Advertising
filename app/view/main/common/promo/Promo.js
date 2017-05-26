@@ -12,6 +12,7 @@ Ext.define('Advertising.view.main.common.Promo', {
     },
 
     requires: [
+        'Advertising.view.main.common.promo.PromoModel',
         'Ext.button.Button',
         'Ext.container.Container',
         'Ext.form.field.Checkbox',
@@ -19,10 +20,11 @@ Ext.define('Advertising.view.main.common.Promo', {
         'Ext.layout.container.Fit'
     ],
     initComponent: function () {
-        console.log("Promo object added");
+        console.log("--> Promo object added %o", this);
         var me = this;
         this.setupDebug();
         this.callParent(arguments);
+
     },
     excluded: false,
     //ui: 'promo',
@@ -136,7 +138,7 @@ Ext.define('Advertising.view.main.common.Promo', {
         {
             // html: '<div class="noSelect" style="font-size: 1vw">' + '{name}' + '<br/>Some image here</br><p/><div style="font-size: 4vw"> $99<sup style="font-size:.6em">99</sup></div></div>',
             bind: {
-                html: '<div class="noSelect" style="font-size: 1vw">{offerName}<br/><div class="f-prod-image"><img class="noSelect" src="http://laheadvsb01.ngco.com:8080/smartmedia/servlet/smartmediaservlet?ref=4122006805.eps&type=Image&res=thumb"/></div></br><p/>Adzone [{adzoneID} {location}]</div>',
+                html: '<div class="noSelect" style="font-size: 1vw">{name}<br/><div class="f-prod-image"><img class="noSelect" src="http://laheadvsb01.ngco.com:8080/smartmedia/servlet/smartmediaservlet?ref=4122006805.eps&type=Image&res=thumb"/></div></br><p/>Adzone [{adzoneID} {location}]</div>',
                 visible: '{!showGrid}'
             }
         }
@@ -145,6 +147,6 @@ Ext.define('Advertising.view.main.common.Promo', {
 
     setupDebug: function () {
         var me = this;
-    },
+    }
 
 });
