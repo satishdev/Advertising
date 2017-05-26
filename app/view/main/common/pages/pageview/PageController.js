@@ -201,12 +201,15 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
                     p.add(panel);
                 });
             }
+            var i = 0;
             if (parentPanel.objectData.hasOwnProperty(('pageObjects'))) {
                 var pageObjects = parentPanel.objectData.pageObjects;
+
                 console.log("Items %o", pageObjects);
                 // Ext.toast("Adding " + pageObjects.length + " items to layout");
                 pageObjects.forEach(function (po) {
                     console.log("Adding item %o", po);
+                    i++;
                     var panel = Ext.create('Advertising.view.main.common.Promo', {
                         width: po.width * 96 * scale,
                         height: po.height * 96 * scale,
@@ -223,6 +226,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
                     for (var prop in po) {
                         model.set(prop, po[prop]);
                     }
+                    model.set('offerName','test ' + i);
 
                     console.log("New panel %o", panel);
                     p.add(panel);

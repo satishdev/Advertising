@@ -38,6 +38,8 @@ Ext.define('Advertising.view.main.common.promo.PromoModel', {
         status: 'not set',
         pageObjectID: -1,
         debug: true,
+        description: 'not set',
+        name: 'not set',
         debugInfo: 'debug info',
         undoDisabled: true,
         draggable: false,
