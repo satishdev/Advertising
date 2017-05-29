@@ -23,6 +23,17 @@ Ext.define('Advertising.view.west.treeviews.promos.promogrid.Promogrid', {
     bind: {
         store: '{offers}'
     },
+    plugins: [{
+        ptype: 'rowexpander',
+        rowBodyTpl : new Ext.XTemplate(
+            '<p><b>Items</p>',
+            {
+                formatChange: function(v){
+                    var color = v >= 0 ? 'green' : 'red';
+                    return '<span style="color: ' + color + ';">' + Ext.util.Format.usMoney(v) + '</span>';
+                }
+            })
+    }],
     columns: [
         {
             xtype: 'actioncolumn',
