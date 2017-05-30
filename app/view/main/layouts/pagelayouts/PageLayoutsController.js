@@ -18,6 +18,9 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
             '#vceventtreecontroller': {
                 eventTreeSelection: 'onPageChange'
             },
+            '#vcpromogridcontroller': {
+                highlightPromoOffers: 'onHighlightPromoOffers'
+            },
             '#vclayouttreecontroller': {
                 layoutTreeSelection: 'onLayoutClick'
             }
@@ -87,16 +90,26 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
 
         }
     },
+    onHighlightPromoOffers: function(offerID) {
+        console.log("Highlighting displayed offers with ID %s", offerID);
+        var pageView = Ext.ComponentQuery.query("pagelayouts")[0];
+        var curPage = pageView.getActiveTab();
+        var targetPanel = curPage.down('panel');
+        targetPanel.items.each(function(pageObject) {
+            if ( pageObject.xtype == 'promo') {
+                if ( pageObject.getViewModel().get("name") == offerID) {
+                    // check if visible
 
+                    pageObject.getEl().highlight();
+                }
+            }
+
+
+        });
+    },
     onPageChange: function (record, parentNode) {
         var me = this, existing = false;
         var nodetype = record.data.nodetype;
-        if (nodetype == 'PAGE') {
-            me.getViewModel().set("pagename", record.data.text);
-        }
-        console.log("Page view change request");
-        // Ext.toast("Page change requested " + record.data.nodetype + ":" + record.data.text);
-        // flash changes to the promo offer area title
         Ext.ComponentQuery.query('promogrid')[0].getHeader().getEl().highlight();
         if (nodetype == 'VEHICLE' || nodetype == 'PAGE') {
             Ext.ComponentQuery.query('promogrid')[0].setTitle('Offers for ' + record.data.text);
@@ -104,59 +117,66 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
             Ext.ComponentQuery.query('promogrid')[0].setTitle('No vehicle/page selected');
         }
 
-        var tabName = record.get('text'), tabIndex = 0;
-        console.log("onPageClick %o", record);
-        // Ext.toast("Show page " + record.data.text);
-        Ext.suspendLayouts();
-        var pageView = Ext.ComponentQuery.query("pagelayouts")[0];
-        // see if we have this tab name already
-        pageView.items.each(function (e) {
-            if (e.title == tabName) {
-                pageView.setActiveTab(tabIndex);
-                existing = true;
-            }
-            tabIndex++;
-        });
-        if (!existing) {
-            console.log("Adding page view to %o", pageView);
+        if (nodetype == 'PAGE') {
+            me.getViewModel().set("pagename", record.data.text);
 
-            Ext.Ajax.request({
-                url: Advertising.util.GlobalValues.serviceURL + "/event/getPage",
-                method: 'GET',
-                cors: true,
-                useDefaultXhrHeader: false,
-                timeout: 1450000,
-                params: {
-                    pageID: record.get('id')
-                },
-                success: function (transport) {
-                    var response = Ext.decode(transport.responseText);
-                    console.log("Got response %o", response);
-                    var panel = Ext.create('Advertising.view.main.common.pages.pageview.Page', {
-                        title: record.get('text'),
-                        closable: true,
-                        layout: 'absolute',
-                        objectData: response,
+            console.log("Page view change request");
+            // Ext.toast("Page change requested " + record.data.nodetype + ":" + record.data.text);
+            // flash changes to the promo offer area title
 
-                        inchWidth: response.width,
-                        inchHeight: response.height
-                    });
-                    var addIndex = pageView.items.length;
-                    pageView.insert(addIndex, panel);
-                    pageView.setActiveTab(addIndex);
-                },
-                failure: function (transport) {
-                    var response = Ext.decode(transport.responseText);
-
-                    Ext.Msg.alert('Error', response.Error);
-
-
+            var tabName = record.get('text'), tabIndex = 0;
+            console.log("onPageClick %o", record);
+            // Ext.toast("Show page " + record.data.text);
+            Ext.suspendLayouts();
+            var pageView = Ext.ComponentQuery.query("pagelayouts")[0];
+            // see if we have this tab name already
+            pageView.items.each(function (e) {
+                if (e.title == tabName) {
+                    pageView.setActiveTab(tabIndex);
+                    existing = true;
                 }
+                tabIndex++;
             });
-            Ext.resumeLayouts(true);
+            if (!existing) {
+                console.log("Adding page view to %o", pageView);
 
+                Ext.Ajax.request({
+                    url: Advertising.util.GlobalValues.serviceURL + "/event/getPage",
+                    method: 'GET',
+                    cors: true,
+                    useDefaultXhrHeader: false,
+                    timeout: 1450000,
+                    params: {
+                        pageID: record.get('id')
+                    },
+                    success: function (transport) {
+                        var response = Ext.decode(transport.responseText);
+                        console.log("Got response %o", response);
+                        var panel = Ext.create('Advertising.view.main.common.pages.pageview.Page', {
+                            title: record.get('text'),
+                            closable: true,
+                            layout: 'absolute',
+                            objectData: response,
+
+                            inchWidth: response.width,
+                            inchHeight: response.height
+                        });
+                        var addIndex = pageView.items.length;
+                        pageView.insert(addIndex, panel);
+                        pageView.setActiveTab(addIndex);
+                    },
+                    failure: function (transport) {
+                        var response = Ext.decode(transport.responseText);
+
+                        Ext.Msg.alert('Error', response.Error);
+
+
+                    }
+                });
+                Ext.resumeLayouts(true);
+
+            }
         }
-
 
     },
     onPageResize: function (pageview, width, height, origWidth, origHeight) {

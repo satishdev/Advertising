@@ -100,6 +100,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
         page.setHeight(Math.round(model.get("height") * 96 * scale));
         var svg = page.getEl().query('svg');
         svg[0].setAttribute("width", '' + pageWidth);
+        console.log("Model height: %o", model);
         svg[0].setAttribute("height",'' +  Math.round(model.get("height") * 96 * scale));
 
 
@@ -120,10 +121,12 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
         var scale = parentWidth / ((p.inchWidth * 96) + 50);
         console.log("Scale %f", scale);
         var me = this;
-        me.getViewModel().set("scale", scale);
+
         var trueWidth = Math.round(p.inchWidth * 96 * scale);
         var trueHeight = Math.round(p.inchHeight * 96 * scale);
-
+        me.getViewModel().set("scale", scale);
+        me.getViewModel().set("width", p.inchWidth);
+        me.getViewModel().set("height", p.inchHeight);
         Ext.toast(trueWidth + " X " + trueHeight);
         // This is the panel then then contains all children - layout objects and offers
         var inner = Ext.create('Ext.panel.Panel', {

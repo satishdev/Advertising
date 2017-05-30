@@ -8,6 +8,7 @@ Ext.define('Advertising.view.main.common.pages.pageobject.PageObject', {
         'Advertising.view.main.common.promo.PromoController',
         'Ext.layout.container.Absolute'
     ],
+    //cls: 'f-promo-base',
 
 
     xtype: 'pageobject',
@@ -26,6 +27,7 @@ Ext.define('Advertising.view.main.common.pages.pageobject.PageObject', {
     resizable: true,
     layout: 'absolute',
     constrain: true,
+    shadow: true,
     selected: false,
     items: [
         /* include child components here */

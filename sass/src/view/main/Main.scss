@@ -200,3 +200,33 @@ $font-weight-bold: 500;
 .f-new-node {
  color: $color-new;
 }
+
+.f-promo-on-page {
+  color: $color-jda-green !important;
+}
+
+.f-promo-not-on-page {
+  color: $color-jda-blue !important;
+}
+
+.f-promo-not-valid-for-page {
+  background-color: $color-jda-grey;
+  color: $color-jda-dark;
+}
+
+.f-offer-received:before {
+  font: 18px/1 FontAwesome;
+  color:$color-jda-blue;
+  content: "\f019";
+}
+
+.f-offer-new:before {
+  font: 18px/1 FontAwesome;
+  color:$color-soft-orange;
+  content: "\f069";
+}
+
+.f-promo-base {
+  background-color: white;
+  border: 2px solid #0f76c2;
+}

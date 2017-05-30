@@ -4,13 +4,12 @@
 Ext.define('Advertising.view.main.common.Promo', {
     extend: 'Advertising.view.main.common.pages.pageobject.PageObject',
     resizable: true,
-    //ui: 'promo',
     xtype: 'promo',
     controller: 'promo',
     viewModel: {
         type: 'promo'
     },
-
+    //baseCls: 'f-promo',
     requires: [
         'Advertising.view.main.common.promo.PromoModel',
         'Ext.button.Button',
@@ -28,16 +27,13 @@ Ext.define('Advertising.view.main.common.Promo', {
     },
     excluded: false,
     //ui: 'promo',
+    //bodyStyle: 'background: white',
     constrain: true,
     layout: 'fit',
     frame: true,
     border: 2,
     padding: 0,
-    shadow: true,
-
     draggable: true,
-
-    cls: 'f-promo-base',
     tbar: {
         items: [
             {
@@ -138,7 +134,7 @@ Ext.define('Advertising.view.main.common.Promo', {
         {
             // html: '<div class="noSelect" style="font-size: 1vw">' + '{name}' + '<br/>Some image here</br><p/><div style="font-size: 4vw"> $99<sup style="font-size:.6em">99</sup></div></div>',
             bind: {
-                html: '<div class="noSelect" style="font-size: 1vw">{name}<br/><div class="f-prod-image"><img class="noSelect" src="http://laheadvsb01.ngco.com:8080/smartmedia/servlet/smartmediaservlet?ref=4122006805.eps&type=Image&res=thumb"/></div></br><p/>Adzone [{adzoneID} {location}]</div>',
+                html: '<div class="noSelect" style="font-size: 1vw">{name}<br/><div class="f-prod-image"><img alt="prod img" class="noSelect" src="http://laheadvsb01.ngco.com:8080/smartmedia/servlet/smartmediaservlet?ref=4122006805.eps&type=Image&res=thumb"/></div></br><p/>Adzone [{adzoneID} {location}]</div>',
                 visible: '{!showGrid}'
             }
         }
