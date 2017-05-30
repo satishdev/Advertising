@@ -26,7 +26,8 @@ Ext.define('Advertising.view.main.common.Promo', {
 
     },
     excluded: false,
-    //ui: 'promo',
+    //baseCls: 'x-plain',
+    ui: 'promo',
     //bodyStyle: 'background: white',
     constrain: true,
     layout: 'fit',
