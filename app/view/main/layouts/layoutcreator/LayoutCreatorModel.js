@@ -6,6 +6,16 @@ Ext.define('Advertising.view.main.layouts.layoutcreator.LayoutCreatorModel', {
     alias: 'viewmodel.layoutcreator',
 
     stores: {
+        promotypes: {
+            data: [
+                {
+                    name: 'F-Bakery Namos'
+                },
+                {
+                    name: 'F-Bakery'
+                }
+            ]
+        }
         /*
         A declaration of Ext.data.Store configurations that are first processed as binds to produce an effective
         store configuration. For example:

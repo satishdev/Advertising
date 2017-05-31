@@ -138,7 +138,7 @@ Ext.define('Advertising.view.main.Main', {
 
                         },
                         {
-                            title: 'Change Control',
+                            title: 'Change Log',
                             xtype: 'changecontrol',
                             reference: 'changecontrol',
                             iconCls: 'fa fa-check',
@@ -153,7 +153,7 @@ Ext.define('Advertising.view.main.Main', {
 
                         },
                         {
-                            title: 'Scoring',
+                            title: 'Scorecard',
                             xtype: 'metricspanel',
                             iconCls: 'fa fa-dollar',
                             tooltip: 'Display the metrics for the selected vehicle or page'

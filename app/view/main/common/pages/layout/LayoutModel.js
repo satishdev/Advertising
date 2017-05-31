@@ -102,7 +102,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutModel', {
         debug: true,
         themeName: 'Theme Code',
         sectionName: 'Header',
-        adPosition: 'Position'
+        adPosition: 'Ad Position'
         /* This object holds the arbitrary data that populates the ViewModel and is then available for binding. */
     }
 });

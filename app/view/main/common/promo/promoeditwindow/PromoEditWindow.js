@@ -20,8 +20,6 @@ Ext.define('Advertising.view.main.common.promo.promoeditwindow.PromoEditWindow',
     requires: [
         'Advertising.view.main.common.promo.promoeditwindow.PromoEditWindowController',
         'Advertising.view.main.common.promo.promoeditwindow.PromoEditWindowModel',
-        'Ext.data.Store',
-        'Ext.data.reader.Json',
         'Ext.form.field.ComboBox',
         'Ext.form.field.Text',
         'Ext.form.field.TextArea',

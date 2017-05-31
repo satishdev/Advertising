@@ -210,8 +210,8 @@ $font-weight-bold: 500;
 }
 
 .f-promo-not-valid-for-page {
-  background-color: $color-jda-grey;
-  color: $color-jda-dark;
+  color: $color-jda-grey;
+  font-style: italic;
 }
 
 .f-offer-received:before {
@@ -229,4 +229,10 @@ $font-weight-bold: 500;
 .f-promo-base {
   background-color: white;
   border: 2px solid #0f76c2;
+}
+
+.x-panel-promo {
+  border-radius: 5px;
+  border: 2px solid #0f76c2;
+  box-shadow: 10px 10px 5px #888888;
 }

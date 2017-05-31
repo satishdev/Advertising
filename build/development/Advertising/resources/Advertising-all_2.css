@@ -12198,8 +12198,8 @@ a.x-btn:active {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:212 */
 .f-promo-not-valid-for-page {
-    background-color: #ccc;
-    color: #32404e;
+    color: #ccc;
+    font-style: italic;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:217 */
 .f-offer-received:before {
@@ -12217,4 +12217,10 @@ a.x-btn:active {
 .f-promo-base {
     background-color: white;
     border: 2px solid #0f76c2;
+}
+/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:234 */
+.x-panel-promo {
+    border-radius: 5px;
+    border: 2px solid #0f76c2;
+    box-shadow: 10px 10px 5px #888;
 }

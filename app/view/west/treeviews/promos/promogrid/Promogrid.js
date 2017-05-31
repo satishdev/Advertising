@@ -2,7 +2,7 @@
  * Created by Lee on 4/6/2017.
  */
 
-var tpl = new Ext.XTemplate('<strong>List:</strong>${item:this.getListTo}<br/><strong>Save:</strong>${item:this.getSaveTo}<br/><strong>Sale:</strong>${item:this.getSaleTo}<br/><strong>Save To :</strong>%{item:this.getSaveToPct}<br/>', {
+var tpl = new Ext.XTemplate('<strong>List:</strong>${item:this.getListTo}<strong>Save:</strong>${item:this.getSaveTo}<br/><strong>Sale:</strong>${item:this.getSaleTo}<strong>Save To :</strong>%{item:this.getSaveToPct}<br/>', {
     getListTo: function(item) {
         return Number(item.price.listto).toFixed(2);
     },
@@ -13,7 +13,7 @@ var tpl = new Ext.XTemplate('<strong>List:</strong>${item:this.getListTo}<br/><s
         return Number(item.price.saleto).toFixed(2);
     },
     getSaveToPct: function(item) {
-        return Math.abs(Number(item.price.savetopercent * 100));
+        return Math.round(Number(item.price.savetopercent * 100).toFixed(2));
     }
 });
 

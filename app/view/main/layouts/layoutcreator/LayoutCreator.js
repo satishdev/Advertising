@@ -9,6 +9,7 @@ Ext.define('Advertising.view.main.layouts.layoutcreator.LayoutCreator', {
         'Advertising.view.main.layouts.layoutcreator.LayoutCreatorModel',
         'Ext.form.FieldContainer',
         'Ext.form.Panel',
+        'Ext.form.field.ComboBox',
         'Ext.form.field.Number',
         'Ext.form.field.Text',
         'Ext.form.field.TextArea',
@@ -28,7 +29,7 @@ Ext.define('Advertising.view.main.layouts.layoutcreator.LayoutCreator', {
     listeners: {
         render: 'onRender'
     },
-    initComponent: function() {
+    initComponent: function () {
 
         this.callParent(arguments);
 
@@ -63,6 +64,15 @@ Ext.define('Advertising.view.main.layouts.layoutcreator.LayoutCreator', {
                 ],
                 allowBlank: false
 
+            },
+            {
+                xtype: 'combobox',
+                fieldLabel: 'Default promo type',
+                displayField: 'name',
+                valueField: 'name',
+                bind: {
+                    store: '{promotypes}'
+                }
             },
             {
                 xtype: 'fieldcontainer',
@@ -117,17 +127,19 @@ Ext.define('Advertising.view.main.layouts.layoutcreator.LayoutCreator', {
                 bind: {
                     value: '{description}'
                 },
-                maxLength:255,
+                maxLength: 255,
                 allowBlank: true
 
             }
         ],
         buttons: [
-            { text: 'OK',
+            {
+                text: 'OK',
                 handler: 'onCreateLayout'
             },
-            { text: 'Cancel',
-                handler: function(btn) {
+            {
+                text: 'Cancel',
+                handler: function (btn) {
                     btn.up('window').destroy();
                 }
             }

@@ -99,8 +99,9 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
             if ( pageObject.xtype == 'promo') {
                 if ( pageObject.getViewModel().get("name") == offerID) {
                     // check if visible
-
                     pageObject.getEl().highlight();
+                    pageObject.getEl().highlight("ff00aa", { attr: 'color', duration: 2000 });
+
                 }
             }
 

@@ -173,6 +173,10 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
         },
         {
             xtype: 'combobox',
+            fieldLabel: 'Promo Type'
+        },
+        {
+            xtype: 'combobox',
 
             name: 'theme',
             listeners: {

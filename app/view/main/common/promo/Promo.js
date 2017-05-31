@@ -9,7 +9,6 @@ Ext.define('Advertising.view.main.common.Promo', {
     viewModel: {
         type: 'promo'
     },
-    //baseCls: 'f-promo',
     requires: [
         'Advertising.view.main.common.promo.PromoModel',
         'Ext.button.Button',
@@ -26,14 +25,12 @@ Ext.define('Advertising.view.main.common.Promo', {
 
     },
     excluded: false,
-    //baseCls: 'x-plain',
     ui: 'promo',
-    //bodyStyle: 'background: white',
     constrain: true,
     layout: 'fit',
-    frame: true,
+    //frame: true,
     border: 2,
-    padding: 0,
+    padding: 2,
     draggable: true,
     tbar: {
         items: [
