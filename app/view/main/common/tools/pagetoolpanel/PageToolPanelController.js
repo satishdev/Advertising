@@ -23,6 +23,9 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelContro
                 mainPageTabAdded: 'onMainPageTabAdded',
                 mainPageTabChanged: 'onMainPageTabChanged'
 
+            },
+            '#vcmaincontroller': {
+                primaryTabChange: 'onPrimaryTabChange'
             }
 
 
@@ -46,6 +49,27 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelContro
             me.fireEvent("showPageMarket", btn.marketID, showOffers, showLayouts);
         } else {
             me.fireEvent("hidePageMarket", btn.marketID, showOffers, showLayouts);
+
+        }
+
+    },
+    onToggleStacking: function(btn) {
+        var me = this;
+        // get the chart currently displayed
+        var metricsPanel = Ext.ComponentQuery.query('metricspanel')[0];
+        metricsPanel.getViewModel().set("stacked", btn.pressed);
+        metricsPanel.down('cartesian').redraw();
+    },
+    onPrimaryTabChange: function( panel, newCard, oldCard, eOpts) {
+        Ext.toast("Primary tab " + newCard.xtype);
+        var me = this;
+        me.getViewModel().set("hideSplash", true);
+
+        if ( newCard.xtype == 'metricspanel') {
+             me.getViewModel().set("showMetricsTools", true);
+
+        } else {
+            me.getViewModel().set("showMetricsTools", false);
 
         }
 

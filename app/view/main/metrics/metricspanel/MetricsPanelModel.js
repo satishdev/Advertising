@@ -48,6 +48,7 @@ Ext.define('Advertising.view.main.metrics.metricspanel.MetricsPanelModel', {
     },
 
     data: {
+        stacked: false
         /* This object holds the arbitrary data that populates the ViewModel and is then available for binding. */
     }
 });

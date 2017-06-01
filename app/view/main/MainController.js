@@ -67,6 +67,11 @@ Ext.define('Advertising.view.main.MainController', {
     savePage: function(page) {
         Ext.toast("Save page..");
     },
+    onPrimaryTabChange: function(panel,newTab, oldTab, eOpts) {
+        Ext.toast("Primary tab change - update tools");
+        var me = this;
+        me.fireEvent('primaryTabChange',panel,newTab, oldTab, eOpts);
+    },
     saveLayout: function(layout, isNew) {
         var json = [];
         if ( isNew ) {

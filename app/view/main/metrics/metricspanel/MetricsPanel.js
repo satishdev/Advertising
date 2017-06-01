@@ -44,7 +44,7 @@ Ext.define('Advertising.view.main.metrics.metricspanel.MetricsPanel', {
             axes: [{
                 type: 'numeric3d',
                 position: 'left',
-                fields: ['baseSalesAmount', 'margin'],
+                fields: ['totalSalesAmount','baseSalesAmount', 'margin'],
                 grid: true,
                 title: 'Sales in USD',
                 renderer: 'onAxisLabelRender'
@@ -60,7 +60,9 @@ Ext.define('Advertising.view.main.metrics.metricspanel.MetricsPanel', {
             }],
             series: {
                 type: 'bar3d',
-                stacked: false,
+                bind: {
+                    stacked: '{stacked}'
+                },
                 title: ['Base Sales', 'Promoted Sales'],
                 xField: 'page',
                 yField: ['baseSalesAmount', 'promotedSalesAmount'],

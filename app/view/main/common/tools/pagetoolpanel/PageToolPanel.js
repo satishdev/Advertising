@@ -99,6 +99,37 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
         {
             xtype: 'panel',
             bind: {
+                hidden: '{!showMetricsTools}'
+            },
+            layout:'column',
+            defaults: {
+                xtype: 'button',
+                padding: 3,
+                margin: 3
+            },
+            items: [
+                {
+                    tooltip: 'Show offer data',
+                    iconCls: 'fa fa-pie-chart',
+                    text: 'Offer Data'
+                },
+                {
+                    tooltip: 'Show event data',
+                    iconCls: 'fa fa-bar-chart',
+                    text: 'Event Data'
+                },
+                {
+                    tooltip: 'Stack data',
+                    iconCls: 'fa  fa-stack-overflow',
+                    text: 'Stack Data',
+                    enableToggle: true,
+                    handler: 'onToggleStacking'
+                }
+                ]
+        },
+        {
+            xtype: 'panel',
+            bind: {
                 hidden: '{hidePageTools}'
             },
             layout:'column',

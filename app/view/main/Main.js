@@ -126,7 +126,9 @@ Ext.define('Advertising.view.main.Main', {
             items: [
                 {
                     xtype: 'tabpanel',
-
+                    listeners: {
+                        tabchange: 'onPrimaryTabChange'
+                    },
                     items: [
 
                         {
