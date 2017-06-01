@@ -12,7 +12,7 @@ Ext.define('Advertising.view.main.metrics.metricspanel.MetricsPanel', {
         'Ext.chart.axis.Numeric3D',
         'Ext.chart.interactions.ItemHighlight',
         'Ext.chart.series.Bar3D',
-        'Ext.layout.container.Table'
+        'Ext.layout.container.Fit'
     ],
 
     xtype: 'metricspanel',
@@ -20,20 +20,12 @@ Ext.define('Advertising.view.main.metrics.metricspanel.MetricsPanel', {
     viewModel: {
         type: 'metricspanel'
     },
-    layout: {
-        type: 'table',
-        columns: 2,
-        tableAttrs: {
-            style: {
-                width: '100%'
-            }
-        }
-    },
+    layout: 'fit',
     controller: 'metricspanel',
 
     items: [
         {
-
+            flex:1,
             xtype: 'cartesian',
             width: '100%',
             height:400,
@@ -44,7 +36,7 @@ Ext.define('Advertising.view.main.metrics.metricspanel.MetricsPanel', {
                 duration: 200
             },
             bind: {
-                store: '{sample}'
+                store: '{vehicleMetrics}'
             },
 
             legend: true,
@@ -52,7 +44,7 @@ Ext.define('Advertising.view.main.metrics.metricspanel.MetricsPanel', {
             axes: [{
                 type: 'numeric3d',
                 position: 'left',
-                fields: ['sales', 'margin'],
+                fields: ['baseSalesAmount', 'margin'],
                 grid: true,
                 title: 'Sales in USD',
                 renderer: 'onAxisLabelRender'
@@ -69,160 +61,11 @@ Ext.define('Advertising.view.main.metrics.metricspanel.MetricsPanel', {
             series: {
                 type: 'bar3d',
                 stacked: false,
-                title: ['Total Sales', 'Margin'],
+                title: ['Base Sales', 'Promoted Sales'],
                 xField: 'page',
-                yField: ['sales', 'margin'],
+                yField: ['baseSalesAmount', 'promotedSalesAmount'],
                 label: {
-                    field: ['sales', 'margin'],
-                    display: 'insideEnd',
-                    renderer: 'onSeriesLabelRender'
-                },
-                highlight: true,
-                style: {
-                    inGroupGapWidth: -3
-                }
-            }
-        },
-        {
-            xtype: 'cartesian',
-            width: '100%',
-            height:400,
-            //theme: 'Muted',
-            insetPadding: '70 40 0 40',
-            interactions: ['itemhighlight'],
-            animation: {
-                duration: 200
-            },
-            bind: {
-                store: '{sample}'
-            },
-
-            legend: true,
-
-            axes: [{
-                type: 'numeric3d',
-                position: 'left',
-                fields: ['sales', 'margin'],
-                grid: true,
-                title: 'Sales in USD',
-                renderer: 'onAxisLabelRender'
-            }, {
-                type: 'category3d',
-                position: 'bottom',
-                fields: 'page',
-                title: {
-                    text: 'Page',
-                    translationX: -30
-                },
-                grid: true
-            }],
-            series: {
-                type: 'bar3d',
-                stacked: false,
-                title: ['Total Sales', 'Margin'],
-                xField: 'page',
-                yField: ['sales', 'margin'],
-                label: {
-                    field: ['sales', 'margin'],
-                    display: 'insideEnd',
-                    renderer: 'onSeriesLabelRender'
-                },
-                highlight: true,
-                style: {
-                    inGroupGapWidth: -3
-                }
-            }
-        },
-        {
-            xtype: 'cartesian',
-            width: '100%',
-            height:400,
-            //theme: 'Muted',
-            insetPadding: '70 40 0 40',
-            interactions: ['itemhighlight'],
-            animation: {
-                duration: 200
-            },
-            bind: {
-                store: '{sample}'
-            },
-
-            legend: true,
-
-            axes: [{
-                type: 'numeric3d',
-                position: 'left',
-                fields: ['sales', 'margin'],
-                grid: true,
-                title: 'Sales in USD',
-                renderer: 'onAxisLabelRender'
-            }, {
-                type: 'category3d',
-                position: 'bottom',
-                fields: 'page',
-                title: {
-                    text: 'Page',
-                    translationX: -30
-                },
-                grid: true
-            }],
-            series: {
-                type: 'bar3d',
-                stacked: false,
-                title: ['Total Sales', 'Margin'],
-                xField: 'page',
-                yField: ['sales', 'margin'],
-                label: {
-                    field: ['sales', 'margin'],
-                    display: 'insideEnd',
-                    renderer: 'onSeriesLabelRender'
-                },
-                highlight: true,
-                style: {
-                    inGroupGapWidth: -3
-                }
-            }
-        },     {
-            xtype: 'cartesian',
-            width: '100%',
-            height: 400,
-            //theme: 'Muted',
-            insetPadding: '70 40 0 40',
-            interactions: ['itemhighlight'],
-            animation: {
-                duration: 200
-            },
-            bind: {
-                store: '{sample}'
-            },
-
-            legend: true,
-
-            axes: [{
-                type: 'numeric3d',
-                position: 'left',
-                fields: ['sales', 'margin'],
-                grid: true,
-                title: 'Sales in USD',
-                renderer: 'onAxisLabelRender'
-            }, {
-                type: 'category3d',
-                position: 'bottom',
-                fields: 'page',
-                title: {
-                    text: 'Page',
-                    translationX: -30
-                },
-                grid: true
-            }],
-            series: {
-                type: 'bar3d',
-                stacked: false,
-                title: ['Total Sales', 'Margin'],
-                xField: 'page',
-                yField: ['sales', 'margin'],
-                label: {
-                    field: ['sales', 'margin'],
+                    field: ['baseSalesAmount', 'promotedSalesAmount'],
                     display: 'insideEnd',
                     renderer: 'onSeriesLabelRender'
                 },

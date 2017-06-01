@@ -47,6 +47,7 @@ Ext.define('Advertising.view.west.treeviews.promos.promogrid.PromogridModel', {
     },
 
     data: {
+        filterVisible: false
         /* This object holds the arbitrary data that populates the ViewModel and is then available for binding. */
     }
 });

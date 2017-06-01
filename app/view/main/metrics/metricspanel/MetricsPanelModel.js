@@ -5,15 +5,35 @@ Ext.define('Advertising.view.main.metrics.metricspanel.MetricsPanelModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.metricspanel',
 
+    requires: [
+        'Ext.data.reader.Json'
+    ],
+
     stores: {
-        sample: {
-            data: [
-                { page: 'Page 1',     sales: 3882100, margin: 2995787},
-                { page: 'Page 2',   sales: 4181308, margin: 3611671},
-                { page: 'Page 3',   sales: 7156008,  margin: 1640091},
-                { page: 'Page 4',      sales: 1700084,  margin: 512506},
-                { page: 'Page 5',  sales: 7885600,  margin: 727906 }
-            ]
+        vehicleMetrics: {
+
+                listeners: {
+                    load: function(store, operation) {
+                        console.log("vehicle metrics store load");
+                    }
+                },
+                autoLoad: false,
+                proxy: {
+                    type : 'ajax',
+                    useDefaultXhrHeader: false,
+                    api: {
+                        read:  Advertising.util.GlobalValues.serviceURL + '/event/getVehicleAnalytics'
+                    },
+                    reader: {
+                        type: 'json',
+                        rootProperty: 'data'
+                    }
+                }
+
+
+        },
+        pageMetrics: {
+
 
         }
         /*

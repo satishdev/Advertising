@@ -2,7 +2,8 @@
  * Created by Lee on 4/6/2017.
  */
 
-var tpl = new Ext.XTemplate('<strong>List:</strong>${item:this.getListTo}<strong>Save:</strong>${item:this.getSaveTo}<br/><strong>Sale:</strong>${item:this.getSaleTo}<strong>Save To :</strong>%{item:this.getSaveToPct}<br/>', {
+var tpl = new Ext.XTemplate('<ul><tpl for="item.items"><li><b class="f-treatment-text">{treatment}</b> - {id} - {description} </li></tpl></ul><table class="f-table-layout" style="width:250px"><tr><th>List</th><td>${item:this.getListTo}</td><th>Save</th><td>${item:this.getSaveTo}</td></tr><tr><th>Sale</th><td>${item:this.getSaleTo}</td><th>Save %</th><td>%{item:this.getSaveToPct}</td></tr></table>' +
+    '', {
     getListTo: function(item) {
         return Number(item.price.listto).toFixed(2);
     },
@@ -33,7 +34,11 @@ Ext.define('Advertising.view.west.treeviews.promos.promogrid.Promogrid', {
 
     tools: [
         {
-            type: 'search',
+            type: 'filter',
+            cls:'component-tool-filter',
+            bind: {
+                hidden: '{!filterVisible}'
+            },
             callback: function (panel) {
                 // do filter
                 var grid= panel.down('grid');

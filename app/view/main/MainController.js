@@ -64,7 +64,9 @@ Ext.define('Advertising.view.main.MainController', {
 
         }
     },
-
+    savePage: function(page) {
+        Ext.toast("Save page..");
+    },
     saveLayout: function(layout, isNew) {
         var json = [];
         if ( isNew ) {

@@ -234,5 +234,37 @@ $font-weight-bold: 500;
 .x-panel-promo {
   border-radius: 5px;
   border: 2px solid #0f76c2;
-  box-shadow: 10px 10px 5px #888888;
+  box-shadow: 5px 5px 5px #CCCCCC;
+
+}
+
+.f-treatment-text {
+  color: $color-jda-blue;
+}
+
+.f-highlight {
+  box-shadow: 5px 5px 5px $color-soft-green !important;
+  border: 2px solid $color-soft-green;
+}
+.f-table-layout {
+  text-align: center;
+  border: 1px solid #ddd;
+  padding: 2px;
+}
+
+.f-table-layout th {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-right: 2px;
+  text-align: right;
+  background-color:$color-jda-blue;
+  color: white;
+}
+
+.component-tool-filter .x-tool-filter{
+  background-image:none !important;
+  font: 16px/1 FontAwesome;
+}
+.component-tool-filter  .x-tool-filter:before{
+  content: "\f0b0" !important;
 }

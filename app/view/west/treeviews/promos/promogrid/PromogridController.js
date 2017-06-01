@@ -32,7 +32,7 @@ Ext.define('Advertising.view.west.treeviews.promos.promogrid.PromogridController
         console.log("Event change " + node.data.nodetype);
         var nodetype = node.data.nodetype;
         var store = me.getStore("offers");
-
+        me.getViewModel().set("filterVisible",false);
         if (nodetype == 'VEHICLE') {
             Ext.toast("Getting promos for vehicle " + node.data.id);
             console.log("Store %o", store);
@@ -44,6 +44,7 @@ Ext.define('Advertising.view.west.treeviews.promos.promogrid.PromogridController
             store.load();
         } else if ( nodetype == 'PAGE') {
             Ext.toast("Getting promos for page " + node.data.id);
+            me.getViewModel().set("filterVisible",true);
             var parent =
             console.log("Store %o", store);
             store.getProxy().extraParams = {

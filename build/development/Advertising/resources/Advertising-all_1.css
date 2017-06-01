@@ -688,7 +688,7 @@
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/packages/core/sass/src/list/TreeItem.scss:193 */
 .x-treelist-item-icon,
 .x-treelist-item-tool {
-    color: #0277bd;
+    color: #0397ef;
     font-size: 16px;
     width: 16px;
 }
@@ -698,7 +698,7 @@
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/packages/core/sass/src/list/TreeItem.scss:216 */
 .x-treelist-item-expander {
-    color: #0277bd;
+    color: #0397ef;
     font-size: 16px;
     width: 18px;
 }
@@ -775,7 +775,7 @@
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/packages/core/sass/src/list/TreeItem.scss:357 */
 .x-treelist-highlight-path .x-treelist-item-over > * > * > .x-treelist-item-icon {
-    color: #0277bd;
+    color: #0397ef;
     transition: color 0.5s;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/packages/core/sass/src/list/TreeItem.scss:361 */
@@ -785,16 +785,16 @@
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/packages/core/sass/src/list/TreeItem.scss:365 */
 .x-treelist-highlight-path .x-treelist-item-over > * > * > .x-treelist-item-expander {
-    color: #0277bd;
+    color: #0397ef;
     transition: color 0.5s;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/packages/core/sass/src/list/TreeItem.scss:372 */
 .x-treelist-row-over {
-    background-color: #e2ecf1;
+    background-color: #e3eef5;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/packages/core/sass/src/list/TreeItem.scss:376 */
 .x-treelist-row-over > * > .x-treelist-item-icon {
-    color: #0277bd;
+    color: #0397ef;
     transition: color 0.5s;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/packages/core/sass/src/list/TreeItem.scss:380 */
@@ -804,7 +804,7 @@
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/packages/core/sass/src/list/TreeItem.scss:384 */
 .x-treelist-row-over > * > .x-treelist-item-expander {
-    color: #0277bd;
+    color: #0397ef;
     transition: color 0.5s;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/packages/core/sass/src/list/TreeItem.scss:391 */
@@ -920,15 +920,15 @@
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/packages/core/sass/src/list/TreeItem.scss:287 */
 .x-treelist-nav .x-treelist-row-over:before {
-    background-color: #0397ef;
+    background-color: #29adfc;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/packages/core/sass/src/list/TreeItem.scss:291 */
 .x-treelist-nav .x-treelist-item-selected > .x-treelist-row-over:before {
-    background-color: #0397ef;
+    background-color: #29adfc;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/packages/core/sass/src/list/TreeItem.scss:295 */
 .x-treelist-nav .x-treelist-item-selected > .x-treelist-row:before {
-    background-color: #0277bd;
+    background-color: #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/packages/core/sass/src/list/TreeItem.scss:301 */
 .x-treelist-nav .x-treelist-item-floated .x-treelist-container {
@@ -2457,7 +2457,7 @@ the height of a multi-line element */
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/src/view/View.scss:2 */
 .x-keyboard-mode .x-view-item-focused {
-    outline: 1px dashed #0277bd !important;
+    outline: 1px dashed #0397ef !important;
     outline-offset: -1px;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/src/view/BoundList.scss:8 */
@@ -2917,7 +2917,7 @@ the height of a multi-line element */
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/src/grid/column/Action.scss:6 */
 .x-keyboard-mode .x-grid-cell-inner-action-col :focus {
-    outline: 1px solid #0277bd;
+    outline: 1px solid #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/src/grid/column/Action.scss:12 */
 .x-action-col-icon {
@@ -2938,7 +2938,7 @@ the height of a multi-line element */
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/src/grid/column/Check.scss:19 */
 .x-keyboard-mode .x-grid-checkcolumn-cell-inner :focus {
-    outline: 1px solid #0277bd;
+    outline: 1px solid #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/src/grid/feature/Grouping.scss:1 */
 .x-group-hd-container {
@@ -3168,7 +3168,7 @@ the height of a multi-line element */
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/src/grid/plugin/RowExpander.scss:8 */
 .x-keyboard-mode .x-grid-row-expander:focus {
-    outline: 1px solid #0277bd;
+    outline: 1px solid #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/src/grid/plugin/RowExpander.scss:13 */
 .x-grid-hide-row-expander-spacer .x-grid-row-expander-spacer {
@@ -3663,7 +3663,7 @@ body > .x-mask {
 .x-keyboard-mode .x-mask.x-focus {
     border-style: solid;
     border-width: 1px;
-    border-color: #0277bd;
+    border-color: #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/LoadMask.scss:31 */
 .x-mask-msg {
@@ -3698,7 +3698,7 @@ body > .x-mask {
     background-color: #ededed;
     border-width: 0;
     height: 24px;
-    border-color: #0277bd;
+    border-color: #0397ef;
     border-style: solid;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/ProgressBar.scss:111 */
@@ -3728,7 +3728,7 @@ body > .x-mask {
     right: 0;
     bottom: 0;
     left: 0;
-    border: 0 solid #0277bd;
+    border: 0 solid #0397ef;
     pointer-events: none;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
@@ -3767,11 +3767,11 @@ body > .x-mask {
     padding: 7px 7px 7px 7px;
     border-width: 1px;
     border-style: solid;
-    background-color: #0277bd;
+    background-color: #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/frame.scss:237 */
 .x-btn-default-small-mc {
-    background-color: #0277bd;
+    background-color: #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/frame.scss:264 */
 .x-nbr .x-btn-default-small {
@@ -3870,7 +3870,7 @@ body > .x-mask {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:445 */
 .x-btn-default-small {
-    border-color: #026fb0;
+    border-color: #038cde;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:452 */
 .x-btn-button-default-small {
@@ -4028,10 +4028,10 @@ body > .x-mask {
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:739 */
 .x-keyboard-mode .x-btn-focus.x-btn-default-small {
     background-image: none;
-    background-color: #0277bd;
-    -webkit-box-shadow: #c0d8e6 0 1px 0px 0 inset, #c0d8e6 0 -1px 0px 0 inset, #c0d8e6 -1px 0 0px 0 inset, #c0d8e6 1px 0 0px 0 inset;
-    -moz-box-shadow: #c0d8e6 0 1px 0px 0 inset, #c0d8e6 0 -1px 0px 0 inset, #c0d8e6 -1px 0 0px 0 inset, #c0d8e6 1px 0 0px 0 inset;
-    box-shadow: #c0d8e6 0 1px 0px 0 inset, #c0d8e6 0 -1px 0px 0 inset, #c0d8e6 -1px 0 0px 0 inset, #c0d8e6 1px 0 0px 0 inset;
+    background-color: #0397ef;
+    -webkit-box-shadow: #c1def0 0 1px 0px 0 inset, #c1def0 0 -1px 0px 0 inset, #c1def0 -1px 0 0px 0 inset, #c1def0 1px 0 0px 0 inset;
+    -moz-box-shadow: #c1def0 0 1px 0px 0 inset, #c1def0 0 -1px 0px 0 inset, #c1def0 -1px 0 0px 0 inset, #c1def0 1px 0 0px 0 inset;
+    box-shadow: #c1def0 0 1px 0px 0 inset, #c1def0 0 -1px 0px 0 inset, #c1def0 -1px 0 0px 0 inset, #c1def0 1px 0 0px 0 inset;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:775 */
 .x-btn-default-small .x-btn-arrow-el {
@@ -4049,24 +4049,24 @@ body > .x-mask {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:792 */
 .x-keyboard-mode .x-btn-default-small.x-arrow-focus .x-btn-arrow-el {
-    border: 1px solid #c0d8e6;
+    border: 1px solid #c1def0;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:799 */
 .x-btn-over.x-btn-default-small {
-    border-color: #0266a2;
+    border-color: #0381cc;
     background-image: none;
-    background-color: #026dae;
+    background-color: #038bdc;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:827 */
 .x-keyboard-mode .x-btn-focus.x-btn-over.x-btn-default-small {
-    -webkit-box-shadow: #c0d6e3 0 1px 0px 0 inset, #c0d6e3 0 -1px 0px 0 inset, #c0d6e3 -1px 0 0px 0 inset, #c0d6e3 1px 0 0px 0 inset;
-    -moz-box-shadow: #c0d6e3 0 1px 0px 0 inset, #c0d6e3 0 -1px 0px 0 inset, #c0d6e3 -1px 0 0px 0 inset, #c0d6e3 1px 0 0px 0 inset;
-    box-shadow: #c0d6e3 0 1px 0px 0 inset, #c0d6e3 0 -1px 0px 0 inset, #c0d6e3 -1px 0 0px 0 inset, #c0d6e3 1px 0 0px 0 inset;
+    -webkit-box-shadow: #c1dcec 0 1px 0px 0 inset, #c1dcec 0 -1px 0px 0 inset, #c1dcec -1px 0 0px 0 inset, #c1dcec 1px 0 0px 0 inset;
+    -moz-box-shadow: #c1dcec 0 1px 0px 0 inset, #c1dcec 0 -1px 0px 0 inset, #c1dcec -1px 0 0px 0 inset, #c1dcec 1px 0 0px 0 inset;
+    box-shadow: #c1dcec 0 1px 0px 0 inset, #c1dcec 0 -1px 0px 0 inset, #c1dcec -1px 0 0px 0 inset, #c1dcec 1px 0 0px 0 inset;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:856 */
 .x-btn.x-btn-menu-active.x-btn-default-small,
 .x-btn.x-btn-pressed.x-btn-default-small {
-    border-color: #015384;
+    border-color: #0269a7;
     background-image: none;
     background-color: #03b4d5;
 }
@@ -4085,7 +4085,7 @@ body > .x-mask {
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:915 */
 .x-btn.x-btn-disabled.x-btn-default-small {
     background-image: none;
-    background-color: #0277bd;
+    background-color: #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:948 */
 .x-keyboard-mode .x-btn-focus .x-btn-default-small-tl,
@@ -4103,7 +4103,7 @@ body > .x-mask {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:960 */
 .x-keyboard-mode .x-btn-focus .x-btn-default-small-mc {
-    background-color: #0277bd;
+    background-color: #0397ef;
     background-image: url(images/btn/btn-default-small-focus-fbg.gif);
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:973 */
@@ -4122,7 +4122,7 @@ body > .x-mask {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:985 */
 .x-btn-over .x-btn-default-small-mc {
-    background-color: #026dae;
+    background-color: #038bdc;
     background-image: url(images/btn/btn-default-small-over-fbg.gif);
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:998 */
@@ -4141,7 +4141,7 @@ body > .x-mask {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:1010 */
 .x-keyboard-mode .x-btn-focus.x-btn-over .x-btn-default-small-mc {
-    background-color: #026dae;
+    background-color: #038bdc;
     background-image: url(images/btn/btn-default-small-focus-over-fbg.gif);
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:1025 */
@@ -4216,7 +4216,7 @@ body > .x-mask {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:1089 */
 .x-btn.x-btn-disabled .x-btn-default-small-mc {
-    background-color: #0277bd;
+    background-color: #0397ef;
     background-image: url(images/btn/btn-default-small-disabled-fbg.gif);
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:1099 */
@@ -4310,12 +4310,12 @@ body > .x-mask {
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:1215 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-default-small:after {
     border-width: 1px;
-    border-color: #c0d8e6;
+    border-color: #c1def0;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:1231 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-over.x-btn-default-small:after {
     border-width: 1px;
-    border-color: #c0d6e3;
+    border-color: #c1dcec;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:1249 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-menu-active.x-btn-default-small:after,
@@ -4378,11 +4378,11 @@ body > .x-mask {
     padding: 8px 8px 8px 8px;
     border-width: 1px;
     border-style: solid;
-    background-color: #0277bd;
+    background-color: #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/frame.scss:237 */
 .x-btn-default-medium-mc {
-    background-color: #0277bd;
+    background-color: #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/frame.scss:264 */
 .x-nbr .x-btn-default-medium {
@@ -4481,7 +4481,7 @@ body > .x-mask {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:445 */
 .x-btn-default-medium {
-    border-color: #026fb0;
+    border-color: #038cde;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:452 */
 .x-btn-button-default-medium {
@@ -4639,10 +4639,10 @@ body > .x-mask {
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:739 */
 .x-keyboard-mode .x-btn-focus.x-btn-default-medium {
     background-image: none;
-    background-color: #0277bd;
-    -webkit-box-shadow: #c0d8e6 0 1px 0px 0 inset, #c0d8e6 0 -1px 0px 0 inset, #c0d8e6 -1px 0 0px 0 inset, #c0d8e6 1px 0 0px 0 inset;
-    -moz-box-shadow: #c0d8e6 0 1px 0px 0 inset, #c0d8e6 0 -1px 0px 0 inset, #c0d8e6 -1px 0 0px 0 inset, #c0d8e6 1px 0 0px 0 inset;
-    box-shadow: #c0d8e6 0 1px 0px 0 inset, #c0d8e6 0 -1px 0px 0 inset, #c0d8e6 -1px 0 0px 0 inset, #c0d8e6 1px 0 0px 0 inset;
+    background-color: #0397ef;
+    -webkit-box-shadow: #c1def0 0 1px 0px 0 inset, #c1def0 0 -1px 0px 0 inset, #c1def0 -1px 0 0px 0 inset, #c1def0 1px 0 0px 0 inset;
+    -moz-box-shadow: #c1def0 0 1px 0px 0 inset, #c1def0 0 -1px 0px 0 inset, #c1def0 -1px 0 0px 0 inset, #c1def0 1px 0 0px 0 inset;
+    box-shadow: #c1def0 0 1px 0px 0 inset, #c1def0 0 -1px 0px 0 inset, #c1def0 -1px 0 0px 0 inset, #c1def0 1px 0 0px 0 inset;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:775 */
 .x-btn-default-medium .x-btn-arrow-el {
@@ -4660,24 +4660,24 @@ body > .x-mask {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:792 */
 .x-keyboard-mode .x-btn-default-medium.x-arrow-focus .x-btn-arrow-el {
-    border: 1px solid #c0d8e6;
+    border: 1px solid #c1def0;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:799 */
 .x-btn-over.x-btn-default-medium {
-    border-color: #0266a2;
+    border-color: #0381cc;
     background-image: none;
-    background-color: #026dae;
+    background-color: #038bdc;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:827 */
 .x-keyboard-mode .x-btn-focus.x-btn-over.x-btn-default-medium {
-    -webkit-box-shadow: #c0d6e3 0 1px 0px 0 inset, #c0d6e3 0 -1px 0px 0 inset, #c0d6e3 -1px 0 0px 0 inset, #c0d6e3 1px 0 0px 0 inset;
-    -moz-box-shadow: #c0d6e3 0 1px 0px 0 inset, #c0d6e3 0 -1px 0px 0 inset, #c0d6e3 -1px 0 0px 0 inset, #c0d6e3 1px 0 0px 0 inset;
-    box-shadow: #c0d6e3 0 1px 0px 0 inset, #c0d6e3 0 -1px 0px 0 inset, #c0d6e3 -1px 0 0px 0 inset, #c0d6e3 1px 0 0px 0 inset;
+    -webkit-box-shadow: #c1dcec 0 1px 0px 0 inset, #c1dcec 0 -1px 0px 0 inset, #c1dcec -1px 0 0px 0 inset, #c1dcec 1px 0 0px 0 inset;
+    -moz-box-shadow: #c1dcec 0 1px 0px 0 inset, #c1dcec 0 -1px 0px 0 inset, #c1dcec -1px 0 0px 0 inset, #c1dcec 1px 0 0px 0 inset;
+    box-shadow: #c1dcec 0 1px 0px 0 inset, #c1dcec 0 -1px 0px 0 inset, #c1dcec -1px 0 0px 0 inset, #c1dcec 1px 0 0px 0 inset;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:856 */
 .x-btn.x-btn-menu-active.x-btn-default-medium,
 .x-btn.x-btn-pressed.x-btn-default-medium {
-    border-color: #015384;
+    border-color: #0269a7;
     background-image: none;
     background-color: #03b4d5;
 }
@@ -4696,7 +4696,7 @@ body > .x-mask {
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:915 */
 .x-btn.x-btn-disabled.x-btn-default-medium {
     background-image: none;
-    background-color: #0277bd;
+    background-color: #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:948 */
 .x-keyboard-mode .x-btn-focus .x-btn-default-medium-tl,
@@ -4714,7 +4714,7 @@ body > .x-mask {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:960 */
 .x-keyboard-mode .x-btn-focus .x-btn-default-medium-mc {
-    background-color: #0277bd;
+    background-color: #0397ef;
     background-image: url(images/btn/btn-default-medium-focus-fbg.gif);
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:973 */
@@ -4733,7 +4733,7 @@ body > .x-mask {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:985 */
 .x-btn-over .x-btn-default-medium-mc {
-    background-color: #026dae;
+    background-color: #038bdc;
     background-image: url(images/btn/btn-default-medium-over-fbg.gif);
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:998 */
@@ -4752,7 +4752,7 @@ body > .x-mask {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:1010 */
 .x-keyboard-mode .x-btn-focus.x-btn-over .x-btn-default-medium-mc {
-    background-color: #026dae;
+    background-color: #038bdc;
     background-image: url(images/btn/btn-default-medium-focus-over-fbg.gif);
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:1025 */
@@ -4827,7 +4827,7 @@ body > .x-mask {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:1089 */
 .x-btn.x-btn-disabled .x-btn-default-medium-mc {
-    background-color: #0277bd;
+    background-color: #0397ef;
     background-image: url(images/btn/btn-default-medium-disabled-fbg.gif);
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:1099 */
@@ -4921,12 +4921,12 @@ body > .x-mask {
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:1215 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-default-medium:after {
     border-width: 1px;
-    border-color: #c0d8e6;
+    border-color: #c1def0;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:1231 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-over.x-btn-default-medium:after {
     border-width: 1px;
-    border-color: #c0d6e3;
+    border-color: #c1dcec;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:1249 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-menu-active.x-btn-default-medium:after,
@@ -4989,11 +4989,11 @@ body > .x-mask {
     padding: 9px 9px 9px 9px;
     border-width: 1px;
     border-style: solid;
-    background-color: #0277bd;
+    background-color: #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/frame.scss:237 */
 .x-btn-default-large-mc {
-    background-color: #0277bd;
+    background-color: #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/frame.scss:264 */
 .x-nbr .x-btn-default-large {
@@ -5092,7 +5092,7 @@ body > .x-mask {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:445 */
 .x-btn-default-large {
-    border-color: #026fb0;
+    border-color: #038cde;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:452 */
 .x-btn-button-default-large {
@@ -5250,10 +5250,10 @@ body > .x-mask {
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:739 */
 .x-keyboard-mode .x-btn-focus.x-btn-default-large {
     background-image: none;
-    background-color: #0277bd;
-    -webkit-box-shadow: #c0d8e6 0 1px 0px 0 inset, #c0d8e6 0 -1px 0px 0 inset, #c0d8e6 -1px 0 0px 0 inset, #c0d8e6 1px 0 0px 0 inset;
-    -moz-box-shadow: #c0d8e6 0 1px 0px 0 inset, #c0d8e6 0 -1px 0px 0 inset, #c0d8e6 -1px 0 0px 0 inset, #c0d8e6 1px 0 0px 0 inset;
-    box-shadow: #c0d8e6 0 1px 0px 0 inset, #c0d8e6 0 -1px 0px 0 inset, #c0d8e6 -1px 0 0px 0 inset, #c0d8e6 1px 0 0px 0 inset;
+    background-color: #0397ef;
+    -webkit-box-shadow: #c1def0 0 1px 0px 0 inset, #c1def0 0 -1px 0px 0 inset, #c1def0 -1px 0 0px 0 inset, #c1def0 1px 0 0px 0 inset;
+    -moz-box-shadow: #c1def0 0 1px 0px 0 inset, #c1def0 0 -1px 0px 0 inset, #c1def0 -1px 0 0px 0 inset, #c1def0 1px 0 0px 0 inset;
+    box-shadow: #c1def0 0 1px 0px 0 inset, #c1def0 0 -1px 0px 0 inset, #c1def0 -1px 0 0px 0 inset, #c1def0 1px 0 0px 0 inset;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:775 */
 .x-btn-default-large .x-btn-arrow-el {
@@ -5271,24 +5271,24 @@ body > .x-mask {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:792 */
 .x-keyboard-mode .x-btn-default-large.x-arrow-focus .x-btn-arrow-el {
-    border: 1px solid #c0d8e6;
+    border: 1px solid #c1def0;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:799 */
 .x-btn-over.x-btn-default-large {
-    border-color: #0266a2;
+    border-color: #0381cc;
     background-image: none;
-    background-color: #026dae;
+    background-color: #038bdc;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:827 */
 .x-keyboard-mode .x-btn-focus.x-btn-over.x-btn-default-large {
-    -webkit-box-shadow: #c0d6e3 0 1px 0px 0 inset, #c0d6e3 0 -1px 0px 0 inset, #c0d6e3 -1px 0 0px 0 inset, #c0d6e3 1px 0 0px 0 inset;
-    -moz-box-shadow: #c0d6e3 0 1px 0px 0 inset, #c0d6e3 0 -1px 0px 0 inset, #c0d6e3 -1px 0 0px 0 inset, #c0d6e3 1px 0 0px 0 inset;
-    box-shadow: #c0d6e3 0 1px 0px 0 inset, #c0d6e3 0 -1px 0px 0 inset, #c0d6e3 -1px 0 0px 0 inset, #c0d6e3 1px 0 0px 0 inset;
+    -webkit-box-shadow: #c1dcec 0 1px 0px 0 inset, #c1dcec 0 -1px 0px 0 inset, #c1dcec -1px 0 0px 0 inset, #c1dcec 1px 0 0px 0 inset;
+    -moz-box-shadow: #c1dcec 0 1px 0px 0 inset, #c1dcec 0 -1px 0px 0 inset, #c1dcec -1px 0 0px 0 inset, #c1dcec 1px 0 0px 0 inset;
+    box-shadow: #c1dcec 0 1px 0px 0 inset, #c1dcec 0 -1px 0px 0 inset, #c1dcec -1px 0 0px 0 inset, #c1dcec 1px 0 0px 0 inset;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:856 */
 .x-btn.x-btn-menu-active.x-btn-default-large,
 .x-btn.x-btn-pressed.x-btn-default-large {
-    border-color: #015384;
+    border-color: #0269a7;
     background-image: none;
     background-color: #03b4d5;
 }
@@ -5307,7 +5307,7 @@ body > .x-mask {
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:915 */
 .x-btn.x-btn-disabled.x-btn-default-large {
     background-image: none;
-    background-color: #0277bd;
+    background-color: #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:948 */
 .x-keyboard-mode .x-btn-focus .x-btn-default-large-tl,
@@ -5325,7 +5325,7 @@ body > .x-mask {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:960 */
 .x-keyboard-mode .x-btn-focus .x-btn-default-large-mc {
-    background-color: #0277bd;
+    background-color: #0397ef;
     background-image: url(images/btn/btn-default-large-focus-fbg.gif);
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:973 */
@@ -5344,7 +5344,7 @@ body > .x-mask {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:985 */
 .x-btn-over .x-btn-default-large-mc {
-    background-color: #026dae;
+    background-color: #038bdc;
     background-image: url(images/btn/btn-default-large-over-fbg.gif);
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:998 */
@@ -5363,7 +5363,7 @@ body > .x-mask {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:1010 */
 .x-keyboard-mode .x-btn-focus.x-btn-over .x-btn-default-large-mc {
-    background-color: #026dae;
+    background-color: #038bdc;
     background-image: url(images/btn/btn-default-large-focus-over-fbg.gif);
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:1025 */
@@ -5438,7 +5438,7 @@ body > .x-mask {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:1089 */
 .x-btn.x-btn-disabled .x-btn-default-large-mc {
-    background-color: #0277bd;
+    background-color: #0397ef;
     background-image: url(images/btn/btn-default-large-disabled-fbg.gif);
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:1099 */
@@ -5532,12 +5532,12 @@ body > .x-mask {
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:1215 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-default-large:after {
     border-width: 1px;
-    border-color: #c0d8e6;
+    border-color: #c1def0;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:1231 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-over.x-btn-default-large:after {
     border-width: 1px;
-    border-color: #c0d6e3;
+    border-color: #c1dcec;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:1249 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-menu-active.x-btn-default-large:after,
@@ -5869,9 +5869,9 @@ body > .x-mask {
 .x-keyboard-mode .x-btn-focus.x-btn-default-toolbar-small {
     background-image: none;
     background-color: #f6f6f6;
-    -webkit-box-shadow: #0277bd 0 1px 0px 0 inset, #0277bd 0 -1px 0px 0 inset, #0277bd -1px 0 0px 0 inset, #0277bd 1px 0 0px 0 inset;
-    -moz-box-shadow: #0277bd 0 1px 0px 0 inset, #0277bd 0 -1px 0px 0 inset, #0277bd -1px 0 0px 0 inset, #0277bd 1px 0 0px 0 inset;
-    box-shadow: #0277bd 0 1px 0px 0 inset, #0277bd 0 -1px 0px 0 inset, #0277bd -1px 0 0px 0 inset, #0277bd 1px 0 0px 0 inset;
+    -webkit-box-shadow: #0397ef 0 1px 0px 0 inset, #0397ef 0 -1px 0px 0 inset, #0397ef -1px 0 0px 0 inset, #0397ef 1px 0 0px 0 inset;
+    -moz-box-shadow: #0397ef 0 1px 0px 0 inset, #0397ef 0 -1px 0px 0 inset, #0397ef -1px 0 0px 0 inset, #0397ef 1px 0 0px 0 inset;
+    box-shadow: #0397ef 0 1px 0px 0 inset, #0397ef 0 -1px 0px 0 inset, #0397ef -1px 0 0px 0 inset, #0397ef 1px 0 0px 0 inset;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:775 */
 .x-btn-default-toolbar-small .x-btn-arrow-el {
@@ -5889,7 +5889,7 @@ body > .x-mask {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:792 */
 .x-keyboard-mode .x-btn-default-toolbar-small.x-arrow-focus .x-btn-arrow-el {
-    border: 1px solid #0277bd;
+    border: 1px solid #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:799 */
 .x-btn-over.x-btn-default-toolbar-small {
@@ -5899,9 +5899,9 @@ body > .x-mask {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:827 */
 .x-keyboard-mode .x-btn-focus.x-btn-over.x-btn-default-toolbar-small {
-    -webkit-box-shadow: #0277bd 0 1px 0px 0 inset, #0277bd 0 -1px 0px 0 inset, #0277bd -1px 0 0px 0 inset, #0277bd 1px 0 0px 0 inset;
-    -moz-box-shadow: #0277bd 0 1px 0px 0 inset, #0277bd 0 -1px 0px 0 inset, #0277bd -1px 0 0px 0 inset, #0277bd 1px 0 0px 0 inset;
-    box-shadow: #0277bd 0 1px 0px 0 inset, #0277bd 0 -1px 0px 0 inset, #0277bd -1px 0 0px 0 inset, #0277bd 1px 0 0px 0 inset;
+    -webkit-box-shadow: #0397ef 0 1px 0px 0 inset, #0397ef 0 -1px 0px 0 inset, #0397ef -1px 0 0px 0 inset, #0397ef 1px 0 0px 0 inset;
+    -moz-box-shadow: #0397ef 0 1px 0px 0 inset, #0397ef 0 -1px 0px 0 inset, #0397ef -1px 0 0px 0 inset, #0397ef 1px 0 0px 0 inset;
+    box-shadow: #0397ef 0 1px 0px 0 inset, #0397ef 0 -1px 0px 0 inset, #0397ef -1px 0 0px 0 inset, #0397ef 1px 0 0px 0 inset;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:856 */
 .x-btn.x-btn-menu-active.x-btn-default-toolbar-small,
@@ -5913,9 +5913,9 @@ body > .x-mask {
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:886 */
 .x-keyboard-mode .x-btn-focus.x-btn-menu-active.x-btn-default-toolbar-small,
 .x-keyboard-mode .x-btn-focus.x-btn-pressed.x-btn-default-toolbar-small {
-    -webkit-box-shadow: #0277bd 0 1px 0px 0 inset, #0277bd 0 -1px 0px 0 inset, #0277bd -1px 0 0px 0 inset, #0277bd 1px 0 0px 0 inset;
-    -moz-box-shadow: #0277bd 0 1px 0px 0 inset, #0277bd 0 -1px 0px 0 inset, #0277bd -1px 0 0px 0 inset, #0277bd 1px 0 0px 0 inset;
-    box-shadow: #0277bd 0 1px 0px 0 inset, #0277bd 0 -1px 0px 0 inset, #0277bd -1px 0 0px 0 inset, #0277bd 1px 0 0px 0 inset;
+    -webkit-box-shadow: #0397ef 0 1px 0px 0 inset, #0397ef 0 -1px 0px 0 inset, #0397ef -1px 0 0px 0 inset, #0397ef 1px 0 0px 0 inset;
+    -moz-box-shadow: #0397ef 0 1px 0px 0 inset, #0397ef 0 -1px 0px 0 inset, #0397ef -1px 0 0px 0 inset, #0397ef 1px 0 0px 0 inset;
+    box-shadow: #0397ef 0 1px 0px 0 inset, #0397ef 0 -1px 0px 0 inset, #0397ef -1px 0 0px 0 inset, #0397ef 1px 0 0px 0 inset;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:915 */
 .x-btn.x-btn-disabled.x-btn-default-toolbar-small {
@@ -6145,18 +6145,18 @@ body > .x-mask {
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:1215 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-default-toolbar-small:after {
     border-width: 1px;
-    border-color: #0277bd;
+    border-color: #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:1231 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-over.x-btn-default-toolbar-small:after {
     border-width: 1px;
-    border-color: #0277bd;
+    border-color: #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:1249 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-menu-active.x-btn-default-toolbar-small:after,
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-pressed.x-btn-default-toolbar-small:after {
     border-width: 1px;
-    border-color: #0277bd;
+    border-color: #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
 .x-cmd-slicer.x-btn-focus.x-btn-default-toolbar-small:before {
@@ -6475,9 +6475,9 @@ body > .x-mask {
 .x-keyboard-mode .x-btn-focus.x-btn-default-toolbar-medium {
     background-image: none;
     background-color: #f6f6f6;
-    -webkit-box-shadow: #0277bd 0 1px 0px 0 inset, #0277bd 0 -1px 0px 0 inset, #0277bd -1px 0 0px 0 inset, #0277bd 1px 0 0px 0 inset;
-    -moz-box-shadow: #0277bd 0 1px 0px 0 inset, #0277bd 0 -1px 0px 0 inset, #0277bd -1px 0 0px 0 inset, #0277bd 1px 0 0px 0 inset;
-    box-shadow: #0277bd 0 1px 0px 0 inset, #0277bd 0 -1px 0px 0 inset, #0277bd -1px 0 0px 0 inset, #0277bd 1px 0 0px 0 inset;
+    -webkit-box-shadow: #0397ef 0 1px 0px 0 inset, #0397ef 0 -1px 0px 0 inset, #0397ef -1px 0 0px 0 inset, #0397ef 1px 0 0px 0 inset;
+    -moz-box-shadow: #0397ef 0 1px 0px 0 inset, #0397ef 0 -1px 0px 0 inset, #0397ef -1px 0 0px 0 inset, #0397ef 1px 0 0px 0 inset;
+    box-shadow: #0397ef 0 1px 0px 0 inset, #0397ef 0 -1px 0px 0 inset, #0397ef -1px 0 0px 0 inset, #0397ef 1px 0 0px 0 inset;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:775 */
 .x-btn-default-toolbar-medium .x-btn-arrow-el {
@@ -6495,7 +6495,7 @@ body > .x-mask {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:792 */
 .x-keyboard-mode .x-btn-default-toolbar-medium.x-arrow-focus .x-btn-arrow-el {
-    border: 1px solid #0277bd;
+    border: 1px solid #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:799 */
 .x-btn-over.x-btn-default-toolbar-medium {
@@ -6505,9 +6505,9 @@ body > .x-mask {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:827 */
 .x-keyboard-mode .x-btn-focus.x-btn-over.x-btn-default-toolbar-medium {
-    -webkit-box-shadow: #0277bd 0 1px 0px 0 inset, #0277bd 0 -1px 0px 0 inset, #0277bd -1px 0 0px 0 inset, #0277bd 1px 0 0px 0 inset;
-    -moz-box-shadow: #0277bd 0 1px 0px 0 inset, #0277bd 0 -1px 0px 0 inset, #0277bd -1px 0 0px 0 inset, #0277bd 1px 0 0px 0 inset;
-    box-shadow: #0277bd 0 1px 0px 0 inset, #0277bd 0 -1px 0px 0 inset, #0277bd -1px 0 0px 0 inset, #0277bd 1px 0 0px 0 inset;
+    -webkit-box-shadow: #0397ef 0 1px 0px 0 inset, #0397ef 0 -1px 0px 0 inset, #0397ef -1px 0 0px 0 inset, #0397ef 1px 0 0px 0 inset;
+    -moz-box-shadow: #0397ef 0 1px 0px 0 inset, #0397ef 0 -1px 0px 0 inset, #0397ef -1px 0 0px 0 inset, #0397ef 1px 0 0px 0 inset;
+    box-shadow: #0397ef 0 1px 0px 0 inset, #0397ef 0 -1px 0px 0 inset, #0397ef -1px 0 0px 0 inset, #0397ef 1px 0 0px 0 inset;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:856 */
 .x-btn.x-btn-menu-active.x-btn-default-toolbar-medium,
@@ -6519,9 +6519,9 @@ body > .x-mask {
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:886 */
 .x-keyboard-mode .x-btn-focus.x-btn-menu-active.x-btn-default-toolbar-medium,
 .x-keyboard-mode .x-btn-focus.x-btn-pressed.x-btn-default-toolbar-medium {
-    -webkit-box-shadow: #0277bd 0 1px 0px 0 inset, #0277bd 0 -1px 0px 0 inset, #0277bd -1px 0 0px 0 inset, #0277bd 1px 0 0px 0 inset;
-    -moz-box-shadow: #0277bd 0 1px 0px 0 inset, #0277bd 0 -1px 0px 0 inset, #0277bd -1px 0 0px 0 inset, #0277bd 1px 0 0px 0 inset;
-    box-shadow: #0277bd 0 1px 0px 0 inset, #0277bd 0 -1px 0px 0 inset, #0277bd -1px 0 0px 0 inset, #0277bd 1px 0 0px 0 inset;
+    -webkit-box-shadow: #0397ef 0 1px 0px 0 inset, #0397ef 0 -1px 0px 0 inset, #0397ef -1px 0 0px 0 inset, #0397ef 1px 0 0px 0 inset;
+    -moz-box-shadow: #0397ef 0 1px 0px 0 inset, #0397ef 0 -1px 0px 0 inset, #0397ef -1px 0 0px 0 inset, #0397ef 1px 0 0px 0 inset;
+    box-shadow: #0397ef 0 1px 0px 0 inset, #0397ef 0 -1px 0px 0 inset, #0397ef -1px 0 0px 0 inset, #0397ef 1px 0 0px 0 inset;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:915 */
 .x-btn.x-btn-disabled.x-btn-default-toolbar-medium {
@@ -6751,18 +6751,18 @@ body > .x-mask {
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:1215 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-default-toolbar-medium:after {
     border-width: 1px;
-    border-color: #0277bd;
+    border-color: #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:1231 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-over.x-btn-default-toolbar-medium:after {
     border-width: 1px;
-    border-color: #0277bd;
+    border-color: #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:1249 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-menu-active.x-btn-default-toolbar-medium:after,
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-pressed.x-btn-default-toolbar-medium:after {
     border-width: 1px;
-    border-color: #0277bd;
+    border-color: #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
 .x-cmd-slicer.x-btn-focus.x-btn-default-toolbar-medium:before {
@@ -7081,9 +7081,9 @@ body > .x-mask {
 .x-keyboard-mode .x-btn-focus.x-btn-default-toolbar-large {
     background-image: none;
     background-color: #f6f6f6;
-    -webkit-box-shadow: #0277bd 0 1px 0px 0 inset, #0277bd 0 -1px 0px 0 inset, #0277bd -1px 0 0px 0 inset, #0277bd 1px 0 0px 0 inset;
-    -moz-box-shadow: #0277bd 0 1px 0px 0 inset, #0277bd 0 -1px 0px 0 inset, #0277bd -1px 0 0px 0 inset, #0277bd 1px 0 0px 0 inset;
-    box-shadow: #0277bd 0 1px 0px 0 inset, #0277bd 0 -1px 0px 0 inset, #0277bd -1px 0 0px 0 inset, #0277bd 1px 0 0px 0 inset;
+    -webkit-box-shadow: #0397ef 0 1px 0px 0 inset, #0397ef 0 -1px 0px 0 inset, #0397ef -1px 0 0px 0 inset, #0397ef 1px 0 0px 0 inset;
+    -moz-box-shadow: #0397ef 0 1px 0px 0 inset, #0397ef 0 -1px 0px 0 inset, #0397ef -1px 0 0px 0 inset, #0397ef 1px 0 0px 0 inset;
+    box-shadow: #0397ef 0 1px 0px 0 inset, #0397ef 0 -1px 0px 0 inset, #0397ef -1px 0 0px 0 inset, #0397ef 1px 0 0px 0 inset;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:775 */
 .x-btn-default-toolbar-large .x-btn-arrow-el {
@@ -7101,7 +7101,7 @@ body > .x-mask {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:792 */
 .x-keyboard-mode .x-btn-default-toolbar-large.x-arrow-focus .x-btn-arrow-el {
-    border: 1px solid #0277bd;
+    border: 1px solid #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:799 */
 .x-btn-over.x-btn-default-toolbar-large {
@@ -7111,9 +7111,9 @@ body > .x-mask {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:827 */
 .x-keyboard-mode .x-btn-focus.x-btn-over.x-btn-default-toolbar-large {
-    -webkit-box-shadow: #0277bd 0 1px 0px 0 inset, #0277bd 0 -1px 0px 0 inset, #0277bd -1px 0 0px 0 inset, #0277bd 1px 0 0px 0 inset;
-    -moz-box-shadow: #0277bd 0 1px 0px 0 inset, #0277bd 0 -1px 0px 0 inset, #0277bd -1px 0 0px 0 inset, #0277bd 1px 0 0px 0 inset;
-    box-shadow: #0277bd 0 1px 0px 0 inset, #0277bd 0 -1px 0px 0 inset, #0277bd -1px 0 0px 0 inset, #0277bd 1px 0 0px 0 inset;
+    -webkit-box-shadow: #0397ef 0 1px 0px 0 inset, #0397ef 0 -1px 0px 0 inset, #0397ef -1px 0 0px 0 inset, #0397ef 1px 0 0px 0 inset;
+    -moz-box-shadow: #0397ef 0 1px 0px 0 inset, #0397ef 0 -1px 0px 0 inset, #0397ef -1px 0 0px 0 inset, #0397ef 1px 0 0px 0 inset;
+    box-shadow: #0397ef 0 1px 0px 0 inset, #0397ef 0 -1px 0px 0 inset, #0397ef -1px 0 0px 0 inset, #0397ef 1px 0 0px 0 inset;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:856 */
 .x-btn.x-btn-menu-active.x-btn-default-toolbar-large,
@@ -7125,9 +7125,9 @@ body > .x-mask {
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:886 */
 .x-keyboard-mode .x-btn-focus.x-btn-menu-active.x-btn-default-toolbar-large,
 .x-keyboard-mode .x-btn-focus.x-btn-pressed.x-btn-default-toolbar-large {
-    -webkit-box-shadow: #0277bd 0 1px 0px 0 inset, #0277bd 0 -1px 0px 0 inset, #0277bd -1px 0 0px 0 inset, #0277bd 1px 0 0px 0 inset;
-    -moz-box-shadow: #0277bd 0 1px 0px 0 inset, #0277bd 0 -1px 0px 0 inset, #0277bd -1px 0 0px 0 inset, #0277bd 1px 0 0px 0 inset;
-    box-shadow: #0277bd 0 1px 0px 0 inset, #0277bd 0 -1px 0px 0 inset, #0277bd -1px 0 0px 0 inset, #0277bd 1px 0 0px 0 inset;
+    -webkit-box-shadow: #0397ef 0 1px 0px 0 inset, #0397ef 0 -1px 0px 0 inset, #0397ef -1px 0 0px 0 inset, #0397ef 1px 0 0px 0 inset;
+    -moz-box-shadow: #0397ef 0 1px 0px 0 inset, #0397ef 0 -1px 0px 0 inset, #0397ef -1px 0 0px 0 inset, #0397ef 1px 0 0px 0 inset;
+    box-shadow: #0397ef 0 1px 0px 0 inset, #0397ef 0 -1px 0px 0 inset, #0397ef -1px 0 0px 0 inset, #0397ef 1px 0 0px 0 inset;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:915 */
 .x-btn.x-btn-disabled.x-btn-default-toolbar-large {
@@ -7357,18 +7357,18 @@ body > .x-mask {
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:1215 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-default-toolbar-large:after {
     border-width: 1px;
-    border-color: #0277bd;
+    border-color: #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:1231 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-over.x-btn-default-toolbar-large:after {
     border-width: 1px;
-    border-color: #0277bd;
+    border-color: #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:1249 */
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-menu-active.x-btn-default-toolbar-large:after,
 .x-keyboard-mode .x-nbr .x-segmented-button-item.x-btn-focus.x-btn-pressed.x-btn-default-toolbar-large:after {
     border-width: 1px;
-    border-color: #0277bd;
+    border-color: #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/slicer.scss:83 */
 .x-cmd-slicer.x-btn-focus.x-btn-default-toolbar-large:before {
@@ -7442,7 +7442,7 @@ body > .x-mask {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/panel/Tool.scss:30 */
 .x-keyboard-mode .x-tool-focus {
-    outline: 1px solid #0277bd;
+    outline: 1px solid #0397ef;
     outline-offset: 2px;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/css-outline.scss:64 */
@@ -7461,7 +7461,7 @@ body > .x-mask {
     right: -3px;
     bottom: -3px;
     left: -3px;
-    border: 1px solid #0277bd;
+    border: 1px solid #0397ef;
     pointer-events: none;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/panel/Tool.scss:40 */
@@ -7980,7 +7980,7 @@ body > .x-mask {
     right: 1px;
     bottom: 1px;
     left: 1px;
-    border: 1px solid #025f97;
+    border: 1px solid #0279bf;
     pointer-events: none;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/toolbar/Toolbar.scss:232 */
@@ -8397,17 +8397,17 @@ body > .x-mask {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/panel/Panel.scss:312 */
 .x-panel-default {
-    border-color: #0277bd;
+    border-color: #0397ef;
     padding: 0;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/panel/Panel.scss:315 */
 .x-panel-default.x-masked {
-    border-color: #81bbde;
+    border-color: #81cbf7;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/panel/Panel.scss:323 */
 .x-panel-header-default {
     font-size: 16px;
-    border: 1px solid #0277bd;
+    border: 1px solid #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/panel/Panel.scss:349 */
 .x-panel-header-default .x-tool-tool-el {
@@ -8683,120 +8683,120 @@ body > .x-mask {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/border-management.scss:2 */
 .x-panel-default-outer-border-l {
-    border-left-color: #0277bd !important;
+    border-left-color: #0397ef !important;
     border-left-width: 1px !important;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/border-management.scss:6 */
 .x-panel-default-outer-border-b {
-    border-bottom-color: #0277bd !important;
+    border-bottom-color: #0397ef !important;
     border-bottom-width: 1px !important;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/border-management.scss:10 */
 .x-panel-default-outer-border-bl {
-    border-bottom-color: #0277bd !important;
+    border-bottom-color: #0397ef !important;
     border-bottom-width: 1px !important;
-    border-left-color: #0277bd !important;
+    border-left-color: #0397ef !important;
     border-left-width: 1px !important;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/border-management.scss:16 */
 .x-panel-default-outer-border-r {
-    border-right-color: #0277bd !important;
+    border-right-color: #0397ef !important;
     border-right-width: 1px !important;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/border-management.scss:20 */
 .x-panel-default-outer-border-rl {
-    border-right-color: #0277bd !important;
+    border-right-color: #0397ef !important;
     border-right-width: 1px !important;
-    border-left-color: #0277bd !important;
+    border-left-color: #0397ef !important;
     border-left-width: 1px !important;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/border-management.scss:26 */
 .x-panel-default-outer-border-rb {
-    border-right-color: #0277bd !important;
+    border-right-color: #0397ef !important;
     border-right-width: 1px !important;
-    border-bottom-color: #0277bd !important;
+    border-bottom-color: #0397ef !important;
     border-bottom-width: 1px !important;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/border-management.scss:32 */
 .x-panel-default-outer-border-rbl {
-    border-right-color: #0277bd !important;
+    border-right-color: #0397ef !important;
     border-right-width: 1px !important;
-    border-bottom-color: #0277bd !important;
+    border-bottom-color: #0397ef !important;
     border-bottom-width: 1px !important;
-    border-left-color: #0277bd !important;
+    border-left-color: #0397ef !important;
     border-left-width: 1px !important;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/border-management.scss:40 */
 .x-panel-default-outer-border-t {
-    border-top-color: #0277bd !important;
+    border-top-color: #0397ef !important;
     border-top-width: 1px !important;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/border-management.scss:44 */
 .x-panel-default-outer-border-tl {
-    border-top-color: #0277bd !important;
+    border-top-color: #0397ef !important;
     border-top-width: 1px !important;
-    border-left-color: #0277bd !important;
+    border-left-color: #0397ef !important;
     border-left-width: 1px !important;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/border-management.scss:50 */
 .x-panel-default-outer-border-tb {
-    border-top-color: #0277bd !important;
+    border-top-color: #0397ef !important;
     border-top-width: 1px !important;
-    border-bottom-color: #0277bd !important;
+    border-bottom-color: #0397ef !important;
     border-bottom-width: 1px !important;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/border-management.scss:56 */
 .x-panel-default-outer-border-tbl {
-    border-top-color: #0277bd !important;
+    border-top-color: #0397ef !important;
     border-top-width: 1px !important;
-    border-bottom-color: #0277bd !important;
+    border-bottom-color: #0397ef !important;
     border-bottom-width: 1px !important;
-    border-left-color: #0277bd !important;
+    border-left-color: #0397ef !important;
     border-left-width: 1px !important;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/border-management.scss:64 */
 .x-panel-default-outer-border-tr {
-    border-top-color: #0277bd !important;
+    border-top-color: #0397ef !important;
     border-top-width: 1px !important;
-    border-right-color: #0277bd !important;
+    border-right-color: #0397ef !important;
     border-right-width: 1px !important;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/border-management.scss:70 */
 .x-panel-default-outer-border-trl {
-    border-top-color: #0277bd !important;
+    border-top-color: #0397ef !important;
     border-top-width: 1px !important;
-    border-right-color: #0277bd !important;
+    border-right-color: #0397ef !important;
     border-right-width: 1px !important;
-    border-left-color: #0277bd !important;
+    border-left-color: #0397ef !important;
     border-left-width: 1px !important;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/border-management.scss:78 */
 .x-panel-default-outer-border-trb {
-    border-top-color: #0277bd !important;
+    border-top-color: #0397ef !important;
     border-top-width: 1px !important;
-    border-right-color: #0277bd !important;
+    border-right-color: #0397ef !important;
     border-right-width: 1px !important;
-    border-bottom-color: #0277bd !important;
+    border-bottom-color: #0397ef !important;
     border-bottom-width: 1px !important;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/border-management.scss:86 */
 .x-panel-default-outer-border-trbl {
-    border-color: #0277bd !important;
+    border-color: #0397ef !important;
     border-width: 1px !important;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/panel/Panel.scss:312 */
 .x-panel-default-framed {
-    border-color: #0277bd;
+    border-color: #0397ef;
     padding: 0;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/panel/Panel.scss:315 */
 .x-panel-default-framed.x-masked {
-    border-color: #81bbde;
+    border-color: #81cbf7;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/panel/Panel.scss:323 */
 .x-panel-header-default-framed {
     font-size: 16px;
-    border: 2px solid #0277bd;
+    border: 2px solid #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/panel/Panel.scss:349 */
 .x-panel-header-default-framed .x-tool-tool-el {
@@ -10167,105 +10167,105 @@ body > .x-mask {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/border-management.scss:2 */
 .x-panel-default-framed-outer-border-l {
-    border-left-color: #0277bd !important;
+    border-left-color: #0397ef !important;
     border-left-width: 1px !important;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/border-management.scss:6 */
 .x-panel-default-framed-outer-border-b {
-    border-bottom-color: #0277bd !important;
+    border-bottom-color: #0397ef !important;
     border-bottom-width: 1px !important;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/border-management.scss:10 */
 .x-panel-default-framed-outer-border-bl {
-    border-bottom-color: #0277bd !important;
+    border-bottom-color: #0397ef !important;
     border-bottom-width: 1px !important;
-    border-left-color: #0277bd !important;
+    border-left-color: #0397ef !important;
     border-left-width: 1px !important;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/border-management.scss:16 */
 .x-panel-default-framed-outer-border-r {
-    border-right-color: #0277bd !important;
+    border-right-color: #0397ef !important;
     border-right-width: 1px !important;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/border-management.scss:20 */
 .x-panel-default-framed-outer-border-rl {
-    border-right-color: #0277bd !important;
+    border-right-color: #0397ef !important;
     border-right-width: 1px !important;
-    border-left-color: #0277bd !important;
+    border-left-color: #0397ef !important;
     border-left-width: 1px !important;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/border-management.scss:26 */
 .x-panel-default-framed-outer-border-rb {
-    border-right-color: #0277bd !important;
+    border-right-color: #0397ef !important;
     border-right-width: 1px !important;
-    border-bottom-color: #0277bd !important;
+    border-bottom-color: #0397ef !important;
     border-bottom-width: 1px !important;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/border-management.scss:32 */
 .x-panel-default-framed-outer-border-rbl {
-    border-right-color: #0277bd !important;
+    border-right-color: #0397ef !important;
     border-right-width: 1px !important;
-    border-bottom-color: #0277bd !important;
+    border-bottom-color: #0397ef !important;
     border-bottom-width: 1px !important;
-    border-left-color: #0277bd !important;
+    border-left-color: #0397ef !important;
     border-left-width: 1px !important;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/border-management.scss:40 */
 .x-panel-default-framed-outer-border-t {
-    border-top-color: #0277bd !important;
+    border-top-color: #0397ef !important;
     border-top-width: 1px !important;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/border-management.scss:44 */
 .x-panel-default-framed-outer-border-tl {
-    border-top-color: #0277bd !important;
+    border-top-color: #0397ef !important;
     border-top-width: 1px !important;
-    border-left-color: #0277bd !important;
+    border-left-color: #0397ef !important;
     border-left-width: 1px !important;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/border-management.scss:50 */
 .x-panel-default-framed-outer-border-tb {
-    border-top-color: #0277bd !important;
+    border-top-color: #0397ef !important;
     border-top-width: 1px !important;
-    border-bottom-color: #0277bd !important;
+    border-bottom-color: #0397ef !important;
     border-bottom-width: 1px !important;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/border-management.scss:56 */
 .x-panel-default-framed-outer-border-tbl {
-    border-top-color: #0277bd !important;
+    border-top-color: #0397ef !important;
     border-top-width: 1px !important;
-    border-bottom-color: #0277bd !important;
+    border-bottom-color: #0397ef !important;
     border-bottom-width: 1px !important;
-    border-left-color: #0277bd !important;
+    border-left-color: #0397ef !important;
     border-left-width: 1px !important;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/border-management.scss:64 */
 .x-panel-default-framed-outer-border-tr {
-    border-top-color: #0277bd !important;
+    border-top-color: #0397ef !important;
     border-top-width: 1px !important;
-    border-right-color: #0277bd !important;
+    border-right-color: #0397ef !important;
     border-right-width: 1px !important;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/border-management.scss:70 */
 .x-panel-default-framed-outer-border-trl {
-    border-top-color: #0277bd !important;
+    border-top-color: #0397ef !important;
     border-top-width: 1px !important;
-    border-right-color: #0277bd !important;
+    border-right-color: #0397ef !important;
     border-right-width: 1px !important;
-    border-left-color: #0277bd !important;
+    border-left-color: #0397ef !important;
     border-left-width: 1px !important;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/border-management.scss:78 */
 .x-panel-default-framed-outer-border-trb {
-    border-top-color: #0277bd !important;
+    border-top-color: #0397ef !important;
     border-top-width: 1px !important;
-    border-right-color: #0277bd !important;
+    border-right-color: #0397ef !important;
     border-right-width: 1px !important;
-    border-bottom-color: #0277bd !important;
+    border-bottom-color: #0397ef !important;
     border-bottom-width: 1px !important;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/border-management.scss:86 */
 .x-panel-default-framed-outer-border-trbl {
-    border-color: #0277bd !important;
+    border-color: #0397ef !important;
     border-width: 1px !important;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/container/ButtonGroup.scss:101 */
@@ -10602,7 +10602,7 @@ body > .x-mask {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/window/Window.scss:237 */
 .x-window-default {
-    border-color: #0277bd;
+    border-color: #0397ef;
     -webkit-border-radius: 0 0 0 0;
     -moz-border-radius: 0 0 0 0;
     -ms-border-radius: 0 0 0 0;
@@ -10729,7 +10729,7 @@ body > .x-mask {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/window/Window.scss:259 */
 .x-window-body-default {
-    border-color: #0277bd;
+    border-color: #0397ef;
     border-width: 1px;
     border-style: solid;
     background: #fff;
@@ -10741,12 +10741,12 @@ body > .x-mask {
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/window/Window.scss:273 */
 .x-window-header-default {
     font-size: 16px;
-    border-color: #0277bd;
-    background-color: #0277bd;
+    border-color: #0397ef;
+    background-color: #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/window/Window.scss:278 */
 .x-window-header-default .x-tool-img {
-    background-color: #0277bd;
+    background-color: #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/window/Window.scss:291 */
 .x-window-header-default-horizontal .x-window-header-default-tab-bar {
@@ -10835,11 +10835,11 @@ body > .x-mask {
     padding: 10px 14px 10px 14px;
     border-width: 2px 2px 2px 2px;
     border-style: solid;
-    background-color: #0277bd;
+    background-color: #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/frame.scss:237 */
 .x-window-header-default-top-mc {
-    background-color: #0277bd;
+    background-color: #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/frame.scss:264 */
 .x-nbr .x-window-header-default-top {
@@ -10953,11 +10953,11 @@ body > .x-mask {
     padding: 14px 10px 14px 10px;
     border-width: 2px 2px 2px 2px;
     border-style: solid;
-    background-color: #0277bd;
+    background-color: #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/frame.scss:237 */
 .x-window-header-default-right-mc {
-    background-color: #0277bd;
+    background-color: #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/frame.scss:264 */
 .x-nbr .x-window-header-default-right {
@@ -11080,11 +11080,11 @@ body > .x-mask {
     padding: 10px 14px 10px 14px;
     border-width: 2px 2px 2px 2px;
     border-style: solid;
-    background-color: #0277bd;
+    background-color: #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/frame.scss:237 */
 .x-window-header-default-bottom-mc {
-    background-color: #0277bd;
+    background-color: #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/frame.scss:264 */
 .x-nbr .x-window-header-default-bottom {
@@ -11198,11 +11198,11 @@ body > .x-mask {
     padding: 14px 10px 14px 10px;
     border-width: 2px 2px 2px 2px;
     border-style: solid;
-    background-color: #0277bd;
+    background-color: #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/frame.scss:237 */
 .x-window-header-default-left-mc {
-    background-color: #0277bd;
+    background-color: #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/frame.scss:264 */
 .x-nbr .x-window-header-default-left {
@@ -11325,11 +11325,11 @@ body > .x-mask {
     padding: 10px 14px 10px 14px;
     border-width: 2px;
     border-style: solid;
-    background-color: #0277bd;
+    background-color: #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/frame.scss:237 */
 .x-window-header-default-collapsed-top-mc {
-    background-color: #0277bd;
+    background-color: #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/frame.scss:264 */
 .x-nbr .x-window-header-default-collapsed-top {
@@ -11443,11 +11443,11 @@ body > .x-mask {
     padding: 14px 10px 14px 10px;
     border-width: 2px;
     border-style: solid;
-    background-color: #0277bd;
+    background-color: #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/frame.scss:237 */
 .x-window-header-default-collapsed-right-mc {
-    background-color: #0277bd;
+    background-color: #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/frame.scss:264 */
 .x-nbr .x-window-header-default-collapsed-right {
@@ -11570,11 +11570,11 @@ body > .x-mask {
     padding: 10px 14px 10px 14px;
     border-width: 2px;
     border-style: solid;
-    background-color: #0277bd;
+    background-color: #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/frame.scss:237 */
 .x-window-header-default-collapsed-bottom-mc {
-    background-color: #0277bd;
+    background-color: #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/frame.scss:264 */
 .x-nbr .x-window-header-default-collapsed-bottom {
@@ -11688,11 +11688,11 @@ body > .x-mask {
     padding: 14px 10px 14px 10px;
     border-width: 2px;
     border-style: solid;
-    background-color: #0277bd;
+    background-color: #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/frame.scss:237 */
 .x-window-header-default-collapsed-left-mc {
-    background-color: #0277bd;
+    background-color: #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/frame.scss:264 */
 .x-nbr .x-window-header-default-collapsed-left {
@@ -11883,105 +11883,105 @@ body > .x-mask {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/border-management.scss:2 */
 .x-window-default-outer-border-l {
-    border-left-color: #0277bd !important;
+    border-left-color: #0397ef !important;
     border-left-width: 1px !important;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/border-management.scss:6 */
 .x-window-default-outer-border-b {
-    border-bottom-color: #0277bd !important;
+    border-bottom-color: #0397ef !important;
     border-bottom-width: 1px !important;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/border-management.scss:10 */
 .x-window-default-outer-border-bl {
-    border-bottom-color: #0277bd !important;
+    border-bottom-color: #0397ef !important;
     border-bottom-width: 1px !important;
-    border-left-color: #0277bd !important;
+    border-left-color: #0397ef !important;
     border-left-width: 1px !important;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/border-management.scss:16 */
 .x-window-default-outer-border-r {
-    border-right-color: #0277bd !important;
+    border-right-color: #0397ef !important;
     border-right-width: 1px !important;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/border-management.scss:20 */
 .x-window-default-outer-border-rl {
-    border-right-color: #0277bd !important;
+    border-right-color: #0397ef !important;
     border-right-width: 1px !important;
-    border-left-color: #0277bd !important;
+    border-left-color: #0397ef !important;
     border-left-width: 1px !important;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/border-management.scss:26 */
 .x-window-default-outer-border-rb {
-    border-right-color: #0277bd !important;
+    border-right-color: #0397ef !important;
     border-right-width: 1px !important;
-    border-bottom-color: #0277bd !important;
+    border-bottom-color: #0397ef !important;
     border-bottom-width: 1px !important;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/border-management.scss:32 */
 .x-window-default-outer-border-rbl {
-    border-right-color: #0277bd !important;
+    border-right-color: #0397ef !important;
     border-right-width: 1px !important;
-    border-bottom-color: #0277bd !important;
+    border-bottom-color: #0397ef !important;
     border-bottom-width: 1px !important;
-    border-left-color: #0277bd !important;
+    border-left-color: #0397ef !important;
     border-left-width: 1px !important;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/border-management.scss:40 */
 .x-window-default-outer-border-t {
-    border-top-color: #0277bd !important;
+    border-top-color: #0397ef !important;
     border-top-width: 1px !important;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/border-management.scss:44 */
 .x-window-default-outer-border-tl {
-    border-top-color: #0277bd !important;
+    border-top-color: #0397ef !important;
     border-top-width: 1px !important;
-    border-left-color: #0277bd !important;
+    border-left-color: #0397ef !important;
     border-left-width: 1px !important;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/border-management.scss:50 */
 .x-window-default-outer-border-tb {
-    border-top-color: #0277bd !important;
+    border-top-color: #0397ef !important;
     border-top-width: 1px !important;
-    border-bottom-color: #0277bd !important;
+    border-bottom-color: #0397ef !important;
     border-bottom-width: 1px !important;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/border-management.scss:56 */
 .x-window-default-outer-border-tbl {
-    border-top-color: #0277bd !important;
+    border-top-color: #0397ef !important;
     border-top-width: 1px !important;
-    border-bottom-color: #0277bd !important;
+    border-bottom-color: #0397ef !important;
     border-bottom-width: 1px !important;
-    border-left-color: #0277bd !important;
+    border-left-color: #0397ef !important;
     border-left-width: 1px !important;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/border-management.scss:64 */
 .x-window-default-outer-border-tr {
-    border-top-color: #0277bd !important;
+    border-top-color: #0397ef !important;
     border-top-width: 1px !important;
-    border-right-color: #0277bd !important;
+    border-right-color: #0397ef !important;
     border-right-width: 1px !important;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/border-management.scss:70 */
 .x-window-default-outer-border-trl {
-    border-top-color: #0277bd !important;
+    border-top-color: #0397ef !important;
     border-top-width: 1px !important;
-    border-right-color: #0277bd !important;
+    border-right-color: #0397ef !important;
     border-right-width: 1px !important;
-    border-left-color: #0277bd !important;
+    border-left-color: #0397ef !important;
     border-left-width: 1px !important;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/border-management.scss:78 */
 .x-window-default-outer-border-trb {
-    border-top-color: #0277bd !important;
+    border-top-color: #0397ef !important;
     border-top-width: 1px !important;
-    border-right-color: #0277bd !important;
+    border-right-color: #0397ef !important;
     border-right-width: 1px !important;
-    border-bottom-color: #0277bd !important;
+    border-bottom-color: #0397ef !important;
     border-bottom-width: 1px !important;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/border-management.scss:86 */
 .x-window-default-outer-border-trbl {
-    border-color: #0277bd !important;
+    border-color: #0397ef !important;
     border-width: 1px !important;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/window/Window.scss:719 */
@@ -12066,7 +12066,7 @@ body > .x-mask {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/form/field/Text.scss:229 */
 .x-form-trigger-wrap-default.x-form-trigger-wrap-focus {
-    border-color: #288bc7;
+    border-color: #29a7f1;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/form/field/Text.scss:233 */
 .x-form-trigger-wrap-default.x-form-trigger-wrap-invalid {
@@ -12280,11 +12280,11 @@ body > .x-mask {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/var/form/field/Checkbox.scss:145 */
 .x-keyboard-mode .x-form-checkbox-focus.x-form-radio-default {
-    color: #288bc7;
+    color: #29a7f1;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/var/form/field/Checkbox.scss:159 */
 .x-keyboard-mode .x-form-checkbox-focus.x-form-checkbox-default {
-    color: #288bc7;
+    color: #29a7f1;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/var/form/field/Checkbox.scss:173 */
 .x-form-cb-label-default {
@@ -12396,7 +12396,7 @@ body > .x-mask {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/form/FieldSet.scss:213 */
 .x-keyboard-mode .x-fieldset-header-tool-default.x-focus {
-    outline: 1px solid #288bc7;
+    outline: 1px solid #29a7f1;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/form/FieldSet.scss:220 */
 .x-fieldset-default.x-fieldset-collapsed {
@@ -12588,14 +12588,14 @@ body > .x-mask {
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/view/BoundList.scss:25 */
 .x-boundlist-selected {
     color: #fff;
-    background: #0277bd;
-    border-color: #0277bd;
+    background: #0397ef;
+    border-color: #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/view/BoundList.scss:33 */
 .x-boundlist-item-over {
     color: #fff;
-    background: #3592ca;
-    border-color: #3592ca;
+    background: #35acf2;
+    border-color: #35acf2;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/view/BoundList.scss:42 */
 .x-boundlist-floating {
@@ -12740,11 +12740,11 @@ div.x-datepicker-date:hover {
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/picker/Date.scss:178 */
 .x-datepicker-selected {
     border-style: solid;
-    border-color: #3592ca;
+    border-color: #35acf2;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/picker/Date.scss:181 */
 .x-datepicker-selected div.x-datepicker-date {
-    background-color: #0277bd;
+    background-color: #0397ef;
     color: #fff;
     font-weight: 400;
 }
@@ -12752,7 +12752,7 @@ div.x-datepicker-date:hover {
 .x-datepicker-today {
     border-color: darkred;
     border-style: solid;
-    background-color: #9ac9e5;
+    background-color: #9ad5f9;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/picker/Date.scss:199 */
 .x-datepicker-prevday .x-datepicker-date,
@@ -12830,10 +12830,10 @@ a.x-monthpicker-item-inner:hover {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/picker/Date.scss:301 */
 .x-monthpicker-item a.x-monthpicker-selected {
-    background-color: #0277bd;
+    background-color: #0397ef;
     color: #fff;
     border-style: solid;
-    border-color: #3592ca;
+    border-color: #35acf2;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/picker/Date.scss:308 */
 .x-monthpicker-yearnav {
@@ -12922,7 +12922,7 @@ a.x-monthpicker-yearnav-button:hover {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/var/form/field/Display.scss:60 */
 .x-keyboard-mode .x-form-display-field-default.x-field-form-focus {
-    outline: 1px solid #288bc7;
+    outline: 1px solid #29a7f1;
     outline-offset: -1px;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/css-outline.scss:64 */
@@ -12941,7 +12941,7 @@ a.x-monthpicker-yearnav-button:hover {
     right: 0px;
     bottom: 0px;
     left: 0px;
-    border: 1px solid #288bc7;
+    border: 1px solid #29a7f1;
     pointer-events: none;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/var/form/field/Display.scss:71 */
@@ -13587,8 +13587,8 @@ a.x-color-picker-item:hover {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/var/form/field/Tag.scss:352 */
 .x-form-text-default .x-tagfield-item.x-tagfield-item-selected {
-    background-color: #3592ca;
-    border-color: #3592ca;
+    background-color: #35acf2;
+    border-color: #35acf2;
     color: #fff;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/var/form/field/Tag.scss:361 */
@@ -13670,7 +13670,7 @@ a.x-color-picker-item:hover {
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/view/Table.scss:40 */
 .x-grid-item-over {
     color: #404040;
-    background-color: #e2ecf1;
+    background-color: #e3eef5;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/view/Table.scss:47 */
 .x-grid-item-focused {
@@ -13694,7 +13694,7 @@ a.x-color-picker-item:hover {
     bottom: 0px;
     left: 0px;
     pointer-events: none;
-    border: 1px solid #0277bd;
+    border: 1px solid #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/view/Table.scss:83 */
 .x-grid-item-selected {
@@ -13714,12 +13714,12 @@ a.x-color-picker-item:hover {
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/view/Table.scss:101 */
 .x-grid-with-row-lines .x-grid-item.x-grid-item-over {
     border-style: solid;
-    border-color: #d7e0e5;
+    border-color: #d7e2e9;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/view/Table.scss:106 */
 .x-grid-with-row-lines .x-grid-item-over + .x-grid-item {
     border-top-style: solid;
-    border-top-color: #d7e0e5;
+    border-top-color: #d7e2e9;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/view/Table.scss:111 */
 .x-grid-with-row-lines .x-grid-item.x-grid-item-selected {
@@ -13789,7 +13789,7 @@ a.x-color-picker-item:hover {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/view/Table.scss:251 */
 .x-grid-with-col-lines .x-grid-item-over .x-grid-cell {
-    border-color: #d7e0e5;
+    border-color: #d7e2e9;
     border-style: solid;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/view/Table.scss:256 */
@@ -13933,7 +13933,7 @@ a.x-color-picker-item:hover {
     right: 0px;
     bottom: 0px;
     left: 0px;
-    border: 1px solid #3592ca;
+    border: 1px solid #35acf2;
     pointer-events: none;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/grid/column/Column.scss:65 */
@@ -13943,7 +13943,7 @@ a.x-color-picker-item:hover {
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/grid/column/Column.scss:79 */
 .x-column-header-over {
     background-image: none;
-    background-color: #e2ecf1;
+    background-color: #e3eef5;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/grid/column/Column.scss:83 */
 .x-column-header-sort-ASC,
@@ -13953,11 +13953,11 @@ a.x-color-picker-item:hover {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/grid/column/Column.scss:111 */
 .x-column-header-open {
-    background-color: #e2ecf1;
+    background-color: #e3eef5;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/grid/column/Column.scss:114 */
 .x-column-header-open .x-column-header-trigger {
-    background-color: #d7e0e5;
+    background-color: #d7e2e9;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/grid/column/Column.scss:119 */
 .x-column-header-over .x-column-header-trigger,
@@ -14129,11 +14129,11 @@ a.x-color-picker-item:hover {
     padding: 7px 7px 7px 7px;
     border-width: 1px;
     border-style: solid;
-    background-color: #0277bd;
+    background-color: #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/frame.scss:237 */
 .x-btn-grid-cell-small-mc {
-    background-color: #0277bd;
+    background-color: #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/frame.scss:264 */
 .x-nbr .x-btn-grid-cell-small {
@@ -14232,7 +14232,7 @@ a.x-color-picker-item:hover {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:445 */
 .x-btn-grid-cell-small {
-    border-color: #026fb0;
+    border-color: #038cde;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:452 */
 .x-btn-button-grid-cell-small {
@@ -14390,7 +14390,7 @@ a.x-color-picker-item:hover {
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:739 */
 .x-keyboard-mode .x-btn-focus.x-btn-grid-cell-small {
     background-image: none;
-    background-color: #0277bd;
+    background-color: #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:775 */
 .x-btn-grid-cell-small .x-btn-arrow-el {
@@ -14408,21 +14408,21 @@ a.x-color-picker-item:hover {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:799 */
 .x-btn-over.x-btn-grid-cell-small {
-    border-color: #0266a2;
+    border-color: #0381cc;
     background-image: none;
-    background-color: #026dae;
+    background-color: #038bdc;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:856 */
 .x-btn.x-btn-menu-active.x-btn-grid-cell-small,
 .x-btn.x-btn-pressed.x-btn-grid-cell-small {
-    border-color: #015384;
+    border-color: #0269a7;
     background-image: none;
-    background-color: #02598e;
+    background-color: #0271b3;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:915 */
 .x-btn.x-btn-disabled.x-btn-grid-cell-small {
     background-image: none;
-    background-color: #0277bd;
+    background-color: #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:948 */
 .x-keyboard-mode .x-btn-focus .x-btn-grid-cell-small-tl,
@@ -14440,7 +14440,7 @@ a.x-color-picker-item:hover {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:960 */
 .x-keyboard-mode .x-btn-focus .x-btn-grid-cell-small-mc {
-    background-color: #0277bd;
+    background-color: #0397ef;
     background-image: url(images/btn/btn-grid-cell-small-focus-fbg.gif);
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:973 */
@@ -14459,7 +14459,7 @@ a.x-color-picker-item:hover {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:985 */
 .x-btn-over .x-btn-grid-cell-small-mc {
-    background-color: #026dae;
+    background-color: #038bdc;
     background-image: url(images/btn/btn-grid-cell-small-over-fbg.gif);
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:998 */
@@ -14478,7 +14478,7 @@ a.x-color-picker-item:hover {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:1010 */
 .x-keyboard-mode .x-btn-focus.x-btn-over .x-btn-grid-cell-small-mc {
-    background-color: #026dae;
+    background-color: #038bdc;
     background-image: url(images/btn/btn-grid-cell-small-focus-over-fbg.gif);
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:1025 */
@@ -14506,7 +14506,7 @@ a.x-color-picker-item:hover {
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:1037 */
 .x-btn.x-btn-menu-active .x-btn-grid-cell-small-mc,
 .x-btn.x-btn-pressed .x-btn-grid-cell-small-mc {
-    background-color: #02598e;
+    background-color: #0271b3;
     background-image: url(images/btn/btn-grid-cell-small-pressed-fbg.gif);
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:1051 */
@@ -14534,7 +14534,7 @@ a.x-color-picker-item:hover {
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:1063 */
 .x-keyboard-mode .x-btn-focus.x-btn-menu-active .x-btn-grid-cell-small-mc,
 .x-keyboard-mode .x-btn-focus.x-btn-pressed .x-btn-grid-cell-small-mc {
-    background-color: #02598e;
+    background-color: #0271b3;
     background-image: url(images/btn/btn-grid-cell-small-focus-pressed-fbg.gif);
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:1077 */
@@ -14553,7 +14553,7 @@ a.x-color-picker-item:hover {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:1089 */
 .x-btn.x-btn-disabled .x-btn-grid-cell-small-mc {
-    background-color: #0277bd;
+    background-color: #0397ef;
     background-image: url(images/btn/btn-grid-cell-small-disabled-fbg.gif);
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/button/Button.scss:1099 */
@@ -14813,7 +14813,7 @@ a.x-color-picker-item:hover {
 .x-menu-item-default.x-menu-item-focus,
 .x-menu-item-default.x-menu-item-active {
     background-image: none;
-    background-color: #3592ca;
+    background-color: #35acf2;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/menu/Menu.scss:370 */
 .x-menu-item-default.x-menu-item-disabled {
@@ -15160,7 +15160,7 @@ a.x-color-picker-item:hover {
 .x-menu-item-default-menubar.x-menu-item-focus,
 .x-menu-item-default-menubar.x-menu-item-active {
     background-image: none;
-    background-color: #3592ca;
+    background-color: #35acf2;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/menu/Menu.scss:370 */
 .x-menu-item-default-menubar.x-menu-item-disabled {
@@ -15567,7 +15567,7 @@ a.x-color-picker-item:hover {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/grid/locking/Lockable.scss:59 */
 .x-rtl.x-grid-inner-locked {
-    border-right-color: #0277bd;
+    border-right-color: #0397ef;
     border-left-color: #d1d1d1;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/grid/locking/Lockable.scss:61 */
@@ -15672,7 +15672,7 @@ a.x-color-picker-item:hover {
     border-top: 1px solid #d1d1d1 !important;
     border-bottom: 1px solid #d1d1d1 !important;
     padding: 5px 0 5px 0;
-    background-color: #dae8f1;
+    background-color: #daecf7;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/grid/plugin/RowEditing.scss:60 */
 .x-grid-with-col-lines .x-grid-row-editor .x-form-cb {
@@ -15700,11 +15700,11 @@ a.x-color-picker-item:hover {
     padding: 5px 5px 5px 5px;
     border-width: 0 1px 1px 1px;
     border-style: solid;
-    background-color: #dae8f1;
+    background-color: #daecf7;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/frame.scss:237 */
 .x-grid-row-editor-buttons-default-bottom-mc {
-    background-color: #dae8f1;
+    background-color: #daecf7;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/frame.scss:264 */
 .x-nbr .x-grid-row-editor-buttons-default-bottom {
@@ -15818,11 +15818,11 @@ a.x-color-picker-item:hover {
     padding: 5px 5px 5px 5px;
     border-width: 1px 1px 0 1px;
     border-style: solid;
-    background-color: #dae8f1;
+    background-color: #daecf7;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/frame.scss:237 */
 .x-grid-row-editor-buttons-default-top-mc {
-    background-color: #dae8f1;
+    background-color: #daecf7;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/frame.scss:264 */
 .x-nbr .x-grid-row-editor-buttons-default-top {
@@ -15995,11 +15995,11 @@ a.x-color-picker-item:hover {
 .x-ssm-extender-drag-handle {
     height: 7px;
     width: 7px;
-    background-color: #0277bd;
+    background-color: #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/grid/selection/SpreadsheetModel.scss:22 */
 .x-ssm-extender-mask {
-    border: 1px dotted #0277bd;
+    border: 1px dotted #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/layout/container/Accordion.scss:1 */
 .x-accordion-layout-ct {
@@ -16015,7 +16015,7 @@ a.x-color-picker-item:hover {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/layout/container/Accordion.scss:13 */
 .x-keyboard-mode .x-accordion-hd .x-panel-header-title.x-title-focus {
-    outline: 1px solid #0277bd;
+    outline: 1px solid #0397ef;
     outline-offset: 2px;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/css-outline.scss:64 */
@@ -16034,7 +16034,7 @@ a.x-color-picker-item:hover {
     right: -3px;
     bottom: -3px;
     left: -3px;
-    border: 1px solid #0277bd;
+    border: 1px solid #0397ef;
     pointer-events: none;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/layout/container/Accordion.scss:34 */
@@ -16045,7 +16045,7 @@ a.x-color-picker-item:hover {
 .x-accordion-item .x-accordion-hd {
     background: #ededed;
     border-width: 0;
-    border-color: #0277bd;
+    border-color: #0397ef;
     padding: 12px 10px;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/layout/container/Accordion.scss:45 */
@@ -16058,7 +16058,7 @@ a.x-color-picker-item:hover {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/layout/container/Accordion.scss:54 */
 .x-accordion-item .x-accordion-hd-sibling-expanded {
-    border-top-color: #0277bd;
+    border-top-color: #0397ef;
     border-top-width: 0;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/layout/container/Accordion.scss:59 */
@@ -16072,7 +16072,7 @@ a.x-color-picker-item:hover {
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/layout/container/Accordion.scss:72 */
 .x-accordion-hd .x-tool-tool-el {
     background-color: #ededed;
-    color: #0277bd;
+    color: #0397ef;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/layout/container/Accordion.scss:77 */
 .x-accordion-hd .x-tool-img {
@@ -16103,7 +16103,7 @@ a.x-color-picker-item:hover {
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/layout/container/Accordion.scss:126 */
 .x-keyboard-mode .x-accordion-hd .x-tool-focus {
-    outline: 1px solid #0277bd;
+    outline: 1px solid #0397ef;
     outline-offset: 2px;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-base/sass/etc/mixins/css-outline.scss:64 */
@@ -16122,7 +16122,7 @@ a.x-color-picker-item:hover {
     right: -3px;
     bottom: -3px;
     left: -3px;
-    border: 1px solid #0277bd;
+    border: 1px solid #0397ef;
     pointer-events: none;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/ext/classic/theme-neutral/sass/src/layout/container/Border.scss:5 */

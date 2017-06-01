@@ -4,6 +4,16 @@
 Ext.define('Advertising.view.main.metrics.metricspanel.MetricsPanelController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.metricspanel',
+    listen: {
+        controller: {
+            '#vceventtreecontroller': {
+                eventTreeSelection: 'onEventChange'
+            }
+        }
+    },
+    requires: [
+        'Ext.util.Format'
+    ],
 
     /**
      * Called when the view is created
@@ -20,7 +30,30 @@ Ext.define('Advertising.view.main.metrics.metricspanel.MetricsPanelController', 
         var value = layoutContext.renderer(label) / 1000;
         return value === 0 ? '$0' : Ext.util.Format.number(value, '$0K');
     },
+    onEventChange: function(record) {
+        var me = this;
 
+        if (record.data.nodetype == 'VEHICLE' || record.data.nodetype == 'PAGE') {
+            console.log("Event was changed - getting scorecard data %o", record);
+            var store = me.getViewModel().getStore('vehicleMetrics');
+            store.getProxy().extraParams = {
+                vehicleID: record.data.id
+            };
+            store.load({
+
+                scope: this,
+                callback: function (records, operation, success) {
+                    if (success) {
+                        Ext.toast("Loaded analytics");
+
+                    } else {
+                        Ext.toast("Failed to get analytics");
+                    }
+                }
+            });
+        }
+
+    },
     onSeriesLabelRender: function (value) {
         return Ext.util.Format.number(value / 1000, '$0K');
     },

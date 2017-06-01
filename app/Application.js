@@ -24,14 +24,34 @@ Ext.define('Advertising.Application', {
     ],
 
     name: 'Advertising',
-
+    splashscreen: {},
     stores: [
         // TODO: add global / shared stores here
     ],
-
+    init: function () {
+        // start the mask on the body and get a reference to the mask
+        //splashscreen = Ext.getBody().mask('Loading Advertising, please stand by ...', 'splashscreen');
+    },
     launch: function () {
         // TODO - Launch the application
         Ext.override(Ext.data.proxy.Ajax, {timeout: 60000});
+
+        //var task = new Ext.util.DelayedTask(function () {
+        //
+        //    // fade out the body mask
+        //    splashscreen.fadeOut({
+        //        duration: 500,
+        //        remove: true
+        //    });
+        //
+        //    // fade out the message
+        //    splashscreen.next().fadeOut({
+        //        duration: 500,
+        //        remove: true
+        //    });
+        //
+        //});
+        //task.delay(1000);
 
         // It's important to note that this type of application could use
         // any type of storage, i.e., Cookies, LocalStorage, etc.

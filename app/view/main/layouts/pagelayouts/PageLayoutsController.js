@@ -99,8 +99,14 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
             if ( pageObject.xtype == 'promo') {
                 if ( pageObject.getViewModel().get("name") == offerID) {
                     // check if visible
-                    pageObject.getEl().highlight();
-                    pageObject.getEl().highlight("ff00aa", { attr: 'color', duration: 2000 });
+                    pageObject.addCls('f-highlight');
+                    pageObject.up('panel').getEl().highlight();
+                    pageObject.getEl().highlight("ff00aa", { attr: 'background-color', duration: 2000 });
+                    Ext.defer(function() {
+                        pageObject.removeCls('f-highlight');
+                    }, 2000);
+                } else {
+                    pageObject.removeCls('f-highlight');
 
                 }
             }
