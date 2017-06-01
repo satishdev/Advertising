@@ -132,7 +132,7 @@ Ext.define('Advertising.view.main.common.Promo', {
         {
             // html: '<div class="noSelect" style="font-size: 1vw">' + '{name}' + '<br/>Some image here</br><p/><div style="font-size: 4vw"> $99<sup style="font-size:.6em">99</sup></div></div>',
             bind: {
-                html: '<div class="noSelect" style="font-size: 1vw">{name}<br/><div class="f-prod-image"><img alt="prod img" class="noSelect" src="http://laheadvsb01.ngco.com:8080/smartmedia/servlet/smartmediaservlet?ref=4122006805.eps&type=Image&res=thumb"/></div></br><p/>Adzone [{adzoneID} {location}]</div>',
+                html: '<div class="noSelect" style="font-size: 1vw">{name}<br/><div class="f-prod-image"><img alt="prod img" class="noSelect" src="http://laheadvsb01.ngco.com:8080/smartmedia/servlet/smartmediaservlet?ref={displayImage}&type=Image&res=thumb"/></div></br><p/>Adzone [{adzoneID} {location}]</div>',
                 visible: '{!showGrid}'
             }
         }

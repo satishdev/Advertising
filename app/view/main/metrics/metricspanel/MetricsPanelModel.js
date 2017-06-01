@@ -10,45 +10,55 @@ Ext.define('Advertising.view.main.metrics.metricspanel.MetricsPanelModel', {
     ],
 
     stores: {
-        vehicleMetrics: {
+        eventMetrics: {
 
-                listeners: {
-                    load: function(store, operation) {
-                        console.log("vehicle metrics store load");
-                    }
-                },
-                autoLoad: false,
-                proxy: {
-                    type : 'ajax',
-                    useDefaultXhrHeader: false,
-                    api: {
-                        read:  Advertising.util.GlobalValues.serviceURL + '/event/getVehicleAnalytics'
-                    },
-                    reader: {
-                        type: 'json',
-                        rootProperty: 'data'
-                    }
+            listeners: {
+                load: function (store, operation) {
+                    console.log("vehicle metrics store load");
                 }
+            },
+            autoLoad: false,
+            proxy: {
+                type: 'ajax',
+                useDefaultXhrHeader: false,
+                api: {
+                    read: Advertising.util.GlobalValues.serviceURL + '/event/getEventAnalytics'
+                },
+                reader: {
+                    type: 'json',
+                    rootProperty: 'data'
+                }
+            }
 
 
         },
-        pageMetrics: {
 
+        offerMetrics: {
+            listeners: {
+                load: function (store, operation) {
+                    console.log("offer metrics store load");
+                }
+            },
+            autoLoad: false,
+            proxy: {
+                type: 'ajax',
+                useDefaultXhrHeader: false,
+                api: {
+                    read: Advertising.util.GlobalValues.serviceURL + '/event/getOfferAnalytics'
+                },
+                reader: {
+                    type: 'json',
+                    rootProperty: 'data'
+                }
+            }
 
         }
-        /*
-        A declaration of Ext.data.Store configurations that are first processed as binds to produce an effective
-        store configuration. For example:
 
-        users: {
-            model: 'MetricsPanel',
-            autoLoad: true
-        }
-        */
     },
 
     data: {
-        stacked: false
-        /* This object holds the arbitrary data that populates the ViewModel and is then available for binding. */
+        stacked: false,
+        showEventData: true,
+        showOfferData: false
     }
 });

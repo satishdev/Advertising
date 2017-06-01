@@ -44,6 +44,7 @@ Ext.define('Advertising.view.main.common.promo.PromoModel', {
         undoDisabled: true,
         draggable: false,
         showGrid: false,
+        imageName: 'missing-image',
         width: 350,
         height: 220,
         origX: 0,

@@ -111,12 +111,15 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
                 {
                     tooltip: 'Show offer data',
                     iconCls: 'fa fa-pie-chart',
-                    text: 'Offer Data'
+                    text: 'Offer Data',
+                    handler: 'onShowOfferData'
+
                 },
                 {
                     tooltip: 'Show event data',
                     iconCls: 'fa fa-bar-chart',
-                    text: 'Event Data'
+                    text: 'Event Data',
+                    handler: 'onShowEventData'
                 },
                 {
                     tooltip: 'Stack data',

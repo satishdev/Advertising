@@ -53,10 +53,27 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelContro
         }
 
     },
-    onToggleStacking: function(btn) {
+    onShowOfferData: function(btn) {
         var me = this;
         // get the chart currently displayed
         var metricsPanel = Ext.ComponentQuery.query('metricspanel')[0];
+        metricsPanel.getViewModel().set("showEventData", false);
+        metricsPanel.getViewModel().set("showOfferData", true);
+        this.fireEvent("showOfferDataChart", metricsPanel);
+
+    },
+    onShowEventData: function(btn) {
+        var me = this;
+        // get the chart currently displayed
+        var metricsPanel = Ext.ComponentQuery.query('metricspanel')[0];
+        metricsPanel.getViewModel().set("showEventData", true);
+        metricsPanel.getViewModel().set("showOfferData", false);
+        this.fireEvent("showEventDataChart",metricsPanel);
+    },
+    onToggleStacking: function(btn) {
+        var me = this;
+        // get the chart currently displayed
+        var metricsPanel = Ext.ComponentQuery.query('eventsaleschart')[0];
         metricsPanel.getViewModel().set("stacked", btn.pressed);
         metricsPanel.down('cartesian').redraw();
     },
@@ -67,6 +84,7 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelContro
 
         if ( newCard.xtype == 'metricspanel') {
              me.getViewModel().set("showMetricsTools", true);
+            me.getViewModel().set("hidePageTools", true);
 
         } else {
             me.getViewModel().set("showMetricsTools", false);

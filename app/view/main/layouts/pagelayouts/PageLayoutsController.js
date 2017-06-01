@@ -97,17 +97,20 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
         var targetPanel = curPage.down('panel');
         targetPanel.items.each(function(pageObject) {
             if ( pageObject.xtype == 'promo') {
-                if ( pageObject.getViewModel().get("name") == offerID) {
-                    // check if visible
-                    pageObject.addCls('f-highlight');
-                    pageObject.up('panel').getEl().highlight();
-                    pageObject.getEl().highlight("ff00aa", { attr: 'background-color', duration: 2000 });
-                    Ext.defer(function() {
-                        pageObject.removeCls('f-highlight');
-                    }, 2000);
-                } else {
-                    pageObject.removeCls('f-highlight');
+                if ( pageObject.isVisible()) {
+                    if (pageObject.getViewModel().get("name") == offerID) {
+                        // check if visible
 
+                        pageObject.addCls('f-highlight');
+                        pageObject.up('panel').getEl().highlight();
+                        pageObject.getEl().highlight("ff00aa", {attr: 'background-color', duration: 2000});
+                        Ext.defer(function () {
+                            pageObject.removeCls('f-highlight');
+                        }, 2000);
+                    } else {
+                        pageObject.removeCls('f-highlight');
+
+                    }
                 }
             }
 

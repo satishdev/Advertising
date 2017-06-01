@@ -22,10 +22,12 @@ Ext.define('Advertising.view.west.treeviews.events.eventtree.EventTreeController
 
     },
     onTreeNodeSelect: function (tree, node, ndx, opts) {
+        var me = this;
         Ext.toast("Node clicked " + node.data);
         if (node.data.nodetype == 'VEHICLE' || node.data.nodetype == 'PAGE' ) {
             var parentNode = node.parentNode;
             console.log("Tree parent is %o", parentNode);
+            me.getViewModel().set("selectedEventNode", node);
             this.fireEvent('eventTreeSelection', node,parentNode);
         }
     },
