@@ -21,8 +21,8 @@ Ext.define('Advertising.view.main.metrics.metricspanel.MetricsPanel', {
         flex: 1
     },
     items: [
-        {
-            html: '<p/>Select a vehicle or page in order to see the associated scorecard data'
-        }
+        //{
+        //    html: '<p/>Select a vehicle or page in order to see the associated scorecard data'
+        //}
     ]
 });

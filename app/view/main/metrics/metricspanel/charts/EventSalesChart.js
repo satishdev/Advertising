@@ -7,7 +7,7 @@ Ext.define('Advertising.view.main.metrics.metricspanel.charts.EventSalesChart', 
 
     xtype: 'eventsaleschart',
 
-    flex: 1,
+    flex: 4,
     viewModel: {
         type: 'metricspanel'
     },

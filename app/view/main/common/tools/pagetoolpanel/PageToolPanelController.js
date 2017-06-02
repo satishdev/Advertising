@@ -73,9 +73,9 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelContro
     onToggleStacking: function(btn) {
         var me = this;
         // get the chart currently displayed
-        var metricsPanel = Ext.ComponentQuery.query('eventsaleschart')[0];
+        var metricsPanel = Ext.ComponentQuery.query('metricspanel')[0];
         metricsPanel.getViewModel().set("stacked", btn.pressed);
-        metricsPanel.down('cartesian').redraw();
+        metricsPanel.down('eventsaleschart').redraw();
     },
     onPrimaryTabChange: function( panel, newCard, oldCard, eOpts) {
         Ext.toast("Primary tab " + newCard.xtype);

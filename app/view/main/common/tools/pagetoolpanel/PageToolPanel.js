@@ -121,13 +121,13 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
                     text: 'Event Data',
                     handler: 'onShowEventData'
                 },
-                {
-                    tooltip: 'Stack data',
-                    iconCls: 'fa  fa-stack-overflow',
-                    text: 'Stack Data',
-                    enableToggle: true,
-                    handler: 'onToggleStacking'
-                }
+                //{
+                //    tooltip: 'Stack data',
+                //    iconCls: 'fa  fa-stack-overflow',
+                //    text: 'Stack Data',
+                //    enableToggle: true,
+                //    handler: 'onToggleStacking'
+                //}
                 ]
         },
         {

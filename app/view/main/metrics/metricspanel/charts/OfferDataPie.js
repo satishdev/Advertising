@@ -6,10 +6,12 @@ Ext.define('Advertising.view.main.metrics.metricspanel.charts.OfferDataPie', {
 
     requires: [
         'Advertising.view.main.metrics.metricspanel.charts.OfferDataController',
+        'Ext.chart.interactions.ItemHighlight',
+        'Ext.chart.interactions.RotatePie3D',
         'Ext.chart.series.Pie3D'
     ],
     controller: 'offerdata',
-
+    interactions: ['itemhighlight', 'rotatePie3d'],
     xtype: 'offerdatapie',
     bind: {
         store: '{offerMetrics}',

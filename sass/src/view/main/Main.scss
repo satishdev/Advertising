@@ -198,11 +198,11 @@ $font-weight-bold: 500;
 }
 
 .f-new-node {
- color: $color-new;
+ color: $color-theme-1;
 }
 
 .f-promo-on-page {
-  color: $color-jda-green !important;
+  color: $color-theme-1 !important;
 }
 
 .f-promo-not-on-page {
@@ -243,8 +243,8 @@ $font-weight-bold: 500;
 }
 
 .f-highlight {
-  box-shadow: 5px 5px 5px $color-soft-green !important;
-  border: 2px solid $color-soft-green;
+  box-shadow: 5px 5px 5px $color-soft-orange !important;
+  border: 2px solid $color-soft-orange;
 }
 .f-table-layout {
   text-align: center;
