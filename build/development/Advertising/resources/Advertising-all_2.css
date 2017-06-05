@@ -12240,6 +12240,10 @@ a.x-btn:active {
     padding: 2px;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:255 */
+.f-layout-new {
+    color: #f57c00;
+}
+/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:259 */
 .f-table-layout th {
     padding-top: 2px;
     padding-bottom: 2px;
@@ -12248,12 +12252,12 @@ a.x-btn:active {
     background-color: #0076ad;
     color: white;
 }
-/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:264 */
+/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:268 */
 .component-tool-filter .x-tool-filter {
     background-image: none !important;
     font: 16px/1 FontAwesome;
 }
-/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:268 */
+/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:272 */
 .component-tool-filter .x-tool-filter:before {
     content: "\f0b0" !important;
 }

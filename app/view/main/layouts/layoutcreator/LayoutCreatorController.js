@@ -35,25 +35,35 @@ Ext.define('Advertising.view.main.layouts.layoutcreator.LayoutCreatorController'
     },
     onCreateLayout: function(btn) {
         var me = this;
-        var model = me.getViewModel();
+        var model = me.getViewModel(), data = model.data, json = [];
+
+        console.log("Creating new layout using data: %o", model.data);
+        var jsonData = {};
+        for(var prop in data){
+            //dont pass in any object joins - e.g stores or anything else odd added to the viewmodel
+            if ( typeof data[prop] != 'object') {
+                jsonData[prop] = data[prop];
+            }
+        }
+
         // create a new layout
         // add the item first
         Ext.Ajax.request({
             url: Advertising.util.GlobalValues.serviceURL + "/layout/addNewLayout",
-            method: 'GET',
+            method: 'POST',
             cors: true,
             useDefaultXhrHeader: false,
             timeout: 1450000,
             params: {
                 // send all the model data as a JSON object
-                ajax_req: Ext.JSON.encode(model.data)
+                ajax_req: Ext.JSON.encode(jsonData)
 
             },
             success: function (transport) {
                 var response = Ext.decode(transport.responseText);
                 console.log("Got response %o", response);
-
-                var parentNode = tree.getStore().getNodeById(record.data.id);
+                var tree = Ext.ComponentQuery.query('layouttree')[0];
+                var parentNode = tree.getStore().getNodeById(data.folderID);
 
 
                 parentNode.appendChild(response);
@@ -61,6 +71,7 @@ Ext.define('Advertising.view.main.layouts.layoutcreator.LayoutCreatorController'
                 //if (parentNode){
                 //    tree.getStore().load({node:parentNode});
                 //}
+                console.log("Closing window...");
                 btn.up('window').close();
             },
             failure: function (transport) {
