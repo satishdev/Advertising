@@ -74,6 +74,19 @@ Ext.define('Advertising.view.west.treeviews.events.eventtree.EventTreeController
                                 iconCls: 'fa fa-check',
                                 handler: function(item) {
                                     Ext.toast("Approving " + record.data.id);
+                                    Ext.Ajax.request({
+                                        url: Advertising.util.GlobalValues.serviceURL + "/page/approvePageForWorkList/" + record.data.id,
+                                        method: 'POST',
+                                        cors: true,
+                                        useDefaultXhrHeader: false,
+                                        timeout: 1450000,
+                                        success: function (transport) {
+
+                                        },
+                                        failure: function (message) {
+
+                                        }
+                                    });
                                 }
                             }
                         ],

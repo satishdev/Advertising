@@ -20,10 +20,8 @@ Ext.define('Advertising.view.west.treeviews.events.eventtree.EventTreeModel', {
     alias: 'viewmodel.eventtree',
 
     requires: [
-        'Advertising.util.GlobalValues',
         'Advertising.view.west.treeviews.events.eventtree.model.Node',
         'Ext.data.TreeStore',
-        'Ext.data.proxy.Ajax',
         'Ext.data.reader.Json'
     ],
 
@@ -62,18 +60,9 @@ Ext.define('Advertising.view.west.treeviews.events.eventtree.EventTreeModel', {
             }
 
         }
-        /*
-         A declaration of Ext.data.Store configurations that are first processed as binds to produce an effective
-         store configuration. For example:
 
-         users: {
-         model: 'EventTree',
-         autoLoad: true
-         }
-         */
     },
 
     data: {
-        /* This object holds the arbitrary data that populates the ViewModel and is then available for binding. */
     }
 });
