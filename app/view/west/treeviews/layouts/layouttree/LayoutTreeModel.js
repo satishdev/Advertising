@@ -6,9 +6,7 @@ Ext.define('Advertising.view.west.treeviews.layouts.layouttree.LayoutTreeModel',
     alias: 'viewmodel.layouttree',
 
     requires: [
-        'Advertising.util.GlobalValues',
         'Ext.data.TreeStore',
-        'Ext.data.proxy.Ajax',
         'Ext.data.reader.Json'
     ],
 
@@ -16,21 +14,11 @@ Ext.define('Advertising.view.west.treeviews.layouts.layouttree.LayoutTreeModel',
         layouts: {
             listeners: {
                 load: function(store, operation) {
-                    console.log("STORE LOAD");
-                },
-
-                beforeload: function(store, operation){
-                    var node = operation.node;
-                    console.log("Adding extra params...%o", node);
-                    //store.getProxy().extraParams = {
-                    //    nodetype: node.get('nodetype')
-                    //};
-
+                    console.log("Loaded layout store");
                 }
             },
             type: 'tree',
             autoLoad: true,
-
             proxy: {
                 type : 'ajax',
                 useDefaultXhrHeader: false,
@@ -38,14 +26,14 @@ Ext.define('Advertising.view.west.treeviews.layouts.layouttree.LayoutTreeModel',
                     read:  Advertising.util.GlobalValues.serviceURL + '/tree/layouts'
                 },
                 reader: {
-                    type: 'json',
-                    rootProperty: 'events'
+                    type: 'json'
                 }
             }
         }
     },
 
     data: {
+        recordID: -111
         /* This object holds the arbitrary data that populates the ViewModel and is then available for binding. */
     }
 });

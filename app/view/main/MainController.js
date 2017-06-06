@@ -167,7 +167,7 @@ Ext.define('Advertising.view.main.MainController', {
                     if (Ext.isDefined(statusIcon)) {
                         statusIcon.setIconCls('x-fa fa-feed f-status-ok');
                     }
-                    var messageDialog = Ext.ComponentQuery.query('messagebox')[0];
+                    var messageDialog = Ext.ComponentQuery.query('#serverConnectionErrorMsg')[0];
                     if (Ext.isDefined(messageDialog)) {
                         messageDialog.destroy();
                     }
