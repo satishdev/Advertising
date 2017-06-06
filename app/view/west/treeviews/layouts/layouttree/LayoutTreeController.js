@@ -53,9 +53,10 @@ Ext.define('Advertising.view.west.treeviews.layouts.layouttree.LayoutTreeControl
                             iconCls: 'fa fa-trash',
                             handler: function () {
                                 var box = Ext.create('Ext.window.MessageBox');
-                                box.confirm('Confirm delete', 'Are you sure you want to remove <b style="color:red">' + record.data.text  +'</b>?', function (btn) {
+                                box.confirm('Confirm delete', 'Are you sure you want to remove folder <b style="color:red">' + record.data.text  +'</b>?', function (btn) {
                                     if (btn === 'yes') {
                                         Ext.toast("Removing folder " + record.data.id);
+                                        me.deleteLayoutFolder(record);
                                     }
                                 });
                             }
@@ -182,8 +183,32 @@ Ext.define('Advertising.view.west.treeviews.layouts.layouttree.LayoutTreeControl
     },
     updateLayoutName: function (newName) {
 
-    }
-    ,
+    }    ,
+    deleteLayoutFolder: function(record) {
+        var me = this;
+        console.log("Deleting layout %o",record.data);
+        var tree = me.getView();
+        Ext.Ajax.request({
+            url: Advertising.util.GlobalValues.serviceURL + "/layout/deleteLayoutFolder",
+            method: 'POST',
+            cors: true,
+            useDefaultXhrHeader: false,
+            timeout: 1450000,
+            params: {
+                // send all the model data as a JSON object
+                layoutFolderID: record.data.id,
+                recurse: false
+            },
+            success: function (transport) {
+                var response = Ext.decode(transport.responseText);
+                console.log("Removing tree node %o", tree);
+                record.parentNode.removeChild(record);
+            },
+            failure: function (message) {
+                Ext.msg.alert('Error ' + message);
+            }
+        });
+    },
     deleteLayout: function(record) {
         var me = this;
         console.log("Deleting layout %o",record.data);
