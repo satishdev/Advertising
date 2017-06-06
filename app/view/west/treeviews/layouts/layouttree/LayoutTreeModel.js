@@ -15,6 +15,7 @@ Ext.define('Advertising.view.west.treeviews.layouts.layouttree.LayoutTreeModel',
             listeners: {
                 load: function(store, operation) {
                     console.log("Loaded layout store");
+                    console.log("Data %o", store);
                 }
             },
             type: 'tree',

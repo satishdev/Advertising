@@ -19,6 +19,9 @@ Ext.define('Advertising.view.west.treeviews.layouts.layouttree.LayoutTreeControl
     init: function () {
 
     },
+    onLayoutTreeExpand: function(node, eOpts) {
+        console.log("Expanding tree node %o", node);
+    },
     onNodeTreeDrop: function (node, data, overModel, dropPosition, eOpts) {
         Ext.toast("Moving node - notify back-end");
         console.log("Move node 1: %o 2: %o 3: %o 4: %o", node, data, overModel, dropPosition);

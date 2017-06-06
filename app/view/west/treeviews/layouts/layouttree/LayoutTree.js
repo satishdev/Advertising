@@ -28,7 +28,8 @@ Ext.define('Advertising.view.west.treeviews.layouts.layouttree.LayoutTree', {
     listeners: {
         itemclick: 'onTreeNodeSelect',
         itemcontextmenu: 'onShowLayoutTreeMenu',
-        drop: 'onNodeTreeDrop'
+        drop: 'onNodeTreeDrop',
+        beforeItemExpand: 'onLayoutTreeExpand'
     },
 
     items: [

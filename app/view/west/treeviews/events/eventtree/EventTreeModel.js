@@ -31,7 +31,7 @@ Ext.define('Advertising.view.west.treeviews.events.eventtree.EventTreeModel', {
         events: {
             listeners: {
                 load: function (store, operation) {
-                    console.log("STORE LOAD");
+                    console.log("Event tree store loaded");
                 },
 
                 beforeload: function (store, operation) {

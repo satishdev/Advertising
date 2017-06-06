@@ -69,9 +69,12 @@ Ext.define('Advertising.view.west.treeviews.events.eventtree.EventTreeController
                         items: [
                             {
                                 text: 'Approve page for worklist',
-                                pageName: record.data.Name,
+                                pageName: record.data.text,
                                 pageID: record.data.id,
-                                iconCls: 'fa fa-tick'
+                                iconCls: 'fa fa-check',
+                                handler: function(item) {
+                                    Ext.toast("Approving " + record.data.id);
+                                }
                             }
                         ],
                         data: record.data
