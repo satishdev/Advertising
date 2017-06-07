@@ -13,6 +13,7 @@ Ext.define('Advertising.util.GlobalValues', {
     configURL: '',
     configId: 'APWebUI',
     historyURL: 'HISTORY_URL',
+    leafUniqueGenerator: 9999999999, // used to ensure leaf values are unique in trees as pageids and event ids overlap
     appConfig: {}
 
 });

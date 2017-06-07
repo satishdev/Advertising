@@ -73,18 +73,26 @@ Ext.define('Advertising.view.west.treeviews.events.eventtree.EventTreeController
                                 pageID: record.data.id,
                                 iconCls: 'fa fa-check',
                                 handler: function(item) {
-                                    Ext.toast("Approving " + record.data.id);
+                                    Ext.toast("Approving " +record.get('leafid'));
                                     Ext.Ajax.request({
-                                        url: Advertising.util.GlobalValues.serviceURL + "/page/approvePageForWorkList/" + record.data.id,
+                                        url: Advertising.util.GlobalValues.serviceURL + "/page/submitPageForApproval/" + record.get('leafid'),
                                         method: 'POST',
                                         cors: true,
                                         useDefaultXhrHeader: false,
                                         timeout: 1450000,
                                         success: function (transport) {
-
+                                            record.set('cls','f-page-submitted');
                                         },
                                         failure: function (message) {
-
+                                            var details = Ext.decode(message.responseText);
+                                            console.log("Failed to snd for approval %o", details);
+                                            Ext.MessageBox.show({
+                                                title: 'Error',
+                                                msg: details.message,
+                                                buttons: Ext.MessageBox.OK,
+                                                animateTarget: Ext.getBody(),
+                                                icon:  Ext.MessageBox.ERROR
+                                            });
                                         }
                                     });
                                 }

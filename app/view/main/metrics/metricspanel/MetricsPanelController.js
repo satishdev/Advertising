@@ -50,6 +50,7 @@ Ext.define('Advertising.view.main.metrics.metricspanel.MetricsPanelController', 
         var objid = eventTree.getViewModel().get("selectedEventNode").get("id");
 
         Ext.toast("Chart for " + nodeType + " :" + objid);
+
         for(var i = 0; i < metricsPanel.items.length; i++)
         {
             metricsPanel.remove(metricsPanel.items[i], true);
@@ -153,8 +154,8 @@ Ext.define('Advertising.view.main.metrics.metricspanel.MetricsPanelController', 
             console.log("Event was changed - getting scorecard data %o", record);
             var store = me.getViewModel().getStore('eventMetrics');
             store.getProxy().extraParams = {
-                nodeID: record.data.id,
-                nodeType: 'VEHICLE'
+                nodeID: record.data.leafid,
+                nodeType: record.data.nodetype
             };
             me.loadEventChart(store);
         }

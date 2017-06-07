@@ -265,33 +265,40 @@ $font-weight-bold: 500;
   color: white;
 }
 
-.f-page-submitted:before {
+.f-page-submitted {
+  color:$color-jda-orange;
+  //font: 18px/1 FontAwesome;
+  //content: "\f207" !important;
+}
+
+.f-page-not-submitted {
   color:$color-jda-blue;
-  font: 18px/1 FontAwesome;
+  //font: 18px/1 FontAwesome;
 
-  content: "\f207" !important;
+ // content: "\f207" !important;
 }
 
-.f-page-not-submitted:before {
-  color:$color-soft-purple;
-  font: 18px/1 FontAwesome;
-
-  content: "\f207" !important;
-}
-
-.f-page-error:before {
-  font: 18px/1 FontAwesome;
+.f-page-error {
+ // font: 18px/1 FontAwesome;
 
   color:$color-soft-red;
-  content: "\f207" !important;
+  //content: "\f207" !important;
 }
 
-.f-page-approved:before {
+.f-page-approved {
   color:$color-jda-red;
-  font: 18px/1 FontAwesome;
+  //font: 18px/1 FontAwesome;
 
-  content: "\f207" !important;
+  //content: "\f207" !important;
 
+}
+
+.x-tree-icon-leaf .f-page-submitted{
+  background-image: url("images/delete.gif") !important;
+}
+
+.x-grid-cell.f-page-submitted.x-tree-icon-leaf:before {
+  color:$color-soft-orange;
 }
 
 .component-tool-filter .x-tool-filter{

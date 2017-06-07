@@ -35,9 +35,8 @@ Ext.define('Advertising.view.main.layouts.layoutcreator.LayoutCreatorController'
     },
     onCreateLayout: function(btn) {
         var me = this;
-        var model = me.getViewModel(), data = model.data, json = [];
+        var model = me.getViewModel(), data = model.data;
 
-        console.log("Creating new layout using data: %o", model.data);
         var jsonData = {};
         for(var prop in data){
             //dont pass in any object joins - e.g stores or anything else odd added to the viewmodel
@@ -45,6 +44,8 @@ Ext.define('Advertising.view.main.layouts.layoutcreator.LayoutCreatorController'
                 jsonData[prop] = data[prop];
             }
         }
+        // add to the array to send to the server
+        console.log("Creating new layout using data: %o", jsonData);
 
         // create a new layout
         // add the item first
@@ -54,9 +55,10 @@ Ext.define('Advertising.view.main.layouts.layoutcreator.LayoutCreatorController'
             cors: true,
             useDefaultXhrHeader: false,
             timeout: 1450000,
+            jsonData: true,
             params: {
                 // send all the model data as a JSON object
-                ajax_req: Ext.JSON.encode(jsonData)
+                json_req: Ext.encode(jsonData)
 
             },
             success: function (transport) {

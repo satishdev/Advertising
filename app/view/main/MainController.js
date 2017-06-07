@@ -52,65 +52,78 @@ Ext.define('Advertising.view.main.MainController', {
      * care of most of it
      * @param page
      */
-    onSavePageChanges: function(page, isNew){
+    onSavePageChanges: function (page, isNew) {
         var me = this;
-        Ext.toast("Saving pages to page type " + page.xtype);
+        Ext.toast("Saving changes to page type " + page.xtype);
         // get all components on the page
-        if ( page.xtype == 'layout') {
-            me.saveLayout(page.down('panel'), isNew);
+        if (page.xtype == 'layout') {
+            me.saveLayout(page, isNew);
         }
-        if ( page.xtype == 'page') {
+        if (page.xtype == 'page') {
             me.savePage(page.down('page'));
 
         }
     },
-    savePage: function(page) {
+    savePage: function (page) {
         Ext.toast("Save page..");
     },
-    onPrimaryTabChange: function(panel,newTab, oldTab, eOpts) {
+    onPrimaryTabChange: function (panel, newTab, oldTab, eOpts) {
         Ext.toast("Primary tab change - update tools");
         var me = this;
-        me.fireEvent('primaryTabChange',panel,newTab, oldTab, eOpts);
+        me.fireEvent('primaryTabChange', panel, newTab, oldTab, eOpts);
     },
-    saveLayout: function(layout, isNew) {
-        var json = [];
-        if ( isNew ) {
+    saveLayout: function (layout, isNew) {
+
+        var jsonObjects = [];
+        if (isNew) {
             Ext.toast("Prompt for new layout name");
         }
-        layout.items.each(function(lo) {
-            // skip no layout object - e.g. grid or any other furniture on page
-            if ( lo.xtype == 'layoutobject') {
-                // loop through each dirty object
-                if ( lo.dirty == true) {
-                    console.log("Layout object was changed %o", lo.getViewModel().getData());
-                    var jsonData = {};
-                    var data = lo.getViewModel().getData();
-                    for(var prop in data){
-                        //dont pass in any object joins - e.g stores or anything else odd added to the viewmodel
-                        if ( typeof data[prop] != 'object') {
-                            jsonData[prop] = data[prop];
-                        }
+        console.log("Saving layout %o", layout);
+        var layoutData = layout.getViewModel().getData();
+        var layouts = Ext.ComponentQuery.query('layoutobject', layout);
+        console.log("Layouts %o", layouts);
+        var jsonData = {};
+        var layoutObjects = [];
+        jsonData.objects = layoutObjects;
+        for (var prop in layoutData) {
+            //dont pass in any object joins - e.g stores or anything else odd added to the viewmodel
+            if (typeof layoutData[prop] != 'object') {
+                jsonData[prop] = layoutData[prop];
+            }
+        }
+        // add to the array to send to the server
+        layouts.forEach(function (lo) {
+            if (lo.dirty == true) {
+                console.log("Layout object is dirty %o", lo.getViewModel().getData());
+                var jsonData = {};
+                var data = lo.getViewModel().getData();
+                for (var prop in data) {
+                    //dont pass in any object joins - e.g stores or anything else odd added to the viewmodel
+                    if (typeof data[prop] != 'object') {
+                        jsonData[prop] = data[prop];
                     }
-                    // add to the array to send to the server
-                    json.push(jsonData);
                 }
+                // add to the array to send to the server
+                layoutObjects.push(jsonData);
             }
         });
-        console.log("Sending json %o", json);
+
+        console.log("Sending json %o", jsonData);
         Ext.Ajax.request({
             url: Advertising.util.GlobalValues.serviceURL + "/layout/saveLayout",
             method: 'POST',
             cors: true,
             useDefaultXhrHeader: false,
             timeout: 1450000,
+            jsonData: true,
             params: {
-                json_req: Ext.encode(json)
+                json_req: Ext.encode(jsonData)
             },
             success: function (transport) {
                 var response = Ext.decode(transport.responseText);
                 console.log("Got response %o", response);
-                layout.items.each(function(lo) {
-                    if ( lo.dirty == true) {
+                layout.items.each(function (lo) {
+                    if (lo.dirty == true) {
                         console.log("Checking dirty layout %o", lo);
                         lo.flagClean();
                     }
@@ -119,7 +132,7 @@ Ext.define('Advertising.view.main.MainController', {
             failure: function (transport) {
                 var response = Ext.decode(transport.responseText);
 
-                Ext.Msg.alert('Error', response.Error);
+                Ext.Msg.alert('Error', response.message);
 
 
             }

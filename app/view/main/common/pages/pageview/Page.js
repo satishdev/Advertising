@@ -56,7 +56,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.Page', {
         // see if we have an item in this exact position
         var nextX = 1, nextY = 1;
         targetPanel.items.each(function(curItem) {
-            console.log("Cur %f %f", curItem.xPos, curItem.yPos);
+            console.log("Cur %o %f %f",curItem, curItem.xPos, curItem.yPos);
             if ( curItem.xPos == nextX || curItem.yPos == nextY) {
                 nextX += 0.1;
                 nextY += 0.1;
@@ -81,6 +81,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.Page', {
         var layoutObject = Ext.create('Advertising.view.main.common.pages.layout.LayoutObject',
             {
                 xtype: 'layoutobject',
+                dirty: true,
                 width: Math.round(2 * 96 * scale),
                 height: Math.round(3 * 96 * scale),
                 origXPos:  nextX,

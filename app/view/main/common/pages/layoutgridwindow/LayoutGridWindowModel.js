@@ -6,7 +6,6 @@ Ext.define('Advertising.view.main.common.pages.layoutgridwindow.LayoutGridWindow
     alias: 'viewmodel.layoutgridwindow',
 
     requires: [
-        'Advertising.util.GlobalValues',
         'Ext.data.reader.Json'
     ],
 

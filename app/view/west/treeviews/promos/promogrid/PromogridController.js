@@ -37,7 +37,7 @@ Ext.define('Advertising.view.west.treeviews.promos.promogrid.PromogridController
             Ext.toast("Getting promos for vehicle " + node.data.id);
             console.log("Store %o", store);
             store.getProxy().extraParams = {
-                containerID: node.data.id,
+                containerID: node.data.leafid,
                 parentID: -1,
                 vehicle: true
             };
@@ -48,7 +48,7 @@ Ext.define('Advertising.view.west.treeviews.promos.promogrid.PromogridController
             var parent =
             console.log("Store %o", store);
             store.getProxy().extraParams = {
-                containerID: node.data.id,
+                containerID: node.data.leafid,
                 parentID: node.parentNode.data.id,
                 vehicle: false
             };

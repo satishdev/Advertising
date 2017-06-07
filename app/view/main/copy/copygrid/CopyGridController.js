@@ -34,13 +34,13 @@ Ext.define('Advertising.view.main.copy.copygrid.CopyGridController', {
         if ( record.data.nodetype == 'VEHICLE' || record.data.nodetype == 'PAGE') {
             console.log("Event was changed - getting copy %o", record);
             me.getViewModel().set('title', record.data.text);
-            Ext.toast("Getting " + record.data.nodetype + " copy for " + record.data.id);
+            Ext.toast("Getting " + record.data.nodetype + " copy for " + record.data.leafid);
             var grid = me.getView();
             console.log("Grid %o", grid);
 
             var store = me.getViewModel().getStore("eventcopy");
             store.getProxy().extraParams = {
-                objectID: record.data.id,
+                objectID: record.data.leafid,
                 eventType: record.data.nodetype
             };
             console.log("Loading copy grid store %o", store);

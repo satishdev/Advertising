@@ -125,12 +125,12 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
         //    iconCls: 'fa fa-edit',
         //    handler: 'onExpandLayoutObject'
         //},
-        {
-            html: '<div class="f-new-layout-ind">*</div>',
-            bind: {
-                hidden: '{!isNew}'
-            }
-        },
+        //{
+        //    html: '<div class="f-new-layout-ind">*</div>',
+        //    bind: {
+        //        hidden: '{!isNew}'
+        //    }
+        //},
         {
 
             xtype: 'tagfield',

@@ -58,7 +58,7 @@ Ext.define('Advertising.view.west.treeviews.layouts.layouttree.LayoutTreeControl
                                 var box = Ext.create('Ext.window.MessageBox');
                                 box.confirm('Confirm delete', 'Are you sure you want to remove folder <b style="color:red">' + record.data.text  +'</b>?', function (btn) {
                                     if (btn === 'yes') {
-                                        Ext.toast("Removing folder " + record.data.id);
+                                        Ext.toast("Removing folder " + record.data.leafid);
                                         me.deleteLayoutFolder(record);
                                     }
                                 });
@@ -169,7 +169,7 @@ Ext.define('Advertising.view.west.treeviews.layouts.layouttree.LayoutTreeControl
                                 box.confirm('Confirm delete', 'Are you sure you want to remove layout <b style="color:red">' + record.data.text  +'</b>?', function (btn) {
                                     if (btn === 'yes') {
                                         console.log("Removing layout %o", record.data );
-                                        Ext.toast("Removing layout " + record.data.id);
+                                        Ext.toast("Removing layout " + record.data.leafid);
                                         me.deleteLayout(record);
                                     }
                                 });
@@ -199,7 +199,7 @@ Ext.define('Advertising.view.west.treeviews.layouts.layouttree.LayoutTreeControl
             timeout: 1450000,
             params: {
                 // send all the model data as a JSON object
-                layoutFolderID: record.data.id,
+                layoutFolderID: record.data.leafid,
                 recurse: false
             },
             success: function (transport) {
@@ -218,13 +218,13 @@ Ext.define('Advertising.view.west.treeviews.layouts.layouttree.LayoutTreeControl
         var tree = me.getView();
         Ext.Ajax.request({
             url: Advertising.util.GlobalValues.serviceURL + "/layout/deleteLayout",
-            method: 'POST',
+            method: 'GET',
             cors: true,
             useDefaultXhrHeader: false,
             timeout: 1450000,
             params: {
                 // send all the model data as a JSON object
-                layoutID: record.data.id
+                layoutID: record.data.leafid
 
             },
             success: function (transport) {

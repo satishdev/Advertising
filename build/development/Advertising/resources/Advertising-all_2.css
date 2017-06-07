@@ -11304,11 +11304,35 @@ a.x-btn:active {
     color: white;
 }
 /* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:268 */
+.f-page-submitted {
+    color: #ffc107;
+}
+/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:274 */
+.f-page-not-submitted {
+    color: #0076ad;
+}
+/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:281 */
+.f-page-error {
+    color: #e44959;
+}
+/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:288 */
+.f-page-approved {
+    color: #e44959;
+}
+/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:296 */
+.x-tree-icon-leaf .f-page-submitted {
+    background-image: url("images/delete.gif") !important;
+}
+/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:300 */
+.x-grid-cell.f-page-submitted.x-tree-icon-leaf:before {
+    color: #ffc107;
+}
+/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:304 */
 .component-tool-filter .x-tool-filter {
     background-image: none !important;
     font: 16px/1 FontAwesome;
 }
-/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:272 */
+/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:308 */
 .component-tool-filter .x-tool-filter:before {
     content: "\f0b0" !important;
 }

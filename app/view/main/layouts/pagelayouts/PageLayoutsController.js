@@ -63,7 +63,7 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
             });
 
             console.log("Added panel %o", panel);
-            panel.getViewModel().getStore('layout').getProxy().url = Advertising.util.GlobalValues.serviceURL + '/page/getLayout/' + record.get('id');
+            panel.getViewModel().getStore('layout').getProxy().url = Advertising.util.GlobalValues.serviceURL + '/page/getLayout/' + record.get('leafid');
             panel.getViewModel().getStore('layout').load({
 
                     scope: this,
@@ -157,7 +157,7 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
                     useDefaultXhrHeader: false,
                     timeout: 1450000,
                     params: {
-                        pageID: record.get('id')
+                        pageID: record.get('leafid')
                     },
                     success: function (transport) {
                         var response = Ext.decode(transport.responseText);
