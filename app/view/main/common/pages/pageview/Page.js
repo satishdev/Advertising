@@ -52,8 +52,14 @@ Ext.define('Advertising.view.main.common.pages.pageview.Page', {
         console.log("Adding record to pagePanel %o", pagePanel);
         var store = pagePanel.getViewModel().getStore('layoutObjects');
         var scale = pagePanel.getViewModel().get("scale");
+        var pageWidth = pagePanel.getViewModel().get("width");
+        var pageHeight = pagePanel.getViewModel().get("height");
+        // determine good size for new item based on size of page
         console.log("Scale %o", scale);
         // see if we have an item in this exact position
+        // we'll make a new item one 10th of the page size
+        var layoutObjectWidth = pageWidth / 10;
+        var layoutObjectHeight = pageHeight / 10;
         var nextX = 1, nextY = 1;
         targetPanel.items.each(function(curItem) {
             console.log("Cur %o %f %f",curItem, curItem.xPos, curItem.yPos);
@@ -64,8 +70,8 @@ Ext.define('Advertising.view.main.common.pages.pageview.Page', {
         });
         // add the item to the store
         store.add({
-            width: Math.round(2 * 96 * scale),
-            height: Math.round(3 * 96 * scale),
+            width: Math.round(layoutObjectWidth * 96 * scale),
+            height: Math.round(layoutObjectHeight * 96 * scale),
             origXPos:  nextX,
             origYPos:  nextY,
             xPos:  nextX,
@@ -82,8 +88,8 @@ Ext.define('Advertising.view.main.common.pages.pageview.Page', {
             {
                 xtype: 'layoutobject',
                 dirty: true,
-                width: Math.round(2 * 96 * scale),
-                height: Math.round(3 * 96 * scale),
+                width: Math.round(layoutObjectWidth * 96 * scale),
+                height: Math.round(layoutObjectHeight * 96 * scale),
                 origXPos:  nextX,
                 origYPos:  nextY,
                 xPos:  nextX,

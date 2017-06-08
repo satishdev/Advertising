@@ -32,7 +32,7 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelContro
         }
     },
     onMainPageTabAdded: function() {
-        Ext.toast("tool panel controller update - tab added");
+       // Ext.toast("tool panel controller update - tab added");
         var me = this;
         console.log("Showing tool panel");
     },

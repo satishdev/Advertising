@@ -87,12 +87,13 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
 
     },
     onPageResize: function (page) {
-        Ext.toast("Page was resized " + page.xtype);
+    //    Ext.toast("Page was resized " + page.xtype);
         var parentWidth = page.up('panel').getSize().width;
         var parentHeight = page.up('panel').getSize().height;
         var model = page.getViewModel();
         var pageWidth = parentWidth ;
-        Ext.toast("Width " + parentWidth);
+     //   Ext.toast("Width " + parentWidth);
+        console.log("Assigning scale based on %f %f", model.get("width"), pageWidth);
         //  var scale = parentWidth / ((p.inchWidth * 96) + 20);
         var scale = pageWidth / ((model.get("width") * 96) );
         console.log("Resizing page %d %o %f", parentWidth, page, scale);

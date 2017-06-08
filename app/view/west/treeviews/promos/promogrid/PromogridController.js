@@ -19,7 +19,7 @@ Ext.define('Advertising.view.west.treeviews.promos.promogrid.PromogridController
         }
     },
     onOfferGridRowClick: function(grid, record, element, rowIndex, e, eOpts) {
-      Ext.toast("Row clicked " + record.data.id);
+     // Ext.toast("Row clicked " + record.data.id);
         var me = this;
         me.fireEvent('highlightPromoOffers', record.data.id);
     },
@@ -34,7 +34,7 @@ Ext.define('Advertising.view.west.treeviews.promos.promogrid.PromogridController
         var store = me.getStore("offers");
         me.getViewModel().set("filterVisible",false);
         if (nodetype == 'VEHICLE') {
-            Ext.toast("Getting promos for vehicle " + node.data.id);
+        //    Ext.toast("Getting promos for vehicle " + node.data.id);
             console.log("Store %o", store);
             store.getProxy().extraParams = {
                 containerID: node.data.leafid,
@@ -43,7 +43,7 @@ Ext.define('Advertising.view.west.treeviews.promos.promogrid.PromogridController
             };
             store.load();
         } else if ( nodetype == 'PAGE') {
-            Ext.toast("Getting promos for page " + node.data.id);
+          //  Ext.toast("Getting promos for page " + node.data.id);
             me.getViewModel().set("filterVisible",true);
             var parent =
             console.log("Store %o", store);

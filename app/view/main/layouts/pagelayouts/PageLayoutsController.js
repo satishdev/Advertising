@@ -177,8 +177,13 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
                     },
                     failure: function (transport) {
                         var response = Ext.decode(transport.responseText);
-
-                        Ext.Msg.alert('Error', response.Error);
+                        Ext.MessageBox.show({
+                            title: 'Unable to display page',
+                            msg: response.message,
+                            buttons: Ext.MessageBox.OK,
+                            animateTarget: Ext.getBody(),
+                            icon:  Ext.MessageBox.WARNING
+                        });
 
 
                     }
@@ -216,7 +221,7 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
         });
     },
     onPageTabChange: function (tabPanel, newCard, oldCard, eOpts) {
-        Ext.toast('Tab panel changed...' + newCard.xtype);
+     //   Ext.toast('Tab panel changed...' + newCard.xtype);
         var me = this;
         me.getViewModel().set('mode', newCard.xtype);
         Ext.ComponentQuery.query("pagetoolpanel")[0].setMode(newCard.xtype);
@@ -226,7 +231,7 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
     },
 
     onPageTabAdded: function (panel, container, pos, eOpts) {
-        Ext.toast('Tab panel added...' + panel.title);
+     //   Ext.toast('Tab panel added...' + panel.title);
         var me = this;
         this.fireEvent('mainPageTabAdded', panel, container, pos, eOpts);
     }
