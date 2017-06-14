@@ -189,6 +189,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
                         height: ph.height * 96 * scale,
                         origX: ph.xPos,
                         origY: ph.yPos,
+                        objid: ph.objid,
                         origWidth: ph.width,
                         origHeight: ph.height,
                         x: ph.xPos * 96 * scale,
@@ -217,6 +218,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
                     var panel = Ext.create('Advertising.view.main.common.Promo', {
                         width: po.width * 96 * scale,
                         height: po.height * 96 * scale,
+                        objid: po.objid,
                         origX: po.xPos,
                         origY: po.yPos,
                         origWidth: po.width,

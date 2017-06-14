@@ -14,7 +14,7 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelContro
     /**
      * Called when the view is created
      */
-    init: function() {
+    init: function () {
 
     },
     listen: {
@@ -31,8 +31,8 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelContro
 
         }
     },
-    onMainPageTabAdded: function() {
-       // Ext.toast("tool panel controller update - tab added");
+    onMainPageTabAdded: function () {
+        // Ext.toast("tool panel controller update - tab added");
         var me = this;
         console.log("Showing tool panel");
     },
@@ -40,12 +40,12 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelContro
      * Fire an event that should be caught by the main controller to show/hide items on page by market
      * @param btn
      */
-    onClickMarketButton: function(btn) {
+    onClickMarketButton: function (btn) {
         var me = this;
         var showOffers = me.getViewModel().get("showOffers");
         var showLayouts = me.getViewModel().get("showLayouts");
 
-        if ( btn.pressed ) {
+        if (btn.pressed) {
             me.fireEvent("showPageMarket", btn.marketID, showOffers, showLayouts);
         } else {
             me.fireEvent("hidePageMarket", btn.marketID, showOffers, showLayouts);
@@ -53,7 +53,7 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelContro
         }
 
     },
-    onShowOfferData: function(btn) {
+    onShowOfferData: function (btn) {
         var me = this;
         // get the chart currently displayed
         var metricsPanel = Ext.ComponentQuery.query('metricspanel')[0];
@@ -62,28 +62,28 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelContro
         this.fireEvent("showOfferDataChart", metricsPanel);
 
     },
-    onShowEventData: function(btn) {
+    onShowEventData: function (btn) {
         var me = this;
         // get the chart currently displayed
         var metricsPanel = Ext.ComponentQuery.query('metricspanel')[0];
         metricsPanel.getViewModel().set("showEventData", true);
         metricsPanel.getViewModel().set("showOfferData", false);
-        this.fireEvent("showEventDataChart",metricsPanel);
+        this.fireEvent("showEventDataChart", metricsPanel);
     },
-    onToggleStacking: function(btn) {
+    onToggleStacking: function (btn) {
         var me = this;
         // get the chart currently displayed
         var metricsPanel = Ext.ComponentQuery.query('metricspanel')[0];
         metricsPanel.getViewModel().set("stacked", btn.pressed);
         metricsPanel.down('eventsaleschart').redraw();
     },
-    onPrimaryTabChange: function( panel, newCard, oldCard, eOpts) {
+    onPrimaryTabChange: function (panel, newCard, oldCard, eOpts) {
         Ext.toast("Primary tab " + newCard.xtype);
         var me = this;
         me.getViewModel().set("hideSplash", true);
 
-        if ( newCard.xtype == 'metricspanel') {
-             me.getViewModel().set("showMetricsTools", true);
+        if (newCard.xtype == 'metricspanel') {
+            me.getViewModel().set("showMetricsTools", true);
             me.getViewModel().set("hidePageTools", true);
 
         } else {
@@ -92,11 +92,11 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelContro
         }
 
     },
-    onMainPageTabChanged: function(panel, newCard, oldCard, eOpts) {
+    onMainPageTabChanged: function (panel, newCard, oldCard, eOpts) {
         Ext.toast("tool panel controller update - tab changed");
         var me = this;
         var marketControls = me.lookupReference('marketControls');
-        if ( newCard.xtype == 'page') {
+        if (newCard.xtype == 'page') {
             // remove any existing market buttons
             marketControls.items.each(function (btn) {
                 marketControls.remove(btn, true);
@@ -115,8 +115,8 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelContro
 
             }
 
-            marketControls.items.each(function(btn){
-                if ( btn.getEl()) {
+            marketControls.items.each(function (btn) {
+                if (btn.getEl()) {
                     btn.getEl().highlight();
                 }
             });
@@ -126,8 +126,8 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelContro
 
 
     },
-    onToolPanelClose: function(p) {
-        console.log("Closing panel %o",p);
+    onToolPanelClose: function (p) {
+        console.log("Closing panel %o", p);
         var me = this;
         // var model = me.getViewModel();
         //model.tools = undefined;
@@ -138,12 +138,71 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelContro
         // get current page displayed
         this.fireEvent('turnGridsOff');
     },
-    onClickAddItem: function(btn) {
+    onGroupObjects: function (btn) {
+        var pagePanel = Ext.ComponentQuery.query('pagelayouts')[0].getActiveTab();
+        Ext.toast("Grouping objects on " + pagePanel.title);
+        var groups = {};
+        Ext.ComponentQuery.query('layoutobject', pagePanel).forEach(function (po) {
+            console.log("Checking layout object %s %d:%d", po.xtype, po.x, po.y, po.width, po.height);
+            if (!groups.hasOwnProperty(po.x + ":" + po.y)) {
+                groups[po.x + ":" + po.y] = [];
+            }
+
+            groups[po.x + ":" + po.y].push(po.objid);
+
+        });
+        var ajaxReq = [];
+        var page = {};
+        var reqGroups = [];
+
+        page['page'] = pagePanel.objectData.objid;
+
+        ajaxReq.push(page);
+        for (var key in groups) {
+            var group = {};
+            reqGroups.push(group);
+
+            console.log("Adding group %s", key);
+            group['group'] =groups[key];
+            for (var i = 0; i < groups[key].length; i++) {
+                console.log("Adding %d", groups[key][i]);
+            }
+        }
+        page['groups'] = reqGroups;
+        console.log("Groups %o", groups);
+        console.log("Request %o", Ext.encode(ajaxReq));
+
+        Ext.Ajax.request({
+            url: Advertising.util.GlobalValues.serviceURL + "/page/groupPageLayoutObjects",
+            method: 'POST',
+            cors: true,
+            useDefaultXhrHeader: false,
+            timeout: 1450000,
+            jsonData: Ext.encode(ajaxReq),
+            success: function (transport) {
+                Ext.toast("Group IDs populated");
+            },
+            failure: function (transport) {
+                var details = Ext.decode(transport.responseText);
+                console.log("Failed to send for approval %o", details);
+
+                Ext.MessageBox.show({
+                    title: 'Error',
+                    msg: details.message,
+                    buttons: Ext.MessageBox.OK,
+                    animateTarget: Ext.getBody(),
+                    icon: Ext.MessageBox.ERROR
+                });
+
+            }
+        });
+    },
+    onClickAddItem: function (btn) {
         console.log("Adding new layout item to page..");
         this.fireEvent('addNewPageObject', btn);
 
     },
-    updatePanelLayerInfo: function() {
+    updatePanelLayerInfo: function () {
         Ext.toast('Adding applicable layer owners..');
     },
     /* Turn on/off layouts for page view */
@@ -151,8 +210,8 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelContro
         Ext.toast("Turn layouts " + (( btn.pressed) ? "on" : "off"));
         // loop through all layouts
         // @todo just do for displayed page
-        Ext.ComponentQuery.query("layoutobject").forEach(function(lo) {
-            if (! lo.excluded) {
+        Ext.ComponentQuery.query("layoutobject").forEach(function (lo) {
+            if (!lo.excluded) {
                 if (btn.pressed) {
                     lo.show();
                 } else {
@@ -162,7 +221,7 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelContro
 
         });
     },
-    onZoomChangeComplete: function( slider , newValue , thumb , eOpts ) {
+    onZoomChangeComplete: function (slider, newValue, thumb, eOpts) {
         this.fireEvent('updatePageZoomLevel', newValue);
 
     },
@@ -170,9 +229,9 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelContro
      * Show the grid edit window of all layout components
      * @param btn
      */
-    onShowGridWindow: function(btn) {
+    onShowGridWindow: function (btn) {
         var pagePanel = Ext.ComponentQuery.query('pagelayouts')[0].getActiveTab();
-        var gridWin = Ext.create('Advertising.view.main.common.pages.layoutgridwindow.LayoutGridWindow',{
+        var gridWin = Ext.create('Advertising.view.main.common.pages.layoutgridwindow.LayoutGridWindow', {
             animateTarget: btn.id
 
         }).show();
@@ -196,8 +255,8 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelContro
         Ext.toast("Turn offers " + (( btn.pressed) ? "on" : "off"));
         // loop through all layouts
         // @todo just do for displayed page
-        Ext.ComponentQuery.query("promo").forEach(function(po) {
-            if ( ! po.excluded) {
+        Ext.ComponentQuery.query("promo").forEach(function (po) {
+            if (!po.excluded) {
                 if (btn.pressed) {
                     po.show();
                 } else {

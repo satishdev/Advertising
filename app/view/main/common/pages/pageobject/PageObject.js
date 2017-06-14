@@ -42,7 +42,7 @@ Ext.define('Advertising.view.main.common.pages.pageobject.PageObject', {
     setDebugInfo: function () {
 
         var me = this;
-        var info = "X:" + Math.round(me.x) + " Y:" + Math.round(me.y) + " -- " + (me.width).toFixed(1) +  "x" + (me.height).toFixed(1);
+        var info = "X:" + Math.round(me.x) + " Y:" + Math.round(me.y) + " -- " + (me.width).toFixed(1) +  "x" + (me.height).toFixed(1) + "<br/><span style='color:red'>" + me.objid +"</span>";
 
         me.getViewModel().set("debugInfo", info);
         console.log("Model %o", me.getViewModel());

@@ -33,7 +33,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
         // load store one time
         if (! this.getViewModel().getStore("sections").isLoaded()) {
             console.log("Loading sections store...");
-            this.getViewModel().getStore("sections").load();
+         //   this.getViewModel().getStore("sections").load();
             this.getViewModel().getStore("owners").load();
 
         }
@@ -107,10 +107,9 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
             },
 
             {
-                style: 'float: right',
                 xtype: 'container',
                 name: 'debugInfo',
-                cls: 'noSelect',
+                cls: 'noSelect f-debug-text',
                 bind: {
                     html: '{debugInfo}',
                     visible: '{debug}'
@@ -173,7 +172,10 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
         },
         {
             xtype: 'combobox',
-            fieldLabel: 'Promo Type'
+            fieldLabel: 'Promo Type',
+            bind: {
+                store: '{promoTypes}'
+            }
         },
         {
             xtype: 'combobox',

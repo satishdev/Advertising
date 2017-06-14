@@ -20,6 +20,9 @@ Ext.define('Advertising.view.main.MainController', {
                 mainPageTabChanged: 'onMainPageTabChanged'
 
             },
+            //'#vclayoutgridwindow': {
+            //    addNewPageObject: 'addNewPageObject'
+            //},
             '#vctoolpanelcontroller': {
                 turnGridsOff: 'onTurnGridsOff',
                 addNewPageObject: 'addNewPageObject',

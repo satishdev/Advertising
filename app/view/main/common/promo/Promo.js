@@ -59,10 +59,9 @@ Ext.define('Advertising.view.main.common.Promo', {
                 }
             },
             {
-                style: 'float: right',
                 xtype: 'container',
                 name: 'debugInfo',
-                cls: 'noSelect',
+                cls: 'noSelect f-debug-text',
                 bind: {
                     html: '{debugInfo}',
                     visible: '{debug}'

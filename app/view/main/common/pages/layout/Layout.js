@@ -4,8 +4,7 @@
 Ext.define('Advertising.view.main.common.pages.layout.Layout', {
     extend: 'Advertising.view.main.common.pages.pageview.Page',
     requires: [
-        'Advertising.view.main.common.pages.layout.LayoutModel',
-        'Ext.layout.container.Card'
+        'Advertising.view.main.common.pages.layout.LayoutModel'
     ],
 
     //config: {

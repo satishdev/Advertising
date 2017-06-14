@@ -43,6 +43,7 @@ $include-advertising-view-main-common-promo-promoeditwindow-storegroupbutton: dy
 $include-advertising-view-main-common-promo-promoproductwindow-promoproductwindow: dynamic(true);;
 $include-advertising-view-main-common-promo-promoproductwindow-promoproductwindowcontroller: dynamic(true);;
 $include-advertising-view-main-common-promo-promoproductwindow-promoproductwindowmodel: dynamic(true);;
+$include-advertising-view-main-common-stores-sectionstore: dynamic(true);;
 $include-advertising-view-main-common-test-test: dynamic(true);;
 $include-advertising-view-main-common-test-testcontroller: dynamic(true);;
 $include-advertising-view-main-common-test-testmodel: dynamic(true);;

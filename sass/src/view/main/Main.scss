@@ -265,40 +265,56 @@ $font-weight-bold: 500;
   color: white;
 }
 
-.f-page-submitted {
-  color:$color-jda-orange;
-  //font: 18px/1 FontAwesome;
-  //content: "\f207" !important;
-}
 
 .f-page-not-submitted {
   color:$color-jda-blue;
-  //font: 18px/1 FontAwesome;
+}
 
- // content: "\f207" !important;
+.f-page-not-submitted[role='presentation']:before {
+  color:$color-jda-blue;
+  content: '\f15c';
+  font: 18px/1 FontAwesome;
+}
+
+.f-page-validation-error{
+  color:$color-soft-orange;
+}
+
+.f-page-validation-error[role='presentation']:before {
+  color:$color-soft-orange;
+  content: '\f15c';
+  font: 18px/1 FontAwesome;
 }
 
 .f-page-error {
- // font: 18px/1 FontAwesome;
-
   color:$color-soft-red;
-  //content: "\f207" !important;
+}
+
+
+.f-page-error[role='presentation']:before {
+  color:$color-jda-red;
+  content: '\f15c';
+  font: 18px/1 FontAwesome;
 }
 
 .f-page-approved {
   color:$color-jda-red;
-  //font: 18px/1 FontAwesome;
-
-  //content: "\f207" !important;
-
 }
 
 .x-tree-icon-leaf .f-page-submitted{
   background-image: url("images/delete.gif") !important;
 }
 
-.x-grid-cell.f-page-submitted.x-tree-icon-leaf:before {
-  color:$color-soft-orange;
+
+.f-page-submitted {
+  color:$color-soft-cyan;
+}
+
+
+.f-page-submitted[role='presentation']:before {
+  color:$color-soft-cyan;
+  content: '\f15c';
+  font: 18px/1 FontAwesome;
 }
 
 .component-tool-filter .x-tool-filter{
@@ -307,4 +323,11 @@ $font-weight-bold: 500;
 }
 .component-tool-filter  .x-tool-filter:before{
   content: "\f0b0" !important;
+}
+
+.f-debug-text {
+  float: right;
+  color: #0f76c2;
+  font-size: smaller;
+  white-space: nowrap;
 }

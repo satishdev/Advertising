@@ -198,6 +198,17 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
             }
         },
         {
+            iconCls: "fa fa-check",
+            handler: 'onApprovePage',
+            text: 'Approve',
+            qtip: 'Approve page the the Promo worklist',
+
+            bind: {
+                hidden: '{hidePageTools}'
+            },
+            padding: 8
+        },
+        {
             iconCls: "fa fa-save",
             handler: 'onSaveChanges',
             text: 'Save',
@@ -211,7 +222,7 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
             handler: 'onSaveNew',
             text: 'Save New',
             bind: {
-                hidden: '{hidePageTools}'
+                hidden: '{!pagemode}'
             },
             padding: 8
         },
@@ -222,6 +233,15 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
             bind: {
                 hidden: '{hidePageTools}'
             },
+            padding: 5
+        },
+        {
+            iconCls: 'fa fa-object-group',
+            text: '* Test Grouping *',
+            bind: {
+                hidden: '{hidePageTools}'
+            },
+            handler: 'onGroupObjects',
             padding: 5
         },
         {

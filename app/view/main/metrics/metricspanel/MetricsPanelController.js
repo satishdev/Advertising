@@ -47,7 +47,7 @@ Ext.define('Advertising.view.main.metrics.metricspanel.MetricsPanelController', 
         var eventTreeModel = eventTree.getViewModel();
         console.log("Event tree %o %o", eventTree, eventTreeModel);
         var nodeType = eventTree.getViewModel().get("selectedEventNode").get("nodetype");
-        var objid = eventTree.getViewModel().get("selectedEventNode").get("id");
+        var objid = eventTree.getViewModel().get("selectedEventNode").get("leafid");
 
         Ext.toast("Chart for " + nodeType + " :" + objid);
 

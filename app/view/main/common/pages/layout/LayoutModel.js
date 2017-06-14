@@ -1,6 +1,7 @@
 /**
  * Created by Lee on 4/12/2017.
  */
+
 Ext.define('Advertising.view.main.common.pages.layout.LayoutModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.layout',
@@ -38,17 +39,23 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutModel', {
                 }
             }
         },
-        sections: {
-            storeId: 'layoutSectionStore',
+        promoTypes2: {
+            storeId: 'promoTypeStore',
             proxy: {
                 type : 'ajax',
                 autoLoad: false,
                 useDefaultXhrHeader: false,
-                url:  Advertising.util.GlobalValues.serviceURL + '/attributes/getAllSections',
+                url:  Advertising.util.GlobalValues.serviceURL + '/attributes/get',
                 reader: {
                     type: 'json',
                     rootProperty: 'data'
                 }
+            }
+        },
+
+        sections: {
+            source: {
+                type: 'sectionstore'
             }
         },
         positions: {
@@ -58,6 +65,17 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutModel', {
                 name: 'Pos 2'
             },{
                 name: 'Pos 3'
+            }
+
+            ]
+        },
+        promoTypes: {
+            data: [{
+                name: 'A- Insert Page XX'
+            },{
+                name: 'A- MOM (BABY & YOU)'
+            },{
+                name: 'A- THEME PAGES (SPECIFIED THEME)'
             }
 
             ]
