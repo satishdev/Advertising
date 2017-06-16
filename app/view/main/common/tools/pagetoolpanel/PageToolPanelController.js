@@ -161,12 +161,7 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelContro
         for (var key in groups) {
             var group = {};
             reqGroups.push(group);
-
-            console.log("Adding group %s", key);
             group['group'] =groups[key];
-            for (var i = 0; i < groups[key].length; i++) {
-                console.log("Adding %d", groups[key][i]);
-            }
         }
         page['groups'] = reqGroups;
         console.log("Groups %o", groups);

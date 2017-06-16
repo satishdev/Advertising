@@ -11,7 +11,6 @@ Ext.define('Advertising.view.login.Login', {
         'Ext.form.field.Display',
         'Ext.form.field.Text'
     ],
-
     controller: 'login',
     bodyPadding: 10,
     title: 'Login Window',
@@ -42,6 +41,7 @@ Ext.define('Advertising.view.login.Login', {
             formBind: true,
             listeners: {
                 click: 'onLoginClick'
+
             }
         }]
     }

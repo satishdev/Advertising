@@ -42,7 +42,7 @@ Ext.define('Advertising.view.main.common.pages.pageobject.PageObject', {
     setDebugInfo: function () {
 
         var me = this;
-        var info = "X:" + Math.round(me.x) + " Y:" + Math.round(me.y) + " -- " + (me.width).toFixed(1) +  "x" + (me.height).toFixed(1) + "<br/><span style='color:red'>" + me.objid +"</span>";
+        var info = "X:" + Math.round(me.x) + " Y:" + Math.round(me.y) + " -- " + (me.width).toFixed(1) +  "x" + (me.height).toFixed(1) + "<br/><span style='color:red'>" + me.objid + ":" + me.groupID + "</span>";
 
         me.getViewModel().set("debugInfo", info);
         console.log("Model %o", me.getViewModel());
@@ -54,10 +54,10 @@ Ext.define('Advertising.view.main.common.pages.pageobject.PageObject', {
 
         var curZoom = me.zoom;
         me.zoom = zoom;
-        var curWidth = me.getWidth();
-        var curHeight = me.getHeight();
-        var curX = me.getX();
-        var curY = me.getY();
+        me.prevX = me.getX();
+        me.prevY = me.getY();
+        me.prevWidth = me.getWidth();
+        me.prevHeight = me.getHeight();
         console.log("Orig size %f x %f" , me.origWidth, me.origHeight);
         console.log("Orig pos %f x %f" , me.origXPos, me.origYPos);
         var newXPos = Math.round((me.origXPos * 96)* (zoom /100)) + parentPanel.getX() ;

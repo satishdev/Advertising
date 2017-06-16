@@ -19,7 +19,8 @@ Ext.define('Advertising.Application', {
 
     requires: [
         'Advertising.util.GlobalValues',
-        'Advertising.view.main.common.UserInfo',
+        'Advertising.view.login.Login',
+        'Advertising.view.main.Main',
         'Ext.data.proxy.Ajax'
     ],
 
@@ -59,8 +60,11 @@ Ext.define('Advertising.Application', {
 
         // Check to see the current value of the localStorage key
         loggedIn = localStorage.getItem("AdvNGLoggedIn");
+        if ( loggedIn ) {
+            localStorage.removeItem("AdvNGLoggedIn");
+        }
 
-
+        console.log("LOgged in %o", loggedIn);
         // get bootstrap data
         Ext.Ajax.request({
 
@@ -105,12 +109,19 @@ Ext.define('Advertising.Application', {
         // This ternary operator determines the value of the TutorialLoggedIn key.
         // If TutorialLoggedIn isn't true, we display the login window,
         // otherwise, we display the main view
-        Ext.create({
-            xtype: loggedIn ? 'app-main' : 'login'
-        });
+
+        if ( loggedIn ) {
+            Ext.create({
+                xtype: 'app-main'
+            });
+        } else {
+            Ext.create('Advertising.view.login.Login',{});
+        }
+        //Ext.create({
+        //    xtype: loggedIn ? 'app-main' : 'login'
+        //});
 
 
-        Advertising.view.main.common.UserInfo.setUserInfo({test: "test"});
 
 
     },

@@ -4,12 +4,12 @@
 Ext.define('Advertising.view.main.common.UserInfo', {
     singleton: true,
     userInfo: {},
-    name: "test",
     setUserInfo: function(data){
         this.userInfo = data;
     },
     getName: function() {
-        return this.name;
+        console.log("Returning user info %o", this);
+        return this.userInfo.username;
     },
     getUserInfo: function(){
         return this.userInfo;

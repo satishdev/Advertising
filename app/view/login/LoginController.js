@@ -6,14 +6,38 @@ Ext.define('Advertising.view.login.LoginController', {
     alias: 'controller.login',
 
     requires: [
-        'Advertising.view.main.Main'
+        'Advertising.view.main.common.UserInfo'
     ],
 
+    id: 'vclogincontroller',
+
+    listen: {
+        controller: {
+            '#vcmaincontroller': {
+                doLogout: 'doLogout'
+            }
+        }
+    },
     /**
      * Called when the view is created
      */
     init: function () {
-
+        console.log("Init of login controller");
+    },
+    doLogout: function() {
+        console.log("!!");
+    },doLogout: function () {
+        console.log("Logout...");
+        // Remove the localStorage key/value
+        localStorage.removeItem('AdvNGLoggedIn');
+//
+// Remove Main View
+        this.getView().destroy();
+//
+// Add the Login Window
+        Ext.create('Advertising.view.login.Login', {
+            //xtype: 'login'
+        });
     },
     onLoginClick: function () {
 
@@ -48,6 +72,8 @@ Ext.define('Advertising.view.login.LoginController', {
         //    }
         //});
         localStorage.setItem("AdvNGLoggedIn", true);
+        localStorage.setItem("AdvUser", 'adm1');
+        Advertising.view.main.common.UserInfo.setUserInfo({username: "adm1"});
 
         // Remove Login Window
         this.getView().destroy();
@@ -56,7 +82,6 @@ Ext.define('Advertising.view.login.LoginController', {
         Ext.create({
             xtype: 'app-main'
         });
-
-
     }
-});
+
+    });

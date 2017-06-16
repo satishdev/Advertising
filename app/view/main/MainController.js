@@ -9,10 +9,12 @@ Ext.define('Advertising.view.main.MainController', {
     id: 'vcmaincontroller',
 
     alias: 'controller.main',
-    tools: undefined,
+
     requires: [
         'Ext.util.TaskManager'
     ],
+
+    tools: undefined,
     listen: {
         controller: {
             '#vcpagelayoutscontroller': {
@@ -23,6 +25,7 @@ Ext.define('Advertising.view.main.MainController', {
             //'#vclayoutgridwindow': {
             //    addNewPageObject: 'addNewPageObject'
             //},
+
             '#vctoolpanelcontroller': {
                 turnGridsOff: 'onTurnGridsOff',
                 addNewPageObject: 'addNewPageObject',
@@ -164,7 +167,11 @@ Ext.define('Advertising.view.main.MainController', {
             color += letters[Math.floor(Math.random() * 16)];
         }
         return color;
+
+
+
     },
+
     onOpenConnection: function () {
         try {
             console.log("Attempting to ping server...");
@@ -248,16 +255,14 @@ Ext.define('Advertising.view.main.MainController', {
         });
     },
     onClickLogout: function () {
-        //// Remove the localStorage key/value
-        //localStorage.removeItem('AdvNGLoggedIn');
-        ////
-        ////// Remove Main View
-        //this.getView().destroy();
-        ////
-        ////// Add the Login Window
-        //Ext.create('Advertising.view.login.Login',{
-        //    //xtype: 'login'
-        //});
+        var me = this;
+        console.log("Performing logout...");
+        me.fireEvent('doLogout',me);
+        localStorage.clear();
+        this.getView().destroy();
+        Ext.create({
+            xtype: 'login'
+        })
     },
     //,
     /* Turn on/off themes for page view */
