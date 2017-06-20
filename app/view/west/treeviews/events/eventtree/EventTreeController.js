@@ -23,12 +23,12 @@ Ext.define('Advertising.view.west.treeviews.events.eventtree.EventTreeController
     },
     onTreeNodeSelect: function (tree, node, ndx, opts) {
         var me = this;
-        // Ext.toast("Node clicked " + node.data);
-        if (node.data.nodetype == 'VEHICLE' || node.data.nodetype == 'PAGE') {
+       // Ext.toast("Node clicked " + node.data);
+        if (node.data.nodetype == 'VEHICLE' || node.data.nodetype == 'PAGE' ) {
             var parentNode = node.parentNode;
             console.log("Tree parent is %o", parentNode);
             me.getViewModel().set("selectedEventNode", node);
-            this.fireEvent('eventTreeSelection', node, parentNode);
+            this.fireEvent('eventTreeSelection', node,parentNode);
         }
     },
     onShowEventTreeMenu: function (tree, record, item, index, e, eOpts) {
@@ -63,30 +63,6 @@ Ext.define('Advertising.view.west.treeviews.events.eventtree.EventTreeController
             this.vmenu.showAt(e.getXY());
         }
         if (record.data.nodetype == 'PAGE') {
-<<<<<<< Updated upstream
-
-            var menu = Ext.create('Advertising.view.west.treeviews.events.eventtree.EventTreeMenu',
-                {
-                    items: [
-                        {
-                            text: 'Approve page for worklist',
-                            pageName: record.data.text,
-                            pageID: record.data.id,
-                            iconCls: 'fa fa-check',
-                            handler: function (item) {
-                                Ext.toast("Approving " + record.get('leafid'));
-                                Ext.Ajax.request({
-                                    url: Advertising.util.GlobalValues.serviceURL + "/page/submitPageForApproval/" + record.get('leafid'),
-                                    method: 'POST',
-                                    cors: true,
-                                    useDefaultXhrHeader: false,
-                                    timeout: 1450000,
-                                    success: function (message) {
-                                        var details = Ext.decode(message.responseText);
-                                        if ( details.hasOwnProperty('validationError')) {
-                                            record.set('cls', 'f-page-validation-error');
-                                            record.set('iconCls', 'f-page-validation-error');
-=======
 
                 var menu = Ext.create('Advertising.view.west.treeviews.events.eventtree.EventTreeMenu',
                     {
@@ -117,53 +93,23 @@ Ext.define('Advertising.view.west.treeviews.events.eventtree.EventTreeController
                                             console.log("Failed to send for approval %o", details);
                                             record.set('cls','f-page-not-submitted');
 
->>>>>>> Stashed changes
                                             Ext.MessageBox.show({
-                                                title: 'Validation Problem',
+                                                title: 'Error',
                                                 msg: details.message,
                                                 buttons: Ext.MessageBox.OK,
-<<<<<<< Updated upstream
                                                 animateTarget: Ext.getBody(),
-                                                icon: Ext.MessageBox.WARNING
-=======
                                                 icon:  Ext.MessageBox.ERROR
->>>>>>> Stashed changes
                                             });
-                                        } else {
-                                            record.set('cls', 'f-page-submitted');
-                                            record.set('iconCls', 'f-page-submitted');
-                                            console.log("Record qtip %o %o", record.get('qtip'), details);
                                         }
-                                        record.set('qtip', details.qtip);
-
-                                    },
-                                    failure: function (message) {
-                                        var details = Ext.decode(message.responseText);
-                                        console.log("Failed to send for approval %o", details);
-                                        record.set('cls', 'f-page-error');
-                                        record.set('iconCls', 'f-page-error');
-                                        Ext.MessageBox.show({
-                                            title: 'Error',
-                                            msg: details.message,
-                                            buttons: Ext.MessageBox.OK,
-                                            animateTarget: Ext.getBody(),
-                                            icon: Ext.MessageBox.ERROR
-                                        });
-                                    }
-                                });
+                                    });
+                                }
                             }
-                        }
-                    ],
-                    data: record.data
-                });
+                        ],
+                        data: record.data
+                    });
 
-<<<<<<< Updated upstream
-=======
 
             menu.showAt(e.getXY());
->>>>>>> Stashed changes
         }
-        menu.showAt(e.getXY());
-
     }
 });

@@ -21,7 +21,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
     initComponent: function () {
         var me = this;
         this.callParent(arguments);
-        console.log("Edit Mode %o", me.editMode);
+        console.log("Edit Mode %o", this.editMode);
         // Ext.toast("Edit mode " + this.editMode);
         if (!me.editMode) {
             me.getViewModel().set("editMode", me.editMode);
@@ -31,20 +31,6 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
         }
         me.getViewModel().set('cellNumber', me.cellNumber);
         // load store one time
-<<<<<<< Updated upstream
-        if (! me.getViewModel().getStore("sections").isLoaded()) {
-            console.log("Loading sections store...");
-            me.getViewModel().getStore("sections").load();
-            me.getViewModel().getStore("owners").load();
-
-        }
-        me.getViewModel().set('origWidth', me.width);
-        me.getViewModel().set('origHeight', me.height);
-
-
-    },
-    firstLayout: true,
-=======
         //if ( this.loadstores) {
         //    if (!this.getViewModel().getStore("section").isLoaded()) {
         //        console.log("Loading section store...");
@@ -54,12 +40,14 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
         //
         //    }
         //}
+        me.getViewModel().set('origWidth', me.width);
+        me.getViewModel().set('origHeight', me.height);
 
 
     },
     loadstores: true,
->>>>>>> Stashed changes
     isNew: false,
+    firstLayout: true,
     workFlowStatus: undefined,
     editMode: true,
     excluded: false,
@@ -80,6 +68,9 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
             // You can also pass 'body' if you don't want click on the header or
             // docked elements
             element: 'el'
+        },
+        dragstart: function(comp, e, eOpts) {
+            console.log("Drag start");
         }
     }
     ,
@@ -92,8 +83,9 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
         pack: 'start',
         align: 'stretch'
     },
-
-    constrain: true,
+    beginDrag: function() {
+        console.log("0-00------------>>>");
+    },
     defaults: {
         labelPad: 1,
         padding: '0 0 0 0 ',
@@ -111,7 +103,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
                 iconCls: 'fa fa-bullseye',
                 text: 'Targeting',
                 bind: {
-                    hidden: '{editMode} || {!pageMode}'
+                    hidden: '{editMode}'
                 },
                 listeners: {
                     //click: 'onToggleGrid',
@@ -126,9 +118,10 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
             },
 
             {
+                style: 'float: right',
                 xtype: 'container',
                 name: 'debugInfo',
-                cls: 'noSelect f-debug-text',
+                cls: 'noSelect',
                 bind: {
                     html: '{debugInfo}',
                     visible: '{debug}'
@@ -137,18 +130,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
         ]
     },
     items: [
-        //{
-        //    xtype: 'button',
-        //    width: 30,
-        //    iconCls: 'fa fa-edit',
-        //    handler: 'onExpandLayoutObject'
-        //},
-        //{
-        //    html: '<div class="f-new-layout-ind">*</div>',
-        //    bind: {
-        //        hidden: '{!isNew}'
-        //    }
-        //},
+
         {
 
             xtype: 'tagfield',
@@ -192,10 +174,6 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
         {
             xtype: 'combobox',
             fieldLabel: 'Promo Type',
-<<<<<<< Updated upstream
-            bind: {
-                store: '{promoTypes}'
-=======
             displayField: 'name',
             valueField: 'name',
             listeners: {
@@ -204,7 +182,6 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
             bind: {
                 store: '{promoTypes}',
                 fieldLabel: '{promoType}'
->>>>>>> Stashed changes
             }
         },
         {

@@ -9,7 +9,10 @@ Ext.define('Advertising.view.main.common.pages.pageobject.PageObject', {
         'Ext.layout.container.Absolute'
     ],
     //cls: 'f-promo-base',
-
+    initComponent: function () {
+        var me = this;
+        this.callParent(arguments);
+    },
 
     xtype: 'pageobject',
     controller: 'promo',
@@ -26,19 +29,24 @@ Ext.define('Advertising.view.main.common.pages.pageobject.PageObject', {
     deleted: false,
     resizable: true,
     layout: 'absolute',
-    constrain: true,
-    shadow: true,
+    shadow: 'drop',
     selected: false,
     items: [
         /* include child components here */
     ],
+
     listeners: {
         move: 'onObjectMove',
         resize: 'onObjectResize',
         render: 'onRenderObject',
         beforeMove: 'onBeforeObjectMove',
-        focusenter: 'onObjectFocus'
+        focusenter: 'onObjectFocus',
+        onDragStart: 'onDragEnter',
+        dragstart: function(comp, e, eOpts) {
+            console.log("Drag start");
+        }
     },
+
     setDebugInfo: function () {
 
         var me = this;

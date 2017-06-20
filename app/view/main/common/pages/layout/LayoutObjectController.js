@@ -93,11 +93,10 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
     onSectionChange: function (combo, event, eOpts) {
         var me = this;
         console.log("Combo value %s for object %o", combo.value, combo.up('layoutobject'));
-<<<<<<< Updated upstream
-        if (Ext.isString(combo.value)) {
-=======
-        if ( Ext.isNumber(combo.value)) {
->>>>>>> Stashed changes
+
+        if (Ext.isNumber(combo.value)) {
+
+
 
             var panel = combo.up('panel');
             console.log("Layout object %o", panel);
@@ -156,9 +155,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
                 sourceObject: combo.up('layoutobject')
             }).show();
     },
-<<<<<<< Updated upstream
-    onThemeChange: function (combo, event, eOpts) {
-=======
+
     onPromoTypeChange: function(combo, event, eOpts) {
         var me = this, layoutObject = combo.up('layoutobject');
         console.log("Combo value %s for object %o", combo.value, combo.up('layoutobject'));
@@ -168,7 +165,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
 
     },
     onThemeChange: function(combo , event , eOpts) {
->>>>>>> Stashed changes
+
         var me = this;
         console.log("Combo value %s for object %o", combo.value, combo.up('layoutobject'));
         // update the store

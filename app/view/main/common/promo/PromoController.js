@@ -19,6 +19,9 @@ Ext.define('Advertising.view.main.common.promo.PromoController', {
     onBeforeObjectMove: function (promo, xPos, yPos) {
         console.debug("Before move %o %d %d", promo, xPos, yPos);
     },
+    onDragEnter: function( e, id) {
+        console.log("Dragging...");
+    },
     onObjectFocus:function(promo) {
       console.log("Focus!!");
     },

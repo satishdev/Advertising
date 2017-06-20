@@ -244,7 +244,8 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
     },
     onRenderLayoutPanel: function (p) {
         var parentPanel = p.up('panel');
-        parentPanel.mask();
+        parentPanel.mask('Loading layout objects...');
+
         console.log("parent %o", parentPanel);
         var scale = parentPanel.getViewModel().get("scale");
         var store = parentPanel.getViewModel().getStore('layoutObjects');
@@ -260,22 +261,10 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
 
                         store.each(function (rec) {
                             var data = rec.data;
+
+                            console.log("Layout object data is %o", rec.data);
                             console.log("Adding object %o %f", rec, scale);
-<<<<<<< Updated upstream
-                            console.log("Layout object %f:%f %f x %f", data.xPos, data.yPos, data.width, data.height);
-                            var panel = Ext.create('Advertising.view.main.common.pages.layout.LayoutObject', {
-                                            width: Math.round(data.width * 96 * scale),
-                                            height: Math.round(data.height * 96 * scale),
-                                            origXPos: data.xPos,
-                                            origYPos: data.yPos,
-                                            origWidth: data.width,
-                                            origHeight: data.height,
-                                            cellNumber: data.cellNumber,
-                                            layoutObjectID: data.objid,
-                                            x: Math.round(data.xPos * 96 ),
-                                            y: Math.round(data.yPos * 96 )
-                                        });
-=======
+
                             var layoutObject = Ext.create('Advertising.view.main.common.pages.layout.LayoutObject', {
                                 width: Math.round(data.width * 96 * scale),
                                 height: Math.round(data.height * 96 * scale),
@@ -285,14 +274,18 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
                                 origHeight: data.height,
                                 cellNumber: data.cellNumber,
                                 loadStores: loadStores,
+                                objid: data.objid,
                                 layoutObjectID: data.objid,
                                 x: Math.round(data.xPos * 96 * scale),
                                 y: Math.round(data.yPos * 96 * scale)
                             });
 
+
+
                             console.log("Adding panel item %o", layoutObject);
 
                             p.insert(layoutObject);
+
                             var stores = layoutObject.getViewModel().storeInfo;
 
                             if ( Ext.Object.isEmpty(firstLayoutObj)) {
@@ -328,9 +321,15 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
                                     });
                                 }
                             }
->>>>>>> Stashed changes
+
 
                             for (var prop in rec.data) {
+
+                                layoutObject.items.each(function(field) {
+                                    if ( field.name == prop) {
+                                        field.setValue(rec.data[prop]);
+                                    }
+                                });
                             //    console.log("Setting prop %o to %o", prop, rec.data[prop]);
                                 if (layoutObject.getViewModel().getStore(prop)) {
                                     console.log("We have a matching store for %s - seeing if we can set selected value", prop);

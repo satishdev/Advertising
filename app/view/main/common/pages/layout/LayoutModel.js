@@ -1,7 +1,6 @@
 /**
  * Created by Lee on 4/12/2017.
  */
-
 Ext.define('Advertising.view.main.common.pages.layout.LayoutModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.layout',
@@ -39,30 +38,11 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutModel', {
                 }
             }
         },
-<<<<<<< Updated upstream
-        promoTypes2: {
-            storeId: 'promoTypeStore',
-=======
         section: {
             storeId: 'layoutSectionStore',
->>>>>>> Stashed changes
             proxy: {
                 type : 'ajax',
                 autoLoad: false,
-                useDefaultXhrHeader: false,
-                url:  Advertising.util.GlobalValues.serviceURL + '/attributes/get',
-                reader: {
-                    type: 'json',
-                    rootProperty: 'data'
-                }
-            }
-        },
-
-        sections: {
-            storeId: 'sectionStore',
-            proxy: {
-                type : 'ajax',
-                autoLoad: true,
                 useDefaultXhrHeader: false,
                 url:  Advertising.util.GlobalValues.serviceURL + '/attributes/getAllSections',
                 reader: {
@@ -72,8 +52,6 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutModel', {
             }
         },
         positions: {
-            storeId: 'positionStore',
-
             data: [{
                 name: 'Pos 1'
             },{
@@ -84,20 +62,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutModel', {
 
             ]
         },
-        promoTypes: {
-            data: [{
-                name: 'A- Insert Page XX'
-            },{
-                name: 'A- MOM (BABY & YOU)'
-            },{
-                name: 'A- THEME PAGES (SPECIFIED THEME)'
-            }
-
-            ]
-        },
         themeCodes: {
-            storeId: 'themeCodeStore',
-
             data: [{
                 name: 'Canada Day 97'
             },{
@@ -139,8 +104,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutModel', {
 
     data: {
         scale: 1,
-        editMode: false,
-        pageMode: false,
+        editMode: true,
         layoutID: -1,
         section: undefined,
         isNew: false,
