@@ -54,8 +54,16 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutModel', {
         },
 
         sections: {
-            source: {
-                type: 'sectionstore'
+            storeId: 'sectionStore',
+            proxy: {
+                type : 'ajax',
+                autoLoad: true,
+                useDefaultXhrHeader: false,
+                url:  Advertising.util.GlobalValues.serviceURL + '/attributes/getAllSections',
+                reader: {
+                    type: 'json',
+                    rootProperty: 'data'
+                }
             }
         },
         positions: {
@@ -110,6 +118,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutModel', {
     data: {
         scale: 1,
         editMode: false,
+        pageMode: false,
         layoutID: -1,
         section: undefined,
         isNew: false,

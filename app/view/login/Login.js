@@ -13,7 +13,7 @@ Ext.define('Advertising.view.login.Login', {
     ],
     controller: 'login',
     bodyPadding: 10,
-    title: 'Login Window',
+    title: 'Login to JDA Advertising',
     closable: false,
     autoShow: true,
 
@@ -22,21 +22,27 @@ Ext.define('Advertising.view.login.Login', {
         reference: 'form',
         items: [{
             xtype: 'textfield',
-            name: 'username',
+            name: 'j_username',
             fieldLabel: 'Username',
             allowBlank: false
         }, {
             xtype: 'textfield',
-            name: 'password',
+            name: 'j_password',
             inputType: 'password',
             fieldLabel: 'Password',
             allowBlank: false
         }, {
             xtype: 'displayfield',
             hideEmptyLabel: false,
-            value: '** DEV ** Enter any non-blank password <br/>should use SSO and validate permissions'
+            value: 'Enter any valid promo-planner user/password <br/>Final solution should use SSO and validate<br/> permissions via pp api'
         }],
         buttons: [{
+            text: 'Clear',
+            listeners: {
+                click: 'onLoginClear'
+
+            }
+        }, {
             text: 'Login',
             formBind: true,
             listeners: {

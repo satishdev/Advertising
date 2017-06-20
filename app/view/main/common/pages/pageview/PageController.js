@@ -258,6 +258,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
                         store.each(function(rec) {
                             var data = rec.data;
                             console.log("Adding object %o %f", rec, scale);
+                            console.log("Layout object %f:%f %f x %f", data.xPos, data.yPos, data.width, data.height);
                             var panel = Ext.create('Advertising.view.main.common.pages.layout.LayoutObject', {
                                             width: Math.round(data.width * 96 * scale),
                                             height: Math.round(data.height * 96 * scale),
@@ -266,9 +267,9 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
                                             origWidth: data.width,
                                             origHeight: data.height,
                                             cellNumber: data.cellNumber,
-                                layoutObjectID: data.objid,
-                                            x: Math.round(data.xPos * 96 * scale),
-                                            y: Math.round(data.yPos * 96 * scale)
+                                            layoutObjectID: data.objid,
+                                            x: Math.round(data.xPos * 96 ),
+                                            y: Math.round(data.yPos * 96 )
                                         });
 
                             for (var prop in rec.data) {
@@ -285,6 +286,16 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
             }
         );
 
+    },
+    /**
+     * After the layout if rendered make sure nothing is flagged as dirty
+     * @param p
+     */
+    onAfterRenderLayout: function(p) {
+          console.log("Layout render complete");
+        //Ext.ComponentQuery.query('layoutobject',p).forEach(function(lo) {
+        //
+        //});
     },
     /**
      * When a layout is requested we'll call this renderer to then populate the data for the layout
@@ -336,5 +347,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
             ]
         });
         p.insert(inner);
+
+
     }
 });

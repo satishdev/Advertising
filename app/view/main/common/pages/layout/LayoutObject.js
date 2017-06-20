@@ -19,34 +19,37 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
         'Ext.layout.container.VBox'
     ],
     initComponent: function () {
-
+        var me = this;
         this.callParent(arguments);
-        console.log("Edit Mode %o", this.editMode);
+        console.log("Edit Mode %o", me.editMode);
         // Ext.toast("Edit mode " + this.editMode);
-        if (!this.editMode) {
-            this.getViewModel().set("editMode", this.editMode);
+        if (!me.editMode) {
+            me.getViewModel().set("editMode", me.editMode);
         }
-        if (this.isNew) {
-            this.getViewModel().set("isNew", this.isNew);
+        if (me.isNew) {
+            me.getViewModel().set("isNew", me.isNew);
         }
-        this.getViewModel().set('cellNumber', this.cellNumber);
+        me.getViewModel().set('cellNumber', me.cellNumber);
         // load store one time
-        if (! this.getViewModel().getStore("sections").isLoaded()) {
+        if (! me.getViewModel().getStore("sections").isLoaded()) {
             console.log("Loading sections store...");
-         //   this.getViewModel().getStore("sections").load();
-            this.getViewModel().getStore("owners").load();
+            me.getViewModel().getStore("sections").load();
+            me.getViewModel().getStore("owners").load();
 
         }
+        me.getViewModel().set('origWidth', me.width);
+        me.getViewModel().set('origHeight', me.height);
 
 
     },
-
+    firstLayout: true,
     isNew: false,
     workFlowStatus: undefined,
     editMode: true,
     excluded: false,
     cls: 'f-layout-object f-layout-object-clean',
     listeners: {
+        afterlayout: 'onAfterLayout',
         dblclick: {
             fn: function () {
                 console.log("double click %o", this);
@@ -92,7 +95,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
                 iconCls: 'fa fa-bullseye',
                 text: 'Targeting',
                 bind: {
-                    hidden: '{editMode}'
+                    hidden: '{editMode} || {!pageMode}'
                 },
                 listeners: {
                     //click: 'onToggleGrid',

@@ -27,7 +27,7 @@ Ext.define('Advertising.Application', {
     name: 'Advertising',
     splashscreen: {},
     stores: [
-        // TODO: add global / shared stores here
+        'Advertising.view.main.common.stores.SectionStore'
     ],
     init: function () {
         // start the mask on the body and get a reference to the mask

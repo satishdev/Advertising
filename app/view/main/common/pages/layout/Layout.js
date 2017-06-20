@@ -21,13 +21,15 @@ Ext.define('Advertising.view.main.common.pages.layout.Layout', {
 
     },
     listeners: {
-        render: 'onAddLayoutPanel'
+        render: 'onAddLayoutPanel',
+        afterrender: 'onAfterRenderLayout'
     },
     xtype: 'layout',
     iconCls: 'fa fa-th',
     viewModel: {
         type: 'layout'
     },
+
 
     controller: 'page',
 

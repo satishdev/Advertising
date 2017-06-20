@@ -4,11 +4,13 @@
 Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.layoutobject',
-    id: 'vclayoutobject',
 
     requires: [
         'Advertising.view.main.common.pages.layout.LayoutObjectEditWindow'
     ],
+
+    id: 'vclayoutobject',
+
     listen: {
         controller: {
             '#vclayoutobjectedit': {
@@ -23,47 +25,56 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
     /**
      * Called when the view is created
      */
-    init: function() {
+    init: function () {
 
     },
+    onAfterLayout: function (lo) {
+        console.log("Layout complete %o",lo.up('layout'));
+        var parent = lo.up('layout');
+        if ( lo.firstLayout == true ) {
+            console.log("Flagging clean");
+            lo.flagClean();
+            lo.firstLayout = false;
 
+        }
+    },
     colorMap: {},
-    onBlurSection: function(combo, blur,eOpts) {
+    onBlurSection: function (combo, blur, eOpts) {
         // see if this should be a new addition
         // lookup the selected store record
-        if ( combo.value ) {
+        if (combo.value) {
             var value = combo.value;
             var record = combo.store.getById(combo.value);
             if (record == null) {
-               console.log("Add new entry %s", value);
+                console.log("Add new entry %s", value);
                 combo.store.add({
-                   name: value
+                    name: value
                 });
             }
         }
     },
-    updateLayoutObjectFromRecord: function(record) {
+    updateLayoutObjectFromRecord: function (record) {
         // get the active page
         var layout = Ext.ComponentQuery.query('pagelayouts')[0].getActiveTab().down('panel');
-        layout.items.each(function(lo) {
-           if ( lo.xtype == 'layoutobject' && lo.layoutObjectID == record.get('layoutObjectID')) {
-               // todo - handle cleaner
-               lo.setComponentValue('instructions', record.get('instructions'));
-               lo.setComponentValue('theme', record.get('theme'));
-               lo.setComponentValue('owners', record.get('owners'));
-               lo.setComponentValue('section', record.get('section'));
+        layout.items.each(function (lo) {
+            if (lo.xtype == 'layoutobject' && lo.layoutObjectID == record.get('layoutObjectID')) {
+                // todo - handle cleaner
+                lo.setComponentValue('instructions', record.get('instructions'));
+                lo.setComponentValue('theme', record.get('theme'));
+                lo.setComponentValue('owners', record.get('owners'));
+                lo.setComponentValue('section', record.get('section'));
 
 
-           }
+            }
         });
     },
-    onUpdateLayoutsFromGrid: function(records) {
+    onUpdateLayoutsFromGrid: function (records) {
         var me = this;
         console.log("Updating layout for record %o", records);
         Ext.toast("record " + records.data);
 
-        records.each(function(rec) {
-            if ( rec.isDirty() ) {
+        records.each(function (rec) {
+            if (rec.isDirty()) {
                 console.log("**** Update required on %o *****", rec);
                 me.updateLayoutObjectFromRecord(rec);
             }
@@ -79,10 +90,10 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
      * @param record
      * @param eOpts
      */
-    onSectionChange: function(combo , event , eOpts) {
+    onSectionChange: function (combo, event, eOpts) {
         var me = this;
         console.log("Combo value %s for object %o", combo.value, combo.up('layoutobject'));
-        if ( Ext.isString(combo.value)) {
+        if (Ext.isString(combo.value)) {
 
             var panel = combo.up('panel');
             console.log("Layout object %o", panel);
@@ -103,37 +114,36 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
             panel.setBodyStyle('background-color', me.colorMap[comboSection]);
 
 
-
         }
-        me.setRecordValue(combo );
+        me.setRecordValue(combo);
 
     },
-    getRecord: function(component) {
+    getRecord: function (component) {
         var store = component.up('layout').getViewModel().getStore('layoutObjects');
         var layout = component.up('layoutobject');
         var rec = store.findRecord('layoutObjectID', layout.layoutObjectID);
         console.log("getRecord %o", rec);
-        if ( rec ) {
-           return rec;
+        if (rec) {
+            return rec;
         }
     },
-    setRecordValue: function(component) {
+    setRecordValue: function (component) {
         var store = component.up('layout').getViewModel().getStore('layoutObjects');
         var layout = component.up('layoutobject');
         console.log("Layout Object %o", layout);
         // set layout viewModel Value
-        var model =layout.getViewModel();
+        var model = layout.getViewModel();
         model.set(component.name + "_val", component.value);
         console.log("Store %o %d", store, layout.layoutObjectID);
         var rec = store.findRecord('layoutObjectID', layout.layoutObjectID);
         console.log("Record %o", rec);
-        if ( rec ) {
-            rec.set(component.name,component.value);
+        if (rec) {
+            rec.set(component.name, component.value);
             layout.flagDirty();
 
         }
     },
-    onShowEdit: function(combo , event , eOpts) {
+    onShowEdit: function (combo, event, eOpts) {
         var me = this;
         console.log("Combo value %s for object %o", combo.value, combo.up('layoutobject'));
         var win = Ext.create('Advertising.view.main.common.pages.layout.LayoutObjectEditWindow',
@@ -142,56 +152,54 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
                 sourceObject: combo.up('layoutobject')
             }).show();
     },
-    onThemeChange: function(combo , event , eOpts) {
+    onThemeChange: function (combo, event, eOpts) {
         var me = this;
         console.log("Combo value %s for object %o", combo.value, combo.up('layoutobject'));
         // update the store
-        me.setRecordValue(combo );
+        me.setRecordValue(combo);
     },
-    onOwnerChange: function(combo , event , eOpts) {
+    onOwnerChange: function (combo, event, eOpts) {
         var me = this;
         console.log("Owner change value %s for object %o", combo.value, combo.up('layoutobject'));
-        if ( combo.value.length != 0 ) {
+        if (combo.value.length != 0) {
             me.setRecordValue(combo);
         }
     },
-    onInstructionChange: function(textarea , event , eOpts) {
+    onInstructionChange: function (textarea, event, eOpts) {
         var me = this;
-        me.setRecordValue(textarea );
+        me.setRecordValue(textarea);
 
     },
     onBeforeObjectMove: function (promo, xPos, yPos) {
         console.debug("Before move %o %d %d", promo, xPos, yPos);
     },
     onObjectMove: function (pageObj, xPos, yPos, a, b, c) {
-        console.debug("Promo was moved %o %d x %d %o %o %o", pageObj, xPos, yPos);
+        console.debug("Layout object was moved %o %d x %d %o %o %o", pageObj, xPos, yPos);
+        var parentPosition = pageObj.up('panel').getPosition();
+        // get the scale
+        var layoutViewModel = pageObj.up('layout').getViewModel();
+        var scale = layoutViewModel.get('scale');
 
+        var position = pageObj.getPosition();
+        var realX = position[0] - parentPosition[0];
+        var realY = position[1] - parentPosition[1];
+
+        console.log("Scale %o Position %o - parent %o - %d x %d",scale, position, parentPosition, realX, realY);
+        pageObj.getViewModel().set("xPos", realX );
+        pageObj.getViewModel().set("yPos", realY );
+        pageObj.getViewModel().set("undoDisabled", false);
         pageObj.setDebugInfo();
         pageObj.flagDirty();
-        Ext.toast("Object " + pageObj.id + " was moved");
-        pageObj.getViewModel().set("xPos", xPos);
-        pageObj.getViewModel().set("yPos", yPos);
+        Ext.toast(pageObj.xtype + ' obj ' + pageObj.id + " was moved " + realX + "X" + realY);
 
-        pageObj.getViewModel().set("undoDisabled", false);
     },
     onObjectResize: function (pageObj, width, height) {
-        console.debug("Promo was resized %o %d x %d", pageObj, width, height);
+        console.debug("Layout object was resized %o %d x %d", pageObj, width, height);
         pageObj.setDebugInfo();
-        //var parentModel = pageObj.up('layout').getViewModel();
-        //console.log("Update parent view model %o", parentModel);
-        //parentModel.data.layoutObjects.each(function(lo) {
-        //    console.log("Layout update %d", pageObj.layoutID);
-        //
-        //    if ( lo.layoutID = pageObj.layoutID) {
-        //        console.log("Updating width %d for layout object %d",width, pageObj.layoutID);
-        //       // pageObj.getViewModel().set("width", width);
-        //        // update store record
-        //        lo.width = width;
-        //        parentModel.getStore('layoutObjects').sync();
-        //    }
-        //});
+        pageObj.flagDirty();
+        pageObj.getViewModel().set("newWidth", width);
+        pageObj.getViewModel().set("newHeight", height);
 
-        pageObj.getViewModel().set('height', height);
 
     },
     onRenderObject: function (lo, eOpts) {
@@ -233,14 +241,14 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
 //            }
 //        });
     },
-    onDeleteLayoutObject: function(layoutObject) {
+    onDeleteLayoutObject: function (layoutObject) {
         alert("Object deleted");
     },
-    onExpandLayoutObject: function(btn) {
+    onExpandLayoutObject: function (btn) {
         var layoutobject = btn.up('layoutobject');
         console.log("Expand layout %o", layoutobject);
         var myData = {};
-        btn.up('layoutobject').items.each(function(f) {
+        btn.up('layoutobject').items.each(function (f) {
             console.log("Item %o", f);
         });
 
@@ -251,15 +259,15 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
             });
         win.show();
     },
-    onObjectFocus:function(promo) {
+    onObjectFocus: function (promo) {
         console.log("Focus!!");
     },
-    getRandomColor: function() {
+    getRandomColor: function () {
         var letters = 'BCDEF';
         var color = '#';
-        for (var i = 0; i < 6; i++ ) {
+        for (var i = 0; i < 6; i++) {
             color += letters[Math.floor(Math.random() * letters.length)];
         }
-        return color ;
+        return color;
     }
 });

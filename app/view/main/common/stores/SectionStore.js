@@ -4,9 +4,10 @@
 Ext.define('Advertising.view.main.common.stores.SectionStore', {
     extend: 'Ext.data.Store',
     alias: 'store.sectionstore',
+    storeId: 'sectionstore',
     proxy: {
         type : 'ajax',
-        autoLoad: false,
+        autoLoad: true,
         useDefaultXhrHeader: false,
         url:  Advertising.util.GlobalValues.serviceURL + '/attributes/getAllSections',
         reader: {

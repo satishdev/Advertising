@@ -23,6 +23,15 @@ Ext.define('Advertising.view.login.LoginController', {
      */
     init: function () {
         console.log("Init of login controller");
+        this.control({
+            'textfield [inputType="password"]': {
+                specialkey: function(field, e) {
+                    if(e.getKey() == e.ENTER) {
+                        field.up('form').getForm().submit();
+                    }
+                }
+            }
+        });
     },
     doLogout: function() {
         console.log("!!");
@@ -39,49 +48,65 @@ Ext.define('Advertising.view.login.LoginController', {
             //xtype: 'login'
         });
     },
-    onLoginClick: function () {
+    onLoginClear: function (btn) {
+        var me = this;
+        var form = btn.up('window').down('form');
+        form.getForm().findField("j_username").setValue("");
+        form.getForm().findField("j_password").setValue("");
+
+    },
+
+        onLoginClick: function (btn) {
+        var me = this;
+        var form = btn.up('window').down('form');
+        console.log("Form %o", form);
+        var user = form.getForm().findField("j_username").getValue();
+        var pass = form.getForm().findField("j_password").getValue();
 
         //// check user in promoplanner or validate SSO
-        //Ext.Ajax.request({
-        //    url: Advertising.util.GlobalValues.serviceURL + "/layout/saveLayout",
-        //    method: 'POST',
-        //    cors: true,
-        //    useDefaultXhrHeader: false,
-        //    timeout: 1450000,
-        //    params: {
-        //        json_req: Ext.encode(json)
-        //    },
-        //    success: function (transport) {
-        //        // Set the localStorage value to true
-        //        localStorage.setItem("AdvNGLoggedIn", true);
-        //
-        //        // Remove Login Window
-        //        this.getView().destroy();
-        //
-        //        // Add the main view to the viewport
-        //        Ext.create({
-        //            xtype: 'app-main'
-        //        });
-        //    },
-        //    failure: function (transport) {
-        //        var response = Ext.decode(transport.responseText);
-        //
-        //        Ext.Msg.alert('Error', response.Error);
-        //
-        //
-        //    }
-        //});
-        localStorage.setItem("AdvNGLoggedIn", true);
-        localStorage.setItem("AdvUser", 'adm1');
-        Advertising.view.main.common.UserInfo.setUserInfo({username: "adm1"});
+        Ext.Ajax.request({
+            url: Advertising.util.GlobalValues.serviceURL + "/secure/login",
+            method: 'POST',
+            cors: true,
+            useDefaultXhrHeader: false,
+            timeout: 1450000,
+            params: {
+                j_username: user,
+                j_password: pass
+            },
+            success: function (transport) {
 
-        // Remove Login Window
-        this.getView().destroy();
+                var response = Ext.decode(transport.responseText);
+                console.log("Response %o", response);
 
-        // Add the main view to the viewport
-        Ext.create({
-            xtype: 'app-main'
+
+                // Set the localStorage value to true
+                localStorage.setItem("AdvNGLoggedIn", true);
+
+                localStorage.setItem("AdvNGLoggedIn", true);
+                localStorage.setItem("AdvUser", 'adm1');
+                Advertising.view.main.common.UserInfo.setUserInfo({username: "adm1"});
+
+                // Remove Login Window
+                me.getView().destroy();
+
+                // Add the main view to the viewport
+                Ext.create({
+                    xtype: 'app-main'
+                });
+            },
+            failure: function (transport) {
+                try {
+                    var response = Ext.decode(transport.responseText);
+
+                    Ext.Msg.alert('Error', response.message);
+                } catch  (err) {
+                    Ext.Msg.alert("Login failure");
+                }
+
+            }
         });
+
     }
 
     });

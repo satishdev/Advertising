@@ -201,10 +201,10 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
             iconCls: "fa fa-check",
             handler: 'onApprovePage',
             text: 'Approve',
-            qtip: 'Approve page the the Promo worklist',
+            qtip: 'Approve page for the Promo worklist',
 
             bind: {
-                hidden: '{hidePageTools}'
+                hidden: '{!pagemode}'
             },
             padding: 8
         },
@@ -239,7 +239,7 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
             iconCls: 'fa fa-object-group',
             text: '* Test Grouping *',
             bind: {
-                hidden: '{hidePageTools}'
+                hidden: '{!pagemode}'
             },
             handler: 'onGroupObjects',
             padding: 5
