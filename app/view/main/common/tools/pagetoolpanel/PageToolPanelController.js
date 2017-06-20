@@ -92,8 +92,13 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelContro
         }
 
     },
+<<<<<<< Updated upstream
     onMainPageTabChanged: function (panel, newCard, oldCard, eOpts) {
         Ext.toast("tool panel controller update - tab changed");
+=======
+    onMainPageTabChanged: function(panel, newCard, oldCard, eOpts) {
+    //    Ext.toast("tool panel controller update - tab changed");
+>>>>>>> Stashed changes
         var me = this;
         var marketControls = me.lookupReference('marketControls');
         if (newCard.xtype == 'page') {

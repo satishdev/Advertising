@@ -31,6 +31,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
         }
         me.getViewModel().set('cellNumber', me.cellNumber);
         // load store one time
+<<<<<<< Updated upstream
         if (! me.getViewModel().getStore("sections").isLoaded()) {
             console.log("Loading sections store...");
             me.getViewModel().getStore("sections").load();
@@ -43,6 +44,21 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
 
     },
     firstLayout: true,
+=======
+        //if ( this.loadstores) {
+        //    if (!this.getViewModel().getStore("section").isLoaded()) {
+        //        console.log("Loading section store...");
+        //        this.getViewModel().getStore("section").load();
+        //        this.getViewModel().getStore("owners").load();
+        //        this.getViewModel().getStore("promoTypes").load();
+        //
+        //    }
+        //}
+
+
+    },
+    loadstores: true,
+>>>>>>> Stashed changes
     isNew: false,
     workFlowStatus: undefined,
     editMode: true,
@@ -159,7 +175,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
             name: 'section',
             queryMode: 'local',
             bind: {
-                store: '{sections}',
+                store: '{section}',
                 fieldLabel: '{sectionName}'
             },
             listeners: {
@@ -169,15 +185,26 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
             typeAhead: true,
             forceSelection: true,
             displayField: 'name',
-            valueField: 'name'
+            valueField: 'id'
 
 
         },
         {
             xtype: 'combobox',
             fieldLabel: 'Promo Type',
+<<<<<<< Updated upstream
             bind: {
                 store: '{promoTypes}'
+=======
+            displayField: 'name',
+            valueField: 'name',
+            listeners: {
+                change: 'onPromoTypeChange'
+            },
+            bind: {
+                store: '{promoTypes}',
+                fieldLabel: '{promoType}'
+>>>>>>> Stashed changes
             }
         },
         {

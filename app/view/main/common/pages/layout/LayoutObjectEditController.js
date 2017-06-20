@@ -25,6 +25,9 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectEditController
     onOwnerChange: function(combo , event , eOpts) {
 
     },
+    onPromoTypeChange: function(combo, event, eOpts) {
+
+    },
     onInstructionChange: function(combo , event , eOpts) {
 
     }

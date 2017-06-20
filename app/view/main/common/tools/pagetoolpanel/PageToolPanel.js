@@ -77,7 +77,7 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
     },
     setMode: function(mode){
 
-        Ext.toast("Tool mode "+ mode);
+       // Ext.toast("Tool mode "+ mode);
         var me = this;
         me.getViewModel().set('mode',mode);
     },

@@ -11360,10 +11360,21 @@ a.x-btn:active {
 .component-tool-filter .x-tool-filter:before {
     content: "\f0b0" !important;
 }
+<<<<<<< Updated upstream
 /* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:328 */
 .f-debug-text {
     float: right;
     color: #0f76c2;
     font-size: smaller;
     white-space: nowrap;
+=======
+/* G:/Advertising/sass/src/view/main/Main.scss:312 */
+.f-empty-page-drop-box {
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+    background-color: #c5e1a5;
+    font-size: 10vw;
+    text-align: center;
+>>>>>>> Stashed changes
 }

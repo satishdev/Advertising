@@ -42,7 +42,7 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
         var tabName = record.get('text'), tabIndex = 0;
         console.log("onLayoutClick %o", record);
         Ext.toast("Show layout " + record.data.text);
-        Ext.suspendLayouts();
+        //Ext.suspendLayouts();
         var me = this, existing = false;
         var pageView = Ext.ComponentQuery.query("pagelayouts")[0];
         // see if we have this tab name already
@@ -54,6 +54,7 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
             tabIndex++;
         });
         if (!existing) {
+
             console.log("Adding layout view to %o", pageView);
             var panel = Ext.create('Advertising.view.main.common.pages.layout.Layout', {
                 title: record.get('text'),
@@ -79,6 +80,8 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
                             pageView.insert(addIndex, panel);
 
                             pageView.setActiveTab(addIndex);
+
+
                         } else {
                             console.log('error');
                         }
@@ -86,7 +89,7 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
                 }
             );
 
-            Ext.resumeLayouts(true);
+            //Ext.resumeLayouts(true);
 
         }
     },
@@ -177,13 +180,27 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
                     },
                     failure: function (transport) {
                         var response = Ext.decode(transport.responseText);
-                        Ext.MessageBox.show({
-                            title: 'Unable to display page',
-                            msg: response.message,
-                            buttons: Ext.MessageBox.OK,
-                            animateTarget: Ext.getBody(),
-                            icon:  Ext.MessageBox.WARNING
-                        });
+                        console.log("Response is %o", response);
+                        if ( response.exception == 'com.jda.advertising.adman.server.exception.NoPageLayoutAssignedException') {
+                            var panel = Ext.create('Advertising.view.main.common.pages.emptypage.EmptyPage', {
+                                title: record.get('text'),
+                                closable: true,
+                                layout: 'absolute',
+                                inchWidth: 9,
+                                inchHeight: 8
+                            });
+                            var addIndex = pageView.items.length;
+                            pageView.insert(addIndex, panel);
+                            pageView.setActiveTab(addIndex);
+                        } else {
+                            Ext.MessageBox.show({
+                                title: 'Unable to display page',
+                                msg: response.message,
+                                buttons: Ext.MessageBox.OK,
+                                animateTarget: Ext.getBody(),
+                                icon: Ext.MessageBox.ERROR
+                            });
+                        }
 
 
                     }

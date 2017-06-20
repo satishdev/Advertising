@@ -65,7 +65,7 @@ Ext.define('Advertising.view.main.metrics.metricspanel.MetricsPanelController', 
             scope: this,
             callback: function (records, operation, success) {
                 if ( success) {
-                    Ext.toast("Loaded offer store");
+              //      Ext.toast("Loaded offer store");
                     var chart = Ext.create('Advertising.view.main.metrics.metricspanel.charts.OfferDataPie',{
                         flex: 1,
                         width: '100%',
@@ -119,7 +119,7 @@ Ext.define('Advertising.view.main.metrics.metricspanel.MetricsPanelController', 
             scope: this,
             callback: function (records, operation, success) {
                 if ( success) {
-                    Ext.toast("Loaded offer store");
+                   // Ext.toast("Loaded offer store");
                     var chart = Ext.create('Advertising.view.main.metrics.metricspanel.charts.EventSalesChart',{
                         flex: 3,
                         width: '100%',

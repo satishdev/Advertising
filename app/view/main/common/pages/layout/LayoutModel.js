@@ -39,8 +39,13 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutModel', {
                 }
             }
         },
+<<<<<<< Updated upstream
         promoTypes2: {
             storeId: 'promoTypeStore',
+=======
+        section: {
+            storeId: 'layoutSectionStore',
+>>>>>>> Stashed changes
             proxy: {
                 type : 'ajax',
                 autoLoad: false,
@@ -67,6 +72,8 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutModel', {
             }
         },
         positions: {
+            storeId: 'positionStore',
+
             data: [{
                 name: 'Pos 1'
             },{
@@ -89,6 +96,8 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutModel', {
             ]
         },
         themeCodes: {
+            storeId: 'themeCodeStore',
+
             data: [{
                 name: 'Canada Day 97'
             },{
@@ -98,6 +107,19 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutModel', {
             }
 
             ]
+        },
+        promoTypes: {
+            storeId: 'promoTypeStore',
+            proxy: {
+                type : 'ajax',
+                autoLoad: false,
+                useDefaultXhrHeader: false,
+                url:  Advertising.util.GlobalValues.serviceURL + '/attributes/getListValues/promo-type',
+                reader: {
+                    type: 'json',
+                    rootProperty: 'data'
+                }
+            }
         },
         owners: {
             storeId: 'layoutOwnersStore',
@@ -128,6 +150,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutModel', {
         themeCode: '',
         debug: true,
         themeName: 'Theme Code',
+        promoType: 'Promo Type',
         sectionName: 'Header',
         adPosition: 'Ad Position'
         /* This object holds the arbitrary data that populates the ViewModel and is then available for binding. */

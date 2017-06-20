@@ -206,12 +206,12 @@ Ext.define('Advertising.view.main.common.pages.layoutgridwindow.LayoutGridWindow
                         xtype: 'combobox',
                         name: 'section',
                         bind: {
-                            store: '{sections}'
+                            store: '{section}'
 
                         },
 
                         displayField: 'name',
-                        valueField: 'name'
+                        valueField: 'id'
 
                     }
                 },
