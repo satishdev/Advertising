@@ -11,6 +11,7 @@ Ext.define('Advertising.view.main.MainController', {
     alias: 'controller.main',
 
     requires: [
+        'Advertising.view.main.common.UserInfo',
         'Ext.util.TaskManager'
     ],
 
@@ -78,17 +79,17 @@ Ext.define('Advertising.view.main.MainController', {
         var me = this;
         me.fireEvent('primaryTabChange', panel, newTab, oldTab, eOpts);
     },
+    /**
+     * Save a layout
+     * @param layout
+     * @param isNew
+     */
     saveLayout: function (layout, isNew) {
 
-        var jsonObjects = [];
-        if (isNew) {
-            Ext.toast("Prompt for new layout name");
-        }
+        var jsonObjects = [], me = this, jsonData = {};
         console.log("Saving layout %o", layout);
         var layoutData = layout.getViewModel().getData();
         var layouts = Ext.ComponentQuery.query('layoutobject', layout);
-        console.log("Layouts %o", layouts);
-        var jsonData = {};
         var layoutObjects = [];
         jsonData.objects = layoutObjects;
         for (var prop in layoutData) {
@@ -114,6 +115,42 @@ Ext.define('Advertising.view.main.MainController', {
             }
         });
 
+        console.log("Layouts %o", layouts);
+
+
+        if (isNew) {
+            Ext.Msg.prompt(
+                'New layout',
+                'Enter new layout name',
+                function (buttonId, value) {
+                    if (buttonId == 'ok'){
+                        // process text value and close...
+                        jsonData['newLayout'] = value;
+                        jsonData['isNew'] = true;
+                        me.sendSaveRequest(jsonData);
+
+                    } else {
+                        return false;
+                    }
+                },
+                null,
+                false,
+                null,
+                {
+                    autoCapitalize: true,
+                    placeHolder: 'Value please...'
+                }
+            );
+        } else {
+            me.sendSaveRequest(jsonData);
+
+        }
+
+
+
+
+    },
+    sendSaveRequest: function(jsonData) {
         console.log("Sending json %o", jsonData);
         Ext.Ajax.request({
             url: Advertising.util.GlobalValues.serviceURL + "/layout/saveLayout",

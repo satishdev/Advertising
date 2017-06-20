@@ -222,7 +222,7 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
             handler: 'onSaveNew',
             text: 'Save New',
             bind: {
-                hidden: '{!pagemode}'
+                hidden: '{hidePageTools}'
             },
             padding: 8
         },
