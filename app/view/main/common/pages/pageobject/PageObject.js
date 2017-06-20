@@ -46,7 +46,7 @@ Ext.define('Advertising.view.main.common.pages.pageobject.PageObject', {
         //var position = me.getPosition();
         //var realX = position[0] - parentPosition[0];
         //var realY = position[1] - parentPosition[1];
-        var info = "Scale: " + Math.round(me.up('layout').getViewModel().get('scale')) + " X:" + Math.round(me.getViewModel().get('xPos')) + " Y:" + Math.round(me.getViewModel().get('yPos')) + " -- " + (me.width).toFixed(1) +  "x" + (me.height).toFixed(1) + "<br/><span style='color:red'>" + me.objid + ":" + me.groupID + "</span>";
+        var info = "Scale: " + Math.round(me.up('layout').getViewModel().get('scale')) + " X:" + Math.round(me.getViewModel().get('xPos')) + " Y:" + Math.round(me.getViewModel().get('yPos')) + " -- " + (me.width).toFixed(1) +  "x" + (me.height).toFixed(1) + "<br/><span style='color:red'>" + me.getViewModel().get('objid') + ":" + me.groupID + "</span>";
 
         me.getViewModel().set("debugInfo", info);
         console.log("Model %o", me.getViewModel());
