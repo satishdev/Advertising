@@ -132,18 +132,18 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
     },
     setRecordValue: function (component) {
         var store = component.up('layout').getViewModel().getStore('layoutObjects');
-        var layout = component.up('layoutobject');
-        console.log("Layout Object %o", layout);
+        var layoutobject = component.up('layoutobject');
+        console.log("Layout Object %o", layoutobject);
         // set layout viewModel Value
-        var model = layout.getViewModel();
+        var model = layoutobject.getViewModel();
         model.set(component.name + "_val", component.value);
-        console.log("Store %o %d", store, layout.layoutObjectID);
-        var rec = store.findRecord('layoutObjectID', layout.layoutObjectID);
+        console.log("Model data ", model);
+        var rec = store.findRecord('layoutObjectID', layoutobject.layoutObjectID);
         console.log("Record %o", rec);
         if (rec) {
+            console.log("Set record value also..");
             rec.set(component.name, component.value);
-            layout.flagDirty();
-
+            layoutobject.flagDirty();
         }
     },
     onShowEdit: function (combo, event, eOpts) {
@@ -163,6 +163,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
         me.setRecordValue(combo );
         // change the theme code and ad position
 
+
     },
     onThemeChange: function(combo , event , eOpts) {
 
@@ -175,6 +176,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
         var me = this;
         console.log("Owner change value %s for object %o", combo.value, combo.up('layoutobject'));
         if (combo.value.length != 0) {
+            console.log("Setting record value %o", combo.value);
             me.setRecordValue(combo);
         }
     },
@@ -187,32 +189,38 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
         console.debug("Before move %o %d %d", promo, xPos, yPos);
     },
     onObjectMove: function (pageObj, xPos, yPos, a, b, c) {
+        var me =this;
         console.debug("Layout object was moved %o %d x %d %o %o %o", pageObj, xPos, yPos);
-        var parentPosition = pageObj.up('panel').getPosition();
-        // get the scale
+        me.onAdjustObjectSizeOrLocation(pageObj);
+
+
+    },
+    onAdjustObjectSizeOrLocation: function(pageObj) {
         var layoutViewModel = pageObj.up('layout').getViewModel();
         var scale = layoutViewModel.get('scale');
-
         var position = pageObj.getPosition();
+        var zoom =  Ext.ComponentQuery.query("pagetoolpanel")[0].getViewModel().get('zoom');
+        var parentPosition = pageObj.up('panel').getPosition();
         var realX = position[0] - parentPosition[0];
         var realY = position[1] - parentPosition[1];
-
-        console.log("Scale %o Position %o - parent %o - %d x %d",scale, position, parentPosition, realX, realY);
         pageObj.getViewModel().set("xPos", realX );
         pageObj.getViewModel().set("yPos", realY );
+        pageObj.getViewModel().set("newXInchPos", (((realX / 96) * (100/zoom)) / scale) );
+        pageObj.getViewModel().set("newYInchPos", (((realY / 96) * (100/zoom)) / scale) );
         pageObj.getViewModel().set("undoDisabled", false);
+        pageObj.getViewModel().set("newWidth", pageObj.width * (100/zoom));
+        pageObj.getViewModel().set("newHeight", pageObj.height * (100/zoom));
+        pageObj.getViewModel().set("newInchWidth", (((pageObj.width / 96) * (100/zoom)) / scale));
+        pageObj.getViewModel().set("newInchHeight", (((pageObj.height / 96) * (100/zoom)) / scale));
         pageObj.setDebugInfo();
         pageObj.flagDirty();
-        Ext.toast(pageObj.xtype + ' obj ' + pageObj.id + " was moved " + realX + "X" + realY);
+        console.log("Page object info %o", pageObj.getViewModel().data);
 
     },
     onObjectResize: function (pageObj, width, height) {
+        var me=this;
         console.debug("Layout object was resized %o %d x %d", pageObj, width, height);
-        pageObj.setDebugInfo();
-        pageObj.flagDirty();
-        pageObj.getViewModel().set("newWidth", width);
-        pageObj.getViewModel().set("newHeight", height);
-
+        me.onAdjustObjectSizeOrLocation(pageObj);
 
     },
     onRenderObject: function (lo, eOpts) {
@@ -221,7 +229,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
         console.log("Debug info %o", debugInfo);
         lo.getViewModel().set("origX", lo.x);
         lo.getViewModel().set("origY", lo.y);
-        lo.setZIndex(1);
+        //lo.setZIndex(1);
         //lo.toFront();
         // set the Zindex
         //promo.setZIndex(100 + promo.getViewModel().get("adzoneID"));

@@ -3,7 +3,7 @@
  */
 Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
     extend: 'Advertising.view.main.common.pages.pageobject.PageObject',
-    ui: 'layoutobject',
+    //ui: 'layoutobject',
     controller: 'layoutobject',
     xtype: 'layoutobject',
     viewModel: {
@@ -18,7 +18,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
         'Ext.form.field.TextArea',
         'Ext.layout.container.VBox'
     ],
-    initComponent: function () {
+    initComponent: function (params) {
         var me = this;
         this.callParent(arguments);
         console.log("Edit Mode %o", this.editMode);
@@ -31,22 +31,27 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
         }
         me.getViewModel().set('cellNumber', me.cellNumber);
         // load store one time
-        //if ( this.loadstores) {
-        //    if (!this.getViewModel().getStore("section").isLoaded()) {
-        //        console.log("Loading section store...");
-        //        this.getViewModel().getStore("section").load();
-        //        this.getViewModel().getStore("owners").load();
-        //        this.getViewModel().getStore("promoTypes").load();
-        //
-        //    }
-        //}
+        if ( me.loadstores) {
+            if (!me.getViewModel().getStore("sectionStore").isLoaded()) {
+                console.log("Loading stores...");
+                me.getViewModel().getStore("sectionStore").load();
+                me.getViewModel().getStore("ownersStore").load();
+                me.getViewModel().getStore("promoTypes").load();
+
+            }
+        }
+        for ( var param in params) {
+            console.log("Setting param %s", param);
+        }
         me.getViewModel().set('origWidth', me.width);
         me.getViewModel().set('origHeight', me.height);
-
 
     },
     loadstores: true,
     isNew: false,
+    draggable: true,
+    simpleDrag:true,
+    title: '',
     firstLayout: true,
     workFlowStatus: undefined,
     editMode: true,
@@ -69,8 +74,14 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
             // docked elements
             element: 'el'
         },
-        dragstart: function(comp, e, eOpts) {
-            console.log("Drag start");
+        dragstart: function(drag, e, eOpts) {
+            console.log("Drag start %o", drag.comp);
+            drag.comp.addCls('f-panel-drag-start');
+        },
+        dragend: function(drag, e, eOpts) {
+            console.log("Drag end");
+            drag.comp.removeCls('f-panel-drag-start');
+
         }
     }
     ,
@@ -138,7 +149,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
             name: 'owners',
             value: [''],
             bind: {
-                store: '{owners}'
+                store: '{ownersStore}'
             },
             listeners: {
                 change: 'onOwnerChange'
@@ -157,7 +168,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
             name: 'section',
             queryMode: 'local',
             bind: {
-                store: '{section}',
+                store: '{sectionStore}',
                 fieldLabel: '{sectionName}'
             },
             listeners: {

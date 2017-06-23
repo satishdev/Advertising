@@ -25,9 +25,7 @@ Ext.define('Advertising.view.main.common.pages.pageobject.PageObject', {
     zoom: 100,
     border: 2,
     dirty:false,
-    draggable: true,
     deleted: false,
-    resizable: true,
     layout: 'absolute',
     shadow: 'drop',
     selected: false,
@@ -41,10 +39,8 @@ Ext.define('Advertising.view.main.common.pages.pageobject.PageObject', {
         render: 'onRenderObject',
         beforeMove: 'onBeforeObjectMove',
         focusenter: 'onObjectFocus',
-        onDragStart: 'onDragEnter',
-        dragstart: function(comp, e, eOpts) {
-            console.log("Drag start");
-        }
+        onDragStart: 'onDragStart'
+
     },
 
     setDebugInfo: function () {
@@ -61,7 +57,7 @@ Ext.define('Advertising.view.main.common.pages.pageobject.PageObject', {
 
     },
     setZoom: function(zoom) {
-        var me = this;
+        var me = this, model = me.getViewModel();
         var parentPanel = me.up('panel');
 
         var curZoom = me.zoom;
@@ -70,21 +66,40 @@ Ext.define('Advertising.view.main.common.pages.pageobject.PageObject', {
         me.prevY = me.getY();
         me.prevWidth = me.getWidth();
         me.prevHeight = me.getHeight();
+        var layoutViewModel = me.up('layout').getViewModel();
+        var scale = layoutViewModel.get('scale');
+
+        console.log("Object model %o - scale %f", model, scale);
         console.log("Orig size %f x %f" , me.origWidth, me.origHeight);
         console.log("Orig pos %f x %f" , me.origXPos, me.origYPos);
-        var newXPos = Math.round((me.origXPos * 96)* (zoom /100)) + parentPanel.getX() ;
-        var newYPos = Math.round((me.origYPos * 96)* (zoom /100))+ parentPanel.getY();
+
+        var newXPos = Math.round((me.origXPos * 96 )* (zoom /100) * scale) + parentPanel.getX() ;
+        var newYPos = Math.round((me.origYPos * 96 )* (zoom /100) * scale)+ parentPanel.getY();
         console.log("New pos %f x %f" , newXPos, newYPos);
         me.setX(newXPos);
         me.setY(newYPos);
-        me.setWidth(Math.round((me.origWidth * 96) *  (zoom /100)));
-        me.setHeight(Math.round((me.origHeight * 96) *  (zoom/100)));
+        var newWidth = Math.round(((model.get('inchWidth') * 96)) *  (zoom /100) * scale) ;
+        var newHeight = Math.round(((model.get('inchHeight') * 96)) *  (zoom /100) * scale) ;
+
+        console.log("Setting width ",newWidth );
+        me.setWidth(newWidth);
+        me.setHeight(newHeight);
 
 
+
+    },
+    flagDeleted: function () {
+        var me = this;
+        me.deleted = true;
+        me.getViewModel().set('deleted',true);
+        me.addCls("f-panel-dirty");
+        me.addCls("f-panel-deleted");
     },
     flagDirty: function () {
         var me = this;
         me.dirty = true;
+        console.log("Flagging as dirty");
+        me.getViewModel().set('dirty',true);
         me.addCls("f-panel-dirty");
     },
     flagClean: function () {

@@ -14,7 +14,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
 
                 showPageMarket: 'onShowPageMarket',
                 hidePageMarket: 'onHidePageMarket',
-                updatePageZoomLevel: 'onUpdatePageZoomLevel',
+                updatePageZoomLevel: 'onUpdatePageZoomLevel'
             }
 
         }
@@ -146,7 +146,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
 
                 {
 
-                    html: '<svg class="svggrid" width="' + pageWidth + '" height="' + trueHeight + '" xmlns="http://www.w3.org/2000/svg">                    <defs>                    <pattern id="grid' + p.id + '" width="80" height="80" patternUnits="userSpaceOnUse"> <rect width="80" height="80" fill="url(#smallGrid' + p.id + ')"/> <path d="M 80 0 L 0 0 0 80" fill="none" stroke="gray" stroke-width="1"/> </pattern> </defs> <rect width="100%" height="100%" fill="url(#grid' + p.id + ')" /> </svg>'
+                    html: '<svg class="svggrid" width="' + pageWidth + '" height="' + trueHeight + '" xmlns="http://www.w3.org/2000/svg">                    <defs>                    <pattern id="grid' + p.id + '" width="' + 98 * scale + '" height="' + 98 * scale + '" patternUnits="userSpaceOnUse"> <rect width="' + 98 * scale + '" height="' + 98 * scale + '" fill="url(#smallGrid' + p.id + ')"/> <path d="M 80 0 L 0 0 0 80" fill="none" stroke="gray" stroke-width="1"/> </pattern> </defs> <rect width="' + pageWidth + '" height="' + trueHeight + '" fill="url(#grid' + p.id + ')" /> </svg>'
                 }
 
 
@@ -264,6 +264,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
 
                             console.log("Layout object data is %o", rec.data);
                             console.log("Adding object %o %f", rec, scale);
+                            console.log("OBJECT ID ", data.objid);
 
                             var layoutObject = Ext.create('Advertising.view.main.common.pages.layout.LayoutObject', {
                                 width: Math.round(data.width * 96 * scale),
@@ -274,6 +275,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
                                 origHeight: data.height,
                                 cellNumber: data.cellNumber,
                                 loadStores: loadStores,
+                                dirty:false,
                                 objid: data.objid,
                                 layoutObjectID: data.objid,
                                 x: Math.round(data.xPos * 96 * scale),
@@ -286,6 +288,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
 
                             p.insert(layoutObject);
 
+                            layoutObject.flagClean();
                             var stores = layoutObject.getViewModel().storeInfo;
 
                             if ( Ext.Object.isEmpty(firstLayoutObj)) {
@@ -302,17 +305,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
                                 }
 
                             } else {
-                                //// duplicate the data from the loaded stores to the new stores
-                                //for ( var store in stores ) {
-                                //    if ( stores[store].storeId ==='layoutStore' || stores[store].storeId==='layoutObjectStore') {
-                                //
-                                //    } else {
-                                //        console.log("Replicating store data...%o %o", firstStore, stores[store]);
-                                //
-                                //        var s =layoutObject.getViewModel().getStore(stores[store].storeId);
-                                //        s =  firstStore[stores[store].storeId];
-                                //    }
-                                //}
+
                                 for ( var store in stores ) {
                                     //layoutObject.getViewModel().getStore(store).setData(firstLayoutObj.getViewModel().getStore(store).data);
                                     firstLayoutObj.getViewModel().getStore(store).each(function(r){
@@ -353,13 +346,14 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
                                     });
                                 }
                             }
-                            if (rec.data.additionalFieldData) {
-                                console.log("Setting additional field data");
-                                layoutObject.getViewModel().set('additionalFieldData', rec.data.additionalFieldData);
+
+                            for ( var prop in data ) {
+                                    if (! layoutObject.getViewModel().hasOwnProperty(prop)) {
+                                        layoutObject.getViewModel().set(prop, data[prop]);
+                                    }
                             }
-                            layoutObject.getViewModel().set('layoutObjectID', data.objid);
 
-
+                            layoutObject.setDebugInfo();
 
                         });
                         parentPanel.unmask();
@@ -403,7 +397,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
         var trueHeight = Math.round(model.get("height") * 96 * scale);
         console.log("Real size %f x %f", model.get("width"), model.get("height"));
         console.log("-->> New size %f x %f", trueWidth, trueHeight);
-
+        var gridPath = "M " + Math.round(96 * scale) + " 0 L 0 0 0 " + Math.round(96 * scale) ;
         //p.setWidth( parentWidth);
         //p.setHeight(trueHeight);
         // add SVG grid panel
@@ -424,7 +418,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
 
                     // todo - get image from server
                     //                     html: '<svg  width="' + parentWidth + '" height="' + trueHeight + '" xmlns="http://www.w3.org/2000/svg">                    <defs>                    <pattern id="smallGrid' + p.id + '" width="8" height="8" patternUnits="userSpaceOnUse">                    <path d="M 8 0 L 0 0 0 8" fill="none" stroke="gray" stroke-width="0.5"/> </pattern> <pattern id="grid' + p.id + '" width="80" height="80" patternUnits="userSpaceOnUse"> <rect width="80" height="80" fill="url(#smallGrid' + p.id + ')"/> <path d="M 80 0 L 0 0 0 80" fill="none" stroke="gray" stroke-width="1"/> </pattern> </defs> <rect width="100%" height="100%" fill="url(#grid' + p.id + ')" /> </svg>'
-                    html: '<div z-index="999">' + scale + ' Size ' + parentWidth + 'x' + trueHeight + '</div><svg opacity="0.25" width="' + parentWidth + '" height="' + trueHeight + '" xmlns="http://www.w3.org/2000/svg">                    <defs>                     <pattern id="grid' + p.id + '" width="80" height="80" patternUnits="userSpaceOnUse"> <rect width="80" height="80" fill="url(#smallGrid' + p.id + ')"/> <path d="M 80 0 L 0 0 0 80" fill="none" stroke="gray" stroke-width="1"/> </pattern> </defs> <rect width="100%" height="100%" fill="url(#grid' + p.id + ')" /> </svg>'
+                    html: '<div class="f-debug-info" z-index="999">' + Math.round(scale) + ' Size ' + parentWidth + 'x' + trueHeight + '</div><svg opacity="0.25" width="' + parentWidth + '" height="' + trueHeight + '" xmlns="http://www.w3.org/2000/svg">                    <defs>                     <pattern id="grid' + p.id + '" width="' + Math.round(98 * scale) + '" height="' + Math.round(98 * scale) + '" patternUnits="userSpaceOnUse"> <rect width="' + Math.round(98 * scale) + '" height="' + Math.round(98 * scale) + '" fill="url(#smallGrid' + p.id + ')"/> <path d="' + gridPath + '" fill="none" stroke="gray" stroke-width="2"/> </pattern> </defs> <rect width="100%" height="100%" fill="url(#grid' + p.id + ')" /> </svg>'
                 }
 
 

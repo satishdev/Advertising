@@ -75,8 +75,10 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectEditWindow', {
                 box.confirm('Delete', 'Are you sure you want to delete this item?', function (answer) {
                     if (answer == 'yes') {
                         var source = btn.up('window').sourceObject;
+
                         console.log("Deleting %o", source);
-                        source.destroy();
+                        source.flagDeleted();
+                        source.flagDirty();
                     }
                     btn.up('window').close();
                 });

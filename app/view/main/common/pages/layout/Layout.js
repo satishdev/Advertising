@@ -37,4 +37,5 @@ Ext.define('Advertising.view.main.common.pages.layout.Layout', {
 
 
     ]
+
 });

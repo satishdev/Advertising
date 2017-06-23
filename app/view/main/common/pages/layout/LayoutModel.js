@@ -38,7 +38,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutModel', {
                 }
             }
         },
-        section: {
+        sectionStore: {
             storeId: 'layoutSectionStore',
             proxy: {
                 type : 'ajax',
@@ -86,7 +86,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutModel', {
                 }
             }
         },
-        owners: {
+        ownersStore: {
             storeId: 'layoutOwnersStore',
             proxy: {
                 type : 'ajax',

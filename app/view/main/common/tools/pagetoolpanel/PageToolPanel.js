@@ -182,14 +182,14 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
         },
         {
             bind: {
-                hidden: '{hidePageTools}'
+                hidden: '{hidePageTools}',
+                value: '{zoom}'
             },
             xtype: 'slider',
             fieldLabel: 'Zoom',
             labelAlign: 'top',
             //vertical: true,
             width: 100,
-            value: 100,
             increment: 10,
             minValue: 10,
             maxValue: 200,
@@ -228,7 +228,7 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
         },
         {
             iconCls: 'fa fa-plus',
-            text: 'Add item',
+            text: 'Add Item',
             handler: 'onClickAddItem',
             bind: {
                 hidden: '{hidePageTools}'

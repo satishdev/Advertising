@@ -93,6 +93,7 @@ Ext.define('Advertising.view.main.MainController', {
         var layoutObjects = [];
         jsonData.objects = layoutObjects;
         for (var prop in layoutData) {
+            console.log("->>> Saving prop %s %o %s", prop, layoutData[prop], typeof layoutData[prop]);
             //dont pass in any object joins - e.g stores or anything else odd added to the viewmodel
             if (typeof layoutData[prop] != 'object') {
                 jsonData[prop] = layoutData[prop];
@@ -105,8 +106,10 @@ Ext.define('Advertising.view.main.MainController', {
                 var jsonData = {};
                 var data = lo.getViewModel().getData();
                 for (var prop in data) {
-                    //dont pass in any object joins - e.g stores or anything else odd added to the viewmodel
-                    if (typeof data[prop] != 'object') {
+                    console.log("->>> Saving prop %s %o %s", prop, data[prop], typeof data[prop]);
+
+                    //dont pass in any object with proxies - e.g stores or anything else odd added to the viewmodel
+                    if (!data[prop].hasOwnProperty('proxy')) {
                         jsonData[prop] = data[prop];
                     }
                 }
@@ -158,8 +161,7 @@ Ext.define('Advertising.view.main.MainController', {
             cors: true,
             useDefaultXhrHeader: false,
             timeout: 1450000,
-            jsonData: true,
-            params: {
+            jsonData: {
                 json_req: Ext.encode(jsonData)
             },
             success: function (transport) {

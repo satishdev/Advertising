@@ -136,7 +136,9 @@
          *      +-----------------+
          */
         "etc": [
-            "sass/etc/all.scss"
+            "sass/etc/all.scss",
+            "${toolkit.name}/sass/src"
+
         ],
 
         /**
@@ -161,7 +163,8 @@
          */
         "var": [
             "sass/var/all.scss",
-            "sass/var"
+            "sass/var",
+            "${toolkit.name}/sass/var"
         ],
 
         /**
@@ -477,7 +480,34 @@
      */
     
     "archivePath": "archive",
-    
+
+    "builds": {
+        "classic": {
+            "toolkit": "classic",
+
+            "theme": "fsg-theme",
+
+            "sass": {
+                "generated": {
+                    "var": "classic/sass/save.scss",
+                    "src": "classic/sass/save"
+                }
+            }
+        },
+
+        "modern": {
+            "toolkit": "modern",
+
+            "theme": "theme-triton",
+
+            "sass": {
+                "generated": {
+                    "var": "modern/sass/save.scss",
+                    "src": "modern/sass/save"
+                }
+            }
+        }
+    },
 
 
     /**

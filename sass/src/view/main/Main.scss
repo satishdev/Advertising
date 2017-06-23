@@ -1,7 +1,7 @@
 /**
  * Generates a set of style rules for the "navigation" tab UI.
  */
-//$base-color: #0076AD;
+$base-color: #555;
 
 $circle-border-radius: 50%;
 
@@ -168,6 +168,12 @@ $font-weight-bold: 500;
   border: 3px groove $color-soft-red;
 }
 
+.f-panel-deleted {
+  border: 3px ridge $color-soft-orange;
+  opacity: 0.6;
+}
+
+
 .f-new-layout-ind {
   position: relative;
   top: 2px;
@@ -330,4 +336,18 @@ $font-weight-bold: 500;
   color: #0f76c2;
   font-size: smaller;
   white-space: nowrap;
+}
+
+.f-panel-drag-start {
+  border-width: 3px !important;
+  border-color: #0aa9dc !important;
+  border-style: ridge !important;
+  z-index: 999999;
+}
+
+.f-debug-info {
+  float: left;
+  position: absolute;
+  top: 1px;
+  left: 1px;
 }

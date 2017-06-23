@@ -19,7 +19,7 @@ Ext.define('Advertising.view.main.common.promo.PromoController', {
     onBeforeObjectMove: function (promo, xPos, yPos) {
         console.debug("Before move %o %d %d", promo, xPos, yPos);
     },
-    onDragEnter: function( e, id) {
+    onDragStart: function( e, id) {
         console.log("Dragging...");
     },
     onObjectFocus:function(promo) {
@@ -107,8 +107,10 @@ Ext.define('Advertising.view.main.common.promo.PromoController', {
         promo.setDebugInfo();
         promo.getViewModel().set('width', width);
         promo.getViewModel().set('height', height);
+        promo.getViewModel().set('newWidth', width);
+        promo.getViewModel().set('newHeight', height);
 
-        //promo.flagDirty();
+        promo.flagDirty();
 
     },
     onRenderObject: function (promo, eOpts) {

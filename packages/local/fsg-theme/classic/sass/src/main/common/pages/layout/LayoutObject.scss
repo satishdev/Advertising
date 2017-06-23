@@ -1,0 +1,12 @@
+@include extjs-panel-ui(
+        $ui: 'layoutobject',
+        $ui-header-background-color: blue,
+        $ui-border-color: blue,
+        $ui-promo-border-color: blue,
+        $ui-header-border-color: blue,
+        $ui-body-border-color: blue,
+        $ui-border-width: 5px,
+        $ui-border-radius: 5px,
+        $ui-header-color: blue,
+        $ui-panel-body-background-color: green
+);

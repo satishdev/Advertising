@@ -81,14 +81,14 @@ Ext.define('Advertising.Application', {
 
             },
             failure: function (transport) {
-                try {
-                    var response = Ext.decode(transport.responseText);
-
-                    Ext.Msg.alert('Error', response.Error);
-                } catch (err) {
-                    Ext.Msg.alert('Error', err);
-
-                }
+                Ext.Msg.buttonText.ok = 'Understood';
+                Ext.MessageBox.show({
+                    title: 'Connection failure',
+                    msg: 'Hmm...I can&apos;s talk to the server, check you have network access.<br/>Failing that try reloading the page<br/>If it still fails then contact your system admin',
+                    buttons: Ext.MessageBox.OK,
+                    icon: Ext.Msg.ERROR
+                });
+                Ext.Msg.buttonText.ok = 'Got it';
 
             }
         });
