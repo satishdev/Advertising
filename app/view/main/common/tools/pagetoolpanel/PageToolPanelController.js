@@ -93,7 +93,7 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelContro
 
     },
 
-    onMainPageTabChanged: function(panel, newCard, oldCard, eOpts) {
+    onMainPageTabChanged: function (panel, newCard, oldCard, eOpts) {
 
         var me = this;
         var marketControls = me.lookupReference('marketControls');
@@ -162,7 +162,7 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelContro
         for (var key in groups) {
             var group = {};
             reqGroups.push(group);
-            group['group'] =groups[key];
+            group['group'] = groups[key];
         }
         page['groups'] = reqGroups;
         console.log("Groups %o", groups);
@@ -216,6 +216,21 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelContro
             }
 
         });
+    },
+    onToggleEditMode: function (btn) {
+        Ext.toast("Turn edit mode " + (( btn.pressed) ? "on" : "off"));
+        // loop through all layouts
+        // @todo just do for displayed page
+        Ext.ComponentQuery.query("layoutobject").forEach(function (lo) {
+            if (!lo.excluded) {
+                lo.getViewModel().set("editMode", btn.pressed);
+            }
+
+        });
+    },
+    onGridSizeChangeComplete: function (slider, newValue, thumb, eOpts) {
+        this.fireEvent('updatepageGridSize', newValue);
+
     },
     onZoomChangeComplete: function (slider, newValue, thumb, eOpts) {
         this.fireEvent('updatePageZoomLevel', newValue);

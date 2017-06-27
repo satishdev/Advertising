@@ -8,10 +8,13 @@ Ext.define('Advertising.view.main.common.UserInfo', {
         this.userInfo = data;
     },
     getName: function() {
-        console.log("Returning user info %o", this);
+
+        console.log("Returning user name %o", this.userInfo.username);
         return this.userInfo.username;
     },
     getUserInfo: function(){
+        console.log("Returning user info %o",  this.userInfo);
+
         return this.userInfo;
     }
 });

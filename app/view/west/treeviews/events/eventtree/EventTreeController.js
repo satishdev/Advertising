@@ -4,7 +4,6 @@
 Ext.define('Advertising.view.west.treeviews.events.eventtree.EventTreeController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.eventtree',
-
     requires: [
         'Advertising.view.west.treeviews.events.eventtree.EventTreeMenu'
     ],

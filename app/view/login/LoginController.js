@@ -82,10 +82,8 @@ Ext.define('Advertising.view.login.LoginController', {
 
                 // Set the localStorage value to true
                 localStorage.setItem("AdvNGLoggedIn", true);
-
-                localStorage.setItem("AdvNGLoggedIn", true);
-                localStorage.setItem("AdvUser", 'adm1');
-                Advertising.view.main.common.UserInfo.setUserInfo({username: "adm1"});
+                localStorage.setItem("AdvUser",response.username);
+                Advertising.view.main.common.UserInfo.setUserInfo(response);
 
                 // Remove Login Window
                 me.getView().destroy();

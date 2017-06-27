@@ -59,12 +59,12 @@ Ext.define('Advertising.Application', {
         var loggedIn;
 
         // Check to see the current value of the localStorage key
-        loggedIn = localStorage.getItem("AdvNGLoggedIn");
-        if ( loggedIn ) {
-            localStorage.removeItem("AdvNGLoggedIn");
+        var user = localStorage.getItem("AdvUser");
+        if ( !loggedIn ) {
+           localStorage.removeItem("AdvNGLoggedIn");
         }
 
-        console.log("LOgged in %o", loggedIn);
+        console.log("LOgged in %o %o", loggedIn, user);
         // get bootstrap data
         Ext.Ajax.request({
 

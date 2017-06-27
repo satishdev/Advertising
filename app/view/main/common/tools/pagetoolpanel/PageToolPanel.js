@@ -120,14 +120,8 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
                     iconCls: 'fa fa-bar-chart',
                     text: 'Event Data',
                     handler: 'onShowEventData'
-                },
-                //{
-                //    tooltip: 'Stack data',
-                //    iconCls: 'fa  fa-stack-overflow',
-                //    text: 'Stack Data',
-                //    enableToggle: true,
-                //    handler: 'onToggleStacking'
-                //}
+                }
+
                 ]
         },
         {
@@ -170,6 +164,16 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
                     }
                 },
                 {
+                    tooltip: 'Show/hide Layout Edit Info',
+                    iconCls: 'fa fa-edit',
+                    handler: 'onToggleEditMode',
+
+                    bind: {
+                        pressed: '{editMode}',
+                        hidden: '{pagemode}'
+                    }
+                },
+                {
                     tooltip: 'Show/hide Images',
                     iconCls: 'fa fa-camera'
                 },
@@ -179,6 +183,24 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
                 }
             ]
 
+        },
+        {
+            bind: {
+                hidden: '{hidePageTools}',
+                value: '{gridSize}'
+            },
+            xtype: 'slider',
+            fieldLabel: 'Grid',
+            labelAlign: 'top',
+            //vertical: true,
+            width: 100,
+            increment:.25,
+            minValue:.25,
+            decimalPrecision: 2,
+            maxValue: 2,
+            listeners: {
+                changecomplete: 'onGridSizeChangeComplete'
+            }
         },
         {
             bind: {

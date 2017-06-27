@@ -14,7 +14,8 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
 
                 showPageMarket: 'onShowPageMarket',
                 hidePageMarket: 'onHidePageMarket',
-                updatePageZoomLevel: 'onUpdatePageZoomLevel'
+                updatePageZoomLevel: 'onUpdatePageZoomLevel',
+                updatepageGridSize: 'onUpdatePageGridSize'
             }
 
         }
@@ -84,6 +85,12 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
         pagePanel.setZoom(zoom);
     },
 
+    onUpdatePageGridSize: function (size) {
+        var pagePanel = Ext.ComponentQuery.query('pagelayouts')[0].getActiveTab();
+        console.log("Page panel %o", pagePanel);
+        // todo - handle this in the controller here and fire events to child objects
+        pagePanel.setGridSize(size);
+    },
     savePage: function (page) {
 
     },

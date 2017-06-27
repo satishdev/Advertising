@@ -17,6 +17,7 @@ Ext.define('Advertising.view.main.Main', {
         'Advertising.view.main.MainController',
         'Advertising.view.main.MainModel',
         'Advertising.view.main.changecontrol.ChangeControl',
+        'Advertising.view.main.common.UserInfo',
         'Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel',
         'Advertising.view.main.copy.copypanel.CopyPanel',
         'Advertising.view.main.layouts.pagelayouts.PageLayouts',
@@ -61,19 +62,10 @@ Ext.define('Advertising.view.main.Main', {
                 },
                 xtype: 'button',
                 handler: function() {
-                    Ext.Msg.prompt(
-                        'test',
-                        'Enter some value',
-                        function (buttonId, value) {
-                            console.log(value);
-                        },
-                        null,
-                        false,
-                        null,
-                        {
-                            autoCapitalize: true,
-                            placeHolder: 'Value please...'
-                        }
+                    Ext.Msg.alert(
+                        'User Info',
+                        Ext.encode(Advertising.view.main.common.UserInfo.getUserInfo())
+
                     );
                 }
             },

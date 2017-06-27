@@ -18,6 +18,7 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelModel'
     },
 
     data: {
+        editMode: true,
         showLayouts: true,
         showGrids: true,
         showTools: true,
@@ -26,6 +27,7 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelModel'
         showToolSplash: true,
         showMetricsTools: false,
         zoom: 100,
+        gridSize:1,
         mode: 'none',
         stacked: false,
         splash: '<b>The tools will magically appear depending on the selections made in the application.</b>'

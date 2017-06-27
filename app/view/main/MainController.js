@@ -161,6 +161,9 @@ Ext.define('Advertising.view.main.MainController', {
     },
     sendLayoutSaveRequest: function(layout,jsonData) {
         console.log("Sending json %o", jsonData);
+        var me = this;
+
+        layout.mask('Saving data...');
         Ext.Ajax.request({
             url: Advertising.util.GlobalValues.serviceURL + "/layout/saveLayout",
             method: 'POST',
@@ -173,17 +176,30 @@ Ext.define('Advertising.view.main.MainController', {
             success: function (transport) {
                 var response = Ext.decode(transport.responseText);
                 console.log("Got response %o", response);
-                layout.items.each(function (lo) {
+                Ext.ComponentQuery.query('layoutobject', layout).forEach(function(lo) {
+                //layout.items.each(function (lo) {
                     if (lo.dirty == true) {
                         console.log("Checking dirty layout %o", lo);
                         lo.flagClean();
                     }
+                    for ( var  i = 0 ; i < response.data.length; i++ ) {
+                        console.log("Checking item %o %o %o", response.data[i], lo, lo.getViewModel());
+
+                        if ( response.data[i].hasOwnProperty('objid') && response.data[i].objid == lo.getViewModel().get('objid')) {
+                            console.log("Found matching item");
+                            if ( response.data[i].hasOwnProperty('status') && response.data[i].status == 'deleted') {
+                                lo.destroy();
+                            }
+                        }
+                    }
                 });
+                layout.unmask();
             },
             failure: function (transport) {
                 var response = Ext.decode(transport.responseText);
 
                 Ext.Msg.alert('Error', response.message);
+                layout.unmask();
 
 
             }

@@ -50,7 +50,8 @@ Ext.define('Advertising.view.main.common.pages.layout.SaveNewLayoutWindow', {
             title: 'Save values',
             defaults: {
                 xtype: 'checkboxfield',
-                labelAlign: 'right'
+                labelAlign: 'right',
+                checked: true
             },
             items: [
                 {

@@ -39,6 +39,74 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
         }
     },
     colorMap: {},
+    onDragEnd: function (a, b, c) {
+        console.log("Drag end");
+        var ghost = a.proxy;
+
+        ghost.removeCls('f-panel-drag-start');
+        var comp = a.comp;
+        console.log("A", a);
+
+
+        var parent = comp.up('layout');
+        var gridView = parent.down('panel');
+        var container = parent.up('pagelayouts');
+        var layoutViewModel = a.comp.up('layout').getViewModel();
+        var scale = layoutViewModel.get('scale');
+        var zoom = Ext.ComponentQuery.query("pagetoolpanel")[0].getViewModel().get('zoom');
+        var gridSize = Ext.ComponentQuery.query("pagetoolpanel")[0].getViewModel().get('gridSize');
+
+
+        console.log("Offset %o Scale %f Grid %f Zoom %f", container.getPosition(), scale, gridSize, zoom);
+        var oneInch = Math.round(((96 * scale ) * ( zoom / 100)));
+        var oneInchGrid = Math.round(oneInch * gridSize);
+        console.log("Grid lines every %d pixels", oneInchGrid);
+
+        var dragX1 = a.proxy.pageX;
+        var dragY1 = a.proxy.pageY;
+        var dragX2 = dragX1 + comp.width;
+        var dragY2 = dragY1 + comp.height;
+        console.log("Getting closest grid intersection...%d %d", dragX1 - gridView.getX(), dragY1 - gridView.getY());
+        var snapX = Math.round(((dragX1 - gridView.getX()) / oneInchGrid ));
+        var snapY = Math.round(((dragY1 - gridView.getY()) / oneInchGrid ));
+
+        console.log("Snap X %d", snapX);
+        console.log("Snap Y %d", snapY);
+        comp.setPosition(snapX * oneInchGrid , snapY * oneInchGrid, true);
+
+        Ext.ComponentQuery.query('layoutobject', container).forEach(function (subp) {
+            //console.log("Xtype %s", subp.xtype);
+            //console.log("Item 1 %s Item 2 %s", comp.id, subp.id);
+            if (subp.id != comp.id) {
+                //console.log("Checking other panel %o", subp);
+                // see if panels overlap
+                var pos = subp.getPosition();
+                var otherX1 = pos[0];
+                var otherY1 = pos[1];
+                var otherX2 = otherX1 + subp.width;
+                var otherY2 = otherY1 + subp.height;
+                //console.log("Test..", testX, testY, testX1, testY1);
+                //console.log("Source..x1 %d y1 %d x2 %d y2 %d", dragX1, dragY1, dragX2, dragY2);
+                //console.log("Other..x1 %d y1 %d x2 %d y2 %d", otherX1, otherY1, otherX2, otherY2);
+
+                if (dragY1 <= otherY2 && dragY2 >= otherY1 && dragX2 >= otherX1 && dragX1 <= otherX2) {
+                    if (dragY1 < otherY2 || dragX1 < otherX2) {
+                        // move down or over depending on which is closer
+
+                        comp.setY(otherY2 + 1);
+                        subp.getEl().setStyle('border-color', 'blue');
+
+                    }
+
+                } else {
+                    subp.getEl().setStyle('border-color', 'blue');
+
+                }
+            }
+
+        });
+
+    },
     onBlurSection: function (combo, blur, eOpts) {
         // see if this should be a new addition
         // lookup the selected store record
@@ -165,7 +233,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
         me.setRecordValue(combo);
         var extVal = record.get('extendedVal').split(',');
         // change the theme code and ad position
-        var themeCombo =  lo.down('[name="theme"]');
+        var themeCombo = lo.down('[name="theme"]');
 
         themeCombo.setValue(extVal[2]);
         lo.down('[name="adPosition"]').setValue(extVal[1]);
@@ -235,18 +303,78 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
         me.onAdjustObjectSizeOrLocation(pageObj);
 
     },
-    onFillLeft: function (tool, evnt, panel) {
+    onFill: function (type, tool, event, panel) {
+        var me = this;
         console.log("Clicked tool ", tool, panel);
         var lo = panel.up('layoutobject');
-        var layout = lo.up('layout');
+        var layout = lo.up('layout').down('panel');
         var curPos = lo.getPosition();
         var layoutPos = layout.getPosition();
         var curWidth = lo.width;
         var curHeight = lo.height;
-        console.log("Cur position %o", curPos);
-        lo.setPosition(0, curPos[1]);
-        lo.setWidth(curWidth * 2);
+        var loX2 = layoutPos[0] + lo.width;
+        var loY2 = layoutPos[1] + lo.height;
 
+        var myX1 = curPos[0];
+        var myY1 = curPos[1];
+        var myX2 = curPos[0] + lo.width;
+        var myY2 = curPos[1] + lo.height;
+        var scrollY = layout.getScrollY();
+        var scrollX = layout.getScrollX();
+
+        console.log("Layout bounds %d %d %d %d", layoutPos[0], layoutPos[1], layoutPos[0] + layout.width, layoutPos[1] + layout.height);
+        var container = layout.up('pagelayouts');
+        var maxLeft = layoutPos[0];
+        Ext.ComponentQuery.query('layoutobject', container).forEach(function (subp) {
+            console.log("Item 1 %s Item 2 %s", lo.id, subp.id);
+            if (subp.id != lo.id) {
+                console.log("Left %d", subp.x);
+                var subX1 = subp.x, subX2 = subX1 + subp.width, subY1 = subp.y, subY2 = subY1 + subp.height;
+                if (myY1 <= subY1 && myY1 >= subY1) {
+                    console.log("This will hit!");
+                    maxLeft = ( subX2 > maxLeft) ? subX2 : maxLeft;
+                }
+            }
+        });
+
+        if (type == 'left') {
+            lo.setX(layoutPos[0]);
+            var newWidth = ( myX2 - layoutPos[0] );
+            lo.setWidth(newWidth);
+        }
+        if (type == 'right') {
+            var newWidth = (  layoutPos[0] + layout.width - myX1 );
+            lo.setWidth(newWidth);
+        }
+        if (type == 'top') {
+            lo.setY(layoutPos[1] - scrollY);
+            var newHeight = (  scrollY + myY2 - layoutPos[1] );
+            lo.setHeight(newHeight);
+        }
+        if (type == 'bottom') {
+            var newHeight = (  (layoutPos[1] + layout.height ) - myY1 );
+            console.log("Fill to bottom %d %d [%d]", layout.height, myY1, newHeight);
+
+            lo.setHeight(newHeight);
+        }
+
+        //    me.onAdjustObjectSizeOrLocation(lo);
+    },
+    onFillUp: function (tool, evnt, panel) {
+        var me = this;
+        me.onFill('top', tool, evnt, panel);
+    },
+    onFillDown: function (tool, evnt, panel) {
+        var me = this;
+        me.onFill('bottom', tool, evnt, panel);
+    },
+    onFillLeft: function (tool, evnt, panel) {
+        var me = this;
+        me.onFill('left', tool, evnt, panel);
+    },
+    onFillRight: function (tool, evnt, panel) {
+        var me = this;
+        me.onFill('right', tool, evnt, panel);
     },
     onRenderObject: function (lo, eOpts) {
         console.log("Layout object rendered");

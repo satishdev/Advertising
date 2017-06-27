@@ -5,8 +5,9 @@ Ext.define('Advertising.view.main.common.pages.emptypage.EmptyPage', {
     extend: 'Ext.panel.Panel',
 
     requires: [
+        'Advertising.view.main.common.pages.emptypage.EmptyPageController',
         'Advertising.view.main.common.pages.emptypage.EmptyPageModel',
-		'Advertising.view.main.common.pages.emptypage.EmptyPageController'
+        'Ext.layout.container.Fit'
     ],
     inchWidth: 0,
     inchHeight: 0,
