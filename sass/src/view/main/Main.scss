@@ -153,7 +153,8 @@ $font-weight-bold: 500;
 }
 
 .f-layout-object-selected .x-panel-body {
-  background-color: #2e7d32 !important;
+  font-style: italic;
+
 }
 
 .f-status-ok {
@@ -350,4 +351,10 @@ $font-weight-bold: 500;
   position: absolute;
   top: 1px;
   left: 1px;
+}
+
+.x-panel-ghost {
+  border-width: 2px;
+  border-color: #f57c00;
+  border-style: solid;
 }

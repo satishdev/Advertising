@@ -19,8 +19,8 @@ Ext.define('Advertising.view.main.common.promo.PromoController', {
     onBeforeObjectMove: function (promo, xPos, yPos) {
         console.debug("Before move %o %d %d", promo, xPos, yPos);
     },
-    onDragStart: function( e, id) {
-        console.log("Dragging...");
+    onDragStart: function( e, info, evt, eOpts) {
+        console.log("Dragging..." , e, info, evt. eOpts);
     },
     onObjectFocus:function(promo) {
       console.log("Focus!!");
@@ -101,16 +101,45 @@ Ext.define('Advertising.view.main.common.promo.PromoController', {
         promo.getViewModel().set("origY", promo.y);
 
     },
-    onObjectResize: function (promo, width, height) {
+    onObjectMove: function (pageObj, xPos, yPos, a, b, c) {
+        var me =this;
+        console.debug("Layout object was moved %o %d x %d %o %o %o", pageObj, xPos, yPos);
+        me.onAdjustObjectSizeOrLocation(pageObj);
 
-        console.debug("Object was resized %o %d x %d", promo, width, height);
-        promo.setDebugInfo();
-        promo.getViewModel().set('width', width);
-        promo.getViewModel().set('height', height);
-        promo.getViewModel().set('newWidth', width);
-        promo.getViewModel().set('newHeight', height);
 
-        promo.flagDirty();
+    },
+    onAdjustObjectSizeOrLocation: function(pageObj) {
+        var layoutViewModel = pageObj.up('layout').getViewModel();
+        var scale = layoutViewModel.get('scale');
+        var position = pageObj.getPosition();
+        var zoom =  Ext.ComponentQuery.query("pagetoolpanel")[0].getViewModel().get('zoom');
+        var parentPosition = pageObj.up('panel').getPosition();
+        var realX = position[0] - parentPosition[0];
+        var realY = position[1] - parentPosition[1];
+        pageObj.getViewModel().set("xPos", realX );
+        pageObj.getViewModel().set("yPos", realY );
+        pageObj.getViewModel().set("newXInchPos", (((realX / 96) * (100/zoom)) / scale) );
+        pageObj.getViewModel().set("newYInchPos", (((realY / 96) * (100/zoom)) / scale) );
+        pageObj.getViewModel().set("undoDisabled", false);
+        pageObj.getViewModel().set("newWidth", pageObj.width * (100/zoom));
+        pageObj.getViewModel().set("newHeight", pageObj.height * (100/zoom));
+        pageObj.getViewModel().set("newInchWidth", (((pageObj.width / 96) * (100/zoom)) / scale));
+        pageObj.getViewModel().set("newInchHeight", (((pageObj.height / 96) * (100/zoom)) / scale));
+        pageObj.setDebugInfo();
+        pageObj.flagDirty();
+        console.log("Page object info %o", pageObj.getViewModel().data);
+
+    },
+    onZoomChange: function (pageObj) {
+        var me=this;
+        console.debug("Layout object was resized due to zoom change %o %d x %d", pageObj);
+        me.onAdjustObjectSizeOrLocation(pageObj);
+
+    },
+    onObjectResize: function (pageObj, width, height) {
+        var me=this;
+        console.debug("Layout object was resized %o %d x %d", pageObj, width, height);
+        me.onAdjustObjectSizeOrLocation(pageObj);
 
     },
     onRenderObject: function (promo, eOpts) {

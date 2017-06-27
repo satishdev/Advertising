@@ -105,6 +105,8 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutModel', {
     data: {
         scale: 1,
         editMode: true,
+        objid:-1,
+        groupID:-1,
         layoutID: -1,
         section: undefined,
         isNew: false,

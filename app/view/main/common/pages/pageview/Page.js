@@ -44,6 +44,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.Page', {
         childPanel.items.each(function (item) {
             if (item.xtype == 'layoutobject' || item.xtype == 'promo') {
                 console.log("Updating item size and location %o", item);
+             //   me.fireEvent('onZoomChange', item);
                 item.setZoom(zoom);
             }
         });

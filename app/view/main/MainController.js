@@ -12,6 +12,7 @@ Ext.define('Advertising.view.main.MainController', {
 
     requires: [
         'Advertising.view.main.common.UserInfo',
+        'Advertising.view.main.common.pages.layout.SaveNewLayoutWindow',
         'Ext.util.TaskManager'
     ],
 
@@ -122,30 +123,35 @@ Ext.define('Advertising.view.main.MainController', {
 
 
         if (isNew) {
-            Ext.Msg.prompt(
-                'New layout',
-                'Enter new layout name',
-                function (buttonId, value) {
-                    if (buttonId == 'ok'){
-                        // process text value and close...
-                        jsonData['newLayout'] = value;
-                        jsonData['isNew'] = true;
-                        me.sendSaveRequest(jsonData);
-
-                    } else {
-                        return false;
-                    }
-                },
-                null,
-                false,
-                null,
+            var saveWindow = Ext.create('Advertising.view.main.common.pages.layout.SaveNewLayoutWindow',
                 {
-                    autoCapitalize: true,
-                    placeHolder: 'Value please...'
-                }
-            );
+                    animateTarget: layout.getEl()
+                });
+            saveWindow.show();
+            //Ext.Msg.prompt(
+            //    'New layout',
+            //    'Enter new layout name',
+            //    function (buttonId, value) {
+            //        if (buttonId == 'ok'){
+            //            // process text value and close...
+            //            jsonData['newLayout'] = value;
+            //            jsonData['isNew'] = true;
+            //            me.sendLayoutSaveRequest(layout,jsonData);
+            //
+            //        } else {
+            //            return false;
+            //        }
+            //    },
+            //    null,
+            //    false,
+            //    null,
+            //    {
+            //        autoCapitalize: true,
+            //        placeHolder: 'Value please...'
+            //    }
+            //);
         } else {
-            me.sendSaveRequest(jsonData);
+            me.sendLayoutSaveRequest(layout,jsonData);
 
         }
 
@@ -153,7 +159,7 @@ Ext.define('Advertising.view.main.MainController', {
 
 
     },
-    sendSaveRequest: function(jsonData) {
+    sendLayoutSaveRequest: function(layout,jsonData) {
         console.log("Sending json %o", jsonData);
         Ext.Ajax.request({
             url: Advertising.util.GlobalValues.serviceURL + "/layout/saveLayout",
@@ -183,21 +189,52 @@ Ext.define('Advertising.view.main.MainController', {
             }
         });
     },
-    onTurnGridsOff: function () {
+    toggleGridSetting: function () {
         var me = this;
         var layouts = me.lookupReference('pagelayouts');
         var activeTab = layouts.getActiveTab();
         Ext.toast("Active " + activeTab.title);
         console.log("Active %o", activeTab);
-        var svg = activeTab.getEl().query('rect');
+        // var svg = activeTab.getEl().query('rect');
+        var svg = activeTab.getEl().query('svg')[0];
+
         //var svg = Ext.dom.Query.select('rect');
         console.log("SVG %o", svg);
-        if (svg[0]) {
+        if (svg) {
             console.log("Found svg item...updating it");
-            svg[0].setAttribute("stroke", me.getRandomColor());
-            //   svg[0].setAttribute("stroke", "#FFF");
+            // svg[0].setAttribute("stroke", me.getRandomColor());
+            var pattern = svg.getElementsByTagName("pattern")[0];
+            var rect = pattern.getElementsByTagName("rect")[0];
+            var path = pattern.getElementsByTagName("path")[0];
+            var curVal = rect.getAttribute("stroke");
+            var newVal = ( curVal == '#FFF') ? '#000' : '#FFF';
+            rect.setAttribute("stroke",newVal);
+            path.setAttribute("stroke", newVal);
 
         }
+    },
+    onTurnGridsOff: function () {
+        var me = this;
+        me.toggleGridSetting();
+       // var layouts = me.lookupReference('pagelayouts');
+       // var activeTab = layouts.getActiveTab();
+       // Ext.toast("Active " + activeTab.title);
+       // console.log("Active %o", activeTab);
+       //// var svg = activeTab.getEl().query('rect');
+       // var svg = activeTab.getEl().query('svg')[0];
+       //
+       // //var svg = Ext.dom.Query.select('rect');
+       // console.log("SVG %o", svg);
+       // if (svg) {
+       //     console.log("Found svg item...updating it");
+       //    // svg[0].setAttribute("stroke", me.getRandomColor());
+       //     var pattern = svg.getElementsByTagName("pattern")[0];
+       //     var rect = pattern.getElementsByTagName("rect")[0];
+       //     var path = pattern.getElementsByTagName("path")[0];
+       //     rect.setAttribute("stroke", "#FFF");
+       //     path.setAttribute("stroke", "#FFF");
+       //
+       // }
     },
     getRandomColor: function () {
         var letters = '0123456789ABCDEF';

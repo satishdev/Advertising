@@ -47,6 +47,24 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
         me.getViewModel().set('origHeight', me.height);
 
     },
+    tools: [
+        {
+            type: 'left',
+            toolTip: 'Fill left',
+            handler: 'onFillLeft'
+        },
+        {
+            type: 'up',
+            toolTip: 'Fill up'
+        },
+        {
+            type: 'down',
+            toolTip: 'Fill down'
+        },{
+            type: 'right',
+            toolTip: 'Fill right'
+        }
+    ],
     loadstores: true,
     isNew: false,
     draggable: true,
@@ -65,7 +83,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
                 var me = this;
                 var panel = Ext.ComponentQuery.query('#' + me.id)[0];
                 // panel.removeCls('f-layout-object-clean');
-                //   panel.addCls('f-layout-object-selected');
+                   panel.addCls('f-layout-object-selected');
                 var field = panel.down('checkboxfield');
                 //var selected = field.selected;
                 //field.selected = !selected;
@@ -74,13 +92,22 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
             // docked elements
             element: 'el'
         },
-        dragstart: function(drag, e, eOpts) {
-            console.log("Drag start %o", drag.comp);
-            drag.comp.addCls('f-panel-drag-start');
+        dragstart: function(drag, info,e, eOpts) {
+            console.log("Drag start ", drag, info, e, eOpts);
+            var ghost = drag.proxy;
+            console.log("1 Ghost width: %d", ghost.width);
+            // set the ghost proxy size
+            ghost.getEl().setStyle('width',drag.comp.width + "px");
+            ghost.getEl().setStyle('height',drag.comp.height + "px");
+
+            ghost.addCls('f-panel-drag-start');
+
         },
         dragend: function(drag, e, eOpts) {
             console.log("Drag end");
-            drag.comp.removeCls('f-panel-drag-start');
+            var ghost = drag.proxy;
+
+            ghost.removeCls('f-panel-drag-start');
 
         }
     }

@@ -80,6 +80,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
     onUpdatePageZoomLevel: function (zoom) {
         var pagePanel = Ext.ComponentQuery.query('pagelayouts')[0].getActiveTab();
         console.log("Page panel %o", pagePanel);
+        // todo - handle this in the controller here and fire events to child objects
         pagePanel.setZoom(zoom);
     },
 
@@ -315,6 +316,8 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
                                 }
                             }
 
+                                layoutObject.getViewModel().set('objid',rec.data['objid']);
+
 
                             for (var prop in rec.data) {
 
@@ -364,16 +367,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
             }
         );
     },
-    /**
-     * After the layout if rendered make sure nothing is flagged as dirty
-     * @param p
-     */
-    onAfterRenderLayout: function(p) {
-          console.log("Layout render complete");
-        //Ext.ComponentQuery.query('layoutobject',p).forEach(function(lo) {
-        //
-        //});
-    },
+
     /**
      * When a layout is requested we'll call this renderer to then populate the data for the layout
      * This renders the inner panel and then the renderer for that paenl in-turn gets the items for the layout

@@ -264,7 +264,7 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
         //},
         {
             iconCls: 'fa fa-th',
-            text: 'Grid view',
+            text: 'Sheet view',
             //bind: {
             //    hidden: '{!layoutmode}'
             //},

@@ -123,7 +123,7 @@ Ext.define('Advertising.view.main.common.pages.layoutgridwindow.LayoutGridWindow
                         typeAhead: true,
                         triggerAction: 'all',
                         displayField: 'name',
-                        valueField: 'name',
+                        valueField: 'id',
                         bind: {
                             store: '{owners}'
                         }

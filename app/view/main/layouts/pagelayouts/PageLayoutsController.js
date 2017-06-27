@@ -6,6 +6,7 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
     alias: 'controller.pagelayouts',
 
     requires: [
+        'Advertising.view.main.common.pages.emptypage.EmptyPage',
         'Advertising.view.main.common.pages.layout.Layout',
         'Advertising.view.main.common.pages.pageview.Page',
         'Ext.layout.container.Absolute'
@@ -222,6 +223,7 @@ Ext.define('Advertising.view.main.layouts.pagelayouts.PageLayoutsController', {
         var heightScale = height / origHeight;
         console.log("New scale %f x %f", widthScale, heightScale);
         Ext.ComponentQuery.query('page').forEach(function (page) {
+
             console.log("Resize page %o", page);
             page.setWidth(page.width * widthScale);
             page.setHeight(page.height * heightScale);
