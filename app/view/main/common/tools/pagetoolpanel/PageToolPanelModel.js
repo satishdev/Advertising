@@ -23,6 +23,7 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelModel'
         showGrids: true,
         showTools: true,
         showOffers: true,
+        snapToGrid: true,
         showPageTools: true,
         showToolSplash: true,
         showMetricsTools: false,

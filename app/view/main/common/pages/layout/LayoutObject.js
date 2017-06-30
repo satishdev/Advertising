@@ -82,6 +82,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
     excluded: false,
     cls: 'f-layout-object f-layout-object-clean',
     listeners: {
+        resize: 'onLayoutObjectResize',
         afterlayout: 'onAfterLayout',
         dblclick: {
             fn: function () {
@@ -111,21 +112,21 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
         },
         drag: function (a, b, c) {
             var comp = a.comp;
-            console.log("A", a);
+            //console.log("A", a);
 
 
             var parent = comp.up('layout');
             var container = parent.up('pagelayouts');
-            console.log("Offset %o", container.getPosition());
+            //console.log("Offset %o", container.getPosition());
             var dragX1 = a.proxy.pageX;
             var dragY1 = a.proxy.pageY;
             var dragX2 = dragX1 + comp.width;
             var dragY2 = dragY1 + comp.height;
             Ext.ComponentQuery.query('layoutobject', container).forEach(function (subp) {
-                console.log("Xtype %s", subp.xtype);
-                console.log("Item 1 %s Item 2 %s", comp.id, subp.id);
+                //console.log("Xtype %s", subp.xtype);
+                //console.log("Item 1 %s Item 2 %s", comp.id, subp.id);
                 if (subp.id != comp.id) {
-                    console.log("Checking other panel %o", subp);
+                    //console.log("Checking other panel %o", subp);
                     // see if panels overlap
                     var pos = subp.getPosition();
                     var otherX1 = pos[0];
@@ -133,8 +134,8 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
                     var otherX2 = otherX1 + subp.width;
                     var otherY2 = otherY1 + subp.height;
                     //console.log("Test..", testX, testY, testX1, testY1);
-                    console.log("Source..x1 %d y1 %d x2 %d y2 %d", dragX1, dragY1, dragX2, dragY2);
-                    console.log("Other..x1 %d y1 %d x2 %d y2 %d", otherX1, otherY1, otherX2, otherY2);
+                    //console.log("Source..x1 %d y1 %d x2 %d y2 %d", dragX1, dragY1, dragX2, dragY2);
+                    //console.log("Other..x1 %d y1 %d x2 %d y2 %d", otherX1, otherY1, otherX2, otherY2);
 
                     if (dragY1 <= otherY2 && dragY2 >= otherY1 && dragX2 >= otherX1 && dragX1 <= otherX2) {
                         subp.getEl().setStyle('border-color', 'red');
@@ -209,7 +210,14 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
         ]
     },
     items: [
+        {
 
+            bind: {
+                html: '<div class="f-transparent">Header {sectionSelection}</div>',
+                hidden: '{editMode}'
+            }
+
+        },
         {
 
             xtype: 'tagfield',

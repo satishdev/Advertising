@@ -15,7 +15,8 @@ Ext.define('Advertising.view.main.layouts.layoutcreator.LayoutCreator', {
         'Ext.form.field.TextArea',
         'Ext.layout.container.Form',
         'Ext.layout.container.HBox',
-        'Ext.layout.container.VBox'
+        'Ext.layout.container.VBox',
+        'Ext.slider.Single'
     ],
     width: 500,
     title: 'Create new layout',
@@ -67,12 +68,27 @@ Ext.define('Advertising.view.main.layouts.layoutcreator.LayoutCreator', {
             },
             {
                 xtype: 'combobox',
-                fieldLabel: 'Default promo type',
                 displayField: 'name',
                 valueField: 'name',
+
                 bind: {
-                    store: '{promotypes}'
+                    value: '{promoTypeValue}',
+                    store: '{promoTypes}',
+                    fieldLabel: '{promoType}'
                 }
+            },
+            {
+                bind: {
+                    value: '{gridSize}'
+                },
+                xtype: 'slider',
+                fieldLabel: 'Grid',
+                //vertical: true,
+                width: 80,
+                increment:.25,
+                minValue:.25,
+                decimalPrecision: 2,
+                maxValue: 2
             },
             {
                 xtype: 'fieldcontainer',

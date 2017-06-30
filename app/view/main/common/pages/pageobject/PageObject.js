@@ -64,28 +64,24 @@ Ext.define('Advertising.view.main.common.pages.pageobject.PageObject', {
         me.zoom = zoom;
         me.prevX = me.getX();
         me.prevY = me.getY();
+        var model = me.getViewModel();
         me.prevWidth = me.getWidth();
         me.prevHeight = me.getHeight();
         var layoutViewModel = me.up('layout').getViewModel();
         var scale = layoutViewModel.get('scale');
-
-        console.log("Object model %o - scale %f", model, scale);
-        console.log("Orig size %f x %f" , me.origWidth, me.origHeight);
-        console.log("Orig pos %f x %f" , me.origXPos, me.origYPos);
-
-        var newXPos = Math.round((me.origXPos * 96 )* (zoom /100) * scale) + parentPanel.getX() ;
-        var newYPos = Math.round((me.origYPos * 96 )* (zoom /100) * scale)+ parentPanel.getY();
+        var oneInch = Math.round(((96 * scale ) * ( zoom / 100)));
+        var gridSize = Ext.ComponentQuery.query("pagetoolpanel")[0].getViewModel().get('gridSize');
+        var oneInchGrid = Math.round(oneInch * gridSize);
+        console.log("MODEL FOR LAYOUT OBJECT %o", model.data);
+        var newXPos = Math.round((model.get('xPos') * 96 )* (zoom /100) * scale) + parentPanel.getX() ;
+        var newYPos = Math.round((model.get('yPox') * 96 )* (zoom /100) * scale)+ parentPanel.getY();
         console.log("New pos %f x %f" , newXPos, newYPos);
-        me.setX(newXPos);
-        me.setY(newYPos);
+        me.setPosition(newXPos, newYPos,true);
         var newWidth = Math.round(((model.get('inchWidth') * 96)) *  (zoom /100) * scale) ;
         var newHeight = Math.round(((model.get('inchHeight') * 96)) *  (zoom /100) * scale) ;
 
-        console.log("Setting width ",newWidth );
-        me.setWidth(newWidth);
-        me.setHeight(newHeight);
-
-
+        console.log("Setting width %f height %f ",newWidth , newHeight);
+        me.setSize(newWidth, newHeight);
 
     },
     flagDeleted: function () {

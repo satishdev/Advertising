@@ -138,7 +138,7 @@ Ext.define('Advertising.view.main.common.promo.PromoController', {
     },
     onObjectResize: function (pageObj, width, height) {
         var me=this;
-        console.debug("Layout object was resized %o %d x %d", pageObj, width, height);
+        console.debug("Offer object was resized %o %d x %d", pageObj, width, height);
         me.onAdjustObjectSizeOrLocation(pageObj);
 
     },

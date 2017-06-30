@@ -11392,3 +11392,9 @@ a.x-btn:active {
     border-color: #f57c00;
     border-style: solid;
 }
+/* C:/Users/Lee/Documents/FSG/Advertising/sass/src/view/main/Main.scss:362 */
+.f-transparent {
+    background-color: cornflowerblue;
+    padding: 2px;
+    font-size: larger;
+}

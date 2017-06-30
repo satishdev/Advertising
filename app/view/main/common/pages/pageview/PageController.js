@@ -277,8 +277,8 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
                             var layoutObject = Ext.create('Advertising.view.main.common.pages.layout.LayoutObject', {
                                 width: Math.round(data.width * 96 * scale),
                                 height: Math.round(data.height * 96 * scale),
-                                origXPos: data.xPos,
-                                origYPos: data.yPos,
+                                origX: data.xPos,
+                                origY: data.yPos,
                                 origWidth: data.width,
                                 origHeight: data.height,
                                 cellNumber: data.cellNumber,

@@ -28,6 +28,66 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
     init: function () {
 
     },
+    onLayoutObjectResize: function (pageObj, width, height) {
+        var me=this;
+        console.debug("Layout object was resized %o %d x %d", pageObj, width, height);
+        me.onAdjustObjectSizeOrLocation(pageObj);
+     //   me.performSnap(pageObj,pageObj.pageX, pageObj.pageY );
+
+    },
+    performSnap:function(comp,x,y) {
+        var parent = comp.up('layout');
+        var gridView = parent.down('panel');
+        var container = parent.up('pagelayouts');
+        var layoutViewModel = comp.up('layout').getViewModel();
+        var scale = layoutViewModel.get('scale');
+        var zoom = Ext.ComponentQuery.query("pagetoolpanel")[0].getViewModel().get('zoom');
+        var gridSize = Ext.ComponentQuery.query("pagetoolpanel")[0].getViewModel().get('gridSize');
+        var snapToGrid = Ext.ComponentQuery.query("pagetoolpanel")[0].getViewModel().get('snapToGrid');
+
+        // snap items to the grid
+        if (snapToGrid) {
+
+
+            console.log("Offset %o Scale %f Grid %f Zoom %f", container.getPosition(), scale, gridSize, zoom);
+            var oneInch = Math.round(((96 * scale ) * ( zoom / 100)));
+            var oneInchGrid = Math.round(oneInch * gridSize);
+            console.log("Grid lines every %d pixels", oneInchGrid);
+
+            var dragX1 = x;
+            var dragY1 = y;
+            var dragX2 = dragX1 + comp.width;
+            var dragY2 = dragY1 + comp.height;
+            console.log("Getting closest grid intersection...%d %d", dragX1 - gridView.getX(), dragY1 - gridView.getY());
+            var compCols = Math.round( oneInchGrid / comp.width );
+            var compRows = Math.round( oneInchGrid / comp.height ) ;
+            console.log("Comp rows %d", compRows);
+            console.log("Comp cols %d", compCols);
+            var snapX = Math.round(((dragX1 - gridView.getX()) / oneInchGrid ));
+            var snapY = Math.round(((dragY1 - gridView.getY()) / oneInchGrid ));
+
+            console.log("Snap X %d", snapX);
+            console.log("Snap Y %d", snapY);
+            var snapX2 = Math.round(((dragX2 - gridView.getX()) / oneInchGrid ));
+            var snapY2 = Math.round(((dragY2 - gridView.getY()) / oneInchGrid ));
+            var rows = Math.round(gridView.height / oneInchGrid);
+            var columns = Math.round(gridView.width / oneInchGrid);
+            var maxCols = ( columns - snapX);
+            var maxRows = ( rows - snapY);
+            console.log("Rows %d Columns %d - max rows %d max cols %d", rows, columns, maxRows, maxCols);
+            snapX2 = ( snapX2 > maxCols) ? maxCols : snapX2;
+            snapY2 = ( snapY2 > maxRows) ? maxRows : snapY2;
+
+            console.log("Snap X2 %d", snapX2);
+            console.log("Snap Y2 %d", snapY2);
+            // see if component is too large for panel
+
+            comp.setSize(snapX2  * oneInchGrid, snapY2 * oneInchGrid).setPosition(snapX * oneInchGrid, snapY * oneInchGrid, {
+                easing: 'linear',
+                duration: 300
+            });
+        }
+    },
     onAfterLayout: function (lo) {
         console.log("onAfterlayout(%o) - Layout complete %o", lo, lo.up('layout'));
         var parent = lo.up('layout');
@@ -41,70 +101,59 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
     colorMap: {},
     onDragEnd: function (a, b, c) {
         console.log("Drag end");
-        var ghost = a.proxy;
+        var ghost = a.proxy, me=this;
 
         ghost.removeCls('f-panel-drag-start');
         var comp = a.comp;
         console.log("A", a);
 
+        me.performSnap(comp,a.proxy.pageX, a.proxy.pageY );
+        comp.getViewModel().set('origX', a.proxy.pageX);
+        comp.getViewModel().set('origY', a.proxy.pageY);
 
-        var parent = comp.up('layout');
-        var gridView = parent.down('panel');
-        var container = parent.up('pagelayouts');
-        var layoutViewModel = a.comp.up('layout').getViewModel();
-        var scale = layoutViewModel.get('scale');
-        var zoom = Ext.ComponentQuery.query("pagetoolpanel")[0].getViewModel().get('zoom');
-        var gridSize = Ext.ComponentQuery.query("pagetoolpanel")[0].getViewModel().get('gridSize');
+        //var parent = comp.up('layout');
+        //var gridView = parent.down('panel');
+        //var container = parent.up('pagelayouts');
+        //var layoutViewModel = a.comp.up('layout').getViewModel();
+        //var scale = layoutViewModel.get('scale');
+        //var zoom = Ext.ComponentQuery.query("pagetoolpanel")[0].getViewModel().get('zoom');
+        //var gridSize = Ext.ComponentQuery.query("pagetoolpanel")[0].getViewModel().get('gridSize');
+        //var snapToGrid = Ext.ComponentQuery.query("pagetoolpanel")[0].getViewModel().get('snapToGrid');
+        //
+        //// snap items to the grid
+        //if (snapToGrid) {
+        //
+        //
+        //    console.log("Offset %o Scale %f Grid %f Zoom %f", container.getPosition(), scale, gridSize, zoom);
+        //    var oneInch = Math.round(((96 * scale ) * ( zoom / 100)));
+        //    var oneInchGrid = Math.round(oneInch * gridSize);
+        //    console.log("Grid lines every %d pixels", oneInchGrid);
+        //
+        //    var dragX1 = a.proxy.pageX;
+        //    var dragY1 = a.proxy.pageY;
+        //    var dragX2 = dragX1 + comp.width;
+        //    var dragY2 = dragY1 + comp.height;
+        //    console.log("Getting closest grid intersection...%d %d", dragX1 - gridView.getX(), dragY1 - gridView.getY());
+        //    var snapX = Math.round(((dragX1 - gridView.getX()) / oneInchGrid ));
+        //    var snapY = Math.round(((dragY1 - gridView.getY()) / oneInchGrid ));
+        //    var snapX2 = Math.round(((dragX2 - gridView.getX()) / oneInchGrid ));
+        //    var snapY2 = Math.round(((dragY2 - gridView.getY()) / oneInchGrid ));
+        //    var rows = Math.round(gridView.height / oneInchGrid);
+        //    var columns = Math.round(gridView.width / oneInchGrid);
+        //    console.log("Rows %d Columns %d", rows, columns);
+        //    console.log("Snap X %d", snapX);
+        //    console.log("Snap Y %d", snapY);
+        //    console.log("Snap X2 %d", snapX2);
+        //    console.log("Snap Y2 %d", snapY2);
+        //    // see if component is too large for panel
+        //
+        //    comp.setSize(snapX2  * oneInchGrid, snapY2 * oneInchGrid).setPosition(snapX * oneInchGrid, snapY * oneInchGrid, {
+        //        easing: 'linear',
+        //        duration: 300
+        //    });
+        //}
 
 
-        console.log("Offset %o Scale %f Grid %f Zoom %f", container.getPosition(), scale, gridSize, zoom);
-        var oneInch = Math.round(((96 * scale ) * ( zoom / 100)));
-        var oneInchGrid = Math.round(oneInch * gridSize);
-        console.log("Grid lines every %d pixels", oneInchGrid);
-
-        var dragX1 = a.proxy.pageX;
-        var dragY1 = a.proxy.pageY;
-        var dragX2 = dragX1 + comp.width;
-        var dragY2 = dragY1 + comp.height;
-        console.log("Getting closest grid intersection...%d %d", dragX1 - gridView.getX(), dragY1 - gridView.getY());
-        var snapX = Math.round(((dragX1 - gridView.getX()) / oneInchGrid ));
-        var snapY = Math.round(((dragY1 - gridView.getY()) / oneInchGrid ));
-
-        console.log("Snap X %d", snapX);
-        console.log("Snap Y %d", snapY);
-        comp.setPosition(snapX * oneInchGrid , snapY * oneInchGrid, true);
-
-        Ext.ComponentQuery.query('layoutobject', container).forEach(function (subp) {
-            //console.log("Xtype %s", subp.xtype);
-            //console.log("Item 1 %s Item 2 %s", comp.id, subp.id);
-            if (subp.id != comp.id) {
-                //console.log("Checking other panel %o", subp);
-                // see if panels overlap
-                var pos = subp.getPosition();
-                var otherX1 = pos[0];
-                var otherY1 = pos[1];
-                var otherX2 = otherX1 + subp.width;
-                var otherY2 = otherY1 + subp.height;
-                //console.log("Test..", testX, testY, testX1, testY1);
-                //console.log("Source..x1 %d y1 %d x2 %d y2 %d", dragX1, dragY1, dragX2, dragY2);
-                //console.log("Other..x1 %d y1 %d x2 %d y2 %d", otherX1, otherY1, otherX2, otherY2);
-
-                if (dragY1 <= otherY2 && dragY2 >= otherY1 && dragX2 >= otherX1 && dragX1 <= otherX2) {
-                    if (dragY1 < otherY2 || dragX1 < otherX2) {
-                        // move down or over depending on which is closer
-
-                        comp.setY(otherY2 + 1);
-                        subp.getEl().setStyle('border-color', 'blue');
-
-                    }
-
-                } else {
-                    subp.getEl().setStyle('border-color', 'blue');
-
-                }
-            }
-
-        });
 
     },
     onBlurSection: function (combo, blur, eOpts) {
@@ -160,8 +209,12 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
      */
     onSectionChange: function (combo, event, eOpts) {
         var me = this;
-        console.log("Combo value %s for object %o", combo.value, combo.up('layoutobject'));
-
+        // store value in model
+        var rec = combo.store.findRecord('id',combo.value);
+        if ( rec ) {
+            console.log("Rec %o", rec);
+            combo.up('layoutobject').getViewModel().set('sectionSelection', rec.data.name);
+        }
         if (Ext.isNumber(combo.value)) {
 
 
@@ -260,7 +313,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
 
     },
     onBeforeObjectMove: function (promo, xPos, yPos) {
-        console.debug("Before move %o %d %d", promo, xPos, yPos);
+        //   console.debug("Before move %o %d %d", promo, xPos, yPos);
     },
     onObjectMove: function (pageObj, xPos, yPos, a, b, c) {
         var me = this;
@@ -277,8 +330,8 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
         var parentPosition = pageObj.up('panel').getPosition();
         var realX = position[0] - parentPosition[0];
         var realY = position[1] - parentPosition[1];
-        pageObj.getViewModel().set("xPos", realX);
-        pageObj.getViewModel().set("yPos", realY);
+        //pageObj.getViewModel().set("xPos", realX);
+        //pageObj.getViewModel().set("yPos", realY);
         pageObj.getViewModel().set("newXInchPos", (((realX / 96) * (100 / zoom)) / scale));
         pageObj.getViewModel().set("newYInchPos", (((realY / 96) * (100 / zoom)) / scale));
         pageObj.getViewModel().set("undoDisabled", false);
@@ -288,6 +341,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
         pageObj.getViewModel().set("newInchHeight", (((pageObj.height / 96) * (100 / zoom)) / scale));
         pageObj.setDebugInfo();
         pageObj.flagDirty();
+
         console.log("Page object info %o", pageObj.getViewModel().data);
 
     },
@@ -321,7 +375,6 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
         var myY2 = curPos[1] + lo.height;
         var scrollY = layout.getScrollY();
         var scrollX = layout.getScrollX();
-
         console.log("Layout bounds %d %d %d %d", layoutPos[0], layoutPos[1], layoutPos[0] + layout.width, layoutPos[1] + layout.height);
         var container = layout.up('pagelayouts');
         var maxLeft = layoutPos[0];

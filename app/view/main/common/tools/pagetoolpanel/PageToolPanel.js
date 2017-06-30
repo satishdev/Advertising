@@ -146,6 +146,14 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
                     }
                 },
                 {
+                    tooltip: 'Snap to grid',
+                    iconCls: 'fa fa-exclamation',
+                    bind: {
+                        pressed: '{snapToGrid}',
+                        hidden: '{pagemode}'
+                    }
+                },
+                {
                     tooltip: 'Show/hide Offers',
                     iconCls: 'fa fa-tag',
                     handler: 'onToggleOffers',

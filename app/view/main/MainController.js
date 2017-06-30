@@ -183,12 +183,14 @@ Ext.define('Advertising.view.main.MainController', {
                         lo.flagClean();
                     }
                     for ( var  i = 0 ; i < response.data.length; i++ ) {
-                        console.log("Checking item %o %o %o", response.data[i], lo, lo.getViewModel());
+                        if (lo) {
+                            console.log("Checking item %o %o %o", response.data[i], lo, lo.getViewModel());
 
-                        if ( response.data[i].hasOwnProperty('objid') && response.data[i].objid == lo.getViewModel().get('objid')) {
-                            console.log("Found matching item");
-                            if ( response.data[i].hasOwnProperty('status') && response.data[i].status == 'deleted') {
-                                lo.destroy();
+                            if (response.data[i].hasOwnProperty('objid') && response.data[i].objid == lo.getViewModel().get('objid')) {
+                                console.log("Found matching item");
+                                if (response.data[i].hasOwnProperty('status') && response.data[i].status == 'deleted') {
+                                    lo.destroy();
+                                }
                             }
                         }
                     }
