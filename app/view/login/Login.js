@@ -16,7 +16,9 @@ Ext.define('Advertising.view.login.Login', {
     title: 'Login to JDA Advertising',
     closable: false,
     autoShow: true,
-
+    viewModel: {
+        type: 'login'
+    },
     items: {
         xtype: 'form',
         reference: 'form',
@@ -24,12 +26,18 @@ Ext.define('Advertising.view.login.Login', {
             xtype: 'textfield',
             name: 'j_username',
             fieldLabel: 'Username',
+            bind: {
+                value: '{username}'
+            },
             allowBlank: false
         }, {
             xtype: 'textfield',
             name: 'j_password',
             inputType: 'password',
             fieldLabel: 'Password',
+            bind: {
+                value: '{password}'
+            },
             allowBlank: false
         }, {
             xtype: 'displayfield',

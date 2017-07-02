@@ -1,5 +1,5 @@
 $app-name:  dynamic( 'Advertising' );
-$image-search-path: 'C:/Users/Lee/Documents/FSG/Advertising/build/development/Advertising/resources';
+$image-search-path: 'G:/Advertising/build/development/Advertising/resources';
 $theme-name:  dynamic( 'fsg-theme' );
 $include-advertising-application: dynamic(true);;
 $include-advertising-store-personnel: dynamic(true);;
@@ -84,6 +84,9 @@ $include-advertising-view-west-treeviews-events-eventtree-eventtreecontroller: d
 $include-advertising-view-west-treeviews-events-eventtree-eventtreemenu: dynamic(true);;
 $include-advertising-view-west-treeviews-events-eventtree-eventtreemodel: dynamic(true);;
 $include-advertising-view-west-treeviews-events-eventtree-model-node: dynamic(true);;
+$include-advertising-view-west-treeviews-events-historyeventtreewindow-historyeventtreewindow: dynamic(true);;
+$include-advertising-view-west-treeviews-events-historyeventtreewindow-historyeventtreewindowcontroller: dynamic(true);;
+$include-advertising-view-west-treeviews-events-historyeventtreewindow-historyeventtreewindowmodel: dynamic(true);;
 $include-advertising-view-west-treeviews-layouts-layouttree-layouttree: dynamic(true);;
 $include-advertising-view-west-treeviews-layouts-layouttree-layouttreecontroller: dynamic(true);;
 $include-advertising-view-west-treeviews-layouts-layouttree-layouttreemenu: dynamic(true);;

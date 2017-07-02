@@ -18,55 +18,110 @@ Ext.define('Advertising.view.west.treeviews.events.eventtree.EventTree', {
     viewModel: {
         type: 'eventtree'
     },
-    // todo add ability to search and expand tree
-    dockedItems: [{
-        xtype: 'textfield',
-        dock: 'top',
-        emptyText: 'Search',
-        enableKeyEvents: true,
-
-        triggers: {
-            clear: {
-                cls: 'x-form-clear-trigger',
-               // handler: 'onClearTriggerClick',
-                hidden: true,
-                scope: 'this'
-            },
-            search: {
-                cls: 'x-form-search-trigger',
-                weight: 1,
-                //handler: 'onSearchTriggerClick',
-                scope: 'this'
-            }
-        },
-
-
-
-        listeners: {
-            keyup: {
-                fn: function(field, event, eOpts) {
-                    var value = field.getValue(), me = this;
-
-                    // Only filter if they actually changed the field value.
-                    // Otherwise the view refreshes and scrolls to top.
-                    if (value == '') {
-                        field.getTrigger('clear').hide();
-                    //    me.filterStore(value);
-                        me.lastFilterValue = value;
-                    } else if (value && value !== me.lastFilterValue) {
-                        field.getTrigger('clear')[(value.length > 0) ? 'show' : 'hide']();
-                    //    me.filterStore(value);
-                        me.lastFilterValue = value;
-                    }
-                },
-                buffer: 300
-            },
-
-            render: function(field) {
-                this.searchField = field;
-            }
-        }
+    columns: [{
+        xtype: 'treecolumn',
+        flex: 1,
+        dataIndex: 'text',
+        renderer: 'onTreeColumnRender'
     }],
+    // todo add ability to search and expand tree
+    dockedItems: [
+        {
+            xtype: 'panel',
+            header: false,
+            layout: {
+                type: 'hbox',
+                align: 'stretch'
+
+            },
+            items: [
+                {
+                    xtype: 'button',
+                    handler: 'onClickOrderIcon',
+                    bind: {
+                        iconCls: '{orderIcon}',
+                        tooltip: '{orderTip}'
+                    },
+
+                    flex: 1
+                },
+                {
+                    xtype: 'datefield',
+                    flex: 2,
+                    name: 'from_date',
+                    format: 'm d Y',
+                    emptyText: 'From',
+                    maxValue: new Date(),
+                    showToday: false,
+                    listeners: {
+                        change: 'onFromDateChange'
+                    } ,
+                    hideLabel: true,
+                    bind: {
+                        visible: '{!showNameFilter}',
+                        value: '{historyFromDate}'
+
+                    }
+
+                },
+                {
+                    xtype: 'datefield',
+                    listeners: {
+                        change: 'onToDateChange'
+                    } ,
+                    flex: 2,
+                    showToday: false,
+                    name: 'to_date',
+                    format: 'm d Y',
+                    maxValue:new Date(),
+                    hideLabel: true,
+                    emptyText: 'To',
+                    bind: {
+                        visible: '{!showNameFilter}',
+                        value: '{historyToDate}'
+                    }
+
+                },
+
+                {
+                    xtype: 'textfield',
+                    dock: 'top',
+                    emptyText: 'Filter...',
+                    flex: 6,
+                    enableKeyEvents: true,
+                    bind: {
+                        value: '{searchValue}',
+                        visible: '{showNameFilter}'
+                    },
+                    triggers: {
+                        clear: {
+                            cls: 'x-form-clear-trigger',
+                            handler: 'onClearTriggerClick',
+                            hidden: true,
+                            scope: 'this'
+                        },
+                        //search: {
+                        //    cls: 'x-form-search-trigger',
+                        //    weight: 1,
+                        //    handler: 'onSearchTriggerClick',
+                        //    scope: 'this'
+                        //}
+                    },
+
+
+                    listeners: {
+                        keyup: 'onSearchKeyUp',
+
+
+                        render: function (field) {
+                            this.searchField = field;
+                        }
+                    }
+                }
+            ]
+
+
+        }],
 
     listeners: {
         itemclick: 'onTreeNodeSelect',

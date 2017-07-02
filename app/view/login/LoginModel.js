@@ -18,6 +18,7 @@ Ext.define('Advertising.view.login.LoginModel', {
     },
 
     data: {
-        /* This object holds the arbitrary data that populates the ViewModel and is then available for binding. */
+        username: 'adm1',
+        password: 'adm1'
     }
 });
