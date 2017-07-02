@@ -5,9 +5,16 @@ Ext.define('Advertising.view.west.treeviews.events.eventtree.EventTreeController
     extend: 'Ext.app.ViewController',
     alias: 'controller.eventtree',
     requires: [
-        'Advertising.view.west.treeviews.events.eventtree.EventTreeMenu'
+        'Advertising.view.west.treeviews.events.eventtree.EventTreeMenu',
+        'Advertising.view.west.treeviews.events.historyeventtreewindow.HistoryEventTreeWindow'
     ],
-
+    listen: {
+        controller: {
+            '#vchistoryeventscontroller': {
+                addSelectedHistoryRecords: 'onAddSelectedHistoryRecords'
+            }
+        }
+    },
     onRenderContextMenu: function (menu) {
         var me = this;
         var model = me.getViewModel();
@@ -19,6 +26,34 @@ Ext.define('Advertising.view.west.treeviews.events.eventtree.EventTreeController
      */
     init: function () {
 
+    },
+    onRenderEventTree: function(tree) {
+        console.log("Rendering event tree...");
+        // load the store
+        var me = this, model = me.getViewModel();
+        model.getStore('events').load({
+
+        });
+
+    },
+    onAddSelectedHistoryRecords: function(selections) {
+        var me = this, model = me.getViewModel(), store = model.getStore('events'), tree = Ext.ComponentQuery.query('eventtree')[0];
+        selections.forEach(function(sel){
+            console.log("--->> %o", sel);
+            // see if record in store already
+            var rec = store.findRecord('id', sel.data.id);
+            if ( rec ) {
+                console.log("Already in tree %o", rec);
+            } else {
+                console.log("Adding to tree %o", sel.data);
+                sel.data.text = sel.data.Name;
+                sel.data.cls = 'f-history-event';
+                sel.data.leaf = false;
+                //store.add(sel.data);
+                //console.log("tree %o", tree);
+                tree.getRootNode().insertChild(0,sel.data);
+            }
+        })  ;
     },
     onTreeNodeSelect: function (tree, node, ndx, opts) {
         var me = this;

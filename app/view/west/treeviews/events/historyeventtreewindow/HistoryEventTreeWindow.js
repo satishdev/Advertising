@@ -3,13 +3,16 @@
  */
 Ext.define('Advertising.view.west.treeviews.events.historyeventtreewindow.HistoryEventTreeWindow', {
     extend: 'Ext.window.Window',
-    width:400,
-    height:300,
+    width:600,
+    height:400,
     title: 'History Search',
+    layout: 'fit',
     modal:true,
     requires: [
+        'Advertising.view.west.treeviews.events.historyeventtreewindow.HistoryEventTreeWindowController',
         'Advertising.view.west.treeviews.events.historyeventtreewindow.HistoryEventTreeWindowModel',
-		'Advertising.view.west.treeviews.events.historyeventtreewindow.HistoryEventTreeWindowController'
+        'Ext.grid.Panel',
+        'Ext.layout.container.Fit'
     ],
 
     listeners: {
@@ -25,22 +28,28 @@ Ext.define('Advertising.view.west.treeviews.events.historyeventtreewindow.Histor
         {
             xtype: 'grid',
             layout:'fit',
+            selType: 'checkboxmodel',
+
             bind: {
                 store: '{historyEvents}'
             },
             columns: [
-                {
-                    xtype: 'checkcolumn'
 
+                {
+                    header: 'Name',
+                    dataIndex: 'Name',
+                    flex: 2
                 },
                 {
-                    header: 'Name'
+                    header: 'Start Date',
+                    dataIndex: 'StartDate',
+                    flex: 2
                 },
                 {
-                    header: 'Start Date'
-                },
-                {
-                    header: 'End Date'
+                    header: 'End Date',
+                    dataIndex: 'EndDate',
+                    flex: 2
+
                 }
             ]
         }
@@ -48,7 +57,8 @@ Ext.define('Advertising.view.west.treeviews.events.historyeventtreewindow.Histor
     ],
     buttons: [
         {
-            text: 'Add selected'
+            text: 'Add selected',
+            handler: 'onAddSelected'
         }
     ]
 });

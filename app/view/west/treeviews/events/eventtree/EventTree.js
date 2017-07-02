@@ -9,7 +9,11 @@ Ext.define('Advertising.view.west.treeviews.events.eventtree.EventTree', {
     requires: [
         'Advertising.view.west.treeviews.events.eventtree.EventTreeController',
         'Advertising.view.west.treeviews.events.eventtree.EventTreeModel',
-        'Ext.form.field.Text'
+        'Ext.button.Button',
+        'Ext.form.field.Date',
+        'Ext.form.field.Text',
+        'Ext.layout.container.HBox',
+        'Ext.panel.Panel'
     ],
     lastFilterValue: undefined,
     bind: {
@@ -18,6 +22,7 @@ Ext.define('Advertising.view.west.treeviews.events.eventtree.EventTree', {
     viewModel: {
         type: 'eventtree'
     },
+    reference: 'eventtree',
     columns: [{
         xtype: 'treecolumn',
         flex: 1,
@@ -124,6 +129,7 @@ Ext.define('Advertising.view.west.treeviews.events.eventtree.EventTree', {
         }],
 
     listeners: {
+        render: 'onRenderEventTree',
         itemclick: 'onTreeNodeSelect',
         itemcontextmenu: 'onShowEventTreeMenu'
     },

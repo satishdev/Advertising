@@ -31,6 +31,11 @@ Ext.define('Advertising.view.west.treeviews.events.eventtree.EventTreeModel', {
             listeners: {
                 load: function (store, operation) {
                     console.log("Event tree store loaded %o", store.data);
+                    if ( store.getSorters().length == 0) {
+                        console.log("Setting default sort of startdate");
+                        store.sort('startdateidx');
+
+                    }
                 },
 
                 beforeload: function (store, operation) {
@@ -45,11 +50,10 @@ Ext.define('Advertising.view.west.treeviews.events.eventtree.EventTreeModel', {
 
                 }
             },
-            folderSort: true,
             type: 'tree',
             loadMask: 'Loading events..',
             model: 'Advertising.view.west.treeviews.events.eventtree.model.Node',
-            autoLoad: true,
+            autoLoad: false,
             timeout: 1450000,
             proxy: {
                 type: 'ajax',

@@ -5,6 +5,10 @@ Ext.define('Advertising.view.west.treeviews.events.historyeventtreewindow.Histor
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.historyeventtreewindow',
 
+    requires: [
+        'Ext.data.reader.Json'
+    ],
+
     stores: {
         historyEvents: {
             listeners: {
