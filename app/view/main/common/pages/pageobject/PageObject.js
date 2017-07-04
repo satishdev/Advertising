@@ -16,6 +16,7 @@ Ext.define('Advertising.view.main.common.pages.pageobject.PageObject', {
 
     xtype: 'pageobject',
     controller: 'promo',
+    autoMove:false,
     objid: -1,
     origWidth: 0,
     origHeight: 0,
@@ -24,7 +25,6 @@ Ext.define('Advertising.view.main.common.pages.pageobject.PageObject', {
     cellNumber: 0,
     zoom: 100,
     border: 2,
-    dirty:false,
     deleted: false,
     layout: 'absolute',
     shadow: 'drop',
@@ -53,7 +53,7 @@ Ext.define('Advertising.view.main.common.pages.pageobject.PageObject', {
         var info = "Scale: " + Math.round(me.up('layout').getViewModel().get('scale')) + " X:" + Math.round(me.getViewModel().get('xPos')) + " Y:" + Math.round(me.getViewModel().get('yPos')) + " -- " + (me.width).toFixed(1) +  "x" + (me.height).toFixed(1) + "<br/><span style='color:red'>" + me.getViewModel().get('objid') + ":" + me.groupID + "</span>";
 
         me.getViewModel().set("debugInfo", info);
-        console.log("Model %o", me.getViewModel());
+     //   console.log("Model %o", me.getViewModel());
 
     },
     setZoom: function(zoom) {
@@ -75,8 +75,11 @@ Ext.define('Advertising.view.main.common.pages.pageobject.PageObject', {
         console.log("MODEL FOR LAYOUT OBJECT %o", model.data);
         var newXPos = Math.round((model.get('xPos') * 96 )* (zoom /100) * scale) + parentPanel.getX() ;
         var newYPos = Math.round((model.get('yPox') * 96 )* (zoom /100) * scale)+ parentPanel.getY();
-        console.log("New pos %f x %f" , newXPos, newYPos);
-        me.setPosition(newXPos, newYPos,true);
+        console.log("Old pos %f x %f New pos  %f x %f" ,me.prevX, me.prevY, newXPos, newYPos);
+        var newXPos2 = ( Math.round( me.getX() -  parentPanel.getX()) *(zoom /100) );
+        var newYPos2 = ( Math.round(me.getY() -  parentPanel.getY())* (zoom /100) );
+
+        me.setPosition(newXPos2, newYPos2,true);
         var newWidth = Math.round(((model.get('inchWidth') * 96)) *  (zoom /100) * scale) ;
         var newHeight = Math.round(((model.get('inchHeight') * 96)) *  (zoom /100) * scale) ;
 
@@ -93,14 +96,13 @@ Ext.define('Advertising.view.main.common.pages.pageobject.PageObject', {
     },
     flagDirty: function () {
         var me = this;
-        me.dirty = true;
-        console.log("Flagging as dirty");
+    //  console.log("Flagging as dirty");
         me.getViewModel().set('dirty',true);
         me.addCls("f-panel-dirty");
     },
     flagClean: function () {
         var me = this;
-        me.dirty = false;
+        me.getViewModel().set('dirty',false);
         me.removeCls("f-panel-dirty");
     }
 });

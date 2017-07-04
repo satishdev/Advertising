@@ -36,7 +36,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
 
     },
     performSnap:function(comp,x,y) {
-        var parent = comp.up('layout');
+        var parent = comp.up('layout'), model = comp.getViewModel();
         var gridView = parent.down('panel');
         var container = parent.up('pagelayouts');
         var layoutViewModel = comp.up('layout').getViewModel();
@@ -47,7 +47,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
 
         // snap items to the grid
         if (snapToGrid) {
-
+            comp.getViewModel().set('autoMove',true);
 
             console.log("Offset %o Scale %f Grid %f Zoom %f", container.getPosition(), scale, gridSize, zoom);
             var oneInch = Math.round(((96 * scale ) * ( zoom / 100)));
@@ -59,8 +59,8 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
             var dragX2 = dragX1 + comp.width;
             var dragY2 = dragY1 + comp.height;
             console.log("Getting closest grid intersection...%d %d", dragX1 - gridView.getX(), dragY1 - gridView.getY());
-            var compCols = Math.round( oneInchGrid / comp.width );
-            var compRows = Math.round( oneInchGrid / comp.height ) ;
+            var compCols = Math.round(  comp.width / oneInchGrid );
+            var compRows = Math.round(  comp.height /oneInchGrid  ) ;
             console.log("Comp rows %d", compRows);
             console.log("Comp cols %d", compCols);
             var snapX = Math.round(((dragX1 - gridView.getX()) / oneInchGrid ));
@@ -82,10 +82,15 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
             console.log("Snap Y2 %d", snapY2);
             // see if component is too large for panel
 
-            comp.setSize(snapX2  * oneInchGrid, snapY2 * oneInchGrid).setPosition(snapX * oneInchGrid, snapY * oneInchGrid, {
+            comp.setSize(  compCols * oneInchGrid, compRows * oneInchGrid).setPosition(snapX * oneInchGrid, snapY * oneInchGrid, {
                 easing: 'linear',
                 duration: 300
             });
+            model.set('inchWidth', compRows * gridSize);
+            model.set('inchHeight',compCols * gridSize);
+            comp.getViewModel().set('autoMove',false);
+
+
         }
     },
     onAfterLayout: function (lo) {
@@ -111,47 +116,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
         comp.getViewModel().set('origX', a.proxy.pageX);
         comp.getViewModel().set('origY', a.proxy.pageY);
 
-        //var parent = comp.up('layout');
-        //var gridView = parent.down('panel');
-        //var container = parent.up('pagelayouts');
-        //var layoutViewModel = a.comp.up('layout').getViewModel();
-        //var scale = layoutViewModel.get('scale');
-        //var zoom = Ext.ComponentQuery.query("pagetoolpanel")[0].getViewModel().get('zoom');
-        //var gridSize = Ext.ComponentQuery.query("pagetoolpanel")[0].getViewModel().get('gridSize');
-        //var snapToGrid = Ext.ComponentQuery.query("pagetoolpanel")[0].getViewModel().get('snapToGrid');
-        //
-        //// snap items to the grid
-        //if (snapToGrid) {
-        //
-        //
-        //    console.log("Offset %o Scale %f Grid %f Zoom %f", container.getPosition(), scale, gridSize, zoom);
-        //    var oneInch = Math.round(((96 * scale ) * ( zoom / 100)));
-        //    var oneInchGrid = Math.round(oneInch * gridSize);
-        //    console.log("Grid lines every %d pixels", oneInchGrid);
-        //
-        //    var dragX1 = a.proxy.pageX;
-        //    var dragY1 = a.proxy.pageY;
-        //    var dragX2 = dragX1 + comp.width;
-        //    var dragY2 = dragY1 + comp.height;
-        //    console.log("Getting closest grid intersection...%d %d", dragX1 - gridView.getX(), dragY1 - gridView.getY());
-        //    var snapX = Math.round(((dragX1 - gridView.getX()) / oneInchGrid ));
-        //    var snapY = Math.round(((dragY1 - gridView.getY()) / oneInchGrid ));
-        //    var snapX2 = Math.round(((dragX2 - gridView.getX()) / oneInchGrid ));
-        //    var snapY2 = Math.round(((dragY2 - gridView.getY()) / oneInchGrid ));
-        //    var rows = Math.round(gridView.height / oneInchGrid);
-        //    var columns = Math.round(gridView.width / oneInchGrid);
-        //    console.log("Rows %d Columns %d", rows, columns);
-        //    console.log("Snap X %d", snapX);
-        //    console.log("Snap Y %d", snapY);
-        //    console.log("Snap X2 %d", snapX2);
-        //    console.log("Snap Y2 %d", snapY2);
-        //    // see if component is too large for panel
-        //
-        //    comp.setSize(snapX2  * oneInchGrid, snapY2 * oneInchGrid).setPosition(snapX * oneInchGrid, snapY * oneInchGrid, {
-        //        easing: 'linear',
-        //        duration: 300
-        //    });
-        //}
+
 
 
 
@@ -316,14 +281,15 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
         //   console.debug("Before move %o %d %d", promo, xPos, yPos);
     },
     onObjectMove: function (pageObj, xPos, yPos, a, b, c) {
-        var me = this;
-        console.debug("Layout object was moved %o %d x %d %o %o %o", pageObj, xPos, yPos);
-        me.onAdjustObjectSizeOrLocation(pageObj);
-
+       // if ( pageObj.getViewModel().get('autoMove')) {
+            var me = this;
+      //      console.debug("Layout object was moved %o %d x %d", pageObj, xPos, yPos);
+            me.onAdjustObjectSizeOrLocation(pageObj);
+      //  }
 
     },
     onAdjustObjectSizeOrLocation: function (pageObj) {
-        var layoutViewModel = pageObj.up('layout').getViewModel();
+        var me=this, layoutViewModel = pageObj.up('layout').getViewModel();
         var scale = layoutViewModel.get('scale');
         var position = pageObj.getPosition();
         var zoom = Ext.ComponentQuery.query("pagetoolpanel")[0].getViewModel().get('zoom');
@@ -342,7 +308,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
         pageObj.setDebugInfo();
         pageObj.flagDirty();
 
-        console.log("Page object info %o", pageObj.getViewModel().data);
+      //  console.log("Page object info %o", pageObj.getViewModel().data);
 
     },
     onZoomChange: function (pageObj) {

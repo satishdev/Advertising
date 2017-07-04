@@ -78,6 +78,43 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
         Ext.toast("Hide market " + marketID);
         me.showHideMarket(marketID, showOffers, showLayouts, false);
     },
+    updateGrid: function (page) {
+        console.log("Updating grid..for %o", page);
+        var gridSize = Ext.ComponentQuery.query("pagetoolpanel")[0].getViewModel().get('gridSize');
+        var me = this;
+        var scale = me.getViewModel().get("scale");
+        var pageWidth = me.getViewModel().get("width");
+        var pageHeight = me.getViewModel().get("height");
+        var zoom = Ext.ComponentQuery.query("pagetoolpanel")[0].getViewModel().get('zoom');
+
+        // determine good size for new item based on size of page
+        console.log("Scale %o", scale);
+        var svg = page.getEl().query('svg')[0];
+        //var svg = Ext.dom.Query.select('rect');
+        console.log("SVG %o", svg);
+        if (svg) {
+            svg.setAttribute('width', ( pageWidth * 96 * scale) * (zoom / 100));
+            svg.setAttribute('height', (pageHeight * 96 * scale) * (zoom / 100));
+            var oneInch = Math.round(((96 * scale ) * ( zoom / 100)));
+            console.log("One inch on screen is %f", oneInch);
+            console.log("-->> Found grid %o item...updating it", svg);
+            var pattern = svg.getElementsByTagName("pattern")[0];
+            var path = svg.getElementsByTagName("path")[0];
+            console.log("-->> Pattern ", pattern);
+
+            pattern.setAttribute('width', oneInch);
+            pattern.setAttribute('height', oneInch);
+            pattern.getElementsByTagName('rect')[0].setAttribute('width', oneInch);
+            pattern.getElementsByTagName('rect')[0].setAttribute('height', oneInch);
+
+            path.setAttribute('d', 'M ' + oneInch + ' 0 L 0 0 0 ' + oneInch);
+            path.setAttribute('width', oneInch);
+            path.setAttribute('height', oneInch);
+            console.log("-->> Found grid %o item...updated it", svg);
+
+        }
+
+    },
     onUpdatePageZoomLevel: function (zoom) {
         var pagePanel = Ext.ComponentQuery.query('pagelayouts')[0].getActiveTab();
         console.log("Page panel %o", pagePanel);
@@ -117,7 +154,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
     },
     onAddPagePanel: function (p) {
 
-
+        var me = this;
         if (p.xtype == 'layout') {
             return;
         }
@@ -129,7 +166,6 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
         //  var scale = parentWidth / ((p.inchWidth * 96) + 20);
         var scale = parentWidth / ((p.inchWidth * 96) + 50);
         console.log("Scale %f", scale);
-        var me = this;
 
         var trueWidth = Math.round(p.inchWidth * 96 * scale);
         var trueHeight = Math.round(p.inchHeight * 96 * scale);
@@ -251,13 +287,19 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
         }
     },
     onRenderLayoutPanel: function (p) {
-        var parentPanel = p.up('panel');
+        var me = this, parentPanel = p.up('panel');
         parentPanel.mask('Loading layout objects...');
-
-        console.log("parent %o", parentPanel);
         var scale = parentPanel.getViewModel().get("scale");
         var store = parentPanel.getViewModel().getStore('layoutObjects');
+        console.log("parent %o %o", parentPanel, parentPanel.getViewModel());
+
         store.getProxy().url = Advertising.util.GlobalValues.serviceURL + '/page/getLayoutObjects/' + parentPanel.getViewModel().get('objid');
+        // set the grid
+        var gridSize = Ext.ComponentQuery.query("pagetoolpanel")[0].getViewModel().get('gridSize');
+
+       me.onUpdatePageGridSize(gridSize);
+       // me.updateGrid(parentPanel);
+
         // keep track of the stores for the first object added so we dont have to do the network trip for all the stores
         var firstLayoutObj = {}, loadStores = true;
         store.load({
@@ -283,13 +325,12 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
                                 origHeight: data.height,
                                 cellNumber: data.cellNumber,
                                 loadStores: loadStores,
-                                dirty:false,
+                                dirty: false,
                                 objid: data.objid,
                                 layoutObjectID: data.objid,
                                 x: Math.round(data.xPos * 96 * scale),
                                 y: Math.round(data.yPos * 96 * scale)
                             });
-
 
 
                             console.log("Adding panel item %o", layoutObject);
@@ -299,13 +340,13 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
                             layoutObject.flagClean();
                             var stores = layoutObject.getViewModel().storeInfo;
 
-                            if ( Ext.Object.isEmpty(firstLayoutObj)) {
-                              //  firstLayoutObj = layoutObject;
+                            if (Ext.Object.isEmpty(firstLayoutObj)) {
+                                //  firstLayoutObj = layoutObject;
                                 //console.log("Saving store info from first object");
                                 //console.log("Stores %o", stores);
-                                for ( var store in stores ) {
+                                for (var store in stores) {
                                     console.log("Loading store %o", stores[store]);
-                                    if ( stores[store].storeId ==='layoutStore' || stores[store].storeId==='layoutObjectStore') {
+                                    if (stores[store].storeId === 'layoutStore' || stores[store].storeId === 'layoutObjectStore') {
 
                                     } else {
                                         stores[store].load({});
@@ -314,39 +355,39 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
 
                             } else {
 
-                                for ( var store in stores ) {
+                                for (var store in stores) {
                                     //layoutObject.getViewModel().getStore(store).setData(firstLayoutObj.getViewModel().getStore(store).data);
-                                    firstLayoutObj.getViewModel().getStore(store).each(function(r){
-                                       console.log("Adding record to target %o", r);
+                                    firstLayoutObj.getViewModel().getStore(store).each(function (r) {
+                                        console.log("Adding record to target %o", r);
                                         layoutObject.getViewModel().getStore(store).add(Ext.encode(r.data));
                                     });
                                 }
                             }
 
-                                layoutObject.getViewModel().set('objid',rec.data['objid']);
+                            layoutObject.getViewModel().set('objid', rec.data['objid']);
 
 
                             for (var prop in rec.data) {
 
-                                layoutObject.items.each(function(field) {
-                                    if ( field.name == prop) {
+                                layoutObject.items.each(function (field) {
+                                    if (field.name == prop) {
                                         field.setValue(rec.data[prop]);
                                     }
                                 });
-                            //    console.log("Setting prop %o to %o", prop, rec.data[prop]);
+                                //    console.log("Setting prop %o to %o", prop, rec.data[prop]);
                                 if (layoutObject.getViewModel().getStore(prop)) {
                                     console.log("We have a matching store for %s - seeing if we can set selected value", prop);
 
                                     layoutObject.items.each(function (item) {
                                         if (item.name == prop) {
-                                           try {
+                                            try {
 
-                                               var itemObj = Ext.decode(rec.data[prop]);
-                                       //        console.log("Setting %o to %o", item, itemObj.id);
-                                               item.setValue(itemObj.id);
-                                           } catch (err ) {
-                                               // do nothing
-                                           }
+                                                var itemObj = Ext.decode(rec.data[prop]);
+                                                //        console.log("Setting %o to %o", item, itemObj.id);
+                                                item.setValue(itemObj.id);
+                                            } catch (err) {
+                                                // do nothing
+                                            }
                                         } else {
                                             //if (item.xtype == 'textarea') {
                                             //
@@ -357,14 +398,14 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
                                 }
                             }
 
-                            for ( var prop in data ) {
-                                    if (! layoutObject.getViewModel().hasOwnProperty(prop)) {
-                                        layoutObject.getViewModel().set(prop, data[prop]);
-                                    }
+                            for (var prop in data) {
+                                if (!layoutObject.getViewModel().hasOwnProperty(prop)) {
+                                    layoutObject.getViewModel().set(prop, data[prop]);
+                                }
                             }
 
                             layoutObject.setDebugInfo();
-
+                            layoutObject.flagClean();
                         });
                         parentPanel.unmask();
                     } else {
@@ -375,6 +416,40 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
         );
     },
 
+    onCloseLayoutPanel: function (panel, eOpts) {
+        console.log("Layout Panel closed - checking for any dirty objects");
+        var hasDirty = false, me=this;
+        Ext.ComponentQuery.query('layoutobject', panel).forEach(function (lo) {
+            if (lo.getViewModel().get('dirty') == true) {
+                console.log("Item is dirty %o", lo.getViewModel());
+                hasDirty = true;
+            }
+        });
+        if (hasDirty == true) {
+            Ext.Msg.show({
+                title:'Save Changes?',
+                message: 'You are closing a tab that has unsaved changes.<br/> Would you like to save your changes?',
+                buttons: Ext.Msg.YESNO,
+                icon: Ext.Msg.QUESTION,
+                fn: function(btn) {
+                    if (btn === 'yes') {
+                        console.log('Yes pressed');
+                        me.fireEvent('savePageChanges', panel, false);
+                        return false;
+                    } else if (btn === 'no') {
+                        console.log('No pressed');
+                        // flag everything as clean
+                        Ext.ComponentQuery.query('layoutobject', panel).forEach(function (lo) {
+                            lo.flagClean();
+                        });
+                        panel.close();
+                    }
+                }
+            });
+        return false;
+        }
+
+    },
     /**
      * When a layout is requested we'll call this renderer to then populate the data for the layout
      * This renders the inner panel and then the renderer for that paenl in-turn gets the items for the layout
@@ -382,23 +457,20 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
      */
     onAddLayoutPanel: function (p) {
 
-
+        var me = this, parentWidth = p.up('panel').getSize().width, parentHeight = p.up('panel').getSize().height
         console.log("Parent panel size: %o", p.up('panel').getSize());
         console.log("Resize page %o %s %o", p, p.xtype, p.getViewModel());
-        var parentWidth = p.up('panel').getSize().width;
-        var parentHeight = p.up('panel').getSize().height;
 
         var pageWidth = parentWidth;
         var scale = parentWidth / ((p.getViewModel().get("width") * 96));
         var model = p.getViewModel();
         console.log("Scale %f", scale);
-        var me = this;
         me.getViewModel().set("scale", scale);
         var trueWidth = Math.round(model.get("width") * 96 * scale);
         var trueHeight = Math.round(model.get("height") * 96 * scale);
         console.log("Real size %f x %f", model.get("width"), model.get("height"));
         console.log("-->> New size %f x %f", trueWidth, trueHeight);
-        var gridPath = "M " + Math.round(96 * scale) + " 0 L 0 0 0 " + Math.round(96 * scale) ;
+        var gridPath = "M " + Math.round(96 * scale) + " 0 L 0 0 0 " + Math.round(96 * scale);
         //p.setWidth( parentWidth);
         //p.setHeight(trueHeight);
         // add SVG grid panel
@@ -425,6 +497,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
 
             ]
         });
+
         p.insert(inner);
 
 

@@ -63,7 +63,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.Page', {
         childPanel.setWidth(newPageWidth);
         childPanel.setHeight(newPageHeight);
 
-        me.updateGrid();
+        me.updateGrid(me);
         me.setDebugInfo();
         // set the zoom and position of the child items
         childPanel.items.each(function (item) {

@@ -24,6 +24,10 @@ Ext.define('Advertising.view.main.MainController', {
                 mainPageTabChanged: 'onMainPageTabChanged'
 
             },
+            '#vcpagecontroller': {
+                savePageChanges: 'onSavePageChanges'
+
+            },
             //'#vclayoutgridwindow': {
             //    addNewPageObject: 'addNewPageObject'
             //},
@@ -102,7 +106,7 @@ Ext.define('Advertising.view.main.MainController', {
         }
         // add to the array to send to the server
         layouts.forEach(function (lo) {
-            if (lo.dirty == true) {
+            if (lo.getViewModel().get('dirty')) {
                 console.log("Layout object is dirty %o", lo.getViewModel().getData());
                 var jsonData = {};
                 var data = lo.getViewModel().getData();
@@ -116,6 +120,8 @@ Ext.define('Advertising.view.main.MainController', {
                 }
                 // add to the array to send to the server
                 layoutObjects.push(jsonData);
+                // flag item as clean
+                lo.flagClean();
             }
         });
 
@@ -128,28 +134,7 @@ Ext.define('Advertising.view.main.MainController', {
                     animateTarget: layout.getEl()
                 });
             saveWindow.show();
-            //Ext.Msg.prompt(
-            //    'New layout',
-            //    'Enter new layout name',
-            //    function (buttonId, value) {
-            //        if (buttonId == 'ok'){
-            //            // process text value and close...
-            //            jsonData['newLayout'] = value;
-            //            jsonData['isNew'] = true;
-            //            me.sendLayoutSaveRequest(layout,jsonData);
-            //
-            //        } else {
-            //            return false;
-            //        }
-            //    },
-            //    null,
-            //    false,
-            //    null,
-            //    {
-            //        autoCapitalize: true,
-            //        placeHolder: 'Value please...'
-            //    }
-            //);
+
         } else {
             me.sendLayoutSaveRequest(layout,jsonData);
 

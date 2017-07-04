@@ -221,14 +221,31 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelContro
         Ext.toast("Turn edit mode " + (( btn.pressed) ? "on" : "off"));
         // loop through all layouts
         // @todo just do for displayed page
-        Ext.ComponentQuery.query("layoutobject").forEach(function (lo) {
+        var pagePanel = Ext.ComponentQuery.query('pagelayouts')[0].getActiveTab();
+
+        Ext.ComponentQuery.query("layoutobject",pagePanel).forEach(function (lo) {
+            console.log("Updating %o",lo);
             if (!lo.excluded) {
                 lo.getViewModel().set("editMode", btn.pressed);
+                if ( ! btn.pressed) {
+                    lo.showSectionSVG();
+                }
             }
-
+        //
         });
     },
+    toggled: function(sender, pressed, eOpts) {
+        // Event called when a toggle button is pressed
+        console.log("Toggle %o", sender);
+        var target = sender.bind.pressed.stub.name;
+        if (target) {
+            console.log('Setting: ' + target);
+            this.getViewModel().set(target, pressed);
+        }
+    },
     onGridSizeChangeComplete: function (slider, newValue, thumb, eOpts) {
+        var me = this;
+        me.getViewModel().set('gridLabel','Grid ' + newValue + "&quot;");
         this.fireEvent('updatepageGridSize', newValue);
 
     },

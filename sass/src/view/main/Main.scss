@@ -138,9 +138,9 @@ $font-weight-bold: 500;
 
 .f-layout-object {
   //opacity: 0.9;
-  border: solid 5px #2e7d32;
+  border: solid 1px #2e7d32;
 
-  border-radius: 3px;
+  border-radius: 5px;
 }
 
 .f-layout-object .x-panel-header {
@@ -360,9 +360,21 @@ $font-weight-bold: 500;
 }
 
 .f-transparent {
-  background-color: cornflowerblue;
-  padding: 2px;
-  font-size: larger;
+  background-color: transparent;
+  margin: 0 auto;
+  font-style: italic;
+  font-size: 2vw;
+  width: inherit;
+  height: inherit;
+  text-align: center;
+  position: relative;
+  text-shadow:  $color-jda-grey 0 0 10px;
+  z-index: 999;
+}
+
+.f-drag-panel-hover {
+  background-color: #c5e1a5;
+
 }
 
 .f-history-event {

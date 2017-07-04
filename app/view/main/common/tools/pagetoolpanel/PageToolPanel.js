@@ -25,7 +25,10 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
     viewModel: {
         type: 'pagetoolpanel',
         formulas: {
-            hideSplash: function (get) {
+            hideGrid: function (get) {
+                return get('showGrid');
+            },
+                hideSplash: function (get) {
                 var param = get('mode');
                 if (param == 'none' || param =='panel') {
                     return false;
@@ -140,7 +143,11 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
                 {
                     tooltip: 'Show/hide Grid',
                     iconCls: 'fa fa-th',
-                    handler: 'onToggleGrid',
+                    listeners: {
+                        render: 'toggled',
+                        click: 'onToggleGrid'
+                    },
+
                     bind: {
                         pressed: '{showGrids}'
                     }
@@ -174,7 +181,10 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
                 {
                     tooltip: 'Show/hide Layout Edit Info',
                     iconCls: 'fa fa-edit',
-                    handler: 'onToggleEditMode',
+                    listeners: {
+                        render: 'toggled',
+                        click: 'onToggleEditMode'
+                    },
 
                     bind: {
                         pressed: '{editMode}',
@@ -195,10 +205,11 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
         {
             bind: {
                 hidden: '{hidePageTools}',
-                value: '{gridSize}'
+                value: '{gridSize}',
+                fieldLabel: '{gridLabel}',
             },
             xtype: 'slider',
-            fieldLabel: 'Grid',
+
             labelAlign: 'top',
             //vertical: true,
             width: 100,

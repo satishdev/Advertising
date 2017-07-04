@@ -24,7 +24,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
         console.log("Edit Mode %o", this.editMode);
         // Ext.toast("Edit mode " + this.editMode);
         if (!me.editMode) {
-            me.getViewModel().set("editMode", me.editMode);
+            me.getViewModel().set("editMode", true);
         }
         if (me.isNew) {
             me.getViewModel().set("isNew", me.isNew);
@@ -71,11 +71,15 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
 
         }
     ],
+    headerOverCls: 'f-drag-panel-hover',
     loadstores: true,
+    autoMove: false,
     isNew: false,
     draggable: true,
     simpleDrag: true,
-    title: '',
+    bind: {
+        title: '{cellNumber}',
+    },
     firstLayout: true,
     workFlowStatus: undefined,
     editMode: true,
@@ -102,6 +106,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
         dragstart: function (drag, info, e, eOpts) {
             console.log("Drag start ", drag, info, e, eOpts);
             var ghost = drag.proxy;
+            drag.proxy.setStyle('z-index',99999);
             console.log("1 Ghost width: %d", ghost.width);
             // set the ghost proxy size
             ghost.getEl().setStyle('width', drag.comp.width + "px");
@@ -164,7 +169,6 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
         align: 'stretch'
     },
     beginDrag: function () {
-        console.log("0-00------------>>>");
     },
     defaults: {
         labelPad: 1,
@@ -173,17 +177,15 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
         labelAlign: 'top'
     },
     tbar: {
+        bind : {
+            hidden: '{!editMode}'
+        },
         items: [
-            {
-                bind: {
-                    text: '{cellNumber}'
-                }
-            },
             {
                 iconCls: 'fa fa-bullseye',
                 text: 'Targeting',
                 bind: {
-                    hidden: '{editMode}'
+                    hidden: '{layoutMode}'
                 },
                 listeners: {
                     //click: 'onToggleGrid',
@@ -211,13 +213,15 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
     },
     items: [
         {
-
+            xtype: 'container',
+            layout: 'fit',
             bind: {
-                html: '<div class="f-transparent">Header {sectionSelection}</div>',
-                hidden: '{editMode}'
-            }
+                hidden: '{editMode}',
+                html: '<svg viewBox="0 0 400 300" preserveAspectRatio="none" width="100%" height="100%"><text x="50%"  y="15%"  alignment-baseline="middle" stroke="white" stroke-width="2px" text-anchor="middle" font-size="3vw" font-family="verdana" dy=".3em" >{sectionSelection}</text></svg>'
 
+            },
         },
+
         {
 
             xtype: 'tagfield',
@@ -316,6 +320,9 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
             name: 'instructions',
             xtype: 'textarea',
             maxLength: 255,
+            bind: {
+                hidden: '{!editMode}'
+            },
             listeners: {
                 change: 'onInstructionChange'
             }
@@ -330,5 +337,28 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
                 e.setValue(value);
             }
         });
+    },
+    showSectionSVG: function() {
+        var me = this;
+        var el = me.getEl();
+        console.log("EL ", el);
+        var div = el.select('div.x-box-inner');
+        console.log("DIV %o", div);
+        var svg = document.createElementNS("http://www.w3.org/2000/svg", 'svg'); //Create a path in SVG's namespace
+        svg.setAttribute("width","100%"); //Set path's data
+        svg.setAttribute("height","100%"); //Set path's data
+        var text = document.createElement('text');
+         var newContent = document.createTextNode("Hi there and greetings!");
+        text.appendChild(newContent);
+        //text.setAttribute("x", me.getX()); //Set path's data
+        //text.setAttribute("y",me.getY()); //Set path's data
+        ////text.setAttribute("transform","rotate(30 20,40)"); //Set path's data
+        text.setAttribute("font-family","verdana");
+        text.setAttribute("font-size","35");
+
+        svg.appendChild(text);
+
+
+        div.appendChild(svg);
     }
 });
