@@ -297,8 +297,8 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
         // set the grid
         var gridSize = Ext.ComponentQuery.query("pagetoolpanel")[0].getViewModel().get('gridSize');
 
-       me.onUpdatePageGridSize(gridSize);
-       // me.updateGrid(parentPanel);
+        me.onUpdatePageGridSize(gridSize);
+        // me.updateGrid(parentPanel);
 
         // keep track of the stores for the first object added so we dont have to do the network trip for all the stores
         var firstLayoutObj = {}, loadStores = true;
@@ -333,8 +333,6 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
                             });
 
 
-                            console.log("Adding panel item %o", layoutObject);
-
                             p.insert(layoutObject);
 
                             layoutObject.flagClean();
@@ -345,7 +343,6 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
                                 //console.log("Saving store info from first object");
                                 //console.log("Stores %o", stores);
                                 for (var store in stores) {
-                                    console.log("Loading store %o", stores[store]);
                                     if (stores[store].storeId === 'layoutStore' || stores[store].storeId === 'layoutObjectStore') {
 
                                     } else {
@@ -367,13 +364,38 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
                             layoutObject.getViewModel().set('objid', rec.data['objid']);
 
 
+                            if (rec.data.hasOwnProperty('additionFieldJSON')) {
+                                for (var field in rec.data['additionFieldJSON']) {
+                                    console.log("Looking for combo for %s", field);
+                                    // see if we have a matching combo
+                                    var component = layoutObject.lookupReference(field);
+                                    console.log("component %o",component);
+                                    if ( component) {
+                                        if ( Ext.isArray(rec.data['additionFieldJSON'][field]) ) {
+                                            console.log("MULTI VALUE %s %o", field,rec.data['additionFieldJSON'][field] );
+                                            var vals = [];
+                                            rec.data['additionFieldJSON'][field].forEach(function(r) {
+                                                vals.push(r.name);
+                                            });
+
+                                            component.setValue(vals);
+
+                                        } else {
+                                            component.setValue(rec.data['additionFieldJSON'][field].name);
+                                        }
+                                    }
+                                }
+                            }
+
                             for (var prop in rec.data) {
 
                                 layoutObject.items.each(function (field) {
                                     if (field.name == prop) {
                                         field.setValue(rec.data[prop]);
+
                                     }
                                 });
+
                                 //    console.log("Setting prop %o to %o", prop, rec.data[prop]);
                                 if (layoutObject.getViewModel().getStore(prop)) {
                                     console.log("We have a matching store for %s - seeing if we can set selected value", prop);
@@ -418,7 +440,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
 
     onCloseLayoutPanel: function (panel, eOpts) {
         console.log("Layout Panel closed - checking for any dirty objects");
-        var hasDirty = false, me=this;
+        var hasDirty = false, me = this;
         Ext.ComponentQuery.query('layoutobject', panel).forEach(function (lo) {
             if (lo.getViewModel().get('dirty') == true) {
                 console.log("Item is dirty %o", lo.getViewModel());
@@ -427,11 +449,11 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
         });
         if (hasDirty == true) {
             Ext.Msg.show({
-                title:'Save Changes?',
+                title: 'Save Changes?',
                 message: 'You are closing a tab that has unsaved changes.<br/> Would you like to save your changes?',
                 buttons: Ext.Msg.YESNO,
                 icon: Ext.Msg.QUESTION,
-                fn: function(btn) {
+                fn: function (btn) {
                     if (btn === 'yes') {
                         console.log('Yes pressed');
                         me.fireEvent('savePageChanges', panel, false);
@@ -446,7 +468,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
                     }
                 }
             });
-        return false;
+            return false;
         }
 
     },

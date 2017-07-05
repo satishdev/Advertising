@@ -116,7 +116,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutModel', {
         debugInfo: '',
         themeCode: '',
         debug: true,
-        sectionSelection: 'none',
+        sectionSelection: 'No owner',
         themeName: 'Theme Code',
         promoType: 'Promo Type',
         sectionName: 'Header',

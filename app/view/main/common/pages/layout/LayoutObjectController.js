@@ -175,12 +175,12 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
     onSectionChange: function (combo, event, eOpts) {
         var me = this;
         // store value in model
-        var rec = combo.store.findRecord('id',combo.value);
+        var rec = combo.store.findRecord('name',combo.value);
         if ( rec ) {
             console.log("Rec %o", rec);
             combo.up('layoutobject').getViewModel().set('sectionSelection', rec.data.name);
         }
-        if (Ext.isNumber(combo.value)) {
+        if (Ext.isString(combo.value)) {
 
 
             var panel = combo.up('panel');
@@ -221,13 +221,13 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
         console.log("Layout Object %o", layoutobject);
         // set layout viewModel Value
         var model = layoutobject.getViewModel();
-        model.set(component.name + "_val", component.value);
+        model.set(component.name , component.value);
         console.log("Model data ", model);
         var rec = store.findRecord('layoutObjectID', layoutobject.layoutObjectID);
         console.log("Record %o", rec);
         if (rec) {
             console.log("Set record value also..");
-            rec.set(component.name, component.value);
+            rec.set(component.name , component.value);
             layoutobject.flagDirty();
         }
     },
@@ -271,7 +271,8 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
             console.log("Setting record value %o", combo.value);
             me.setRecordValue(combo);
         }
-    },
+    }
+    ,
     onInstructionChange: function (textarea, event, eOpts) {
         var me = this;
         me.setRecordValue(textarea);

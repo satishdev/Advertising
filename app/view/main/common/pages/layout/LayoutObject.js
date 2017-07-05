@@ -219,7 +219,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
                 hidden: '{editMode}',
                 html: '<svg viewBox="0 0 400 300" preserveAspectRatio="none" width="100%" height="100%"><text x="50%"  y="15%"  alignment-baseline="middle" stroke="white" stroke-width="2px" text-anchor="middle" font-size="3vw" font-family="verdana" dy=".3em" >{sectionSelection}</text></svg>'
 
-            },
+            }
         },
 
         {
@@ -227,6 +227,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
             xtype: 'tagfield',
             fieldLabel: 'Owners',
             name: 'owners',
+            reference: 'owners',
             value: [''],
             bind: {
                 store: '{ownersStore}',
@@ -248,6 +249,8 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
 
             name: 'section',
             queryMode: 'local',
+            reference: 'section',
+
             bind: {
                 store: '{sectionStore}',
                 fieldLabel: '{sectionName}',
@@ -260,7 +263,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
             typeAhead: true,
             forceSelection: true,
             displayField: 'name',
-            valueField: 'id'
+            valueField: 'name'
 
 
         },
@@ -269,6 +272,8 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
             fieldLabel: 'Promo Type',
             displayField: 'name',
             valueField: 'name',
+            name: 'promoType',
+
             listeners: {
                 change: 'onPromoTypeChange'
             },
