@@ -312,10 +312,6 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
                         store.each(function (rec) {
                             var data = rec.data;
 
-                            console.log("Layout object data is %o", rec.data);
-                            console.log("Adding object %o %f", rec, scale);
-                            console.log("OBJECT ID ", data.objid);
-
                             var layoutObject = Ext.create('Advertising.view.main.common.pages.layout.LayoutObject', {
                                 width: Math.round(data.width * 96 * scale),
                                 height: Math.round(data.height * 96 * scale),
@@ -334,8 +330,6 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
 
 
                             p.insert(layoutObject);
-
-                            layoutObject.flagClean();
                             var stores = layoutObject.getViewModel().storeInfo;
 
                             if (Ext.Object.isEmpty(firstLayoutObj)) {
@@ -364,17 +358,35 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
                             layoutObject.getViewModel().set('objid', rec.data['objid']);
 
 
+
                             if (rec.data.hasOwnProperty('additionFieldJSON')) {
                                 for (var field in rec.data['additionFieldJSON']) {
+
+                                    if ( field === 'customPropValues') {
+                                            console.log("Checking custom props %o",rec.data['additionFieldJSON']['customPropValues']);
+                                            for (var i = 0; i < rec.data['additionFieldJSON']['customPropValues'].length; i++) {
+                                                console.log("Checking custom prop %o", rec.data['additionFieldJSON']['customPropValues'][i]['customProp']['name']);
+                                                var component = layoutObject.lookupReference(rec.data['additionFieldJSON']['customPropValues'][i]['customProp']['name']);
+                                                console.log("Component %o", component);
+                                                if (component) {
+                                                    var newVal = rec.data['additionFieldJSON']['customPropValues'][i].propValue;
+                                                    console.log("Setting value %s", newVal);
+                                                    component.setValue(newVal);
+
+                                                }
+                                            }
+
+                                    }
+
                                     console.log("Looking for combo for %s", field);
                                     // see if we have a matching combo
                                     var component = layoutObject.lookupReference(field);
-                                    console.log("component %o",component);
-                                    if ( component) {
-                                        if ( Ext.isArray(rec.data['additionFieldJSON'][field]) ) {
-                                            console.log("MULTI VALUE %s %o", field,rec.data['additionFieldJSON'][field] );
+                                    console.log("component %o", component);
+                                    if (component) {
+                                        if (Ext.isArray(rec.data['additionFieldJSON'][field])) {
+                                            console.log("MULTI VALUE %s %o", field, rec.data['additionFieldJSON'][field]);
                                             var vals = [];
-                                            rec.data['additionFieldJSON'][field].forEach(function(r) {
+                                            rec.data['additionFieldJSON'][field].forEach(function (r) {
                                                 vals.push(r.name);
                                             });
 
@@ -427,7 +439,10 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
                             }
 
                             layoutObject.setDebugInfo();
+                            layoutObject.getViewModel().set("firstLayout", true);
+                            console.log("Flagging layout object as clean");
                             layoutObject.flagClean();
+
                         });
                         parentPanel.unmask();
                     } else {
@@ -471,6 +486,9 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
             return false;
         }
 
+    },
+    onAfterRenderLayoutPanel: function (p) {
+        console.log("Layout panel completely rendered");
     },
     /**
      * When a layout is requested we'll call this renderer to then populate the data for the layout

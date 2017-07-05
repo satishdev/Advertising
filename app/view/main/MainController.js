@@ -24,6 +24,9 @@ Ext.define('Advertising.view.main.MainController', {
                 mainPageTabChanged: 'onMainPageTabChanged'
 
             },
+            '#vclayoutobject': {
+                duplicatePageObject: 'onDuplicatePageObject'
+            },
             '#vcpagecontroller': {
                 savePageChanges: 'onSavePageChanges'
 
@@ -76,6 +79,12 @@ Ext.define('Advertising.view.main.MainController', {
 
         }
     },
+    onDuplicatePageObject: function(sourceModelData) {
+        var me = this;
+        Ext.toast("Duplicating");
+        var page = me.getActiveDesignPage();
+        page.addNewLayoutObject(sourceModelData);
+    },
     savePage: function (page) {
         Ext.toast("Save page..");
     },
@@ -112,10 +121,15 @@ Ext.define('Advertising.view.main.MainController', {
                 var data = lo.getViewModel().getData();
                 for (var prop in data) {
                     console.log("->>> Saving prop %s %o %s", prop, data[prop], typeof data[prop]);
+                    if ( prop != 'adposition') {
 
-                    //dont pass in any object with proxies - e.g stores or anything else odd added to the viewmodel
-                    if (!data[prop].hasOwnProperty('proxy')) {
-                        jsonData[prop] = data[prop];
+
+                        //dont pass in any object with proxies - e.g stores or anything else odd added to the viewmodel
+                        if ( data[prop]) {
+                            if (!data[prop].hasOwnProperty('proxy')) {
+                                jsonData[prop] = data[prop];
+                            }
+                        }
                     }
                 }
                 // add to the array to send to the server

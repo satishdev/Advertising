@@ -74,7 +74,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.Page', {
             }
         });
     },
-    addNewLayoutObject: function () {
+    addNewLayoutObject: function (sourceModelData) {
 
         var me = this;
         Ext.toast("Adding new page object...");
@@ -94,14 +94,22 @@ Ext.define('Advertising.view.main.common.pages.pageview.Page', {
         var layoutObjectHeight = pageHeight / 4;
         var nextX = 1, nextY = 1;
         var zIndex = 1;
+        var nextCell = 0;
         targetPanel.items.each(function (curItem) {
             console.log("Cur %o %f %f", curItem, curItem.xPos, curItem.yPos);
+            if (  curItem.xtype == 'layoutobject') {
+                if ( curItem.getViewModel().get('cellNumber') > nextCell) {
+                    nextCell = curItem.getViewModel().get('cellNumber');
+                }
+            }
             if (curItem.xPos == nextX || curItem.yPos == nextY) {
                 nextX += 0.1;
                 nextY += 0.1;
             }
             zIndex = curItem.zIndex;
         });
+        // increment next cell number
+        nextCell++;
         // add the item to the store
         store.add({
             width: Math.round(layoutObjectWidth * 96 * scale),
@@ -113,7 +121,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.Page', {
             origWidth: 2,
             scale: scale,
             origHeight: 3,
-            cellNumber: 0,
+            cellNumber: nextCell,
             x: Math.round(nextX * 96 * scale),
             y: Math.round(nextY * 96 * scale),
             isNew: true,
@@ -131,13 +139,31 @@ Ext.define('Advertising.view.main.common.pages.pageview.Page', {
                 origWidth: 2,
                 origHeight: 3,
                 scale: scale,
-                cellNumber: 0,
+                cellNumber: nextCell,
                 x: Math.round(nextX * 96 * scale),
                 y: Math.round(nextY * 96 * scale),
                 isNew: true,
                 zIndex: zIndex + 1
             });
         targetPanel.insert(layoutObject);
+        if ( sourceModelData ) {
+            var targetModel = layoutObject.getViewModel();
+            console.log("Copying data from source %o %o", targetModel, sourceModelData);
+            targetModel.setData(sourceModelData);
+            // make sure object id not set
+            targetModel.set('objid',-1);
+            targetModel.set('cellNumber',nextCell);
+            for ( var field in sourceModelData ) {
+                var comp =  layoutObject.lookupReference(field);
+
+                if ( comp ) {
+                    comp.setValue(sourceModelData[field]);
+                }
+
+            }
+
+
+        }
         layoutObject.flagDirty();
 
     },

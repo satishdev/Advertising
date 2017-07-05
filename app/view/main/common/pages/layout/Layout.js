@@ -22,8 +22,8 @@ Ext.define('Advertising.view.main.common.pages.layout.Layout', {
     },
     listeners: {
         render: 'onAddLayoutPanel',
-        beforeclose: 'onCloseLayoutPanel'
-
+        beforeclose: 'onCloseLayoutPanel',
+        afterLayout: 'onAfterRenderLayoutPanel'
     },
     xtype: 'layout',
     iconCls: 'fa fa-th',

@@ -12356,9 +12356,11 @@ a.x-btn:active {
 }
 /* G:/Advertising/sass/src/view/main/Main.scss:375 */
 .f-drag-panel-hover {
-    background-color: #f57c00;
+    background-color: #0076ad;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.5) inset, 0 1px 1px #ddd;
+    background: linear-gradient(to bottom, #0076ad, #505050);
 }
-/* G:/Advertising/sass/src/view/main/Main.scss:380 */
+/* G:/Advertising/sass/src/view/main/Main.scss:381 */
 .f-history-event {
     color: #0076ad;
     font-style: italic;

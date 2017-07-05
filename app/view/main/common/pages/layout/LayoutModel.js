@@ -79,7 +79,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutModel', {
                 type : 'ajax',
                 autoLoad: false,
                 useDefaultXhrHeader: false,
-                url:  Advertising.util.GlobalValues.serviceURL + '/attributes/getListValues/promo-type',
+                url:  Advertising.util.GlobalValues.serviceURL + '/attributes/getListValues/promotype',
                 reader: {
                     type: 'json',
                     rootProperty: 'data'
@@ -109,16 +109,18 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutModel', {
         groupID:-1,
         layoutID: -1,
         section: undefined,
+        firstLayout: true,
         layoutMode: true,
         isNew: false,
         cellNumber: 1,
         ownerSelection: undefined,
+        ownerList: 'No owner',
         debugInfo: '',
         themeCode: '',
         debug: true,
-        sectionSelection: 'No owner',
+        sectionSelection: 'No header',
         themeName: 'Theme Code',
-        promoType: 'Promo Type',
+        promoTypeLabel: 'Promo Type',
         sectionName: 'Header',
         adPosition: 'Ad Position'
         /* This object holds the arbitrary data that populates the ViewModel and is then available for binding. */

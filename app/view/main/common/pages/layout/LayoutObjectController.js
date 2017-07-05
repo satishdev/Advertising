@@ -94,12 +94,12 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
         }
     },
     onAfterLayout: function (lo) {
-        console.log("onAfterlayout(%o) - Layout complete %o", lo, lo.up('layout'));
+        console.log("onAfterRender(%o) - Layout complete %o %s", lo, lo.up('layout'), lo.getViewModel().get('firstLayout') );
         var parent = lo.up('layout');
-        if (lo.firstLayout == true) {
-            console.log("Flagging clean");
+        if (lo.getViewModel().get('firstLayout') === true) {
+            console.log("First Layout %s Flagging clean", lo.id);
             lo.flagClean();
-            lo.firstLayout = false;
+            lo.getViewModel().set('firstLayout',false);
 
         }
     },
@@ -146,8 +146,9 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
                 lo.setComponentValue('owners', record.get('owners'));
                 lo.setComponentValue('section', record.get('section'));
 
-
             }
+            lo.flagClean();
+
         });
     },
     onUpdateLayoutsFromGrid: function (records) {
@@ -226,9 +227,11 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
         var rec = store.findRecord('layoutObjectID', layoutobject.layoutObjectID);
         console.log("Record %o", rec);
         if (rec) {
-            console.log("Set record value also..");
-            rec.set(component.name , component.value);
-            layoutobject.flagDirty();
+            console.log("Set record value also %o", component.value);
+            if ( component.value ) {
+                rec.set(component.name, component.value);
+                layoutobject.flagDirty();
+            }
         }
     },
     onShowEdit: function (combo, event, eOpts) {
@@ -249,13 +252,15 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
 
         // update the store
         me.setRecordValue(combo);
-        var extVal = record.get('extendedVal').split(',');
-        // change the theme code and ad position
-        var themeCombo = lo.down('[name="theme"]');
-
-        themeCombo.setValue(extVal[2]);
-        lo.down('[name="adPosition"]').setValue(extVal[1]);
-
+        if ( record.get('extendedVal')) {
+            var extVal = record.get('extendedVal').split(',');
+            //   change the theme code and ad position
+            var themeCombo = lo.down('[name="theme"]');
+            if (extVal && extVal.length > 1) {
+                themeCombo.setValue(extVal[2]);
+                lo.down('[name="adposition"]').setValue(extVal[1]);
+            }
+        }
     },
     onThemeChange: function (combo, event, eOpts) {
 
@@ -265,11 +270,19 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
         me.setRecordValue(combo);
     },
     onOwnerChange: function (combo, event, eOpts) {
-        var me = this;
+        var me = this, lo = combo.up('layoutobject');
         console.log("Owner change value %s for object %o", combo.value, combo.up('layoutobject'));
         if (combo.value.length != 0) {
             console.log("Setting record value %o", combo.value);
             me.setRecordValue(combo);
+            var stringVal = '';
+            for ( var x= 0 ; x < combo.value.length; x++ ) {
+                stringVal += combo.value[x] + " / ";
+            }
+            lo.getViewModel().set('ownerList',combo.value);
+
+        } else {
+            lo.getViewModel().set('ownerList','No Owners');
         }
     }
     ,
@@ -379,6 +392,13 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
         }
 
         //    me.onAdjustObjectSizeOrLocation(lo);
+    },
+    onDuplicateLayoutObject: function(tool, evnt, panel) {
+        var me = this;
+        var lo = panel.up('layoutobject');
+        console.log("Duplicating element %o", lo);
+        this.fireEvent('duplicatePageObject', lo.getViewModel().getData());
+
     },
     onFillUp: function (tool, evnt, panel) {
         var me = this;

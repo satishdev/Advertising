@@ -45,9 +45,16 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
         }
         me.getViewModel().set('origWidth', me.width);
         me.getViewModel().set('origHeight', me.height);
+        me.getViewModel().set('firstLayout', true);
 
     },
     tools: [
+        {
+            type: 'copy',
+            glyph: 'xf0c5@FontAwesome',
+            toolTip: 'Duplicate layout object',
+            handler: 'onDuplicateLayoutObject'
+        },
         {
             type: 'left',
             toolTip: 'Fill left',
@@ -87,7 +94,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
     cls: 'f-layout-object f-layout-object-clean',
     listeners: {
         resize: 'onLayoutObjectResize',
-        afterlayout: 'onAfterLayout',
+        afterLayout: 'onAfterLayout',
         dblclick: {
             fn: function () {
                 console.log("double click %o", this);
@@ -217,7 +224,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
             layout: 'fit',
             bind: {
                 hidden: '{editMode}',
-                html: '<svg viewBox="0 0 400 300" preserveAspectRatio="none" width="100%" height="100%"><text x="50%"  y="15%"  alignment-baseline="middle" stroke="white" stroke-width="2px" text-anchor="middle" font-size="3vw" font-family="verdana" dy=".3em" >{sectionSelection}</text></svg>'
+                html: '<svg viewBox="0 0 400 300" preserveAspectRatio="none" width="100%" height="100%"><text x="50%"  y="25%"  alignment-baseline="middle" text-anchor="middle" font-size="1vw" font-family="verdana" dy=".3em" >{ownerList}</text><text x="50%"  y="5%"  alignment-baseline="middle" stroke="white" stroke-width="2px" text-anchor="middle" font-size="3vw" font-family="verdana" dy=".3em" >{sectionSelection}</text></svg>'
 
             }
         },
@@ -272,19 +279,21 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
             fieldLabel: 'Promo Type',
             displayField: 'name',
             valueField: 'name',
-            name: 'promoType',
+            name: 'promotype',
+            reference: 'promotype',
 
             listeners: {
                 change: 'onPromoTypeChange'
             },
             bind: {
                 store: '{promoTypes}',
-                fieldLabel: '{promoType}',
+                fieldLabel: '{promoTypeLabel}',
                 hidden: '{!editMode}'
             }
         },
         {
             xtype: 'combobox',
+            reference: 'theme',
 
             name: 'theme',
             listeners: {
@@ -303,8 +312,8 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
         },
         {
             xtype: 'combobox',
-
-            name: 'adPosition',
+            reference: 'adposition',
+            name: 'adposition',
             //listeners: {
             //    change: 'onThemeChange'
             //},
@@ -323,6 +332,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
             padding: 3,
             margin: '3 3 0 3',
             name: 'instructions',
+            reference: 'instructions',
             xtype: 'textarea',
             maxLength: 255,
             bind: {
@@ -353,7 +363,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
         svg.setAttribute("width","100%"); //Set path's data
         svg.setAttribute("height","100%"); //Set path's data
         var text = document.createElement('text');
-         var newContent = document.createTextNode("Hi there and greetings!");
+         var newContent = document.createTextNode("test");
         text.appendChild(newContent);
         //text.setAttribute("x", me.getX()); //Set path's data
         //text.setAttribute("y",me.getY()); //Set path's data

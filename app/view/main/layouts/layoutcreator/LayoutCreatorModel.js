@@ -16,7 +16,7 @@ Ext.define('Advertising.view.main.layouts.layoutcreator.LayoutCreatorModel', {
                 type : 'ajax',
                 autoLoad: true,
                 useDefaultXhrHeader: false,
-                url:  Advertising.util.GlobalValues.serviceURL + '/attributes/getListValues/promo-type',
+                url:  Advertising.util.GlobalValues.serviceURL + '/attributes/getListValues/promotype',
                 reader: {
                     type: 'json',
                     rootProperty: 'data'

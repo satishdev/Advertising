@@ -72,13 +72,19 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectEditWindow', {
             handler: function (btn) {
                 var box = Ext.create('Ext.window.MessageBox');
                 var me = this;
+                var source = btn.up('window').sourceObject;
+                console.log("Deleting source %o", source.getViewModel());
+
                 box.confirm('Delete', 'Are you sure you want to delete this item?', function (answer) {
                     if (answer == 'yes') {
-                        var source = btn.up('window').sourceObject;
 
                         console.log("Deleting %o", source);
-                        source.flagDeleted();
-                        source.flagDirty();
+                        if( source.getViewModel().get('objid') === -1) {
+                            source.destroy();
+                        } else {
+                            source.flagDeleted();
+                            source.flagDirty();
+                        }
                     }
                     btn.up('window').close();
                 });
