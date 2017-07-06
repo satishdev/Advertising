@@ -177,18 +177,23 @@ Ext.define('Advertising.view.main.common.pages.pageview.Page', {
     updateGrid: function () {
         console.log("Updating grid..");
         var me = this;
-        var scale = me.getViewModel().get("scale");
         var pageWidth = me.getViewModel().get("width");
         var pageHeight = me.getViewModel().get("height");
+        var parentWidth = me.getSize().width;
+        var parentHeight = me.getSize().height;
+        var zoom =  Ext.ComponentQuery.query("pagetoolpanel")[0].getViewModel().get('zoom') / 100;
+   //     var scale = me.getViewModel().get("scale");
+        var scale = parentWidth / ((pageWidth * 96) + 50);
+        var oneInch = Math.round(((96 * scale ) * zoom));
+
         // determine good size for new item based on size of page
-        console.log("Scale %o", scale);
+        console.log("--->>>  Scale %o ZOOM %f", scale,zoom);
         var svg = me.getEl().query('svg')[0];
         //var svg = Ext.dom.Query.select('rect');
         console.log("SVG %o", svg);
         if (svg) {
-            svg.setAttribute('width', ( pageWidth * 96 * scale) * (me.zoom / 100));
-            svg.setAttribute('height', (pageHeight * 96 * scale) * (me.zoom / 100));
-            var oneInch = Math.round(((96 * scale ) * ( me.zoom / 100)));
+            svg.setAttribute('width', Math.round(pageWidth * oneInch));
+            svg.setAttribute('height', Math.round( pageHeight * oneInch ));
             console.log("One inch on screen is %f", oneInch);
             console.log("-->> Found grid %o item...updating it", svg);
             var pattern = svg.getElementsByTagName("pattern")[0];

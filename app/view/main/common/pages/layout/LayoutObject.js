@@ -50,6 +50,15 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
     },
     tools: [
         {
+            type: 'help',
+            glyph: 'xf044@FontAwesome',
+            toolTip: 'Show edit fields',
+            handler: 'onShowEdit',
+            bind: {
+                hidden: '{!editMode}'
+            }
+        },
+        {
             type: 'copy',
             glyph: 'xf0c5@FontAwesome',
             toolTip: 'Duplicate layout object',
@@ -183,41 +192,41 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObject', {
         margin: '0 4 0 4',
         labelAlign: 'top'
     },
-    tbar: {
-        bind : {
-            hidden: '{!editMode}'
-        },
-        items: [
-            {
-                iconCls: 'fa fa-bullseye',
-                text: 'Targeting',
-                bind: {
-                    hidden: '{layoutMode}'
-                },
-                listeners: {
-                    //click: 'onToggleGrid',
-
-                }
-            },
-            {
-                iconCls: 'fa fa-edit',
-                listeners: {
-                    click: 'onShowEdit'
-                }
-            },
-
-            {
-                style: 'float: right',
-                xtype: 'container',
-                name: 'debugInfo',
-                cls: 'noSelect',
-                bind: {
-                    html: '{debugInfo}',
-                    visible: '{debug}'
-                }
-            }
-        ]
-    },
+    //tbar: {
+    //    bind : {
+    //        hidden: '{!editMode}'
+    //    },
+    //    items: [
+    //        //{
+    //        //    iconCls: 'fa fa-bullseye',
+    //        //    text: 'Targeting',
+    //        //    bind: {
+    //        //        hidden: '{layoutMode}'
+    //        //    },
+    //        //    listeners: {
+    //        //        //click: 'onToggleGrid',
+    //        //
+    //        //    }
+    //        //},
+    //        //{
+    //        //    iconCls: 'fa fa-edit',
+    //        //    listeners: {
+    //        //        click: 'onShowEdit'
+    //        //    }
+    //        //},
+    //
+    //        //{
+    //        //    style: 'float: right',
+    //        //    xtype: 'container',
+    //        //    name: 'debugInfo',
+    //        //    cls: 'noSelect',
+    //        //    bind: {
+    //        //        html: '{debugInfo}',
+    //        //        visible: '{debug}'
+    //        //    }
+    //        //}
+    //    ]
+    //},
     items: [
         {
             xtype: 'container',

@@ -59,8 +59,9 @@ Ext.define('Advertising.view.main.common.pages.pageobject.PageObject', {
     setZoom: function (zoom) {
         var me = this, model = me.getViewModel();
         var parentPanel = me.up('panel');
+        var superParent = parentPanel.up('layout');
 
-        var curZoom = me.zoom;
+        //var curZoom = me.zoom;
         me.zoom = zoom;
         me.prevX = me.getX();
         me.prevY = me.getY();
@@ -68,22 +69,34 @@ Ext.define('Advertising.view.main.common.pages.pageobject.PageObject', {
         me.prevWidth = me.getWidth();
         me.prevHeight = me.getHeight();
         var layoutViewModel = me.up('layout').getViewModel();
-        var scale = layoutViewModel.get('scale');
-        var oneInch = Math.round(((96 * scale ) * ( zoom / 100)));
+        var scale = layoutViewModel.get('scale') ;
+        var scale2 =  (superParent.width / ((superParent.getViewModel().get('width') * 96)));
+        var zoom =  Ext.ComponentQuery.query("pagetoolpanel")[0].getViewModel().get('zoom') / 100;
+        //     var scale = me.getViewModel().get("scale");
+       // var scale = parentWidth / ((pageWidth * 96) + 50);
+        var oneInch = Math.round(((96 * scale ) * zoom));
+
+       // var oneInch = Math.round(96 * scale2 );
+        console.log("Inch %f scale 2 %o %d %d", oneInch, scale2, superParent, superParent.getX(),superParent.getY());
+
         var gridSize = Ext.ComponentQuery.query("pagetoolpanel")[0].getViewModel().get('gridSize');
-        var oneInchGrid = Math.round(oneInch * gridSize);
+        //var oneInchGrid = Math.round(oneInch * gridSize);
         console.log("MODEL FOR LAYOUT OBJECT %o", model.data);
-        var newXPos = Math.round((model.get('xPos') * 96 ) * (zoom / 100) * scale) + parentPanel.getX();
-        var newYPos = Math.round((model.get('yPox') * 96 ) * (zoom / 100) * scale) + parentPanel.getY();
-        console.log("Old pos %f x %f New pos  %f x %f", me.prevX, me.prevY, newXPos, newYPos);
-        var newXPos2 = ( Math.round(me.getX() - parentPanel.getX()) * (zoom / 100) );
-        var newYPos2 = ( Math.round(me.getY() - parentPanel.getY()) * (zoom / 100) );
+        var newXPos = Math.round(model.get('xPos') * oneInch) ;
+        var newYPos = Math.round(model.get('yPos') * oneInch);
+        //console.log(" New pos  %f x %f",  newXPos, newYPos);
+        //var newXPos2 = ( Math.round(me.getX() - parentPanel.getX()) * (zoom / 100) * scale2 );
+        //var newYPos2 = ( Math.round(me.getY() - parentPanel.getY()) * (zoom / 100)* scale2 );
 
-        me.setPosition(newXPos2, newYPos2, true);
-        var newWidth = Math.round(((model.get('inchWidth') * 96)) * (zoom / 100) * scale);
-        var newHeight = Math.round(((model.get('inchHeight') * 96)) * (zoom / 100) * scale);
+        me.setPosition(newXPos, newYPos, {
+            easing: 'linear',
+            duration: 300
+        });
+        var newWidth = Math.round(model.get('width') * oneInch);
+        var newHeight =Math.round(model.get('height') * oneInch);
 
-        console.log("Setting width %f height %f ", newWidth, newHeight);
+
+        console.log("Inch %f Setting width %f height %f ",oneInch, newWidth, newHeight);
         me.setSize(newWidth, newHeight);
 
     },

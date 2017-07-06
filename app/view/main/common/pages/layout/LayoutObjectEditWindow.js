@@ -29,7 +29,7 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectEditWindow', {
     viewModel: {
         type: 'layout'
     },
-    width: 400,
+    width: 600,
     height: 700,
     modal: true,
     config: {

@@ -140,7 +140,9 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
         //   Ext.toast("Width " + parentWidth);
         console.log("Assigning scale based on %f %f", model.get("width"), pageWidth);
         //  var scale = parentWidth / ((p.inchWidth * 96) + 20);
-        var scale = pageWidth / ((model.get("width") * 96) );
+        var scale = pageWidth / ((model.get("width") * 96) + 50);
+
+        page.getViewModel().set('scale',scale);
         console.log("Resizing page %d %o %f", parentWidth, page, scale);
         page.setWidth(Math.round(pageWidth));
         page.setHeight(Math.round(model.get("height") * 96 * scale));

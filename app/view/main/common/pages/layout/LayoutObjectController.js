@@ -39,6 +39,8 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
         var parent = comp.up('layout'), model = comp.getViewModel();
         var gridView = parent.down('panel');
         var container = parent.up('pagelayouts');
+        var scale2 = (zoom / 100 ) * (container.width / ((container.getViewModel().get('width') * 96)));
+
         var layoutViewModel = comp.up('layout').getViewModel();
         var scale = layoutViewModel.get('scale');
         var zoom = Ext.ComponentQuery.query("pagetoolpanel")[0].getViewModel().get('zoom');
@@ -80,16 +82,21 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
 
             console.log("Snap X2 %d", snapX2);
             console.log("Snap Y2 %d", snapY2);
+            console.log("One inch %d", oneInchGrid);
+
             // see if component is too large for panel
 
             comp.setSize(  compCols * oneInchGrid, compRows * oneInchGrid).setPosition(snapX * oneInchGrid, snapY * oneInchGrid, {
                 easing: 'linear',
                 duration: 300
             });
-            model.set('inchWidth', compRows * gridSize);
-            model.set('inchHeight',compCols * gridSize);
-            comp.getViewModel().set('autoMove',false);
+          //  model.set('inchHeight', compRows / oneInchGrid);
+          //  model.set('inchWidth',compCols / oneInchGrid);
+            console.log("New size %d x %d", compRows / oneInchGrid, compCols / oneInchGrid);
 
+            comp.getViewModel().set('autoMove',false);
+          //  model.set('height', compRows / oneInchGrid);
+         //   model.set('width',compCols / oneInchGrid);
 
         }
     },
@@ -234,13 +241,12 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
             }
         }
     },
-    onShowEdit: function (combo, event, eOpts) {
-        var me = this, lo = combo.up('layoutobject');
-        console.log("Combo value %s for object %o", combo.value, combo.up('layoutobject'));
+    onShowEdit: function (type, tool, event, panel) {
+        var me = this, lo = panel.up('layoutobject');
         var win = Ext.create('Advertising.view.main.common.pages.layout.LayoutObjectEditWindow',
             {
-                animateTarget: combo.id,
-                sourceObject: combo.up('layoutobject')
+                animateTarget: lo.id,
+                sourceObject: lo
             }).show();
     },
 
@@ -248,17 +254,19 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
         var me = this, lo = combo.up('layoutobject');
         console.log("Combo value %s for object %o", combo.value, combo.up('layoutobject'));
         var record = combo.findRecordByValue(combo.value);
-        console.log("onPromoTypeChange ", record);
+        if ( record) {
+            console.log("onPromoTypeChange ", record);
 
-        // update the store
-        me.setRecordValue(combo);
-        if ( record.get('extendedVal')) {
-            var extVal = record.get('extendedVal').split(',');
-            //   change the theme code and ad position
-            var themeCombo = lo.down('[name="theme"]');
-            if (extVal && extVal.length > 1) {
-                themeCombo.setValue(extVal[2]);
-                lo.down('[name="adposition"]').setValue(extVal[1]);
+            // update the store
+            me.setRecordValue(combo);
+            if (record.get('extendedVal')) {
+                var extVal = record.get('extendedVal').split(',');
+                //   change the theme code and ad position
+                var themeCombo = lo.down('[name="theme"]');
+                if (extVal && extVal.length > 1) {
+                    themeCombo.setValue(extVal[2]);
+                    lo.down('[name="adposition"]').setValue(extVal[1]);
+                }
             }
         }
     },
@@ -314,14 +322,18 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
         //pageObj.getViewModel().set("yPos", realY);
         pageObj.getViewModel().set("newXInchPos", (((realX / 96) * (100 / zoom)) / scale));
         pageObj.getViewModel().set("newYInchPos", (((realY / 96) * (100 / zoom)) / scale));
+        pageObj.getViewModel().set("xPos", (((realX / 96) * (100 / zoom)) / scale));
+        pageObj.getViewModel().set("yPos", (((realY / 96) * (100 / zoom)) / scale));
         pageObj.getViewModel().set("undoDisabled", false);
         pageObj.getViewModel().set("newWidth", pageObj.width * (100 / zoom));
         pageObj.getViewModel().set("newHeight", pageObj.height * (100 / zoom));
         pageObj.getViewModel().set("newInchWidth", (((pageObj.width / 96) * (100 / zoom)) / scale));
         pageObj.getViewModel().set("newInchHeight", (((pageObj.height / 96) * (100 / zoom)) / scale));
+        pageObj.getViewModel().set("width", (((pageObj.width / 96) * (100 / zoom)) / scale));
+        pageObj.getViewModel().set("height", (((pageObj.height / 96) * (100 / zoom)) / scale));
         pageObj.setDebugInfo();
         pageObj.flagDirty();
-
+        console.log("Scale %f Width %f Height %f", scale,pageObj.getViewModel().get("width"),pageObj.getViewModel().get("height"));
       //  console.log("Page object info %o", pageObj.getViewModel().data);
 
     },

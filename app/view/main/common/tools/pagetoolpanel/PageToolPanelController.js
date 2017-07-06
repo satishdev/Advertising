@@ -250,6 +250,8 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelContro
 
     },
     onZoomChangeComplete: function (slider, newValue, thumb, eOpts) {
+        var me = this;
+        me.getViewModel().set('zoom', newValue);
         this.fireEvent('updatePageZoomLevel', newValue);
 
     },
