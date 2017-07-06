@@ -29,6 +29,8 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanelModel'
         showMetricsTools: false,
         zoom: 100,
         gridLabel: 'Grid 1&quot;',
+        zoomLabel: 'Zoom 100%',
+
         gridSize:1,
         mode: 'none',
         stacked: false,

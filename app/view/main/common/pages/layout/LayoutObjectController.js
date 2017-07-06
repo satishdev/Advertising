@@ -37,15 +37,36 @@ Ext.define('Advertising.view.main.common.pages.layout.LayoutObjectController', {
     },
     performSnap:function(comp,x,y) {
         var parent = comp.up('layout'), model = comp.getViewModel();
+        var viewPort = comp.up('panel');
         var gridView = parent.down('panel');
         var container = parent.up('pagelayouts');
-        var scale2 = (zoom / 100 ) * (container.width / ((container.getViewModel().get('width') * 96)));
-
         var layoutViewModel = comp.up('layout').getViewModel();
         var scale = layoutViewModel.get('scale');
         var zoom = Ext.ComponentQuery.query("pagetoolpanel")[0].getViewModel().get('zoom');
         var gridSize = Ext.ComponentQuery.query("pagetoolpanel")[0].getViewModel().get('gridSize');
         var snapToGrid = Ext.ComponentQuery.query("pagetoolpanel")[0].getViewModel().get('snapToGrid');
+        console.log("Drop! %d %d %d",x , viewPort.getX() , viewPort.getWidth() );
+        // see if item was dropped outside of page
+        if ( x  >= (viewPort.getX() + viewPort.getWidth()) || y > (viewPort.getY() + viewPort.getHeight())) {
+            console.log("Dropped outside!");
+            Ext.Msg.show({
+                title:'Remove item?',
+                message: 'Would you like to delete the dropped layout object?',
+                buttons: Ext.Msg.YESNOCANCEL,
+                icon: Ext.Msg.QUESTION,
+                fn: function(btn) {
+                    if (btn === 'yes') {
+                        console.log('Yes pressed');
+                    } else if (btn === 'no') {
+                        console.log('No pressed');
+
+                        return;
+                    } else {
+                        console.log('Cancel pressed');
+                    }
+                }
+            });
+        }
 
         // snap items to the grid
         if (snapToGrid) {

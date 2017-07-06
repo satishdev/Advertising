@@ -206,7 +206,7 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
             bind: {
                 hidden: '{hidePageTools}',
                 value: '{gridSize}',
-                fieldLabel: '{gridLabel}',
+                fieldLabel: '{gridLabel}'
             },
             xtype: 'slider',
 
@@ -224,7 +224,8 @@ Ext.define('Advertising.view.main.common.tools.pagetoolpanel.PageToolPanel', {
         {
             bind: {
                 hidden: '{hidePageTools}',
-                value: '{zoom}'
+                value: '{zoom}',
+                fieldLabel: '{zoomLabel}'
             },
             xtype: 'slider',
             fieldLabel: 'Zoom',

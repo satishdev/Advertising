@@ -41,7 +41,8 @@ Ext.define('Advertising.view.west.treeviews.TreeViews', {
         //},
         {
             title: 'Layout Templates',
-            xtype: 'layouttree'
+            xtype: 'layouttree',
+            itemCls: 'f-template-header'
         }
     ]
 });

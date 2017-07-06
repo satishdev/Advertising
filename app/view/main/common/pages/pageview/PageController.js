@@ -294,11 +294,16 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
         var scale = parentPanel.getViewModel().get("scale");
         var store = parentPanel.getViewModel().getStore('layoutObjects');
         console.log("parent %o %o", parentPanel, parentPanel.getViewModel());
+        var zoom = Ext.ComponentQuery.query("pagetoolpanel")[0].getViewModel().get('zoom') / 100;
 
         store.getProxy().url = Advertising.util.GlobalValues.serviceURL + '/page/getLayoutObjects/' + parentPanel.getViewModel().get('objid');
         // set the grid
-        var gridSize = Ext.ComponentQuery.query("pagetoolpanel")[0].getViewModel().get('gridSize');
 
+        var gridSize = Ext.ComponentQuery.query("pagetoolpanel")[0].getViewModel().get('gridSize');
+        if ( !gridSize) {
+            gridSize = 1;
+            Ext.ComponentQuery.query("pagetoolpanel")[0].getViewModel().set('gridSize',1);
+        }
         me.onUpdatePageGridSize(gridSize);
         // me.updateGrid(parentPanel);
 
@@ -315,8 +320,8 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
                             var data = rec.data;
 
                             var layoutObject = Ext.create('Advertising.view.main.common.pages.layout.LayoutObject', {
-                                width: Math.round(data.width * 96 * scale),
-                                height: Math.round(data.height * 96 * scale),
+                                width: Math.round(data.width * 96 * scale) * zoom,
+                                height: Math.round(data.height * 96 * scale) * zoom,
                                 origX: data.xPos,
                                 origY: data.yPos,
                                 origWidth: data.width,
@@ -326,8 +331,8 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
                                 dirty: false,
                                 objid: data.objid,
                                 layoutObjectID: data.objid,
-                                x: Math.round(data.xPos * 96 * scale),
-                                y: Math.round(data.yPos * 96 * scale)
+                                x: Math.round(data.xPos * 96 * scale)* zoom,
+                                y: Math.round(data.yPos * 96 * scale)* zoom
                             });
 
 
@@ -499,19 +504,22 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
      */
     onAddLayoutPanel: function (p) {
 
-        var me = this, parentWidth = p.up('panel').getSize().width, parentHeight = p.up('panel').getSize().height
+        var me = this, parentWidth = p.up('panel').getSize().width, parentHeight = p.up('panel').getSize().height;
         console.log("Parent panel size: %o", p.up('panel').getSize());
         console.log("Resize page %o %s %o", p, p.xtype, p.getViewModel());
 
         var pageWidth = parentWidth;
+        var zoom = Ext.ComponentQuery.query("pagetoolpanel")[0].getViewModel().get('zoom') / 100;
+
         var scale = parentWidth / ((p.getViewModel().get("width") * 96));
+        var zoomWidth = zoom * parentWidth;
         var model = p.getViewModel();
-        console.log("Scale %f", scale);
+        console.log("Zoom %f Scale %f", zoom, scale);
         me.getViewModel().set("scale", scale);
         var trueWidth = Math.round(model.get("width") * 96 * scale);
-        var trueHeight = Math.round(model.get("height") * 96 * scale);
+        var trueHeight = Math.round(model.get("height") * 96 * scale) * zoom;
         console.log("Real size %f x %f", model.get("width"), model.get("height"));
-        console.log("-->> New size %f x %f", trueWidth, trueHeight);
+        console.log("-->> New size %f x %f", zoomWidth, trueHeight);
         var gridPath = "M " + Math.round(96 * scale) + " 0 L 0 0 0 " + Math.round(96 * scale);
         //p.setWidth( parentWidth);
         //p.setHeight(trueHeight);
@@ -520,7 +528,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
             border: true,
             //flex: 1,
             padding: 0,
-            width: parentWidth,
+            width: zoomWidth,
             height: trueHeight,
             layout: 'absolute',
 
@@ -533,7 +541,7 @@ Ext.define('Advertising.view.main.common.pages.pageview.PageController', {
 
                     // todo - get image from server
                     //                     html: '<svg  width="' + parentWidth + '" height="' + trueHeight + '" xmlns="http://www.w3.org/2000/svg">                    <defs>                    <pattern id="smallGrid' + p.id + '" width="8" height="8" patternUnits="userSpaceOnUse">                    <path d="M 8 0 L 0 0 0 8" fill="none" stroke="gray" stroke-width="0.5"/> </pattern> <pattern id="grid' + p.id + '" width="80" height="80" patternUnits="userSpaceOnUse"> <rect width="80" height="80" fill="url(#smallGrid' + p.id + ')"/> <path d="M 80 0 L 0 0 0 80" fill="none" stroke="gray" stroke-width="1"/> </pattern> </defs> <rect width="100%" height="100%" fill="url(#grid' + p.id + ')" /> </svg>'
-                    html: '<div class="f-debug-info" z-index="999">' + Math.round(scale) + ' Size ' + parentWidth + 'x' + trueHeight + '</div><svg opacity="0.25" width="' + parentWidth + '" height="' + trueHeight + '" xmlns="http://www.w3.org/2000/svg">                    <defs>                     <pattern id="grid' + p.id + '" width="' + Math.round(98 * scale) + '" height="' + Math.round(98 * scale) + '" patternUnits="userSpaceOnUse"> <rect width="' + Math.round(98 * scale) + '" height="' + Math.round(98 * scale) + '" fill="url(#smallGrid' + p.id + ')"/> <path d="' + gridPath + '" fill="none" stroke="gray" stroke-width="2"/> </pattern> </defs> <rect width="100%" height="100%" fill="url(#grid' + p.id + ')" /> </svg>'
+                    html: '<div class="f-debug-info" z-index="999">' + Math.round(scale) + ' Size ' + zoomWidth + 'x' + trueHeight + '</div><svg opacity="0.25" width="' + zoomWidth + '" height="' + trueHeight + '" xmlns="http://www.w3.org/2000/svg">                    <defs>                     <pattern id="grid' + p.id + '" width="' + Math.round(98 * scale) + '" height="' + Math.round(98 * scale) + '" patternUnits="userSpaceOnUse"> <rect width="' + Math.round(98 * scale) + '" height="' + Math.round(98 * scale) + '" fill="url(#smallGrid' + p.id + ')"/> <path d="' + gridPath + '" fill="none" stroke="gray" stroke-width="2"/> </pattern> </defs> <rect width="100%" height="100%" fill="url(#grid' + p.id + ')" /> </svg>'
                 }
 
 
